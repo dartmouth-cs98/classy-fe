@@ -36,4 +36,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Author
 * Vi N Tran
 * Henry Kim
-* Alex Feng
+* Alex Feng :)
