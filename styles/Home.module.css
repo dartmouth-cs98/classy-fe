@@ -1,15 +1,55 @@
 .container {
-  padding: 0 2rem;
+  padding: 0;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  max-width: 100%;
+  padding: 0 5rem;
   flex: 1;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: left;
+}
+
+.page_header {
+  flex: 1;
+  padding: 0 5rem;
+
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
+}
+
+.course_title {
+  height: 120px;
+  min-width: 100%;
+  border-radius: 15px;
+  color: #5B8A8D;
+  padding-left: 2%;
+  background-color: #EBF9FA;
+}
+
+.left_info {
+  min-width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:stretch;
+  /* background-color: aqua; */
+}
+
+.right_info {
+  min-width: 25%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items:center;
+  /* background-color: antiquewhite; */
 }
 
 .footer {
@@ -33,53 +73,153 @@
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
 .title {
+  padding: 2%;
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2.3rem;
+  display: flex;
+  align-items: flex-start;
 }
 
 .title,
 .description {
-  text-align: center;
+  text-align: left;
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 1.5rem;
   line-height: 1.5;
   font-size: 1.5rem;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.button {
+  background-color: #14121D;
+  border-color: transparent;
+  border-radius: 10px;
+  color: white;
+  height: 50px;
+  width: 220px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.button:hover,
+.button:focus,
+.button:active {
+  color: #14121D;
+  background-color: #fafafa;
+  border-color: transparent;
 }
 
-.grid {
+.info_graphic {
+  background-color: #5B8A8D;
+  border-radius: 10px;
+  font-style: bold;
+  color: #fafafa;
+  height: 100px;
+  width: 220px;
+  padding: 32px 15px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: center;
+  display: inline-block;
+  font-size: 30px;
+}
+
+.waitlist_btns {
+  padding-top: 50px;
+  /* padding-bottom: 175px; */
+  margin-right: 5%;
+  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
-  max-width: 800px;
+  justify-content:space-around;
+  align-items:flex-end;
+}
+
+.waitlist_details_container {
+  /* background-color: #EBF9FA; */
+  background-color: #5B8A8D;
+  margin-top: 100px;
+  border-radius: 10px;
+  margin-right: 5%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.waitlist_element {
+  background-color: #EBF9FA;
+  /* background-color: #5B8A8D; */
+  border-radius: 10px;
+  padding: 3%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.waitlist_pos {
+  min-width: 75%;
+  border-radius: 10px;
+  height: 15%;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content:start;
+  align-items: center;
+}
+
+.prof_info_container {
+  background-color: #F4F5F9;
+  min-width: 75%;
+  margin-top: 30%;
+  border-radius: 10px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+}
+
+.email_btn {
+  background-color: #14121D;
+  color: white;
+  border: transparent;
+  border-radius: 10px;
+  padding: 5%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.profile_picture {
+  background-color: #fafafa;
+  padding-bottom: 10%;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+
 }
 
 .card {
+  width: 300px;
+  height: 175px;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
+  background-color: #EBF9FA;
+  color: #5B8A8D;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  border: 2px solid #EBF9FA;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
@@ -88,8 +228,9 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #5B8A8D;
+  background-color: #fafafa;
+  border-color: #5B8A8D;
 }
 
 .card h2 {
@@ -127,3 +268,4 @@
     filter: invert(1);
   }
 }
+
