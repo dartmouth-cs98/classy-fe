@@ -39,4 +39,3 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 * Alex Feng :)
 * Gyuri Hwang
 * Alyssa Anderson
-
