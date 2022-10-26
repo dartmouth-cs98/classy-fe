@@ -33,6 +33,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Tags
+v0.1 - Initial structure for Classy fe in javascript. Contains some files for waitlist.
+
 ## Author
 * Vi N Tran
 * Henry Kim
