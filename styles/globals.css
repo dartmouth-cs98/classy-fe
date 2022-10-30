@@ -7,6 +7,33 @@
     @apply bg-gray-100;
   }
 }
+/* Color variables */
+html {
+  --pastel-blue: #EBF9FA;
+  --dark-blue: #5B8A8D;
+  --pastel-green: #EFFAEB;
+  --dark-green: #75946A;
+  --pastel-orange: #FCF0E3;
+  --dark-orange: #BA7D37;
+  --pastel-purple: #EFE7FA;
+  --dark-purple: #7E5DAC;
+  --pastel-pink: #FAEBF6;
+  --dark-pink: #AE5E99;
+  --pastel-violet: #F9F3FC;
+  --dark-violet: #8E5BA8;
+  --alert-red: #FF7C7C;
+  --warning-yellow: #FFF27C;
+  --navy: #14121D;
+  --darkest-grey: #28282D;
+  --dark-grey: #535560;
+  --mid-grey: #848698;
+  --light-grey: #AFB1C1;
+  --lighter-grey: #DEDFE8;
+  --lightest-grey: #F4F5F9;
+  --links-unselected: #01AAE4;
+  --links-selected: #01AAE4;
+}
+
 html,
 body {
   padding: 0;
