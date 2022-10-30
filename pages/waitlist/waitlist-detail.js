@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import RemoveWaitlist from '../../components/RemoveWaitlist'
 import styles from '../../styles/WaitlistDetail.module.css'
 
 export default function WaitlistDetail() {
@@ -24,9 +25,7 @@ export default function WaitlistDetail() {
       <main className={styles.main}>
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
-            <button className={styles.button}>
-              <Link href="/waitlist/waitlist-home">Remove from Waitlist</Link>
-            </button>
+            <RemoveWaitlist/>
             <button className={styles.button}>Edit Waitlist Request</button>
             <button className={styles.button}>Course Info Page</button>
           </div>
