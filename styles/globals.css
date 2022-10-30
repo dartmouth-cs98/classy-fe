@@ -8,6 +8,11 @@
   }
 }
 /* Color variables */
+/*  
+  Color variables
+  To use: var(--variable-name)
+  ex. color: var(--pastel-blue);
+ */
 html {
   --pastel-blue: #EBF9FA;
   --dark-blue: #5B8A8D;
@@ -57,7 +62,7 @@ a {
 
   body {
     color: white;
-    background: black;
+    /* background: black; */
   }
 }
 
