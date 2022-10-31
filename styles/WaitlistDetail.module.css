@@ -1,8 +1,10 @@
 .container {
+  margin-left: 300px;
   padding: 0;
 }
 
 .main {
+  
   min-height: 100vh;
   max-width: 100%;
   padding: 0 5rem;
@@ -25,11 +27,12 @@
 }
 
 .course_title {
-  height: 120px;
+  height: 150px;
   min-width: 100%;
   border-radius: 15px;
   color: #5B8A8D;
   padding-left: 2%;
+  justify-content: center;
   background-color: #EBF9FA;
 }
 
@@ -146,26 +149,28 @@
   margin-top: 100px;
   border-radius: 10px;
   margin-right: 5%;
-  height: 150%;
+  height: 120%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
 .waitlist_element {
   background-color: #EBF9FA;
-  /* background-color: #5B8A8D; */
   border-radius: 10px;
-  padding: 3%;
+  margin-top: 8%;
+  margin-bottom: 10%;
+  padding: 5%;
+  min-height: 150px;
+  max-height: 350px;
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 }
 
-.waitlist_pos {
+.waitlist_position {
   min-width: 75%;
   border-radius: 10px;
   height: 15%;
@@ -210,44 +215,21 @@
 
 }
 
-.card {
-  width: 300px;
-  height: 175px;
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  background-color: #EBF9FA;
-  color: #5B8A8D;
-  text-decoration: none;
-  border: 2px solid #EBF9FA;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #5B8A8D;
-  background-color: #fafafa;
-  border-color: #5B8A8D;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
 .logo {
   height: 1em;
   margin-left: 0.5rem;
 }
+
+/* .modal {
+  width: 72px;
+  height: auto;
+  
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+} */
 
 @media (max-width: 600px) {
   .grid {
@@ -257,7 +239,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .card,
   .footer {
     border-color: #222;
   }

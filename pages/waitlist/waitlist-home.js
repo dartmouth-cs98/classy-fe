@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/WaitlistHome.module.css'
+import Link from 'next/link';
 
-export default function Home() {
+
+export default function WaitlistHome() {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,12 +23,12 @@ export default function Home() {
         </h1>
     
       <main className={styles.main}>
-        <p className={styles.description}>
+        <p className="description">
           Join new waitlists from the course info page.
         </p>
 
         <div className={styles.grid}>
-          <a href="http://dartmouth.smartcatalogiq.com/current/orc/Departments-Programs-Undergraduate/Computer-Science/COSC-Computer-Science-Undergraduate/COSC-52" className={styles.card}>
+          <a href="/waitlist/waitlist-detail" className={styles.card}>
             <h2>COSC 52</h2>
             <p>Full-Stack Web Development</p>
           </a>
