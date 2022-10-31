@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { H1, H2, H3, B1, B3, TextLabel } from "../components/ui/typography"
+import { H1, H2, H3, H4, B1, B3, TextLabel, A } from "../components/ui/typography"
 
 const SearchPage = () => {
     const [searchInput, setSearchInput] = useState("")
@@ -23,7 +23,7 @@ const SearchPage = () => {
 
 
             <H3>Recent Searches</H3>
-            <TextLabel>See All</TextLabel>
+            <A>See All</A>
             {/* Load course cards */}
             <CourseCard id="Cosc 98" title="Introductory Economics" distrib="TLA" quality="4.0" reviews="4" />
 
@@ -52,7 +52,7 @@ const CourseCard = (props) => {
                 <H1 color="var(--dark-orange)">{props.quality}</H1>
                 <B3 color="var(--dark-grey)">{props.reviews} Reviews</B3>
                 
-                <H3>{props.id}</H3>
+                <H4>{props.id}</H4>
                 <B1>{props.name}</B1>
             </div>
 
