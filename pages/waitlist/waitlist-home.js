@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from '../../styles/WaitlistHome.module.css'
-import Link from 'next/link';
 
 
 export default function WaitlistHome() {
@@ -11,7 +10,7 @@ export default function WaitlistHome() {
         <meta name="description" content="Cool tagline here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       {/* <div className={styles.menu}>
         <h1>
           placeholder menu
@@ -19,9 +18,9 @@ export default function WaitlistHome() {
       </div> */}
 
       <h1 className={styles.title}>
-          My Waitlists
-        </h1>
-    
+        My Waitlists
+      </h1>
+
       <main className={styles.main}>
         <p className="description">
           Join new waitlists from the course info page.
@@ -62,7 +61,7 @@ export default function WaitlistHome() {
           rel="noopener noreferrer"
         >
           Classy
-          
+
         </a>
       </footer>
     </div>
