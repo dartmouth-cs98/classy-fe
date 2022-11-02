@@ -1,7 +1,9 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import SideNavbar from '../components/SideNavbar'
+import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export default function Home() {
   return (
@@ -10,6 +12,8 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <SideNavbar />
 
       <main>
         <h1 className="title">
@@ -59,6 +63,7 @@ export default function Home() {
         >
           Powered by{' '}
         </a>
+
       </footer>
 
       <style jsx>{`

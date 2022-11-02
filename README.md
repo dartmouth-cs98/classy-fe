@@ -42,4 +42,3 @@ v0.1 - Initial structure for Classy fe in javascript. Contains some files for wa
 * Alex Feng :)
 * Gyuri Hwang
 * Alyssa Anderson
-
