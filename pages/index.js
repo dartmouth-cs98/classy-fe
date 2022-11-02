@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import SideNavbar from '../components/SideNavbar'
-import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
