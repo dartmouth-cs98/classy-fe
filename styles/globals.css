@@ -11,7 +11,7 @@
 /*  
   Color variables
   To use: var(--variable-name)
-  e.g., color: var(--pastel-blue);
+  ex. color: var(--pastel-blue);
  */
 html {
   --pastel-blue: #EBF9FA;
@@ -39,6 +39,15 @@ html {
   --links-selected: #01AAE4;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-100;
+  }
+}
 html,
 body {
   padding: 0;
