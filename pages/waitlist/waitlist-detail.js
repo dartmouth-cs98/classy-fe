@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import RemoveWaitlist from '../../components/RemoveWaitlist'
 import styles from '../../styles/WaitlistDetail.module.css'
 
@@ -14,18 +13,18 @@ export default function WaitlistDetail() {
 
       <div className={styles.page_header}>
         <h1 className={styles.title}>
-            My Waitlists
+          My Waitlists
         </h1>
         <div className={styles.course_title}>
           <h1>COSC 052</h1>
-          <h3>Full-Stack Web Development</h3>  
-        </div> 
+          <h3>Full-Stack Web Development</h3>
+        </div>
       </div>
-      
+
       <main className={styles.main}>
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
-            <RemoveWaitlist/>
+            <RemoveWaitlist />
             <button className={styles.button}>Edit Waitlist Request</button>
             <button className={styles.button}>Course Info Page</button>
           </div>
@@ -40,7 +39,7 @@ export default function WaitlistDetail() {
             </div>
           </div>
         </div>
-        
+
         <div className={styles.right_info}>
 
           <div className={styles.waitlist_position}>
