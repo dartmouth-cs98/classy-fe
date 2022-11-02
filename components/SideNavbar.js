@@ -1,5 +1,5 @@
 import React from 'react'
-import {GiHamburgerenu} from "react-icons/gi"
+// import {GiHamburgerenu} from "react-icons/gi"
 
 function SideNavbar() {
   return (
