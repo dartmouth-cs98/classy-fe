@@ -1,23 +1,19 @@
 const pink = "#FAEBF6";
 const orange = "#FCF0E3";
 const green = "#EFFAEB";
+const purple = "#F9F3FC";
+const blue = "#EBF9FA";
 
 // compares a student's distribs or wc's and returns the color that the tile should be shaded
 export function getDistribColor(courseDistrib, studentDistribs) {
     // course earns no new distrib that would help fulfill a requirement
-    if (courseDistrib === null || studentDistribs.includes(courseDistrib)) {
-        return orange;
-    }
-    return green;
+    return (courseDistrib === null || studentDistribs.includes(courseDistrib)) ? orange : green;
 }
 
 // returns the color an NR Eligible tile should be based on whether a course is NR eligible
 // would need timetable data for this to work
 export function getNRColor(course) {
-    if (course['nrEligible'] === true) {
-        return green;
-    }
-    return orange;
+    return course['nrEligible'] ? green : orange;
 }
 
 // returns the color an average median tile should be based on the average median
@@ -91,4 +87,16 @@ export function getQualityColor(course) {
 
     // quality is either unknown or between 3 and 4
     return orange;
+}
+
+// returns the color a term tile should be based on the season
+export function getTermColor(term) {
+    const seasons = {
+        'Fall': orange,
+        'Winter': blue,
+        'Spring': green,
+        'Summer': purple
+    }
+
+    return seasons[term];
 }

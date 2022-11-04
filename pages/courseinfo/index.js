@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from "../../styles/Home.module.css"
 import { getDistribColor, getNRColor, getMedianColor, getWaitlistColor, 
-    getDifficultyColor, getWorkloadColor, getQualityColor } from './colorscheme';
+    getDifficultyColor, getWorkloadColor, getQualityColor, getTermColor } from './colorscheme';
 import CourseData from './data';
 
 export default function CourseInfo() {
@@ -24,6 +24,7 @@ export default function CourseInfo() {
                 <div className={styles.description}>{currentCourse.description}</div>
 
                 <h2 className={styles.title}>At a Glance</h2>
+                
             </div>
             
         </>
