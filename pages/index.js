@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import SideNavbar from '../components/SideNavbar'
+// import SideNavbar from '../components/SideNavbar'
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SideNavbar />
+      {/* <SideNavbar /> */}
 
       <main>
         <h1 className="title">
@@ -27,6 +27,13 @@ export default function Home() {
             <h3>Waitlist &rarr;</h3>
             <p>View my waitlists.</p>
           </a>
+
+          <Link href={"/courseinfo/"} state={{"courseName": "COSC 98"}} className="card">
+            <a>
+                <h3>Course Info &rarr;</h3>
+                <p>View available courses.</p>
+            </a>
+          </Link>
 
           <a href="https://nextjs.org/learn" className="card">
             <h3>Learn &rarr;</h3>
