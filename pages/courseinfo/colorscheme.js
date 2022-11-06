@@ -5,38 +5,36 @@ const purple = "#F9F3FC";
 const blue = "#EBF9FA";
 
 // compares a student's distribs or wc's and returns the color that the tile should be shaded
-export function getDistribColor(courseDistrib, studentDistribs) {
-    // course earns no new distrib that would help fulfill a requirement
-    return (courseDistrib === null || studentDistribs.includes(courseDistrib)) ? orange : green;
+function getDistribColor(courseDistrib, studentDistribs) {
+    return (courseDistrib === "N/A" || studentDistribs.includes(courseDistrib[0]) || studentDistribs.includes(courseDistrib[1])) 
+    ? orange : green;
 }
 
 // returns the color an NR Eligible tile should be based on whether a course is NR eligible
 // would need timetable data for this to work
-export function getNRColor(course) {
-    return course['nrEligible'] ? green : orange;
+function getNRColor(nrEligible) {
+    return (nrEligible !== "N/A" && nrEligible !== "No") ? green : orange;
 }
 
 // returns the color an average median tile should be based on the average median
 // would need layup list or ORC median data for this to work
-export function getMedianColor(course) {
-    const avgMedian = 'avgMedian'
-    if (['A', 'A/A-'].includes(course[avgMedian])) {
+function getMedianColor(avgMedian) {
+    if (['A', 'A/A-'].includes(avgMedian)) {
         return green;
     }
-    if (['A-','A-/B+', null].includes(course[avgMedian])) {
+    if (['A-','A-/B+', null].includes(avgMedian)) {
         return orange;
     }
     return pink;
 }
 
 // returns the color a waitlist tile should be based on whether waitlisting is required
-export function getWaitlistColor(course) {
-    const waitlist = 'waitlist';
-    if (course[waitlist] === true) {
+function getWaitlistColor(waitlist) {
+    if (waitlist === true || waitlist === "Required") {
         return pink;
     }
 
-    if (course[waitlist] === false) {
+    if (waitlist === false || waitlist === "Not Required") {
         return green;
     }
 
@@ -45,13 +43,12 @@ export function getWaitlistColor(course) {
 }
 
 // returns the color a difficulty slider should be based on the difficulty
-export function getDifficultyColor(course) {
-    const difficulty = 'difficulty';
-    if (course[difficulty] >= 4) {
+function getDifficultyColor(difficulty) {
+    if (difficulty >= 4) {
         return pink;
     }
     
-    if (course[difficulty] < 3) {
+    if (difficulty < 3) {
         return green;
     }
 
@@ -60,13 +57,12 @@ export function getDifficultyColor(course) {
 }
 
 // returns the color a workload slider should be based on the average workload
-export function getWorkloadColor(course) {
-    const workload = 'workload';
-    if (course[workload] >= 12) {
+function getWorkloadColor(workload) {
+    if (workload >= 12) {
         return pink;
     }
     
-    if (course[workload] <= 6) {
+    if (workload <= 6) {
         return green;
     }
 
@@ -75,13 +71,12 @@ export function getWorkloadColor(course) {
 }
 
 // returns the color a quality slider should be based on the quality
-export function getQualityColor(course) {
-    const quality = 'quality';
-    if (course[quality] >= 4) {
+function getQualityColor(quality) {
+    if (quality >= 4) {
         return green;
     }
     
-    if (course[quality] < 3) {
+    if (quality < 3) {
         return pink;
     }
 
@@ -90,13 +85,62 @@ export function getQualityColor(course) {
 }
 
 // returns the color a term tile should be based on the season
-export function getTermColor(term) {
+function getTermColor(term) {
     const seasons = {
         'Fall': orange,
         'Winter': blue,
         'Spring': green,
         'Summer': purple
     }
-
     return seasons[term];
+}
+
+function getInstructorColor() {
+    const index = Math.floor(Math.random()*5);
+    const colors = [orange, blue, green, purple, pink];
+    return colors[index];
+}
+
+function getCITitleColor(status) {
+    return status ? pink : green;
+}
+
+function generateDistribs(possibleDistribs) {
+    let studentDistribs = [];
+    for (let i = 0; i < possibleDistribs.length; i++) {
+        if (Math.random() >= 0.5) {
+            studentDistribs.push(possibleDistribs[i]);
+        }
+    }
+    return studentDistribs;
+}
+
+// returns the color a term tile should be based on the season
+export default function getColor(tile, val) {
+    if (tile.toLowerCase() === "distrib" || tile.toLowerCase() === "distribs") {
+        const studentDistribs = generateDistribs(["ART", "LIT", "TMV", "INT", "SOC", "QDS", "SCI", "TAS", "SLA", "TLA"]);
+        return getDistribColor(val, studentDistribs);
+    } else if (tile.toLowerCase() == "wc") {
+        const studentWCs = generateDistribs(["W", "NW", "CI"]);
+        return getDistribColor(val, studentWCs)
+    } else if (tile == "NR Eligible") {
+        return getNRColor(val);
+    } else if (tile === "Avg Median" || tile === "avgMedian" || tile.toLowerCase() === "median") {
+        return getMedianColor(val);
+    } else if (tile.toLowerCase() === "waitlist") {
+        return getWaitlistColor(val);
+    } else if (tile.toLowerCase() === "difficulty") {
+        return getDifficultyColor(val);
+    } else if (tile.toLowerCase() === "workload") {
+        return getWorkloadColor(val);
+    } else if (tile.toLowerCase() === "quality") {
+        return getQualityColor(val)
+    } else if (tile.toLowerCase() === "term") {
+        return getTermColor(val);
+    } else if (tile.toLowerCase() === "instructor") {
+        return getInstructorColor();
+    }else if (tile.toLowerCase() === "cititle" ) {
+        return getCITitleColor(val);
+    }
+    console.log("Tile not recognized: ", tile);
 }

@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import styles from "../../styles/Home.module.css"
-import { getDistribColor, getNRColor, getMedianColor, getWaitlistColor, 
-    getDifficultyColor, getWorkloadColor, getQualityColor, getTermColor } from './colorscheme';
+import stylesCI from "../../styles/CourseInfo.module.css"
+
 import CourseData from './data';
+import Glance from '../../components/Glance';
+import CourseInfoTitle from '../../components/CourseInfoTitle';
+import Offered from '../../components/Offered';
 
 export default function CourseInfo() {
     const data = CourseData();
@@ -16,17 +19,26 @@ export default function CourseInfo() {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                <h1 className={styles.title}>
-                    {currentCourse.course_code.course_dept} {currentCourse.course_code.course_number}  {currentCourse.course_title}
-                </h1>
+                <CourseInfoTitle course={currentCourse}/>
 
                 <h2 className={styles.title}>Description</h2>
-                <div className={styles.description}>{currentCourse.description}</div>
+                <div className={stylesCI.description}>{currentCourse.description}</div>
 
                 <h2 className={styles.title}>At a Glance</h2>
+                <Glance distribs={currentCourse.distribs} wc={currentCourse.wc} avgMedian={"A/A-"} waitlist={true}/>
                 
+                <h2 className={styles.title}>Prerequisites</h2>
+                <div className={stylesCI.description}>{currentCourse.prereqs.length > 0 ? currentCourse.prereqs: "None"}</div>
+
+                <h2 className={styles.title}>Offered</h2>
+                <Offered course={currentCourse}/>
+
+                <h2 className={styles.title}>What Students Say</h2>
+
+                <h2 className={styles.title}>Medians</h2>
+
+                <h2 className={styles.title}>Reviews</h2>
             </div>
-            
         </>
     );
 }

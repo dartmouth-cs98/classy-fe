@@ -1,12 +1,14 @@
 import React from 'react'
-// import {GiHamburgerenu} from "react-icons/gi"
+import getColor from '../pages/courseinfo/colorscheme'
+import stylesCI from '../styles/CourseInfo.module.css'
 
-function CourseInfoIcon() {
-  return (
-    <div>
-
-    </div>
-  );
+function CourseInfoTile(props) {
+    return (
+        <div className={stylesCI.tile} style={{background: getColor(props.title, props.val)}}>
+            <div className={stylesCI.subtitle}>{props.title}</div>
+            <div className={stylesCI.tileText}>{props.val}</div>
+        </div>
+    );
 }
 
-export default CourseInfoIcon;
+export default CourseInfoTile;
