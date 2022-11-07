@@ -3,8 +3,8 @@ import { H1, H2, H3, H4, B1, B3, TextLabel, A } from "../components/ui/typograph
 
 const SearchPage = () => {
     const [searchInput, setSearchInput] = useState("")
-    const [tab, setTab] = useState("all")
-    const tabs = ["all", "courses", "professors", "distribs"]
+    // const [tab, setTab] = useState("all")
+    // const tabs = ["all", "courses", "professors", "distribs"]
 
     const handleChange = (e) => {
         e.preventDefault()
