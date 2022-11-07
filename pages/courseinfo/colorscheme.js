@@ -92,7 +92,7 @@ function getTermColor(term) {
         'Spring': green,
         'Summer': purple
     }
-    return seasons[term];
+    return seasons[term.substring(0, term.indexOf(' '))];
 }
 
 function getInstructorColor() {

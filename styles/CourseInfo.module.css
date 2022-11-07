@@ -29,6 +29,18 @@
     color: black;
 }
 
+.medianTile {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 36px;
+    margin: 12px;
+    gap: 12px;
+    width: 15em;
+    border-radius: 8px;
+    justify-content: center;
+    color: black;
+}
+
 .glance {
     display: flex;
     flex-direction: row;

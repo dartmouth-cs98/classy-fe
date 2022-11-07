@@ -9,16 +9,22 @@ export default function CourseData() {
         "xlists": [],
         "prereqs": "COSC 1 or ENGS 20 or placement through AP or local placement.",
         "offered": [
-            {'term': 'Spring', 'instructors': ['Alberto Quattrini Li'], 'period': '12'}, 
-            {'term': 'Fall', 'instructors': ['Timothy Pierson'], 'period': '2'}, 
-            {'term': 'Fall', 'instructors': ['Alberto Quattrini Li'], 'period': '12'}, 
-            {'term': 'Winter', 'instructors': ['Timothy Pierson'], 'period': '12'}, 
-            {'term': 'Winter', 'instructors': ['Timothy Pierson'], 'period': '2'}
+            {'term': 'Spring 2022', 'instructors': ['Alberto Quattrini Li'], 'period': '12'}, 
+            {'term': 'Fall 2022', 'instructors': ['Timothy Pierson'], 'period': '2'}, 
+            {'term': 'Fall 2022', 'instructors': ['Alberto Quattrini Li'], 'period': '12'}, 
+            {'term': 'Winter 2023', 'instructors': ['Timothy Pierson'], 'period': '12'}, 
+            {'term': 'Winter 2023', 'instructors': ['Timothy Pierson'], 'period': '2'}
         ],
         "distribs": [
           "TLA"
         ],
         "wc": null,
+        "avgMedian": 10.5,
+        "medians": {'20f': 11.0, '21w': 10.0, '21s': 10.5, '21f': 10.5, '22w': 10.0, '22s': 11.0},
+        'waitlist': false,
+        'workload': 15,
+        'difficulty': 4.8,
+        'quality': 4.5
       }
     
     const cs25 = {
@@ -31,13 +37,19 @@ export default function CourseData() {
         "xlists": [],
         "prereqs": [],
         "offered": [
-            {'term': 'Spring', 'instructors': ['Lorie Loeb'], 'period': '3A'}, 
-            {'term': 'Summer', 'instructors': ['Natalie Svoboda'], 'period': '2A'}
+            {'term': 'Spring 2022', 'instructors': ['Lorie Loeb'], 'period': '3A'}, 
+            {'term': 'Summer 2022', 'instructors': ['Natalie Svoboda'], 'period': '2A'}
         ],
         "distribs": [
           "ART"
         ],
         "wc": null,
+        "avgMedian": 12.0,
+        "medians": {'21w': 12.0, '21s': 12.0, '22s': 12.0},
+        'waitlist': true,
+        'workload': 12,
+        'difficulty': 3.0,
+        'quality': 4.9
       }
 
     const cs52 = {
@@ -49,11 +61,17 @@ export default function CourseData() {
         "description": "The Web is a powerful delivery tool for complex real-time applications.  This is an introduction to full stack Web application development — the approach of integrating numerous techniques and technologies to build modern Web applications.  Topics include: static pages, Internet protocols, layout, markup, event-driven asynchronous programming, deployment, security, scalability, and user experience. Projects include building real-time Web applications with front-end UIs and server-side APIs.",
         "xlists": [],
         "prereqs": "COSC 10",
-        "offered": [{'term': 'Spring', 'instructors': ['Tim Tregubov'], 'period': '2'}],
+        "offered": [{'term': 'Spring 2022', 'instructors': ['Tim Tregubov'], 'period': '2'}],
         "distribs": [
           "TAS"
         ],
         "wc": null,
+        "avgMedian": 11.666666666666666,
+        "medians": {'20x': 11.0, '21s': 12.0, '22s': 12.0},
+        'waitlist': true,
+        'workload': 15,
+        'difficulty': 4.0,
+        'quality': 4.7
       }
 
     const cs98 = {
@@ -66,13 +84,19 @@ export default function CourseData() {
         "xlists": [],
         "prereqs": "At least two courses from COSC 50-69 or at least three courses from COSC 50-89, or permission of instructor.",
         "offered": [
-            {'term': 'Fall', 'instructors': ['Tim Tregubov'], 'period': '3A'}, 
-            {'term': 'Fall', 'instructors': ['Natalie Svoboda'], 'period': 'ARR'}, 
-            {'term': 'Winter', 'instructors': ['Tim Tregubov'], 'period': '2A'}, 
-            {'term': 'Winter', 'instructors': ['Natalie Svoboda'], 'period': '2A'}
+            {'term': 'Fall 2022', 'instructors': ['Tim Tregubov'], 'period': '3A'}, 
+            {'term': 'Fall 2022', 'instructors': ['Natalie Svoboda'], 'period': 'ARR'}, 
+            {'term': 'Winter 2023', 'instructors': ['Tim Tregubov'], 'period': '2A'}, 
+            {'term': 'Winter 2023', 'instructors': ['Natalie Svoboda'], 'period': '2A'}
         ],
         "distribs": [],
         "wc": null,
+        "avgMedian": 12.0,
+        "medians": {'21w': 12.0},
+        'waitlist': false,
+        'workload': 10,
+        'difficulty': 4.0,
+        'quality': 4.3
       }
     
       const courses = {

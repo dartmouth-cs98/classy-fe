@@ -6,7 +6,7 @@ function OfferedTile(props) {
     return (
         <div className={stylesCI.tile} style={{background: getColor("term", props.term)}}>
             <div className={stylesCI.tileText}>{props.instructors}</div>
-            <div className={stylesCI.tileText}>{props.term} ({props.period})</div>
+            <div className={stylesCI.tileText}>{props.term}</div>
         </div>
     );
 }
