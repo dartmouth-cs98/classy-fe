@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from "../../styles/ExploreHome.module.css"
-import SideNavbar from '../components/SideNavbar'
+import SideNavbar from '../../components/SideNavbar';
 import Link from 'next/link';
 
 
@@ -12,6 +12,8 @@ export default function ExploreHome() {
         <meta name="description" content="class selection made easy" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <SideNavbar />
       
       {/* <div className={styles.menu}>
         <h1>
