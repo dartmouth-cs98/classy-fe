@@ -25,7 +25,6 @@ const SearchPage = () => {
             return (
                 <div key={tab}>
                     <B1>{tab}</B1>
-                    <B1>test</B1>
                 </div>
             )
         })
