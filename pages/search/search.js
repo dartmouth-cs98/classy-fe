@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useRef} from "react"
+import React, {useState, useCallback} from "react"
 import { H1, H2, H3, H4, B1, B3, TextLabel, A } from "../../components/ui/typography"
 
 const SearchPage = () => {
