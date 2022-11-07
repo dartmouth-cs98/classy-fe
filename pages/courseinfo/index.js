@@ -41,7 +41,7 @@ export default function CourseInfo() {
 
                 <h2 className={styles.title}>Medians</h2>
                 <Medians medians={currentCourse.medians}/>
-                <h2 className={styles.title}>Reviews</h2>
+                {/* <h2 className={styles.title}>Reviews</h2> */}
             </div>
         </>
     );
