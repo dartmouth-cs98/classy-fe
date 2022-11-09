@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import getColor from '../pages/courseinfo/colorscheme';
+import getColor from '../data/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
 
 function MedianTile(props) {
