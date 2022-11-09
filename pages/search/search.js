@@ -26,6 +26,7 @@ function SearchPage() {
   }, []);
 
   const TabBar = () => {
+    // eslint-disable-next-line no-console
     console.log(tabs);
     const result = tabs.map(() => (
       <div key={tab}>

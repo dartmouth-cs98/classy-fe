@@ -5,7 +5,6 @@ import CourseInfoTile from './Tile';
 import styles from '../styles/CourseInfo.module.css';
 
 function Glance(props) {
-  console.log('props are ', props);
   const {
     distribs, wc, avgMedian, waitlist,
   } = props;

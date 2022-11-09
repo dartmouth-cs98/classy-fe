@@ -143,6 +143,5 @@ export default function getColor(tile, val) {
   } if (tile.toLowerCase() === 'cititle') {
     return getCITitleColor(val);
   }
-  console.log('Tile not recognized: ', tile);
   return null;
 }

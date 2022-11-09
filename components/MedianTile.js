@@ -5,7 +5,6 @@ import getColor from '../pages/courseinfo/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
 
 function MedianTile(props) {
-  console.log('props. ', props);
   const { term, median } = props;
   const terms = {
     f: 'Fall',
