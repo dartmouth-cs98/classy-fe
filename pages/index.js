@@ -32,12 +32,10 @@ export default function Home() {
             <p>View my waitlists.</p>
           </a>
 
-          <Link href="/courseinfo/" state={{ courseName: 'COSC 98' }} className="card">
-            <a>
-              <h3>Course Info &rarr;</h3>
-              <p>View available courses.</p>
-            </a>
-          </Link>
+          <a href="/courseinfo/" className="card">
+            <h3>Course Info &rarr;</h3>
+            <p>View available courses.</p>
+          </a>
 
           <a href="https://nextjs.org/learn" className="card">
             <h3>Learn &rarr;</h3>
