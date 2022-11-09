@@ -5,20 +5,21 @@ import getColor from '../pages/courseinfo/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
 
 function MedianTile(props) {
-  const { termString, median } = props;
+  console.log('props. ', props);
+  const { term, median } = props;
   const terms = {
     f: 'Fall',
     w: 'Winter',
     s: 'Spring',
     x: 'Summer',
   };
-  const year = `20${termString.substring(0, 2)}`;
-  const term = terms[termString[2]];
+  const year = `20${term.substring(0, 2)}`;
+  const termString = terms[term[2]];
   return (
     <div className={stylesCI.medianTile} style={{ background: getColor('median', median) }}>
       <div className={stylesCI.tileText}>{median}</div>
       <div className={stylesCI.tileText}>
-        {term}
+        {termString}
         {' '}
         {year}
       </div>

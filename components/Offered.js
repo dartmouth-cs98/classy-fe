@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import stylesCI from '../styles/CourseInfo.module.css';
 import OfferedTile from './OfferedTile';
 

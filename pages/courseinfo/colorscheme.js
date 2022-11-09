@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const pink = '#FAEBF6';
 const orange = '#FCF0E3';
 const green = '#EFFAEB';
@@ -120,10 +121,10 @@ export default function getColor(tile, val) {
   if (tile.toLowerCase() === 'distrib' || tile.toLowerCase() === 'distribs') {
     const studentDistribs = generateDistribs(['ART', 'LIT', 'TMV', 'INT', 'SOC', 'QDS', 'SCI', 'TAS', 'SLA', 'TLA']);
     return getDistribColor(val, studentDistribs);
-  } if (tile.toLowerCase() == 'wc') {
+  } if (tile.toLowerCase() === 'wc') {
     const studentWCs = generateDistribs(['W', 'NW', 'CI']);
     return getDistribColor(val, studentWCs);
-  } if (tile == 'NR Eligible') {
+  } if (tile === 'NR Eligible') {
     return getNRColor(val);
   } if (tile === 'Avg Median' || tile === 'avgMedian' || tile.toLowerCase() === 'median') {
     return getMedianColor(val);

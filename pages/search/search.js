@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/jsx-filename-extension */
 import React, { useState, useCallback } from 'react';
 import {
   H1, H2, H3, H4, B1, B3, TextLabel, A,
@@ -5,6 +8,7 @@ import {
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [tab, setTab] = useState('all');
   const tabs = useState(['all', 'courses', 'professors', 'distribs']);
   const [searchResults, setSearchResults] = useState(null);
@@ -23,7 +27,7 @@ function SearchPage() {
 
   const TabBar = () => {
     console.log(tabs);
-    const result = tabs.map((tab) => (
+    const result = tabs.map(() => (
       <div key={tab}>
         <B1>{tab}</B1>
       </div>
@@ -78,43 +82,47 @@ function SearchPage() {
 }
 
 function CourseCard(props) {
+  const {
+    distrib, quality, reviews, id, name,
+  } = props;
   return (
     <div>
-      <TextLabel color="var(--dark-grey)">{props.distrib}</TextLabel>
+      <TextLabel color="var(--dark-grey)">{distrib}</TextLabel>
 
       <div>
         <TextLabel color="var(--darkest-grey)">Quality</TextLabel>
-        <H1 color="var(--dark-orange)">{props.quality}</H1>
+        <H1 color="var(--dark-orange)">{quality}</H1>
         <B3 color="var(--dark-grey)">
-          {props.reviews}
+          {reviews}
           {' '}
           Reviews
         </B3>
 
-        <H4>{props.id}</H4>
-        <B1>{props.name}</B1>
+        <H4>{id}</H4>
+        <B1>{name}</B1>
       </div>
     </div>
   );
 }
 
 function ProfCard(props) {
+  const { name, department } = props;
   return (
     <div>
-
       <div>
-        <H4>{props.name}</H4>
-        <B1>{props.department}</B1>
+        <H4>{name}</H4>
+        <B1>{department}</B1>
       </div>
     </div>
   );
 }
 
 function DepartmentCard(props) {
+  const { name, id } = props;
   return (
     <div>
-      <H3 color="var(--dark-orange)">{props.name}</H3>
-      <H2 color="var(--dark-orange)">{props.id}</H2>
+      <H3 color="var(--dark-orange)">{name}</H3>
+      <H2 color="var(--dark-orange)">{id}</H2>
     </div>
   );
 }

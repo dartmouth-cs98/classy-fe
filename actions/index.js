@@ -71,6 +71,7 @@ export function deleteCourse(id, navigate) {
         payload: null,
       });
       navigate('/');
+      console.log(response);
     }).catch((error) => {
       console.log(error);
     });
@@ -84,6 +85,7 @@ export function search(query, navigate) {
         type: ActionTypes.SEARCH,
         payload: response.data,
       });
+      console.log(navigate);
     }).catch((error) => {
       console.log(error);
     });

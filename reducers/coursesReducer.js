@@ -6,16 +6,13 @@ const initialState = {
   searchResults: [],
 };
 
-const PostsReducer = (state = initialState, action = {}) => {
+const CoursesReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case ActionTypes.FETCH_COURSES:
       return { all: action.payload };
     case ActionTypes.FETCH_COURSE:
       return { current: action.payload };
     case ActionTypes.UPDATE_COURSE:
-      console.log(action.payload);
-      return { current: action.payload };
-    case ActionTypes.FETCH_COMMENTS:
       return { current: action.payload };
     case ActionTypes.SEARCH:
       return { ...state, searchResults: action.payload };
@@ -24,4 +21,4 @@ const PostsReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default PostsReducer;
+export default CoursesReducer;

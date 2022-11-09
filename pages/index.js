@@ -1,7 +1,9 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 // import SideNavbar from '../components/SideNavbar'
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
   return (

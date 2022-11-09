@@ -1,25 +1,26 @@
-import React from "react";
-import styles from '../styles/WaitlistDetail.module.css'
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+import { Button, Modal } from 'reactstrap';
+import styles from '../styles/WaitlistDetail.module.css';
 // reactstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal} from "reactstrap";
 
 function RemoveWaitlist() {
-  const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
+//   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
   const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
-    false
+    false,
   );
-  const [modalFormOpen, setModalFormOpen] = React.useState(false);
+  //   const [modalFormOpen, setModalFormOpen] = React.useState(false);
   return (
     <>
-      <Button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button" >
+      <Button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
         Remove Waitlist Request
       </Button>
 
       <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger" onClick={() => setModalNotificationOpen(false)}>
         <div className=" modal-body">
           <div className=" py-3 text-center">
-            <i className=" ni ni-bell-55 ni-3x"></i>
+            <i className=" ni ni-bell-55 ni-3x" />
             <h4 className=" heading mt-4">Remove Waitlist Request</h4>
             <p>
               If you would like to be removed from this wailtist, please confirm your intent below
@@ -31,7 +32,8 @@ function RemoveWaitlist() {
             <a href="/waitlist/waitlist-home">Yes, remove request</a>
           </Button>
           <Button
-            className=" text-black ml-auto" color="default"
+            className=" text-black ml-auto"
+            color="default"
             onClick={() => setModalNotificationOpen(false)}
             type="button"
           >
@@ -41,6 +43,6 @@ function RemoveWaitlist() {
       </Modal>
     </>
   );
-}       
+}
 
 export default RemoveWaitlist;
