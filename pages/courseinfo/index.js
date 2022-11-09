@@ -4,7 +4,7 @@ import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 import stylesCI from '../../styles/CourseInfo.module.css';
 
-import CourseData from './data';
+import CourseData from '../../data/data';
 import Glance from '../../components/Glance';
 import CourseInfoTitle from '../../components/CourseInfoTitle';
 import Offered from '../../components/Offered';
