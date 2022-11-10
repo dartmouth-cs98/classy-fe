@@ -2,8 +2,10 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import getColor from '../data/colorscheme';
-import styles from '../styles/Home.module.css';
 import stylesCI from '../styles/CourseInfo.module.css';
+import {
+  H2, TextLabel,
+} from './ui/typography';
 
 function CourseInfoTitle(props) {
   const { course } = props;
@@ -15,15 +17,15 @@ function CourseInfoTitle(props) {
 
   return (
     <div className={stylesCI.ciTitle}>
-      <h1 className={styles.title}>
+      <H2>
         {course.course_code.course_dept}
         {' '}
         {course.course_code.course_number}
         {' '}
         {course.course_title}
-      </h1>
+      </H2>
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
-        {taken ? 'Mark as Not Taken' : 'Mark as Taken'}
+        <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>
       </button>
     </div>
   );

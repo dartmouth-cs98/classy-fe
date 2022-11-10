@@ -3,6 +3,9 @@
 import React from 'react';
 import getColor from '../data/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
+import {
+  TextLabel,
+} from './ui/typography';
 
 function extraText(type) {
   if (type === 'Workload') {
@@ -21,11 +24,11 @@ function CourseInfoTile(props) {
   const { title, val } = props;
   return (
     <div className={stylesCI.tile} style={{ background: getColor(title, val) }}>
-      <div className={stylesCI.subtitle}>{title}</div>
-      <div className={stylesCI.tileText}>
+      <TextLabel>{title}</TextLabel>
+      <TextLabel>
         {val}
         {extraText(title)}
-      </div>
+      </TextLabel>
     </div>
   );
 }

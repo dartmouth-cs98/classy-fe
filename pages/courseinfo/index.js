@@ -2,7 +2,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import stylesCI from '../../styles/CourseInfo.module.css';
 
 import CourseData from '../../data/data';
 import Glance from '../../components/Glance';
@@ -10,6 +9,11 @@ import CourseInfoTitle from '../../components/CourseInfoTitle';
 import Offered from '../../components/Offered';
 import Medians, { convertMedian } from '../../components/Medians';
 import StudentsSay from '../../components/StudentsSay';
+// import SideNavbar from '../../components/SideNavbar';
+
+import {
+  H3, B1,
+} from '../../components/ui/typography';
 
 export default function CourseInfo() {
   const data = CourseData();
@@ -22,12 +26,13 @@ export default function CourseInfo() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* <SideNavbar /> */}
       <CourseInfoTitle course={currentCourse} />
 
-      <h2 className={styles.title}>Description</h2>
-      <div className={stylesCI.description}>{currentCourse.description}</div>
+      <H3>Description</H3>
+      <B1>{currentCourse.description}</B1>
 
-      <h2 className={styles.title}>At a Glance</h2>
+      <H3>At a Glance</H3>
       <Glance
         distribs={currentCourse.distribs}
         wc={currentCourse.wc}
@@ -35,20 +40,20 @@ export default function CourseInfo() {
         waitlist={currentCourse.waitlist}
       />
 
-      <h2 className={styles.title}>Prerequisites</h2>
-      <div className={stylesCI.description}>{currentCourse.prereqs.length > 0 ? currentCourse.prereqs : 'None'}</div>
+      <H3>Prerequisites</H3>
+      <B1>{currentCourse.prereqs.length > 0 ? currentCourse.prereqs : 'None'}</B1>
 
-      <h2 className={styles.title}>What Students Say</h2>
+      <H3>What Students Say</H3>
       <StudentsSay
         workload={currentCourse.workload}
         difficulty={currentCourse.difficulty}
         quality={currentCourse.quality}
       />
 
-      <h2 className={styles.title}>Offered</h2>
+      <H3>Offered</H3>
       <Offered course={currentCourse} />
 
-      <h2 className={styles.title}>Medians</h2>
+      <H3>Medians</H3>
       <Medians medians={currentCourse.medians} />
       {/* <h2 className={styles.title}>Reviews</h2> */}
     </div>

@@ -3,6 +3,9 @@
 import React from 'react';
 import getColor from '../data/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
+import {
+  TextLabel,
+} from './ui/typography';
 
 function MedianTile(props) {
   const { term, median } = props;
@@ -16,11 +19,13 @@ function MedianTile(props) {
   const termString = terms[term[2]];
   return (
     <div className={stylesCI.medianTile} style={{ background: getColor('median', median) }}>
-      <div className={stylesCI.tileText}>{median}</div>
+      <div className={stylesCI.tileText}><TextLabel>{median}</TextLabel></div>
       <div className={stylesCI.tileText}>
-        {termString}
-        {' '}
-        {year}
+        <TextLabel>
+          {termString}
+          {' '}
+          {year}
+        </TextLabel>
       </div>
     </div>
   );
