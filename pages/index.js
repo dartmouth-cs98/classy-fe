@@ -32,10 +32,70 @@ export default function Home() {
             <p>View my waitlists.</p>
           </a>
 
-          <a href="/courseinfo/" className="card">
-            <h3>Course Info &rarr;</h3>
-            <p>View available courses.</p>
-          </a>
+          <Link
+            href="/courseinfo/COSC/10"
+            className="card"
+            query={
+                {
+                  dept: 'COSC',
+                  num: '10',
+                }
+            }
+          >
+            CS 10
+          </Link>
+
+          <Link
+            href="/courseinfo/COSC/25.01"
+            className="card"
+            query={
+                {
+                  dept: 'COSC',
+                  num: '25.01',
+                }
+            }
+          >
+            CS 25
+          </Link>
+
+          <Link
+            href="/courseinfo/COSC/52"
+            className="card"
+            query={
+                {
+                  dept: 'COSC',
+                  num: '52',
+                }
+            }
+          >
+            CS 52
+          </Link>
+
+          <Link
+            href="/courseinfo/COSC/74"
+            className="card"
+            query={
+                {
+                  dept: 'COSC',
+                  num: '74',
+                }
+            }
+          >
+            CS 74
+          </Link>
+
+          <Link
+            href="/courseinfo/COSC/98.01"
+            className="card"
+            query={
+                {
+                  dept: 'COSC',
+                  num: '98.01',
+                }
+            }
+          >
+            CS 98
+          </Link>
 
           <a href="https://nextjs.org/learn" className="card">
             <h3>Learn &rarr;</h3>

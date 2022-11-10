@@ -1,23 +1,48 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
-import styles from '../../styles/Home.module.css';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import styles from '../../../styles/Home.module.css';
 
-import CourseData from '../../data/data';
-import Glance from '../../components/Glance';
-import CourseInfoTitle from '../../components/CourseInfoTitle';
-import Offered from '../../components/Offered';
-import Medians, { convertMedian } from '../../components/Medians';
-import StudentsSay from '../../components/StudentsSay';
+import CourseData from '../../../data/data';
+import Glance from '../../../components/Glance';
+import CourseInfoTitle from '../../../components/CourseInfoTitle';
+import Offered from '../../../components/Offered';
+import Medians, { convertMedian } from '../../../components/Medians';
+import StudentsSay from '../../../components/StudentsSay';
+
 // import SideNavbar from '../../components/SideNavbar';
-
 import {
   H3, B1,
-} from '../../components/ui/typography';
+} from '../../../components/ui/typography';
+
+function getPrereqs(prereqs, counts) {
+  if (prereqs && prereqs.length > 0) {
+    return prereqs.map((bucket, index) => (
+      <li>
+        <B1>
+          {counts[index]}
+          {' '}
+          of
+          {' '}
+          {bucket.join(' or ')}
+        </B1>
+
+      </li>
+    ));
+  }
+  return <B1>None</B1>;
+}
 
 export default function CourseInfo() {
   const data = CourseData();
-  const currentCourse = data['COSC 52'];
+  const router = useRouter();
+  const { dept, num } = router.query;
+
+  console.log();
+  const courseCode = `${dept} ${num}`;
+  const currentCourse = data[courseCode];
   return (
     <div className={styles.container}>
       <Head>
@@ -41,7 +66,7 @@ export default function CourseInfo() {
       />
 
       <H3>Prerequisites</H3>
-      <B1>{currentCourse.prereqs.length > 0 ? currentCourse.prereqs : 'None'}</B1>
+      {getPrereqs(currentCourse.required, currentCourse.counts)}
 
       <H3>What Students Say</H3>
       <StudentsSay

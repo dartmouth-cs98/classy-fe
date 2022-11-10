@@ -88,12 +88,16 @@ function getQualityColor(quality) {
 // returns the color a term tile should be based on the season
 function getTermColor(term) {
   const seasons = {
-    Fall: orange,
-    Winter: blue,
-    Spring: green,
-    Summer: purple,
+    F: orange,
+    W: blue,
+    S: green,
+    X: purple,
+    f: orange,
+    w: blue,
+    s: green,
+    x: purple,
   };
-  return seasons[term.substring(0, term.indexOf(' '))];
+  return seasons[term[term.length - 1]];
 }
 
 function getInstructorColor() {

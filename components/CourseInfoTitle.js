@@ -18,11 +18,11 @@ function CourseInfoTitle(props) {
   return (
     <div className={stylesCI.ciTitle}>
       <H2>
-        {course.course_code.course_dept}
+        {course.dept}
         {' '}
-        {course.course_code.course_number}
+        {course.num}
         {' '}
-        {course.course_title}
+        {course.courseTitle}
       </H2>
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>

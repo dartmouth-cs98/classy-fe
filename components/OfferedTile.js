@@ -8,11 +8,11 @@ import {
 } from './ui/typography';
 
 function OfferedTile(props) {
-  const { term, instructors } = props;
+  const { term, professors } = props;
   return (
     <div className={stylesCI.tile} style={{ background: getColor('term', term) }}>
       <TextLabel>{term}</TextLabel>
-      <TextLabel>{instructors}</TextLabel>
+      <TextLabel>{professors}</TextLabel>
     </div>
   );
 }

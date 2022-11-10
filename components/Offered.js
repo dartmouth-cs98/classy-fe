@@ -9,7 +9,7 @@ function loadOfferings(values) {
     <OfferedTile
       key={value.term}
       term={value.term}
-      instructors={value.instructors}
+      professors={value.professors}
       period={value.period}
     />
   ));
@@ -19,7 +19,7 @@ function Offered(props) {
   const { course } = props;
   return (
     <div className={[stylesCI.glance]}>
-      {loadOfferings(course.offered)}
+      {loadOfferings(course.termsOffered)}
     </div>
   );
 }
