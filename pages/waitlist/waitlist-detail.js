@@ -1,6 +1,8 @@
-import Head from 'next/head'
-import RemoveWaitlist from '../../components/RemoveWaitlist'
-import styles from '../../styles/WaitlistDetail.module.css'
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+import Head from 'next/head';
+import RemoveWaitlist from '../../components/RemoveWaitlist';
+import styles from '../../styles/WaitlistDetail.module.css';
 
 export default function WaitlistDetail() {
   return (
@@ -25,8 +27,8 @@ export default function WaitlistDetail() {
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
             <RemoveWaitlist />
-            <button className={styles.button}>Edit Waitlist Request</button>
-            <button className={styles.button}>Course Info Page</button>
+            <button type="button" className={styles.button}>Edit Waitlist Request</button>
+            <button type="button" className={styles.button}>Course Info Page</button>
           </div>
 
           <div className={styles.waitlist_details_container}>
@@ -52,7 +54,7 @@ export default function WaitlistDetail() {
               photo
             </div>
             <h3>Professor Jane</h3>
-            <button className={styles.email_btn}>
+            <button type="button" className={styles.email_btn}>
               Email
             </button>
           </div>
@@ -65,8 +67,10 @@ export default function WaitlistDetail() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Classy</a>
+          Classy
+
+        </a>
       </footer>
     </div>
-  )
+  );
 }

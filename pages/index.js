@@ -1,7 +1,9 @@
-import Head from 'next/head'
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/react-in-jsx-scope */
+import Head from 'next/head';
 // import SideNavbar from '../components/SideNavbar'
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
   return (
@@ -19,7 +21,9 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Get started by editing
+          {' '}
+          <code>pages/index.js</code>
         </p>
 
         <div className="grid">
@@ -28,12 +32,10 @@ export default function Home() {
             <p>View my waitlists.</p>
           </a>
 
-          <Link href={"/courseinfo/"} state={{"courseName": "COSC 98"}} className="card">
-            <a>
-                <h3>Course Info &rarr;</h3>
-                <p>View available courses.</p>
-            </a>
-          </Link>
+          <a href="/courseinfo/" className="card">
+            <h3>Course Info &rarr;</h3>
+            <p>View available courses.</p>
+          </a>
 
           <a href="https://nextjs.org/learn" className="card">
             <h3>Learn &rarr;</h3>
@@ -66,10 +68,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by
+          {' '}
         </a>
 
       </footer>
     </div>
-  )
+  );
 }

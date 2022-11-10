@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import styles from '../../styles/WaitlistHome.module.css'
-
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+import Head from 'next/head';
+import styles from '../../styles/WaitlistHome.module.css';
 
 export default function WaitlistHome() {
   return (
@@ -65,5 +66,5 @@ export default function WaitlistHome() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
