@@ -2,7 +2,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import styles from '../../../styles/Home.module.css';
 
 import CourseData from '../../../data/data';
