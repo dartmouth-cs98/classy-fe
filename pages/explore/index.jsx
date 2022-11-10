@@ -1,8 +1,7 @@
-import Head from 'next/head'
-import styles from "../../styles/ExploreHome.module.css"
+import React from 'react';
+import Head from 'next/head';
+import styles from '../../styles/ExploreHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
-import Link from 'next/link';
-
 
 export default function ExploreHome() {
   return (
@@ -14,17 +13,11 @@ export default function ExploreHome() {
       </Head>
 
       <SideNavbar />
-      
-      {/* <div className={styles.menu}>
-        <h1>
-          placeholder menu
-        </h1>
-      </div> */}
 
       <h1 className={styles.title}>
-          Most Searched Classes
-        </h1>
-    
+        Most Searched Classes
+      </h1>
+
       <main className={styles.main}>
         <div className={styles.grid}>
           <a href="/waitlist/waitlist-detail" className={styles.card}>
@@ -55,9 +48,9 @@ export default function ExploreHome() {
       </main>
 
       <h1 className={styles.title}>
-          Most Searched Professors
-        </h1>
-    
+        Most Searched Professors
+      </h1>
+
       <main className={styles.main}>
         <div className={styles.grid}>
           <a href="/waitlist/waitlist-detail" className={styles.card}>
@@ -87,12 +80,12 @@ export default function ExploreHome() {
         </div>
       </main>
 
-      <button className={styles.button}>Get Recommendation!</button>
+      <button type="button" className={styles.button}>Get Recommendation!</button>
 
       <h1 className={styles.title}>
-          23W Layups
-        </h1>
-    
+        23W Layups
+      </h1>
+
       <main className={styles.main}>
         <div className={styles.grid}>
           <a href="/waitlist/waitlist-detail" className={styles.card}>
@@ -129,9 +122,9 @@ export default function ExploreHome() {
           rel="noopener noreferrer"
         >
           Classy
-          
+
         </a>
       </footer>
     </div>
-  )
+  );
 }

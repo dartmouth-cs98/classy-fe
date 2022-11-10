@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../styles/WaitlistDetail.module.css'
 // reactstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal} from "reactstrap";
+import { Button, Modal } from "reactstrap";
 
 function RemoveWaitlist() {
   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
@@ -41,6 +41,6 @@ function RemoveWaitlist() {
       </Modal>
     </>
   );
-}       
+}
 
 export default RemoveWaitlist;
