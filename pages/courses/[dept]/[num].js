@@ -22,7 +22,7 @@ function getPrereqLinks(bucket) {
     const dept = parsed[0];
     const num = parsed[1];
     if (parseFloat(num) > 0) {
-      const url = `/courseinfo/${dept}/${num}`;
+      const url = `/courses/${dept}/${num}`;
       if (index === 0) {
         return <Link href={url}><A>{element}</A></Link>;
       }

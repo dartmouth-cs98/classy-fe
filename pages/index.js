@@ -33,35 +33,35 @@ export default function Home() {
           </a>
 
           <Link
-            href="/courseinfo/COSC/10"
+            href="/courses/COSC/10"
             className="card"
           >
             CS 10
           </Link>
 
           <Link
-            href="/courseinfo/COSC/25.01"
+            href="/courses/COSC/25.01"
             className="card"
           >
             CS 25
           </Link>
 
           <Link
-            href="/courseinfo/COSC/52"
+            href="/courses/COSC/52"
             className="card"
           >
             CS 52
           </Link>
 
           <Link
-            href="/courseinfo/COSC/74"
+            href="/courses/COSC/74"
             className="card"
           >
             CS 74
           </Link>
 
           <Link
-            href="/courseinfo/COSC/98.01"
+            href="/courses/COSC/98.01"
             className="card"
           >
             CS 98
