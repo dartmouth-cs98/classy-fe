@@ -23,7 +23,7 @@ function getMedianColor(avgMedian) {
   if (['A', 'A/A-'].includes(avgMedian)) {
     return green;
   }
-  if (['A-', 'A-/B+', null].includes(avgMedian)) {
+  if (['A-', 'A-/B+', null, 'N/A'].includes(avgMedian)) {
     return orange;
   }
   return pink;
@@ -31,7 +31,7 @@ function getMedianColor(avgMedian) {
 
 // returns the color a waitlist tile should be based on whether waitlisting is required
 function getWaitlistColor(waitlist) {
-  if (waitlist === true || waitlist === 'Required') {
+  if (waitlist === true || waitlist === 'Required' || waitlist === 'Sign Up Here') {
     return pink;
   }
 

@@ -6,7 +6,7 @@ import styles from '../styles/CourseInfo.module.css';
 
 function Glance(props) {
   const {
-    distribs, wc, avgMedian, waitlist,
+    distribs, wc, avgMedian, waitlist, dept, num,
   } = props;
   const nr = false;
   return (
@@ -15,7 +15,7 @@ function Glance(props) {
       <CourseInfoTile title="WC" val={wc || 'N/A'} />
       <CourseInfoTile title="NR Eligible" val={nr || 'N/A'} />
       <CourseInfoTile title="Avg Median" val={avgMedian || 'N/A'} />
-      <CourseInfoTile title="Waitlist" val={waitlist ? 'Required' : 'Not Required'} />
+      <CourseInfoTile title="Waitlist" val={waitlist ? 'Sign Up Here' : 'Not Required'} dept={dept} num={num} />
     </div>
   );
 }

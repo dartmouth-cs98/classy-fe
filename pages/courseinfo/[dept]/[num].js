@@ -86,6 +86,8 @@ export default function CourseInfo() {
         wc={currentCourse ? currentCourse.wc : ''}
         avgMedian={currentCourse ? convertMedian(currentCourse.avgMedian) : ''}
         waitlist={currentCourse ? currentCourse.waitlist : 'Unknown'}
+        dept={currentCourse ? currentCourse.dept : ''}
+        num={currentCourse ? currentCourse.num : ''}
       />
 
       <H3>Prerequisites</H3>
