@@ -28,9 +28,7 @@ function RemoveWaitlist() {
           </div>
         </div>
         <div className=" modal-footer">
-          <Button className={styles.button} type="button">
-            <a href="/waitlist/waitlist-home">Yes, remove request</a>
-          </Button>
+          <a href="/waitlist/waitlist-home" className={styles.button}>Yes, remove request</a>
           <Button
             className=" text-black ml-auto"
             color="default"

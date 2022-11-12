@@ -12,12 +12,6 @@ export default function WaitlistHome() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <div className={styles.menu}>
-        <h1>
-          placeholder menu
-        </h1>
-      </div> */}
-
       <h1 className={styles.title}>
         My Waitlists
       </h1>
@@ -33,22 +27,22 @@ export default function WaitlistHome() {
             <p>Full-Stack Web Development</p>
           </a>
 
-          <a href="http://dartmouth.smartcatalogiq.com/current/orc/Departments-Programs-Undergraduate/Computer-Science/COSC-Computer-Science-Undergraduate/COSC-25-01" className={styles.card}>
+          <a href="/waitlist/waitlist-detail" className={styles.card}>
             <h2>COSC 25.01</h2>
             <p>Intro to UI/UX Design I</p>
           </a>
 
-          <a href="http://dartmouth.smartcatalogiq.com/current/orc/Departments-Programs-Undergraduate/Computer-Science/COSC-Computer-Science-Undergraduate/COSC-25-01" className={styles.card}>
+          <a href="/waitlist/waitlist-detail" className={styles.card}>
             <h2>COSC 25.02</h2>
             <p>Intro to UI/UX Design II</p>
           </a>
 
-          <a href="http://dartmouth.smartcatalogiq.com/current/orc/Departments-Programs-Undergraduate/Economics/ECON-Economics/ECON-1" className={styles.card}>
+          <a href="/waitlist/waitlist-detail" className={styles.card}>
             <h2>ECON 001</h2>
             <p>The Price System: Analysis, Problems, and Policies</p>
           </a>
 
-          <a href="http://dartmouth.smartcatalogiq.com/current/orc/Departments-Programs-Undergraduate/Mathematics/MATH-Mathematics-Undergraduate/MATH-1" className={styles.card}>
+          <a href="/waitlist/waitlist-detail" className={styles.card}>
             <h2>MATH 001</h2>
             <p>Introduction to Calculus</p>
           </a>
