@@ -23,7 +23,7 @@ function getMedianColor(avgMedian) {
   if (['A', 'A/A-'].includes(avgMedian)) {
     return green;
   }
-  if (['A-', 'A-/B+', null].includes(avgMedian)) {
+  if (['A-', 'A-/B+', null, 'N/A'].includes(avgMedian)) {
     return orange;
   }
   return pink;
@@ -31,7 +31,7 @@ function getMedianColor(avgMedian) {
 
 // returns the color a waitlist tile should be based on whether waitlisting is required
 function getWaitlistColor(waitlist) {
-  if (waitlist === true || waitlist === 'Required') {
+  if (waitlist === true || waitlist === 'Required' || waitlist === 'Sign Up Here') {
     return pink;
   }
 
@@ -88,12 +88,16 @@ function getQualityColor(quality) {
 // returns the color a term tile should be based on the season
 function getTermColor(term) {
   const seasons = {
-    Fall: orange,
-    Winter: blue,
-    Spring: green,
-    Summer: purple,
+    F: orange,
+    W: blue,
+    S: green,
+    X: purple,
+    f: orange,
+    w: blue,
+    s: green,
+    x: purple,
   };
-  return seasons[term.substring(0, term.indexOf(' '))];
+  return seasons[term[term.length - 1]];
 }
 
 function getInstructorColor() {
