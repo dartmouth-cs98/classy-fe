@@ -27,6 +27,7 @@ export default function CourseInfo() {
 
   return (
     <div className="container">
+
       <Head>
         <title>Classy</title>
         <meta name="description" content="class selection made easy" />
@@ -34,7 +35,6 @@ export default function CourseInfo() {
       </Head>
 
       <SideNavbar />
-
       <main>
         <CourseInfoTitle course={currentCourse || { dept, num }} />
 
