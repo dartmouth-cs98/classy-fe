@@ -1,17 +1,9 @@
-<<<<<<< HEAD:pages/index.js
-/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/react-in-jsx-scope */
-import Head from 'next/head';
-// import SideNavbar from '../components/SideNavbar'
-import Link from 'next/link';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-=======
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import SideNavbar from '../components/SideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> 43918cc (updated navbar, complete explore home):pages/index.jsx
 
 export default function Home() {
   return (
@@ -40,7 +32,6 @@ export default function Home() {
             <p>View my waitlists.</p>
           </a>
 
-<<<<<<< HEAD:pages/index.js
           <Link
             href="/courses/COSC/10"
             className="card"
@@ -75,21 +66,13 @@ export default function Home() {
           >
             CS 98
           </Link>
-=======
-<<<<<<< HEAD:pages/index.js
-          <a href="/courseinfo/" className="card">
-            <h3>Course Info &rarr;</h3>
-            <p>View available courses.</p>
-          </a>
-=======
+
           <Link href="/courseinfo/" state={{ courseName: 'COSC 98' }} className="card">
             <a href="https://nextjs.org/learn">
               <h3>Course Info &rarr;</h3>
               <p>View available courses.</p>
             </a>
           </Link>
->>>>>>> 43918cc (updated navbar, complete explore home):pages/index.jsx
->>>>>>> 045ef75 (updated navbar, complete explore home):pages/index.jsx
 
           <a href="/professorInfo" className="card">
             <h3>Professor Info &rarr;</h3>

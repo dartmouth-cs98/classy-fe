@@ -6,7 +6,7 @@ import OfferedTile from './OfferedTile';
 function loadOfferings(values) {
   return values.map((value) => (
     <OfferedTile
-      key={value.term}
+      key={`${value.term}${value.professors}`}
       term={value.term}
       professors={value.professors}
       period={value.period}

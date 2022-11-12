@@ -9,7 +9,8 @@ import {
 
 function getProfessorLink(professors) {
   return professors.map((professor) => {
-    const url = `/professors/${professor.replace(' ', '_')}`;
+    // const url = `/professors/${professor.replace(' ', '_')}`;
+    const url = '/professorInfo';
     return (
       <Link href={url}>
         <A>
