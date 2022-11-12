@@ -37,8 +37,8 @@ export default function Home() {
             <p>View available courses.</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
+          <a href="/professorInfo" className="card">
+            <h3>Professor Info &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
