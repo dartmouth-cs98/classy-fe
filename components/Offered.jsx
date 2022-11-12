@@ -5,7 +5,6 @@ import OfferedTile from './OfferedTile';
 
 function loadOfferings(values) {
   return values.map((value) => (
-    // eslint-disable-next-line react/jsx-filename-extension
     <OfferedTile
       key={value.term}
       term={value.term}
