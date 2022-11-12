@@ -1,18 +1,19 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import Link from 'next/link';
-import SideNavbar from '../components/SideNavbar';
+// import SideNavbar from '../components/SideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SideNavbar />
+      {/* <SideNavbar /> */}
 
       <main>
         <h1 className="title">
