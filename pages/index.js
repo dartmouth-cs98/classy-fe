@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
+  // eslint-disable-next-line react/jsx-filename-extension
     <div className="container">
       <Head>
         <title>Create Next App</title>
@@ -32,42 +32,31 @@ export default function Home() {
             <p>View my waitlists.</p>
           </a>
 
-          <Link
-            href="/courses/COSC/10"
-            className="card"
-          >
+          <Link href="/courses/COSC/10" className="card">
             CS 10
           </Link>
 
-          <Link
-            href="/courses/COSC/25.01"
-            className="card"
-          >
+          <Link href="/courses/COSC/25.01" className="card">
             CS 25
           </Link>
 
-          <Link
-            href="/courses/COSC/52"
-            className="card"
-          >
+          <Link href="/courses/COSC/52" className="card">
             CS 52
           </Link>
 
-          <Link
-            href="/courses/COSC/74"
-            className="card"
-          >
+          <Link href="/courses/COSC/74" className="card">
             CS 74
           </Link>
 
-          <Link
-            href="/courses/COSC/98.01"
-            className="card"
-          >
+          <Link href="/courses/COSC/98.01" className="card">
             CS 98
           </Link>
 
-          <Link href="/courseinfo/" state={{ courseName: 'COSC 98' }} className="card">
+          <Link
+            href="/courseinfo/"
+            state={{ courseName: 'COSC 98' }}
+            className="card"
+          >
             <a href="https://nextjs.org/learn">
               <h3>Course Info &rarr;</h3>
               <p>View available courses.</p>
@@ -108,7 +97,6 @@ export default function Home() {
           Powered by
           {' '}
         </a>
-
       </footer>
     </div>
   );
