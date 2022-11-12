@@ -1,0 +1,5 @@
+.collapseContainer {
+  display: flex;
+  flex-direction: column;
+
+}
