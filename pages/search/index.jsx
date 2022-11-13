@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/no-unstable-nested-components */
 import React, { useState, useCallback, useEffect } from 'react';
 import {
   H1, H2, H3, H4, B1, B3, TextLabel, A,
