@@ -1,19 +1,31 @@
 .qualityReview {
-  display: flex;
   margin-top: 20px;
-  align-items: flex-end;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .colorCard {
-  height: 130px;
-  width: 130px;
+  height: 154px;
+  width: 154px;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 12px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
 }
 
 .card {
-  width: 150px;
+  width: 155px;
   margin: 20px;
+}
+
+.distribs {
+  position: absolute;
+  top: 5px;
+  left: 10px;
 }

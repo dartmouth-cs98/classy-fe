@@ -38,19 +38,7 @@ function SearchPage() {
             </div>
           )
           : (
-            <div>
-              <div>
-                <H3>Recent Searches</H3>
-                <A>See All</A>
-              </div>
-              {/* Load course/prof cards */}
-              <CourseCard id="Cosc 98" title="Introductory Economics" distrib="TLA" quality="4.0" reviews="4" />
-              <ProfCard name="Natalie Svoboda" department="COSC" />
-
-              <H3>Browse Departments</H3>
-              {/* Load all departments */}
-              <DepartmentCard name="Computer Science" id="COSC" />
-            </div>
+            <div />
           )
 
       }
