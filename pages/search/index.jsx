@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState, useCallback, useEffect } from 'react';
 import {
@@ -9,16 +11,9 @@ import styles from '../../styles/components/TabBar.module.css';
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
   // eslint-disable-next-line no-unused-vars
-  const [tab, setTab] = useState('courses');
+  const [tab, setTab] = useState('All');
   const data = CourseData;
-  const tabs = ['courses', 'professors', 'distribs'];
   const [searchResults, setSearchResults] = useState(null);
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-    setSearchResults(true);
-  };
 
   const input = useCallback((inputElement) => {
     if (inputElement) {
@@ -26,65 +21,86 @@ function SearchPage() {
     }
   }, []);
 
-  function TabBar() {
-    // eslint-disable-next-line no-console
-    console.log(tabs);
-
-    return (
-      <div className={styles.tabGroup}>
-        {tabs.map((tabName) => (
-          // <div key={tabName} className={`tab ${tabName === tab ? 'active' : ''}`}>
-          <div key={tabName} className={`${styles.tab} ${tabName === tab ? styles.active : styles[tabName]} `}>
-            <B1>{tabName}</B1>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  function SearchBody() {
-    if (!searchResults || !searchInput) {
-      return (
-        <div>
-          <H3>Recent Searches</H3>
-          <A>See All</A>
-          {/* Load course/prof cards */}
-          <CourseCard id="Cosc 98" title="Introductory Economics" distrib="TLA" quality="4.0" reviews="4" />
-          <ProfCard name="Natalie Svoboda" department="COSC" />
-
-          <H3>Browse Departments</H3>
-          {/* Load all departments */}
-          <DepartmentCard name="Computer Science" id="COSC" />
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <TabBar />
-      </div>
-    );
-  }
-
   return (
     <div>
-      <input
-        ref={input}
-        type="text"
-        placeholder="Search"
-        onChange={handleChange}
-        value={searchInput}
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        input={input}
+        setSearchResults={setSearchResults}
       />
-      <SearchBody />
+      {
+        !searchInput
+          ? (
+            <div>
+              <H3>Recent Searches</H3>
+              <A>See All</A>
+              {/* Load course/prof cards */}
+              <CourseCard id="Cosc 98" title="Introductory Economics" distrib="TLA" quality="4.0" reviews="4" />
+              <ProfCard name="Natalie Svoboda" department="COSC" />
+
+              <H3>Browse Departments</H3>
+              {/* Load all departments */}
+              <DepartmentCard name="Computer Science" id="COSC" />
+            </div>
+          )
+          : (
+            <div>
+              <TabBar tab={tab} setTab={setTab} />
+            </div>
+          )
+
+      }
 
     </div>
   );
+}
 
-  // handle search query
-  //   if (searchInput.length > 0) {
-  //       countries.filter((country) => {
-  //       return country.name.match(searchInput);
-  //   })
+function SearchBar(props) {
+  const {
+    searchInput, setSearchInput, input, setSearchResults,
+  } = props;
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    setSearchResults(true);
+  };
+
+  return (
+    <input
+      ref={input}
+      type="text"
+      placeholder="Search"
+      onChange={handleChange}
+      value={searchInput}
+    />
+  );
+}
+
+function TabBar(props) {
+  const tabs = ['All', 'Courses', 'Professors', 'Distribs'];
+  const { tab, setTab } = props;
+  const tabDivs = tabs.map((tabName) => {
+    if (tabName === tab) {
+      return (
+        <div key={tabName} className={`${styles.tab} ${styles.active}`}>
+          <B1 color="var(--lightest-grey)">{tabName}</B1>
+        </div>
+      );
+    }
+    return (
+      <div key={tabName} onClick={() => setTab(tabName)} className={`${styles.tab} ${styles[tabName]}`}>
+        <B1 color="var(--darkest-grey)">{tabName}</B1>
+      </div>
+    );
+  });
+
+  return (
+    <div className={styles.tabGroup}>
+      {tabDivs}
+    </div>
+  );
 }
 
 function CourseCard(props) {
