@@ -1,0 +1,16 @@
+.bar {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+}
+
+.input {
+    padding-left: 45px;
+}
+
+.icon {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}

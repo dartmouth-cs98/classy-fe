@@ -11,11 +11,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 15px 0px 15px;
+    padding: 0px 20px 0px 20px;
 }
 
 .active {
-    background: black;
+    background: var(--navy);
     cursor: default;
 }
 

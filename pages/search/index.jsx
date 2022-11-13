@@ -7,6 +7,7 @@ import {
 } from '../../components/ui/typography';
 import CourseData from '../../data/data';
 import styles from '../../styles/components/TabBar.module.css';
+import SearchBar from '../../components/search/SearchBar';
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
@@ -30,11 +31,18 @@ function SearchPage() {
         setSearchResults={setSearchResults}
       />
       {
-        !searchInput
+        searchInput
           ? (
             <div>
-              <H3>Recent Searches</H3>
-              <A>See All</A>
+              <TabBar tab={tab} setTab={setTab} />
+            </div>
+          )
+          : (
+            <div>
+              <div>
+                <H3>Recent Searches</H3>
+                <A>See All</A>
+              </div>
               {/* Load course/prof cards */}
               <CourseCard id="Cosc 98" title="Introductory Economics" distrib="TLA" quality="4.0" reviews="4" />
               <ProfCard name="Natalie Svoboda" department="COSC" />
@@ -44,37 +52,10 @@ function SearchPage() {
               <DepartmentCard name="Computer Science" id="COSC" />
             </div>
           )
-          : (
-            <div>
-              <TabBar tab={tab} setTab={setTab} />
-            </div>
-          )
 
       }
 
     </div>
-  );
-}
-
-function SearchBar(props) {
-  const {
-    searchInput, setSearchInput, input, setSearchResults,
-  } = props;
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-    setSearchResults(true);
-  };
-
-  return (
-    <input
-      ref={input}
-      type="text"
-      placeholder="Search"
-      onChange={handleChange}
-      value={searchInput}
-    />
   );
 }
 
