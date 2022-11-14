@@ -10,7 +10,8 @@ const ProfessorMockData = {
 };
 
 function Professor(props) {
-  const { name, department, pic } = ProfessorMockData;
+  const { professor } = props;
+  const { pic, name, department } = professor;
   return (
     <div className={styles.card}>
       <img className={styles.pic} src={pic} alt="Tim" />

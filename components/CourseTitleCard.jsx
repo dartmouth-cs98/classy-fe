@@ -48,7 +48,7 @@ function CourseTitleCard(props) {
       </div>
       <div>
         <H4 style={{ margin: '0px' }}>{course.courseNumber}</H4>
-        <B1>{course.courseName}</B1>
+        <B1 className={styles.text}>{course.courseName}</B1>
       </div>
 
     </div>

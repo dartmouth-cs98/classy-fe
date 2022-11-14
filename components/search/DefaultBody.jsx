@@ -88,14 +88,20 @@ const cardColors = [
   { pastel: '#F9F3FC', dark: '#8E5BA8' },
 ];
 
+const ProfessorMockData = {
+  name: 'Tim Tregubov',
+  department: 'Computer Science',
+  pic: 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6',
+};
+
 function DefaultBody(props) {
   return (
-    <div className={styles.page}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <H3>Recent Searches</H3>
         <A>See All</A>
       </div>
-      <div className={styles.recentSearches}>
+      <div className={styles.resultContainer}>
         {professorInfoMockData.featuredCourses.map((course, i) => (
           <CourseTitleCard
             key={course.courseName}
@@ -103,7 +109,7 @@ function DefaultBody(props) {
             color={cardColors[i % cardColors.length]}
           />
         ))}
-        <Professor />
+        <Professor professor={ProfessorMockData} />
       </div>
 
       <div className={styles.header}>

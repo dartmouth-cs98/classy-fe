@@ -1,7 +1,14 @@
-.page {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+.horizontalContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 150px;
 }
 
 .header {
@@ -13,7 +20,7 @@
     margin-top: 20px;
 }
 
-.recentSearches {
+.resultContainer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -27,4 +34,12 @@
     flex-wrap: wrap;
     gap: 15px 30px;
     margin: 25px
+}
+
+.profs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px 60px;
+    margin: 50px 0 25px 25px;
 }

@@ -20,12 +20,20 @@
 }
 
 .card {
-  width: 154px;
   margin: 0;
+  width: 174px;
 }
 
 .distribs {
   position: absolute;
   top: 5px;
   left: 10px;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

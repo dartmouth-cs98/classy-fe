@@ -17,6 +17,10 @@ function SearchPage() {
     }
   }, []);
 
+  const onBlur = (e) => {
+    window.setTimeout(() => e.target.focus(), 0);
+  };
+
   return (
     <div>
       <SearchBar
@@ -24,6 +28,7 @@ function SearchPage() {
         setSearchInput={setSearchInput}
         input={input}
         setSearchResults={setSearchResults}
+        onBlur={onBlur}
       />
       {
         searchInput // if search input exists, show tab bar page

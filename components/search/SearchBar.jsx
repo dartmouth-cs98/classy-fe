@@ -4,7 +4,7 @@ import styles from '../../styles/components/SearchBar.module.css';
 
 function SearchBar(props) {
   const {
-    searchInput, setSearchInput, input, setSearchResults,
+    searchInput, setSearchInput, input, setSearchResults, onBlur,
   } = props;
 
   const handleChange = (e) => {
@@ -22,6 +22,7 @@ function SearchBar(props) {
         onChange={handleChange}
         value={searchInput}
         className={styles.input}
+        onBlur={onBlur}
       />
       <SearchIcon className={styles.icon} />
     </div>
