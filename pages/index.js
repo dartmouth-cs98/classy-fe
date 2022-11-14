@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 /* eslint-disable react/react-in-jsx-scope */
->>>>>>> 5481c2a (update links)
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';

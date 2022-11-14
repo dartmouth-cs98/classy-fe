@@ -27,7 +27,6 @@ export default function CourseInfo() {
 
   return (
     <div className="container">
-
       <Head>
         <title>Classy</title>
         <meta name="description" content="class selection made easy" />
