@@ -1,0 +1,12 @@
+.pic {
+    height: 174px;
+    width: 174px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.card {
+  width: 154px;
+  margin: 20px 0px 20px 0px;
+}

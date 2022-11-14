@@ -1,0 +1,27 @@
+.card {
+    width: 252px;
+    max-width:252px;
+    height: 126px;
+    max-height:126;
+    margin: 0px;
+    position: relative;
+    border-radius: 12px;
+}
+
+.name {
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px;
+    width: 225px;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+}
+
+.abbr {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+}

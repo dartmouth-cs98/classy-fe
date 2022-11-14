@@ -8,6 +8,7 @@ import {
 import CourseData from '../../data/data';
 import styles from '../../styles/components/TabBar.module.css';
 import SearchBar from '../../components/search/SearchBar';
+import DefaultBody from '../../components/search/DefaultBody';
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
@@ -38,7 +39,7 @@ function SearchPage() {
             </div>
           )
           : (
-            <div />
+            <DefaultBody />
           )
 
       }
@@ -68,30 +69,6 @@ function TabBar(props) {
   return (
     <div className={styles.tabGroup}>
       {tabDivs}
-    </div>
-  );
-}
-
-function CourseCard(props) {
-  const {
-    distrib, quality, reviews, id, name,
-  } = props;
-  return (
-    <div>
-      <TextLabel color="var(--dark-grey)">{distrib}</TextLabel>
-
-      <div>
-        <TextLabel color="var(--darkest-grey)">Quality</TextLabel>
-        <H1 color="var(--dark-orange)">{quality}</H1>
-        <B3 color="var(--dark-grey)">
-          {reviews}
-          {' '}
-          Reviews
-        </B3>
-
-        <H4>{id}</H4>
-        <B1>{name}</B1>
-      </div>
     </div>
   );
 }

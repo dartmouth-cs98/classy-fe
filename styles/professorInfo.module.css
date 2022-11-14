@@ -10,6 +10,8 @@
 
 .featuredCardsContainer {
   display: flex;
+  gap: 60px;
+  margin: 20px;
 }
 
 .courseTableContainer {
