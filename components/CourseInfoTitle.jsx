@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
 import getColor from '../data/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Link from 'next/link';
 import getColor from '../data/colorscheme';
@@ -10,7 +9,8 @@ import {
 
 function getProfessorLink(professors) {
   return professors.map((professor) => {
-    const url = `/professors/${professor.replace(' ', '_')}`;
+    // const url = `/professors/${professor.replace(' ', '_')}`;
+    const url = '/professorInfo';
     return (
       <Link href={url}>
         <A>

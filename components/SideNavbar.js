@@ -4,12 +4,14 @@ import React from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import {
-  MdOutlineSearch, MdOutlineExplore, MdOutlineFormatListBulleted,
-  MdOutlinePersonOutline, MdOutlineSettings, MdOutlineLogout,
+  MdOutlineSearch,
+  MdOutlineExplore,
+  MdOutlineFormatListBulleted,
+  MdOutlinePersonOutline,
+  MdOutlineSettings,
+  MdOutlineLogout,
 } from 'react-icons/md';
-import {
-  H4, B1,
-} from './ui/typography';
+import { H4, B1 } from './ui/typography';
 import logo from '../images/logo.png';
 // import icons from react-icon
 
@@ -27,41 +29,59 @@ function SideNavbar() {
           <div className="flex flex-col justify-start items-center">
             <Image src={logo} width={60} height={60} alt="classy logo" />
             {/* <img src={logo} alt="logo" /> NOT WORKING */}
-            <H4 color="white" className="text-base text-center cursor-pointer font-bold pb-4 w-full mt-3.5">
+            <H4
+              color="white"
+              className="text-base text-center cursor-pointer font-bold pb-4 w-full mt-3.5"
+            >
               Hi, Tim!
             </H4>
 
             {/* main tabs */}
             <div className="my-40 pb-10 w-full">
-              <a href="/search" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <a
+                href="/search"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
                 <MdOutlineSearch className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Search
                 </B1>
               </a>
 
-              <a href="/explore" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <a
+                href="/explore"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
                 <MdOutlineExplore className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Explore
                 </B1>
               </a>
 
-              <a href="/waitlist" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <a
+                href="/waitlist"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
                 <MdOutlineFormatListBulleted className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Waitlist
                 </B1>
               </a>
 
-              <a href="/profile" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <a
+                href="/profile"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
                 <MdOutlinePersonOutline className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Profile
                 </B1>
               </a>
 
-              <a href="/settings" className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <a
+                href="/settings"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
                 <MdOutlineSettings className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Settings
@@ -78,10 +98,8 @@ function SideNavbar() {
                 </B1>
               </div>
             </div>
-
           </div>
         </div>
-
       </Disclosure>
     </div>
   );

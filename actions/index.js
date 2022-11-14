@@ -24,10 +24,11 @@ export function fetchCourses() {
   };
 }
 
-export function fetchCourse(id) {
+export function fetchCourse(dept, num) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${ROOT_URL}/courses/${id}`);
+      console.log('fetching course');
+      const response = await axios.get(`${ROOT_URL}/courses/${dept}/${num}`);
       dispatch({ type: ActionTypes.FETCH_COURSE, payload: response.data });
     } catch (error) {
       console.log(error);
