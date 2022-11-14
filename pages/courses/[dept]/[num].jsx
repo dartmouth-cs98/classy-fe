@@ -9,6 +9,7 @@ import CourseInfoTitle from '../../../components/CourseInfoTitle';
 import Offered from '../../../components/Offered';
 import Medians, { convertMedian } from '../../../components/Medians';
 import StudentsSay from '../../../components/StudentsSay';
+
 // import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import SideNavbar from '../../../components/SideNavbar';
