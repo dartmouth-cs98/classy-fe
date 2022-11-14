@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../../styles/WaitlistHome.module.css';
 
 export default function WaitlistHome() {
@@ -22,27 +23,27 @@ export default function WaitlistHome() {
         </p>
 
         <div className={styles.grid}>
-          <a href="/waitlist/waitlist-detail" className={styles.card}>
+          <a href="/waitlist/COSC/52" className={styles.card}>
             <h2>COSC 52</h2>
             <p>Full-Stack Web Development</p>
           </a>
 
-          <a href="/waitlist/waitlist-detail" className={styles.card}>
+          <a href="/waitlist/COSC/74" className={styles.card}>
+            <h2>COSC 74</h2>
+            <p>Machine Learning and Statistical Data Analysis</p>
+          </a>
+
+          <a href="/waitlist/COSC/25.01" className={styles.card}>
             <h2>COSC 25.01</h2>
             <p>Intro to UI/UX Design I</p>
           </a>
 
-          <a href="/waitlist/waitlist-detail" className={styles.card}>
-            <h2>COSC 25.02</h2>
-            <p>Intro to UI/UX Design II</p>
-          </a>
-
-          <a href="/waitlist/waitlist-detail" className={styles.card}>
+          <a href="/waitlist/ECON/001" className={styles.card}>
             <h2>ECON 001</h2>
             <p>The Price System: Analysis, Problems, and Policies</p>
           </a>
 
-          <a href="/waitlist/waitlist-detail" className={styles.card}>
+          <a href="/waitlist/MATH/001" className={styles.card}>
             <h2>MATH 001</h2>
             <p>Introduction to Calculus</p>
           </a>

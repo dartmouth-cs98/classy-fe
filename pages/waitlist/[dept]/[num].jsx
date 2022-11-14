@@ -1,17 +1,22 @@
-/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-unneeded-ternary */
+// import Link  from 'next/link';
 import React from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
-import RemoveWaitlist from '../../components/RemoveWaitlist';
-import styles from '../../styles/WaitlistDetail.module.css';
-import CourseData from '../../data/data';
-import WaitlistData from '../../data/waitlistdata';
-import { Link } from 'react-router-dom';
+import RemoveWaitlist from '../../../components/RemoveWaitlist';
+import styles from '../../../styles/WaitlistDetail.module.css';
+import CourseData from '../../../data/data';
+import WaitlistData from '../../../data/waitlistdata';
 
 export default function WaitlistDetail() {
   const data = CourseData();
+  const router = useRouter();
+  const { dept, num } = router.query;
+  const courseCode = `${dept} ${num}`;
+  const courseURL = `/courses/${dept}/${num}`;
+  const currentCourse = data[courseCode];
   const waitlistData = WaitlistData();
-  const waitlist = waitlistData['COSC 52'];
-  const currentCourse = data['COSC 52'];
+  const waitlist = waitlistData[courseCode];
   return (
     <div className={styles.container}>
       <Head>
@@ -26,11 +31,11 @@ export default function WaitlistDetail() {
         </h1>
         <div className={styles.course_title}>
           <h1>
-            {currentCourse.course_code.course_dept}
+            {currentCourse ? currentCourse.dept : 'Placeholder Course'}
             {' '}
-            {currentCourse.course_code.course_number}
+            {currentCourse ? currentCourse.num : ' '}
           </h1>
-          <h3>{currentCourse.course_title}</h3>
+          <h3>{currentCourse ? currentCourse.courseTitle : 'This course has not been linked. Check back later!'}</h3>
         </div>
       </div>
 
@@ -38,9 +43,11 @@ export default function WaitlistDetail() {
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
             <RemoveWaitlist />
-            {/* <button type="button" className={styles.button}>Edit Waitlist Request</button> */}
-            <a href="/courseinfo" className={styles.button}>Course Info Page</a>
-            {/* <button type="button" className={styles.button}>Course Info Page</button> */}
+            <a href={courseURL}>
+              <button className={styles.button} type="button">
+                Course Info Page
+              </button>
+            </a>
           </div>
 
           <div className={styles.waitlist_details_container}>
@@ -48,7 +55,7 @@ export default function WaitlistDetail() {
               <h2>
                 Estimated terms remaining:
                 {' '}
-                {waitlist.remaining_terms}
+                {waitlist ? waitlist.remaining_terms : 'N/A'}
                 {' '}
                 terms
               </h2>
@@ -58,7 +65,7 @@ export default function WaitlistDetail() {
                 <h2>
                   Average time spent on waitlist:
                   {' '}
-                  {waitlist.avg_terms}
+                  {waitlist ? waitlist.avg_terms : 'N/A'}
                   {' '}
                   terms
                 </h2>
@@ -67,7 +74,7 @@ export default function WaitlistDetail() {
                 <h2>
                   Joined the waitlist:
                   {' '}
-                  {waitlist.joined}
+                  {waitlist ? waitlist.joined : 'N/A'}
                 </h2>
               </div>
             </div>
@@ -78,9 +85,9 @@ export default function WaitlistDetail() {
           <div className={styles.waitlist_position}>
             <div className={styles.info_graphic}>
               <h1>
-                {waitlist.waitlist_pos}
+                {waitlist ? waitlist.waitlist_pos : 'N/A'}
                 {' / '}
-                {waitlist.waitlist_total}
+                {waitlist ? waitlist.waitlist_total : 'N/A'}
               </h1>
             </div>
             <p>waitlist position</p>
@@ -90,8 +97,8 @@ export default function WaitlistDetail() {
             <div className={styles.profile_picture}>
               photo
             </div>
-            <h3>Professor Jane</h3>
-            <button type="button" className={styles.button}>
+            <h3>Tim Tregubov</h3>
+            <button type="button" className={styles.small_btn}>
               Email
             </button>
           </div>
@@ -105,7 +112,6 @@ export default function WaitlistDetail() {
           rel="noopener noreferrer"
         >
           Classy
-
         </a>
       </footer>
     </div>
