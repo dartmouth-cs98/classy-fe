@@ -1,132 +1,74 @@
-.container {
-  padding: 0 2rem;
-  margin-left: 250px;
-}
+import React from 'react';
 
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-/* .title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-} */
+import CourseData from '../../../data/data';
+import Glance from '../../../components/Glance';
+import CourseInfoTitle from '../../../components/CourseInfoTitle';
+import Offered from '../../../components/Offered';
+import Medians, { convertMedian } from '../../../components/Medians';
+import StudentsSay from '../../../components/StudentsSay';
 
-.title {
-  padding-top: 5%;
-  margin-bottom: 0px;
-  font-size: 2.3rem;
-  display: flex;
-  align-items: flex-start;
-}
+// import { fetchCourse } from '../../../actions';
+import getPrereqs from '../../../data/courseinfohelpers';
+import SideNavbar from '../../../components/SideNavbar';
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
+import {
+  H3, B1,
+} from '../../../components/ui/typography';
 
-.grid {
-  padding-top: 2%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
-  flex-wrap: wrap;
-  max-width: 100%;
-}
+export default function CourseInfo() {
+  const data = CourseData();
+  const router = useRouter();
+  const { dept, num } = router.query;
 
-.horizscroll {
-  padding-top: 2%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
-  overflow-x: scroll;
-  white-space: nowrap;
-  max-width: 100%;
-}
+  const courseCode = `${dept} ${num}`;
+  const currentCourse = data[courseCode];
 
-.horizscroll a {
-  width: 300px;
-  height: 175px;
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: color 0.15s ease;
-  max-width: 300px;
-}
+  return (
+    <div className="container">
 
-.horizscroll a:hover,
-.horizscroll a:focus,
-.horizscroll a:active {
-  color: black;
-  background-color: #fafafa;
-}
+      <Head>
+        <title>Classy</title>
+        <meta name="description" content="class selection made easy" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
+      <SideNavbar />
+      <main>
+        <CourseInfoTitle course={currentCourse || { dept, num }} />
 
-.buttondiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        <H3>Description</H3>
+        <B1>{currentCourse ? currentCourse.description : ''}</B1>
 
-.button {
-  margin-top: 15%;
-  background-color: #28282D;
-  color: white;
-  padding: 20px 32px;
-  text-align: center;
-  border-radius: 8px;
-  transition: color 0.15s ease;
-}
+        <H3>At a Glance</H3>
+        <Glance
+          distribs={currentCourse ? currentCourse.distribs : ''}
+          wc={currentCourse ? currentCourse.wc : ''}
+          avgMedian={currentCourse ? convertMedian(currentCourse.avgMedian) : ''}
+          waitlist={currentCourse ? currentCourse.waitlist : 'Unknown'}
+          dept={currentCourse ? currentCourse.dept : ''}
+          num={currentCourse ? currentCourse.num : ''}
+        />
 
-.button:hover,
-.button:focus {
-  color: black;
-  background-color: #fafafa;
-}
+        <H3>Prerequisites</H3>
+        {currentCourse ? getPrereqs(currentCourse.required, currentCourse.counts) : ''}
 
-.button:active {
-  color: red;
-  background-color: #fafafa;
-}
+        <H3>What Students Say</H3>
+        <StudentsSay
+          workload={currentCourse ? currentCourse.workload : 'Unknown'}
+          difficulty={currentCourse ? currentCourse.difficulty : 'Unknown'}
+          quality={currentCourse ? currentCourse.quality : 'Unknown'}
+        />
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
+        <H3>Offered</H3>
+        {currentCourse ? <Offered course={currentCourse} /> : <B1>No Data</B1>}
 
-@media (prefers-color-scheme: dark) {
-
-  .card,
-  .footer {
-    border-color: #222;
-  }
-
-  .code {
-    background: #111;
-  }
-
-  .logo img {
-    filter: invert(1);
-  }
+        <H3>Medians</H3>
+        {currentCourse ? <Medians medians={currentCourse.medians} /> : <B1>No Data</B1>}
+        {/* <h2 className={styles.title}>Reviews</h2> */}
+      </main>
+    </div>
+  );
 }
