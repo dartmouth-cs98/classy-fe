@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import styles from '../../styles/WaitlistHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
 import {
-  H1, H2, H4, H3, B1,
+  H2, H3, B1,
 } from '../../components/ui/typography';
 
 const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];

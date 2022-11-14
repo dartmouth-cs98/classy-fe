@@ -6,11 +6,9 @@ import styles from '../styles/WaitlistDetail.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RemoveWaitlist() {
-//   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
   const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
     false,
   );
-  //   const [modalFormOpen, setModalFormOpen] = React.useState(false);
   return (
     <>
       <button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
