@@ -13,7 +13,7 @@ import StudentsSay from '../../../components/StudentsSay';
 // import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import SideNavbar from '../../../components/SideNavbar';
-
+import styles from '../../../styles/ExploreHome.module.css';
 import {
   H3, B1,
 } from '../../../components/ui/typography';
@@ -27,7 +27,7 @@ export default function CourseInfo() {
   const currentCourse = data[courseCode];
 
   return (
-    <div className="container">
+    <div className={styles.container}>
 
       <Head>
         <title>Classy</title>

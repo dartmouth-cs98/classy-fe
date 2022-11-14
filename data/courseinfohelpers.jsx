@@ -32,10 +32,7 @@ export default function getPrereqs(prereqs, counts) {
     return prereqs.map((bucket, index) => (
       <li>
         <B1>
-          {counts[index]}
-          {' '}
-          of
-          {' '}
+          {bucket.length > 1 ? `${counts[index]} of ` : ''}
           {getPrereqLinks(bucket)}
         </B1>
 

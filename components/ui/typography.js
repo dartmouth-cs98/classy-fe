@@ -36,6 +36,7 @@ export const H3 = styled.h3`
   font-weight: 700;
   font-size: 22px;
   line-height: 143.01%;
+  margin-top: 1em;
 `;
 
 /* Asap/H4 */
