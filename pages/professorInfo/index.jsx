@@ -6,6 +6,7 @@ import ProfessorCard from '../../components/professorInfo/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
 import styles from '../../styles/professorInfo.module.css';
+import SideNavbar from '../../components/SideNavbar';
 
 const professorInfoMockData = {
   featuredCourses: [{
@@ -87,7 +88,8 @@ const cardColors = [
 
 function ProfessorInfo() {
   return (
-    <div>
+    <div className={styles.container}>
+      <SideNavbar />
       <div className={styles.professorContainer}>
         <ProfessorCard />
       </div>

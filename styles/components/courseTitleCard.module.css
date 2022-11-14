@@ -7,8 +7,8 @@
 }
 
 .colorCard {
-  height: 154px;
-  width: 154px;
+  height: 174px;
+  width: 174px;
   padding: 10px;
   border-radius: 12px;
   margin-bottom: 10px;
@@ -22,6 +22,11 @@
 .card {
   margin: 0;
   width: 174px;
+  cursor: pointer;
+}
+
+.card:hover {
+  opacity: 0.5;
 }
 
 .distribs {
