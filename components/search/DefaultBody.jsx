@@ -97,7 +97,11 @@ function DefaultBody(props) {
       </div>
       <div className={styles.recentSearches}>
         {professorInfoMockData.featuredCourses.map((course, i) => (
-          <CourseTitleCard course={course} color={cardColors[i % cardColors.length]} />
+          <CourseTitleCard
+            key={course.courseName}
+            course={course}
+            color={cardColors[i % cardColors.length]}
+          />
         ))}
         <Professor />
       </div>
@@ -107,7 +111,11 @@ function DefaultBody(props) {
       </div>
       <div className={styles.depts}>
         {departmentMockData.map((dept, i) => (
-          <DepartmentCard dept={dept} color={cardColors[i % cardColors.length]} />
+          <DepartmentCard
+            key={dept.abbr}
+            dept={dept}
+            color={cardColors[i % cardColors.length]}
+          />
         ))}
       </div>
 

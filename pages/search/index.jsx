@@ -1,20 +1,14 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useCallback, useEffect } from 'react';
-import {
-  H1, H2, H3, H4, B1, B3, TextLabel, A,
-} from '../../components/ui/typography';
 import CourseData from '../../data/data';
-import styles from '../../styles/components/TabBar.module.css';
+import TabBar from '../../components/search/TabBar';
 import SearchBar from '../../components/search/SearchBar';
 import DefaultBody from '../../components/search/DefaultBody';
+import SearchResults from '../../components/search/SearchResults';
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
-  // eslint-disable-next-line no-unused-vars
   const [tab, setTab] = useState('All');
-  const data = CourseData;
   const [searchResults, setSearchResults] = useState(null);
 
   const input = useCallback((inputElement) => {
@@ -32,65 +26,19 @@ function SearchPage() {
         setSearchResults={setSearchResults}
       />
       {
-        searchInput
+        searchInput // if search input exists, show tab bar page
           ? (
             <div>
               <TabBar tab={tab} setTab={setTab} />
+              <SearchResults tab={tab} results={searchResults} />
             </div>
           )
-          : (
+          : ( // else show default page
             <DefaultBody />
           )
 
       }
 
-    </div>
-  );
-}
-
-function TabBar(props) {
-  const tabs = ['All', 'Courses', 'Professors', 'Distribs'];
-  const { tab, setTab } = props;
-  const tabDivs = tabs.map((tabName) => {
-    if (tabName === tab) {
-      return (
-        <div key={tabName} className={`${styles.tab} ${styles.active}`}>
-          <B1 color="var(--lightest-grey)">{tabName}</B1>
-        </div>
-      );
-    }
-    return (
-      <div key={tabName} onClick={() => setTab(tabName)} className={`${styles.tab} ${styles[tabName]}`}>
-        <B1 color="var(--darkest-grey)">{tabName}</B1>
-      </div>
-    );
-  });
-
-  return (
-    <div className={styles.tabGroup}>
-      {tabDivs}
-    </div>
-  );
-}
-
-function ProfCard(props) {
-  const { name, department } = props;
-  return (
-    <div>
-      <div>
-        <H4>{name}</H4>
-        <B1>{department}</B1>
-      </div>
-    </div>
-  );
-}
-
-function DepartmentCard(props) {
-  const { name, id } = props;
-  return (
-    <div>
-      <H3 color="var(--dark-orange)">{name}</H3>
-      <H2 color="var(--dark-orange)">{id}</H2>
     </div>
   );
 }

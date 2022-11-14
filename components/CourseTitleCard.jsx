@@ -38,7 +38,7 @@ function CourseTitleCard(props) {
         </div>
         <div className={styles.qualityReview}>
           <TextLabel color="var(--darkest-grey)" style={{ margin: '-20px' }}>Quality</TextLabel>
-          <H1 style={{ 'line-height': '0px' }} color={color.dark}>{course.quality}</H1>
+          <H1 style={{ lineHeight: '0px' }} color={color.dark}>{course.quality}</H1>
           <B3 style={{ margin: '-15px 0 -5px' }} color="var(--dark-grey)" className={styles.text}>
             {course.reviews.length}
             {' '}
