@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import React from 'react';
 import stylesCI from '../styles/CourseInfo.module.css';
 import CourseInfoTile from './Tile';
 
