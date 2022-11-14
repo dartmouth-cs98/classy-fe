@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import styles from '../styles/components/Professor.module.css';
+import Link from 'next/link';
+import styles from '../styles/components/CourseProfessorCard.module.css';
 import { H4, B1 } from './ui/typography';
 
 const ProfessorMockData = {
@@ -13,11 +14,13 @@ function Professor(props) {
   const { professor } = props;
   const { pic, name, department } = professor;
   return (
-    <div className={styles.card}>
-      <img className={styles.pic} src={pic} alt="Tim" />
-      <H4 style={{ margin: '0px' }}>{name}</H4>
-      <B1>{department}</B1>
-    </div>
+    <Link href="/professorInfo">
+      <div className={styles.card}>
+        <img className={styles.pic} src={pic} alt="Tim" />
+        <H4 style={{ margin: '0px' }}>{name}</H4>
+        <B1>{department}</B1>
+      </div>
+    </Link>
   );
 }
 

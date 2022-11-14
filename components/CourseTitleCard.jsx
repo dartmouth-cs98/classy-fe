@@ -4,7 +4,7 @@ import {
   H1, H4, B1, B3, TextLabel,
 } from './ui/typography';
 // eslint-disable-next-line import/no-unresolved
-import styles from '../styles/components/CourseTitleCard.module.css';
+import styles from '../styles/components/CourseProfessorCard.module.css';
 
 // const CourseTitleMockData = {
 //   distribs: ['TLA', 'NW'],
