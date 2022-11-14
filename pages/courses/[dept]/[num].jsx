@@ -2,7 +2,7 @@ import React from 'react';
 
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { useDispatch, connect } from 'react-redux';
+
 import CourseData from '../../../data/data';
 import Glance from '../../../components/Glance';
 import CourseInfoTitle from '../../../components/CourseInfoTitle';
@@ -27,6 +27,7 @@ export default function CourseInfo() {
 
   return (
     <div className="container">
+
       <Head>
         <title>Classy</title>
         <meta name="description" content="class selection made easy" />
