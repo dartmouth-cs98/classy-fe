@@ -22,7 +22,7 @@ function SearchPage() {
   };
 
   return (
-    <div style={{ padding: '20px 100px 50px 275px' }}>
+    <div style={{ padding: '20px 80px 50px 275px' }}>
       <SearchBar
         searchInput={searchInput}
         setSearchInput={setSearchInput}
