@@ -13,9 +13,9 @@ function RemoveWaitlist() {
   //   const [modalFormOpen, setModalFormOpen] = React.useState(false);
   return (
     <>
-      <Button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
+      <button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
         Remove Waitlist Request
-      </Button>
+      </button>
 
       <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger" onClick={() => setModalNotificationOpen(false)}>
         <div className=" modal-body">
@@ -28,7 +28,11 @@ function RemoveWaitlist() {
           </div>
         </div>
         <div className=" modal-footer">
-          <a href="/waitlist/waitlist-home" className={styles.button}>Yes, remove request</a>
+          <a href="/waitlist/">
+            <button className={styles.button} type="button">
+              Yes, remove request
+            </button>
+          </a>
           <Button
             className=" text-black ml-auto"
             color="default"
