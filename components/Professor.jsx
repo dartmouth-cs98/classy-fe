@@ -17,8 +17,8 @@ function Professor(props) {
     <Link href="/professorInfo">
       <div className={styles.card}>
         <img className={styles.pic} src={pic} alt="Tim" />
-        <H4 style={{ margin: '0px' }}>{name}</H4>
-        <B1>{department}</B1>
+        <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
+        <B1 className={styles.description}>{department}</B1>
       </div>
     </Link>
   );
