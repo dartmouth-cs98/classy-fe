@@ -18,7 +18,7 @@ function Professor(props) {
       <div className={styles.card}>
         <img className={styles.pic} src={pic} alt="Tim" />
         <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
-        <B1 className={styles.description}>{department}</B1>
+        <B1 className={styles.description} color="var(--dark-grey)">{department}</B1>
       </div>
     </Link>
   );

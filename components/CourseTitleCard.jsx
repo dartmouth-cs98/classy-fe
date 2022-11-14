@@ -40,9 +40,9 @@ function CourseTitleCard(props) {
             ))}
           </div>
           <div className={styles.qualityReview}>
-            <TextLabel color="var(--darkest-grey)" style={{ margin: '-13px' }}>Quality</TextLabel>
+            <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
             <H1 color={color.dark}>{course.quality}</H1>
-            <B3 style={{ margin: '-5px 0 -5px' }} color="var(--dark-grey)">
+            <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
               {course.reviews.length}
               {' '}
               Reviews
@@ -51,7 +51,7 @@ function CourseTitleCard(props) {
         </div>
         <div>
           <H4 className={styles.name} style={{ margin: '0px' }}>{course.courseNumber}</H4>
-          <B1 className={styles.description}>{course.courseName}</B1>
+          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseName}</B1>
         </div>
 
       </div>
