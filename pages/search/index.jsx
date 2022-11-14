@@ -1,16 +1,17 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable react/jsx-filename-extension */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   H1, H2, H3, H4, B1, B3, TextLabel, A,
 } from '../../components/ui/typography';
+import CourseData from '../../data/data';
+import styles from '../../styles/components/TabBar.module.css';
 
 function SearchPage() {
   const [searchInput, setSearchInput] = useState('');
   // eslint-disable-next-line no-unused-vars
-  const [tab, setTab] = useState('all');
-  const tabs = useState(['all', 'courses', 'professors', 'distribs']);
+  const [tab, setTab] = useState('courses');
+  const data = CourseData;
+  const tabs = ['courses', 'professors', 'distribs'];
   const [searchResults, setSearchResults] = useState(null);
 
   const handleChange = (e) => {
@@ -25,17 +26,21 @@ function SearchPage() {
     }
   }, []);
 
-  const TabBar = () => {
+  function TabBar() {
     // eslint-disable-next-line no-console
     console.log(tabs);
-    const result = tabs.map(() => (
-      <div key={tab}>
-        <B1>{tab}</B1>
-      </div>
-    ));
 
-    return result;
-  };
+    return (
+      <div className={styles.tabGroup}>
+        {tabs.map((tabName) => (
+          // <div key={tabName} className={`tab ${tabName === tab ? 'active' : ''}`}>
+          <div key={tabName} className={`${styles.tab} ${tabName === tab ? styles.active : styles[tabName]} `}>
+            <B1>{tabName}</B1>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   function SearchBody() {
     if (!searchResults || !searchInput) {
