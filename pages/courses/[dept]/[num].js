@@ -10,8 +10,8 @@ import CourseInfoTitle from '../../../components/CourseInfoTitle';
 import Offered from '../../../components/Offered';
 import Medians, { convertMedian } from '../../../components/Medians';
 import StudentsSay from '../../../components/StudentsSay';
+import SideNavbar from '../../../components/SideNavbar';
 
-// import SideNavbar from '../../components/SideNavbar';
 import {
   H3, B1, A,
 } from '../../../components/ui/typography';
@@ -74,7 +74,7 @@ export default function CourseInfo() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <SideNavbar /> */}
+      <SideNavbar />
       <CourseInfoTitle course={currentCourse || { dept, num }} />
 
       <H3>Description</H3>
