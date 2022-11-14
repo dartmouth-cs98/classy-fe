@@ -119,6 +119,7 @@ export const A = styled.a`
   font-weight: 700;
   font-size: 14px;
   line-height: 163.4%;
+  cursor: pointer;
 
   text-decoration-line: underline;
   text-transform: uppercase;

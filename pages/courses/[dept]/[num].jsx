@@ -14,6 +14,7 @@ import StudentsSay from '../../../components/StudentsSay';
 import getPrereqs from '../../../data/courseinfohelpers';
 import SideNavbar from '../../../components/SideNavbar';
 import styles from '../../../styles/ExploreHome.module.css';
+
 import {
   H3, B1,
 } from '../../../components/ui/typography';
@@ -35,7 +36,6 @@ export default function CourseInfo() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SideNavbar />
       <main>
         <CourseInfoTitle course={currentCourse || { dept, num }} />
 
