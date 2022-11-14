@@ -2,7 +2,7 @@ import React from 'react';
 
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-
+import CourseInfoSubtitle from '../../../components/CourseInfoSubtitle';
 import CourseData from '../../../data/data';
 import Glance from '../../../components/Glance';
 import CourseInfoTitle from '../../../components/CourseInfoTitle';
@@ -12,6 +12,8 @@ import StudentsSay from '../../../components/StudentsSay';
 
 // import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
+import SideNavbar from '../../../components/SideNavbar';
+import styles from '../../../styles/ExploreHome.module.css';
 
 import {
   H3, B1,
@@ -26,7 +28,7 @@ export default function CourseInfo() {
   const currentCourse = data[courseCode];
 
   return (
-    <div className="container">
+    <div className={styles.container}>
 
       <Head>
         <title>Classy</title>
@@ -36,11 +38,10 @@ export default function CourseInfo() {
 
       <main>
         <CourseInfoTitle course={currentCourse || { dept, num }} />
-
-        <H3>Description</H3>
+        <CourseInfoSubtitle text="Description" />
         <B1>{currentCourse ? currentCourse.description : ''}</B1>
 
-        <H3>At a Glance</H3>
+        <CourseInfoSubtitle text="At a Glance" />
         <Glance
           distribs={currentCourse ? currentCourse.distribs : ''}
           wc={currentCourse ? currentCourse.wc : ''}
@@ -50,20 +51,20 @@ export default function CourseInfo() {
           num={currentCourse ? currentCourse.num : ''}
         />
 
-        <H3>Prerequisites</H3>
+        <CourseInfoSubtitle text="Prerequisites" />
         {currentCourse ? getPrereqs(currentCourse.required, currentCourse.counts) : ''}
 
-        <H3>What Students Say</H3>
+        <CourseInfoSubtitle text="What Students Say" />
         <StudentsSay
           workload={currentCourse ? currentCourse.workload : 'Unknown'}
           difficulty={currentCourse ? currentCourse.difficulty : 'Unknown'}
           quality={currentCourse ? currentCourse.quality : 'Unknown'}
         />
 
-        <H3>Offered</H3>
+        <CourseInfoSubtitle text="Offered" />
         {currentCourse ? <Offered course={currentCourse} /> : <B1>No Data</B1>}
 
-        <H3>Medians</H3>
+        <CourseInfoSubtitle text="Medians" />
         {currentCourse ? <Medians medians={currentCourse.medians} /> : <B1>No Data</B1>}
         {/* <h2 className={styles.title}>Reviews</h2> */}
       </main>

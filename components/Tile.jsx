@@ -4,7 +4,7 @@ import Link from 'next/link';
 import getColor from '../data/colorscheme';
 import stylesCI from '../styles/CourseInfo.module.css';
 import {
-  TextLabel, A,
+  TextLabel, A, B1,
 } from './ui/typography';
 
 function extraText(type) {
@@ -28,11 +28,10 @@ function CourseInfoTile(props) {
   return (
     <div className={stylesCI.tile} style={{ background: getColor(title, val) }}>
       <TextLabel>{title}</TextLabel>
-      <TextLabel>
-
+      <B1>
         {title.toLowerCase() === 'waitlist' && val === 'Sign Up Here' ? waitlistLink : val}
         {extraText(title)}
-      </TextLabel>
+      </B1>
     </div>
   );
 }
