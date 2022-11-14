@@ -23,6 +23,7 @@ export default function WaitlistDetail() {
   const waitlist = waitlistData[courseCode];
   const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
   const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
+  const profile_picture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
   return (
     <div className={styles.container}>
       <Head>
@@ -102,9 +103,10 @@ export default function WaitlistDetail() {
           </div>
 
           <div className={styles.prof_info_container}>
-            <div className={styles.profile_picture}>
+            <img className={styles.profile_picture} src={profile_picture} alt="Tim" />
+            {/* <div className={styles.profile_picture}>
               photo
-            </div>
+            </div> */}
             <h3>Tim Tregubov</h3>
             <button type="button" className={styles.small_btn}>
               Email
