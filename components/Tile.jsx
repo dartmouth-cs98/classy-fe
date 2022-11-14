@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Link from 'next/link';
@@ -25,7 +24,7 @@ function CourseInfoTile(props) {
   const {
     title, val, dept, num,
   } = props;
-  const waitlistLink = <Link href={`/waitlists/${dept}/${num}`}><A>{val}</A></Link>;
+  const waitlistLink = <Link href={`/waitlist/${dept}/${num}`}><A>{val}</A></Link>;
   return (
     <div className={stylesCI.tile} style={{ background: getColor(title, val) }}>
       <TextLabel>{title}</TextLabel>
