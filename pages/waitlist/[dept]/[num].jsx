@@ -125,7 +125,7 @@ export default function WaitlistDetail() {
             {/* <div className={styles.profile_picture}>
               photo
             </div> */}
-            <h3>{currentCourse.professors ? currentCourse.professors.join(', ') : ''}</h3>
+            <h3>{currentCourse.offerings ? currentCourse.offerings[0].professors.join(', ') : ''}</h3>
             <button type="button" className={styles.small_btn}>
               Email
             </button>
