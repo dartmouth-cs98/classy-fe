@@ -30,7 +30,7 @@ function CourseInfoTile(props) {
       <TextLabel>{title}</TextLabel>
       <B1>
         {title.toLowerCase() === 'waitlist' && val === 'Sign Up Here' ? waitlistLink : val}
-        {extraText(title)}
+        {extraText(val === 'Not Enough Data' ? 'Unknown' : title)}
       </B1>
     </div>
   );

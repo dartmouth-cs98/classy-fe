@@ -66,9 +66,9 @@ export default function CourseInfo() {
 
         <CourseInfoSubtitle text="What Students Say" />
         <StudentsSay
-          workload={currentCourse ? currentCourse.workload : 'Unknown'}
-          difficulty={currentCourse ? currentCourse.difficulty : 'Unknown'}
-          quality={currentCourse ? currentCourse.quality : 'Unknown'}
+          workload={currentCourse && currentCourse.workload ? currentCourse.workload : 'Not Enough Data'}
+          difficulty={currentCourse && currentCourse.difficulty ? currentCourse.difficulty : 'Not Enough Data'}
+          quality={currentCourse && currentCourse.quality ? currentCourse.quality : 'Not Enough Data'}
         />
 
         <CourseInfoSubtitle text="Offered" />
