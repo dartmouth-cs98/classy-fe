@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import CourseInfoSubtitle from '../../../components/courseInfo/CourseInfoSubtitle';
-import Glance from '../../../components/courseInfo/Glance';
-import CourseInfoTitle from '../../../components/courseInfo/CourseInfoTitle';
-import Offered from '../../../components/courseInfo/Offered';
-import Medians, { convertMedian } from '../../../components/courseInfo/Medians';
-import StudentsSay from '../../../components/courseInfo/StudentsSay';
+import CourseInfoSubtitle from '../../../components/courses/CourseInfoSubtitle';
+import Glance from '../../../components/courses/Glance';
+import CourseInfoTitle from '../../../components/courses/CourseInfoTitle';
+import Offered from '../../../components/courses/Offered';
+import Medians, { convertMedian } from '../../../components/courses/Medians';
+import StudentsSay from '../../../components/courses/StudentsSay';
 import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import styles from '../../../styles/ExploreHome.module.css';
@@ -18,7 +18,6 @@ import {
 } from '../../../components/ui/typography';
 
 export default function CourseInfo() {
-//   const data = CourseData();
   const router = useRouter();
   const { dept, num } = router.query;
 

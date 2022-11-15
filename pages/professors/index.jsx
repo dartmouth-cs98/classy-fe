@@ -2,7 +2,7 @@ import React from 'react';
 import {
   TextLabel,
 } from '../../components/ui/typography';
-import ProfessorCard from '../../components/professorInfo/ProfessorCard';
+import ProfessorCard from '../../components/professors/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
 import styles from '../../styles/professorInfo.module.css';

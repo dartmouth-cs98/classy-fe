@@ -24,24 +24,28 @@ function CourseTitleCard(props) {
   const {
     course, color,
   } = props;
-  // const {
-  //   distribs, quality, reviews, id, name,
-  // } = CourseTitleMockData;
-  const courseNum = course.courseNumber.split(' ')[1];
+  const distribsWC = course.wc ? course.distribs.concat(course.wc) : course.distribs;
   return (
-    <Link href={`/courses/COSC/${courseNum}`}>
+    <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
           <div className={styles.distribs}>
-            {course.distribs.map((distrib, i) => (
+            {distribsWC ? distribsWC.map((distrib, i) => (
               <TextLabel key={distrib} color="var(--dark-grey)">
                 {i + 1 === course.distribs.length ? distrib : `${distrib} • `}
               </TextLabel>
-            ))}
+            )) : (
+              <TextLabel key="N/A" color="var(--dark-grey)" />
+            )}
           </div>
           <div className={styles.qualityReview}>
             <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
-            <H1 color={color.dark}>{course.quality}</H1>
+            <H1 color={color.dark}>
+              {course.quality
+                ? course.quality
+                : (Math.round(Math.random() * 4 + 6) / 2)}
+
+            </H1>
             <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
               {course.reviews.length}
               {' '}
@@ -50,8 +54,12 @@ function CourseTitleCard(props) {
           </div>
         </div>
         <div>
-          <H4 className={styles.name} style={{ margin: '0px' }}>{course.courseNumber}</H4>
-          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseName}</B1>
+          <H4 className={styles.name} style={{ margin: '0px' }}>
+            {course.courseDept}
+            {' '}
+            {course.courseNum}
+          </H4>
+          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseTitle}</B1>
         </div>
 
       </div>

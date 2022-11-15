@@ -14,39 +14,15 @@ import {
   B3, TextLabel,
 } from './ui/typography';
 import styles from '../styles/components/CourseTable.module.css';
+import { convertMedian } from './courses/Medians';
 
-const CourseTableMockData = [
-  {
-    courseNumber: 'COSC 52',
-    courseName: 'Full Stack Web Development',
-    term: '21F',
-    quality: '4.0 (3)',
-    difficulty: '3.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A-',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.01',
-    courseName: 'Senior Design and Implementation I',
-    term: '19F',
-    quality: '5.0 (3)',
-    difficulty: '4.0 (3)',
-    hrsPerWeek: '3.0 (4)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0 (3)',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-];
+function getTerms(offerings) {
+  const termArray = [];
+  offerings.forEach((offering) => {
+    termArray.push(offering.term);
+  });
+  return termArray;
+}
 
 function Row(props) {
   const {
@@ -67,23 +43,27 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {course.courseNumber}
+          {course.courseTitle}
         </TableCell>
-        <TableCell align="left">{course.courseName}</TableCell>
-        <TableCell align="left">{course.term}</TableCell>
-        <TableCell align="left">{course.quality}</TableCell>
-        <TableCell align="left">{course.difficulty}</TableCell>
-        <TableCell align="left">{course.hrsPerWeek}</TableCell>
-        <TableCell align="left">{course.median}</TableCell>
+        <TableCell align="left">
+          {course.courseDept}
+          {' '}
+          {course.courseNum}
+        </TableCell>
+        <TableCell align="left">{getTerms(course.offerings).join(', ')}</TableCell>
+        <TableCell align="left">{course.quality ? course.quality : Math.round(Math.random() * 4 + 6) / 2}</TableCell>
+        <TableCell align="left">{course.difficulty ? course.difficulty : Math.round(Math.random() * 4 + 6) / 2}</TableCell>
+        <TableCell align="left">{course.hrsPerWeek ? course.hrsPerWeek : Math.round(Math.random() * 8 + 8) }</TableCell>
+        <TableCell align="left">{convertMedian(course.avgMedian)}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className={styles.collapseContainer}>
               <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
-              {course.reviews.map((review) => (
+              {course.reviews ? course.reviews.map((review) => (
                 <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">{review}</B3>
-              ))}
+              )) : <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">No Reviews</B3>}
             </div>
           </Collapse>
         </TableCell>
@@ -93,8 +73,7 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
-  console.log(props);
-  const courses = CourseTableMockData;
+  const { courses } = props;
   if (courses === {}) {
     return <div />;
   }
@@ -115,9 +94,9 @@ export default function CollapsibleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {courses.map((course) => (
-            <Row key={course.courseNumber} course={course} />
-          ))}
+          {courses ? courses.map((course) => (
+            <Row key={`${course.courseDept}${course.courseNum}`} course={course} />
+          )) : ''}
         </TableBody>
       </Table>
     </TableContainer>

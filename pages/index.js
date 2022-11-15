@@ -72,7 +72,7 @@ export default function Home() {
             </a>
           </Link>
 
-          <a href="/professorInfo" className="card">
+          <a href="/professors" className="card">
             <h3>Professor Info &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>

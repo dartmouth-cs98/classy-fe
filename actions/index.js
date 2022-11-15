@@ -9,6 +9,12 @@ export const ActionTypes = {
   UPDATE_COURSE: 'UPDATE_COURSE',
   CREATE_COURSE: 'CREATE_COURSE',
   DELETE_COURSE: 'DELETE_COURSE',
+  FETCH_PROFESSORS: 'FETCH_PROFESSORS',
+  FETCH_PROFESSOR: 'FETCH_PROFESSOR',
+  UPDATE_PROFESSOR: 'UPDATE_PROFESSOR',
+  CREATE_PROFESSOR: 'CREATE_PROFESSOR',
+  DELETE_PROFESSOR: 'DELETE_PROFESSOR',
+  FETCH_EXPLORE: 'FETCH_EXPLORE',
   SEARCH: 'SEARCH',
 };
 
@@ -25,7 +31,6 @@ export function fetchCourses() {
 }
 
 export const fetchCourse = (dept, num) => (dispatch) => {
-  console.log(dept, num, 'received');
   axios.get(`${ROOT_URL}/courses/${dept}/${num}`)
     .then((res) => {
       const response = res.data;
@@ -78,6 +83,37 @@ export function deleteCourse(id, navigate) {
     });
   };
 }
+
+export function fetchProfessors() {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${ROOT_URL}/professors`);
+      dispatch({ type: ActionTypes.FETCH_COURSES, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const fetchProfessor = (name) => (dispatch) => {
+  axios.get(`${ROOT_URL}/professors/${name}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_PROFESSOR,
+      payload: response,
+    });
+  });
+};
+
+export const fetchExplore = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/explore`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_EXPLORE,
+      payload: response,
+    });
+  });
+};
 
 export function search(query, navigate) {
   return (dispatch) => {

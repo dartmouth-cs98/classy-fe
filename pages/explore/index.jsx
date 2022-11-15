@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../styles/ExploreHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
 import { H3, B1 } from '../../components/ui/typography';
+import { fetchExplore } from '../../actions';
+import ExploreTile from '../../components/explore/ExploreTile';
 
 const cardColor = [
   '#EBF9FA',
@@ -24,6 +28,12 @@ const textColor = [
 // const customcolor = cardColor[index];
 
 export default function ExploreHome() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchExplore());
+  }, []);
+  const exploreContent = useSelector((reduxState) => reduxState.explore.current);
+  console.log(exploreContent, ' explorecontent');
   return (
     <div className={styles.container}>
       <Head>
@@ -35,67 +45,33 @@ export default function ExploreHome() {
       <SideNavbar />
 
       <H3 className={styles.title}>Most Searched Classes</H3>
-
       <main className={styles.main}>
         <div className={styles.horizscroll}>
-          <a href="./courses/COSC/10" style={{ background: cardColor[0] }}>
-            <H3 color={textColor[0]}>COSC 10</H3>
-            <B1 color={textColor[0]}>Problem Solving via OOP</B1>
-          </a>
-
-          <a href="./courses/COSC/25.01" style={{ background: cardColor[1] }}>
-            <H3 color={textColor[1]}>COSC 25.01</H3>
-            <B1 color={textColor[1]}>Intro to UI/UX Design I</B1>
-          </a>
-
-          <a href="./courses/COSC/52" style={{ background: cardColor[2] }}>
-            <H3 color={textColor[2]}>COSC 52</H3>
-            <B1 color={textColor[2]}>Full-Stack Web Development</B1>
-          </a>
-
-          <a href="./courses/COSC/74" style={{ background: cardColor[3] }}>
-            <H3 color={textColor[3]}>COSC 74</H3>
-            <B1 color={textColor[3]}>Machine Learning</B1>
-          </a>
-
-          <a href="./courses/COSC/98.01" style={{ background: cardColor[4] }}>
-            <H3 color={textColor[4]}>COSC 98.01</H3>
-            <B1 color={textColor[4]}>Senior Design and Implementation I</B1>
-          </a>
+          {exploreContent.courses ? exploreContent.courses.map((course, index) => (
+            <ExploreTile
+              cardColor={cardColor}
+              textColor={textColor}
+              courseDept={course.courseDept}
+              courseNum={course.courseNum}
+              courseTitle={course.courseTitle}
+              index={index}
+            />
+          )) : ''}
         </div>
       </main>
 
       <H3 className={styles.title}>Most Searched Professors</H3>
-
       <main className={styles.main}>
         <div className={styles.horizscroll}>
-          <a
-            href="/waitlist/waitlist-detail"
-            style={{ background: cardColor[3] }}
-          >
-            <H3 color={textColor[3]}>COSC 10</H3>
-            <B1 color={textColor[3]}>Problem Solving via OOP</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[5] }}>
-            <H3 color={textColor[5]}>COSC 25.01</H3>
-            <B1 color={textColor[5]}>Intro to UI/UX Design I</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[2] }}>
-            <H3 color={textColor[2]}>COSC 52</H3>
-            <B1 color={textColor[2]}>Full-Stack Web Development</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[1] }}>
-            <H3 color={textColor[1]}>COSC 74</H3>
-            <B1 color={textColor[1]}>Machine Learning</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[0] }}>
-            <H3 color={textColor[0]}>COSC 98.01</H3>
-            <B1 color={textColor[0]}>Senior Design and Implementation I</B1>
-          </a>
+          {exploreContent.professors ? exploreContent.professors.map((professor, index) => (
+            <ExploreTile
+              cardColor={cardColor}
+              textColor={textColor}
+              professorName={professor.name}
+              professorDepts={professor.departments}
+              index={index}
+            />
+          )) : ''}
         </div>
       </main>
 
@@ -107,39 +83,21 @@ export default function ExploreHome() {
         </a>
       </div>
 
-      <H3 className={styles.title}>23W Layups</H3>
-
+      <H3 className={styles.title}>Best Classes</H3>
       <main className={styles.main}>
         <div className={styles.horizscroll}>
-          <a
-            href="/waitlist/waitlist-detail"
-            style={{ background: cardColor[0] }}
-          >
-            <H3 color={textColor[0]}>COSC 10</H3>
-            <B1 color={textColor[0]}>Problem Solving via OOP</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[3] }}>
-            <H3 color={textColor[3]}>COSC 25.01</H3>
-            <B1 color={textColor[3]}>Intro to UI/UX Design I</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[1] }}>
-            <H3 color={textColor[1]}>COSC 52</H3>
-            <B1 color={textColor[1]}>Full-Stack Web Development</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[4] }}>
-            <H3 color={textColor[4]}>COSC 74</H3>
-            <B1 color={textColor[4]}>Machine Learning</B1>
-          </a>
-
-          <a href="../courseinfo" style={{ background: cardColor[5] }}>
-            <H3 color={textColor[5]}>COSC 98.01</H3>
-            <B1 color={textColor[5]}>Senior Design and Implementation I</B1>
-          </a>
+          {exploreContent.professors ? exploreContent.professors.map((professor, index) => (
+            <ExploreTile
+              cardColor={cardColor}
+              textColor={textColor}
+              professorName={professor.name}
+              professorDepts={professor.departments}
+              index={index}
+            />
+          )) : ''}
         </div>
       </main>
     </div>
+
   );
 }
