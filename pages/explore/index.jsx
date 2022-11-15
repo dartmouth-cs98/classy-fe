@@ -86,12 +86,13 @@ export default function ExploreHome() {
       <H3 className={styles.title}>Best Classes</H3>
       <main className={styles.main}>
         <div className={styles.horizscroll}>
-          {exploreContent.professors ? exploreContent.professors.map((professor, index) => (
+          {exploreContent.courses ? exploreContent.courses.map((course, index) => (
             <ExploreTile
               cardColor={cardColor}
               textColor={textColor}
-              professorName={professor.name}
-              professorDepts={professor.departments}
+              courseDept={course.courseDept}
+              courseNum={course.courseNum}
+              courseTitle={course.courseTitle}
               index={index}
             />
           )) : ''}
