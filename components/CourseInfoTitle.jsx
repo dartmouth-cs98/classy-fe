@@ -5,6 +5,19 @@ import {
   H2, TextLabel,
 } from './ui/typography';
 
+function showCourseCodes(course) {
+  const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
+  return (
+    <H2>
+      {course.courseDept}
+      {' '}
+      {course.courseNum}
+      {course.xlists ? xlists : ' '}
+      {course.courseTitle}
+    </H2>
+  );
+}
+
 function CourseInfoTitle(props) {
   const { course } = props;
   const [taken, setTaken] = useState(false);
@@ -16,13 +29,7 @@ function CourseInfoTitle(props) {
   return (
     <div className={stylesCI.ciTitle}>
       {course ? (
-        <H2>
-          {course.dept}
-          {' '}
-          {course.num}
-          {' '}
-          {course.courseTitle}
-        </H2>
+        showCourseCodes(course)
       ) : <H2 />}
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>

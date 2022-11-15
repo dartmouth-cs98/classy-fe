@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import stylesCI from '../styles/CourseInfo.module.css';
+import styles from '../styles/ExploreHome.module.css';
 import OfferedTile from './OfferedTile';
 
 function loadOfferings(values) {
@@ -17,8 +17,8 @@ function loadOfferings(values) {
 function Offered(props) {
   const { course } = props;
   return (
-    <div className={[stylesCI.glance]}>
-      {loadOfferings(course.termsOffered)}
+    <div className={[styles.horizscroll]}>
+      {course.offerings ? loadOfferings(course.offerings) : ''}
     </div>
   );
 }

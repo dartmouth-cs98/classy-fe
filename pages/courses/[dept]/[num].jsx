@@ -1,31 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import CourseInfoSubtitle from '../../../components/CourseInfoSubtitle';
-import CourseData from '../../../data/data';
 import Glance from '../../../components/Glance';
 import CourseInfoTitle from '../../../components/CourseInfoTitle';
 import Offered from '../../../components/Offered';
 import Medians, { convertMedian } from '../../../components/Medians';
 import StudentsSay from '../../../components/StudentsSay';
-
-// import { fetchCourse } from '../../../actions';
+import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
-import SideNavbar from '../../../components/SideNavbar';
 import styles from '../../../styles/ExploreHome.module.css';
 
 import {
-  H3, B1,
+  B1,
 } from '../../../components/ui/typography';
 
 export default function CourseInfo() {
-  const data = CourseData();
+//   const data = CourseData();
   const router = useRouter();
   const { dept, num } = router.query;
 
-  const courseCode = `${dept} ${num}`;
-  const currentCourse = data[courseCode];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCourse(dept, num));
+  }, []);
+
+  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
+
+  if (!currentCourse) {
+    dispatch(fetchCourse(dept, num));
+    return (
+      <B1>Loading...</B1>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -47,8 +56,9 @@ export default function CourseInfo() {
           wc={currentCourse ? currentCourse.wc : ''}
           avgMedian={currentCourse ? convertMedian(currentCourse.avgMedian) : ''}
           waitlist={currentCourse ? currentCourse.waitlist : 'Unknown'}
-          dept={currentCourse ? currentCourse.dept : ''}
-          num={currentCourse ? currentCourse.num : ''}
+          dept={currentCourse ? currentCourse.courseDept : ''}
+          num={currentCourse ? currentCourse.courseNum : ''}
+          nr={currentCourse ? currentCourse.nrEligible : ''}
         />
 
         <CourseInfoSubtitle text="Prerequisites" />

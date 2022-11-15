@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import Head from 'next/head';
 import styles from '../../styles/ExploreHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
