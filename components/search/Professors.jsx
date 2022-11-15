@@ -12,7 +12,7 @@ const ProfessorMockData = [
     pic: 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6',
   },
   {
-    name: 'Natlie Svoboda',
+    name: 'Natalie Svoboda',
     department: 'Computer Science',
     pic: 'https://pbs.twimg.com/profile_images/918136553028882435/vB61vRNP_400x400.jpg',
   },
