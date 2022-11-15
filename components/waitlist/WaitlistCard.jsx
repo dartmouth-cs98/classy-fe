@@ -1,5 +1,5 @@
 import React from 'react';
-import { H2, H3 } from '../ui/typography';
+import { H2, H4 } from '../ui/typography';
 import styles from '../../styles/WaitlistHome.module.css';
 
 export default function WaitlistCard(props) {
@@ -13,7 +13,7 @@ export default function WaitlistCard(props) {
         {' '}
         {courseNum}
       </H2>
-      <H3 color={textColor[index]}>{courseTitle}</H3>
+      <H4 color={textColor[index]}>{courseTitle}</H4>
     </a>
   );
 }
