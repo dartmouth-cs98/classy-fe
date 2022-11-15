@@ -15,7 +15,8 @@ export const ActionTypes = {
   CREATE_PROFESSOR: 'CREATE_PROFESSOR',
   DELETE_PROFESSOR: 'DELETE_PROFESSOR',
   FETCH_EXPLORE: 'FETCH_EXPLORE',
-  FETCH_SEARCH: 'FETCH_SEARCH,',
+  FETCH_SEARCH: 'FETCH_SEARCH',
+  FETCH_WAITLIST: 'FETCH_WAITLIST',
 };
 
 // trying this out in async await format
@@ -120,6 +121,16 @@ export const fetchSearch = () => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_SEARCH,
+      payload: response,
+    });
+  });
+};
+
+export const fetchWaitlist = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/waitlist/`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_WAITLIST,
       payload: response,
     });
   });

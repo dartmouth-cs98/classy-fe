@@ -6,12 +6,14 @@ import CoursesReducer from './coursesReducer';
 import ExploreReducer from './exploreReducer';
 import SearchReducer from './searchReducer';
 import ProfessorsReducer from './professorsReducer';
+import WaitlistReducer from './waitlistReducer';
 
 const rootReducer = combineReducers({
   courses: CoursesReducer,
   professors: ProfessorsReducer,
   explore: ExploreReducer,
   search: SearchReducer,
+  waitlist: WaitlistReducer,
 });
 
 export default rootReducer;

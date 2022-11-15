@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/WaitlistHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
 import { H2, H3, B1 } from '../../components/ui/typography';
+import WaitlistCard from '../../components/waitlist/WaitlistCard';
+import { fetchWaitlist } from '../../actions';
 
 const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
 const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
 
 export default function WaitlistHome() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWaitlist());
+  }, []);
+  const waitlistContent = useSelector((reduxState) => reduxState.waitlist.current);
   return (
     <div className={styles.container}>
       <Head>
@@ -28,30 +36,16 @@ export default function WaitlistHome() {
         </B1>
 
         <div className={styles.grid}>
-          <a href="/waitlist/COSC/52" className={styles.card} style={{ background: cardColor[0] }}>
-            <H2 color={textColor[0]}>COSC 52</H2>
-            <H3 color={textColor[0]}>Full-Stack Web Development</H3>
-          </a>
-
-          <a href="/waitlist/COSC/74" className={styles.card} style={{ background: cardColor[1] }}>
-            <H2 color={textColor[1]}>COSC 74</H2>
-            <H3 color={textColor[1]}>Machine Learning and Statistical Data Analysis</H3>
-          </a>
-
-          <a href="/waitlist/COSC/25.01" className={styles.card} style={{ background: cardColor[2] }}>
-            <H2 color={textColor[2]}>COSC 25.01</H2>
-            <H3 color={textColor[2]}>Intro to UI/UX Design I</H3>
-          </a>
-
-          <a href="/waitlist/ECON/1" className={styles.card} style={{ background: cardColor[3] }}>
-            <H2 color={textColor[3]}>ECON 1</H2>
-            <H3 color={textColor[3]}>The Price System: Analysis, Problems, and Policies</H3>
-          </a>
-
-          <a href="/waitlist/MATH/1" className={styles.card} style={{ background: cardColor[4] }}>
-            <H2 color={textColor[4]}>MATH 001</H2>
-            <H3 color={textColor[4]}>Introduction to Calculus</H3>
-          </a>
+          {waitlistContent.courses ? waitlistContent.courses.map((course, index) => (
+            <WaitlistCard
+              textColor={textColor}
+              cardColor={cardColor}
+              courseDept={course.courseDept}
+              courseNum={course.courseNum}
+              courseTitle={course.courseTitle}
+              index={index}
+            />
+          )) : ''}
         </div>
       </main>
 

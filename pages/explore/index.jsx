@@ -32,7 +32,7 @@ export default function ExploreHome() {
     dispatch(fetchExplore());
   }, []);
   const exploreContent = useSelector((reduxState) => reduxState.explore.current);
-  console.log(exploreContent, ' explorecontent');
+
   return (
     <div className={styles.container}>
       <Head>
