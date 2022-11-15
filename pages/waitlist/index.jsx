@@ -43,12 +43,12 @@ export default function WaitlistHome() {
             <H3 color={textColor[2]}>Intro to UI/UX Design I</H3>
           </a>
 
-          <a href="/waitlist/ECON/001" className={styles.card} style={{ background: cardColor[3] }}>
-            <H2 color={textColor[3]}>ECON 001</H2>
+          <a href="/waitlist/ECON/1" className={styles.card} style={{ background: cardColor[3] }}>
+            <H2 color={textColor[3]}>ECON 1</H2>
             <H3 color={textColor[3]}>The Price System: Analysis, Problems, and Policies</H3>
           </a>
 
-          <a href="/waitlist/MATH/001" className={styles.card} style={{ background: cardColor[4] }}>
+          <a href="/waitlist/MATH/1" className={styles.card} style={{ background: cardColor[4] }}>
             <H2 color={textColor[4]}>MATH 001</H2>
             <H3 color={textColor[4]}>Introduction to Calculus</H3>
           </a>

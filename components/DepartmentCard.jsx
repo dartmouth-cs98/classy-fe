@@ -7,8 +7,8 @@ function DepartmentCard(props) {
   const { color, dept } = props;
   return (
     <div className={styles.card} style={{ background: color.pastel }}>
-      <H3 className={styles.name} style={{ margin: '0px' }} color={color.dark}>{dept.department}</H3>
-      <H2 className={styles.abbr} style={{ margin: '0px' }} color={color.dark}>{dept.abbr}</H2>
+      <H3 className={styles.name} style={{ margin: '0px' }} color={color.dark}>{dept.name}</H3>
+      <H3 className={styles.abbr} style={{ margin: '0px' }} color={color.dark}>{dept.codes.join(', ')}</H3>
     </div>
   );
 }

@@ -30,8 +30,8 @@ export default function WaitlistData() {
   const courses = {
     'COSC 52': cs52,
     'COSC 74': cs74,
-    'MATH 001': math1,
-    'ECON 001': econ1
+    'MATH 1': math1,
+    'ECON 1': econ1,
   };
   return courses;
 }

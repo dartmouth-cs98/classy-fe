@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../styles/ExploreHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
