@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Link from 'next/link';
-import getColor from '../data/colorscheme';
-import stylesCI from '../styles/CourseInfo.module.css';
+import getColor from '../../data/colorscheme';
+import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   TextLabel, A, B1,
-} from './ui/typography';
+} from '../ui/typography';
 
 function getProfessorLink(professors) {
   return professors.map((professor) => {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import getColor from '../data/colorscheme';
-import stylesCI from '../styles/CourseInfo.module.css';
+import getColor from '../../data/colorscheme';
+import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   H2, TextLabel,
-} from './ui/typography';
+} from '../ui/typography';
 
 function showCourseCodes(course) {
   const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';

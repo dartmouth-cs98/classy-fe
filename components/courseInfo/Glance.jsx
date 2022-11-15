@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import CourseInfoTile from './Tile';
-import styles from '../styles/CourseInfo.module.css';
+import styles from '../../styles/CourseInfo.module.css';
 
 function Glance(props) {
   const {
