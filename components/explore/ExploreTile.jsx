@@ -5,7 +5,7 @@ export default function ExploreTile(props) {
   const {
     cardColor, textColor, courseDept, courseNum, courseTitle, index, professorName, professorDepts,
   } = props;
-  const link = `/courses/${courseDept}/${courseNum}`;
+  const link = courseDept ? `/courses/${courseDept}/${courseNum}` : `/professors/${professorName}`;
   return (
     <a href={link} style={{ background: cardColor[index] }}>
       <H3 color={textColor[index]}>
