@@ -29,7 +29,7 @@ export default function CourseInfo() {
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
 
-  if (!currentCourse) {
+  if (!currentCourse || (currentCourse.courseDept !== dept || currentCourse.courseNum !== num)) {
     dispatch(fetchCourse(dept, num));
     return (
       <B1>Loading...</B1>
