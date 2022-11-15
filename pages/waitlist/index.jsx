@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/WaitlistHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
-import { H2, H3, B1 } from '../../components/ui/typography';
+import { H2, B1 } from '../../components/ui/typography';
 import WaitlistCard from '../../components/waitlist/WaitlistCard';
 import { fetchWaitlist } from '../../actions';
 
