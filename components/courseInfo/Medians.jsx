@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/ExploreHome.module.css';
+import styles from '../styles/ExploreHome.module.css';
 import MedianTile from './MedianTile';
 
 export function convertMedian(avgMedian) {

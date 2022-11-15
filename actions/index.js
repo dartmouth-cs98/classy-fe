@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/api';
+const ROOT_URL = 'https://classy-api.onrender.com/';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -24,17 +24,17 @@ export function fetchCourses() {
   };
 }
 
-export const fetchCourse = (dept, num) => (dispatch) => {
-  console.log(dept, num, 'received');
-  axios.get(`${ROOT_URL}/courses/${dept}/${num}`)
-    .then((res) => {
-      const response = res.data;
-      dispatch({
-        type: ActionTypes.FETCH_COURSE,
-        payload: response,
-      });
-    });
-};
+export function fetchCourse(dept, num) {
+  return async (dispatch) => {
+    try {
+      console.log('fetching course');
+      const response = await axios.get(`${ROOT_URL}/courses/${dept}/${num}`);
+      dispatch({ type: ActionTypes.FETCH_COURSE, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function updateCourse(id, post) {
   console.log('UPDATING COURSE WITH', id);

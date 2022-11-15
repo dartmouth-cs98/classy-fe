@@ -3,15 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 // import SideNavbar from '../components/SideNavbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { configureStore } from '@reduxjs/toolkit';
-// import { Provider } from 'react-redux';
-// import thunk from 'redux-thunk';
-// import rootReducer from '../reducers';
-
-// const store = configureStore({
-//   reducer: rootReducer,
-//   middleware: (getDefaultMiddleware) => getDefaultMiddleware(thunk),
-// });
 
 export default function Home() {
   return (

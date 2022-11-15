@@ -30,16 +30,10 @@ function getProfessors(professor) {
 }
 
 function OfferedTile(props) {
-  const { term, period, professors } = props;
+  const { term, professors } = props;
   return (
     <div className={stylesCI.tile} style={{ background: getColor('term', term) }}>
-      <TextLabel>
-        {term}
-        {' '}
-        (
-        {period}
-        )
-      </TextLabel>
+      <TextLabel>{term}</TextLabel>
       <TextLabel>{getProfessors(professors)}</TextLabel>
     </div>
   );
