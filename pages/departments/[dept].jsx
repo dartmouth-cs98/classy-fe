@@ -38,29 +38,49 @@ function Department() {
       <Link href="/departments"><A>See all departments</A></Link>
       <br />
       <br />
-      <H3>Department Courses</H3>
-      <div className={stylese.horizscroll}>
-        {currentDept.courses.map((course, index) => (
-          <ExploreTile
-            courseDept={course.courseDept}
-            courseNum={course.courseNum}
-            courseTitle={course.courseTitle}
-            index={index}
-          />
-        ))}
-      </div>
+      <H3>Department Courses with No Prerequisites</H3>
+      { currentDept.noPrereqs ? (
+        <div className={stylese.horizscroll}>
+          {currentDept.noPrereqs.map((course, index) => (
+            <ExploreTile
+              courseDept={course.courseDept}
+              courseNum={course.courseNum}
+              courseTitle={course.courseTitle}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : <B1>No Courses</B1>}
+
+      <br />
+      <br />
+      <H3>Department Courses with Prerequisites</H3>
+      {currentDept.courses.length > 0 ? (
+        <div className={stylese.horizscroll}>
+          {currentDept.courses.map((course, index) => (
+            <ExploreTile
+              courseDept={course.courseDept}
+              courseNum={course.courseNum}
+              courseTitle={course.courseTitle}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : <B1>{`All ${dept} courses have no prequisites.`}</B1>}
       <br />
       <br />
       <H3>Department Professors</H3>
-      <div className={stylese.horizscroll}>
-        {currentDept.professors.map((professor, index) => (
-          <ExploreTile
-            professorName={professor.name}
-            professorDepts={professor.departments}
-            index={index}
-          />
-        ))}
-      </div>
+      {currentDept.professors ? (
+        <div className={stylese.horizscroll}>
+          {currentDept.professors.map((professor, index) => (
+            <ExploreTile
+              professorName={professor.name}
+              professorDepts={professor.departments}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : <B1>{`There are no professors in the ${dept} department.`}</B1>}
 
       <br />
       <br />

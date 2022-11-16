@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import stylesp from '../../../styles/professorInfo.module.css';
 import styles from '../../../styles/components/SearchPage.module.css';
-import { H2, H3, B1 } from '../../../components/ui/typography';
+import {
+  H2, H3, B1, A,
+} from '../../../components/ui/typography';
 import { fetchDeptCourses } from '../../../actions';
 import { cardColors } from '../../../data/colors';
 import CourseTitleCard from '../../../components/CourseTitleCard';
@@ -29,6 +32,9 @@ export default function DepartmentCourses() {
     <div className={stylesp.container}>
       <H2>{`${dept} Courses`}</H2>
       <H3>{`${department.department.name}`}</H3>
+      <Link href="/departments"><A>Explore other departments</A></Link>
+      {' or '}
+      <Link href={`/departments/${dept}`}><A>go to department homepage</A></Link>
       <div className={styles.depts}>
 
         {department.courses ? department.courses.map((course, i) => (
