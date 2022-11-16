@@ -17,6 +17,9 @@ export const ActionTypes = {
   FETCH_EXPLORE: 'FETCH_EXPLORE',
   FETCH_SEARCH: 'FETCH_SEARCH',
   FETCH_WAITLIST: 'FETCH_WAITLIST',
+  FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
+  FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
 };
 
 // trying this out in async await format
@@ -30,6 +33,16 @@ export function fetchCourses() {
     }
   };
 }
+
+export const fetchDeptCourses = (dept) => (dispatch) => {
+  axios.get(`${ROOT_URL}/courses/${dept}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_DEPT_COURSES,
+      payload: response,
+    });
+  });
+};
 
 export const fetchCourse = (dept, num) => (dispatch) => {
   axios.get(`${ROOT_URL}/courses/${dept}/${num}`)
@@ -131,6 +144,26 @@ export const fetchWaitlist = () => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_WAITLIST,
+      payload: response,
+    });
+  });
+};
+
+export const fetchDepartments = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/departments`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_DEPARTMENTS,
+      payload: response,
+    });
+  });
+};
+
+export const fetchDepartment = (code) => (dispatch) => {
+  axios.get(`${ROOT_URL}/departments/${code}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_DEPARTMENT,
       payload: response,
     });
   });

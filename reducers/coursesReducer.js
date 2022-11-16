@@ -12,6 +12,8 @@ const CoursesReducer = (state = initialState, action = {}) => {
       return { all: action.payload };
     case ActionTypes.FETCH_COURSE:
       return { current: action.payload };
+    case ActionTypes.FETCH_DEPT_COURSES:
+      return { deptCourses: action.payload };
     case ActionTypes.UPDATE_COURSE:
       return { current: action.payload };
     case ActionTypes.SEARCH:

@@ -14,7 +14,6 @@ function SearchPage() {
     dispatch(fetchSearch());
   }, []);
   const searchContent = useSelector((reduxState) => reduxState.search.current);
-  console.log('search content is', searchContent);
   const [searchInput, setSearchInput] = useState('');
   const [tab, setTab] = useState('All');
   const [searchResults, setSearchResults] = useState(null);

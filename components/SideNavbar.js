@@ -11,11 +11,14 @@ import {
   MdOutlineSettings,
   MdOutlineLogout,
 } from 'react-icons/md';
-import { H4, B1 } from './ui/typography';
+import { H4 } from './ui/typography';
 import logo from '../images/logo.png';
+import NavbarLink from './NavbarLink';
 // import icons from react-icon
 
 function SideNavbar() {
+  const sidenavLinkStyles = 'text-2xl text-white group-hover:text-black';
+
   return (
     <div>
       <Disclosure as="nav">
@@ -38,65 +41,44 @@ function SideNavbar() {
 
             {/* main tabs */}
             <div className="my-40 pb-10 w-full">
-              <a
-                href="/search"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineSearch className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Search
-                </B1>
-              </a>
+              <NavbarLink
+                link="search"
+                title="Search"
+                icon={<MdOutlineSearch className={sidenavLinkStyles} />}
+              />
 
-              <a
-                href="/explore"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineExplore className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Explore
-                </B1>
-              </a>
+              <NavbarLink
+                link="explore"
+                title="Explore"
+                icon={<MdOutlineExplore className={sidenavLinkStyles} />}
+              />
 
-              <a
-                href="/waitlist"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineFormatListBulleted className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Waitlist
-                </B1>
-              </a>
+              <NavbarLink
+                link="waitlist"
+                title="Waitlists"
+                icon={<MdOutlineFormatListBulleted className={sidenavLinkStyles} />}
+              />
 
-              <a
-                href="/profile"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlinePersonOutline className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Profile
-                </B1>
-              </a>
+              <NavbarLink
+                link="profile"
+                title="Profile"
+                icon={<MdOutlinePersonOutline className={sidenavLinkStyles} />}
+              />
 
-              <a
-                href="/settings"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineSettings className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Settings
-                </B1>
-              </a>
+              <NavbarLink
+                link="settings"
+                title="Settings"
+                icon={<MdOutlineSettings className={sidenavLinkStyles} />}
+              />
             </div>
 
             {/* logout */}
             <div className="my-4 w-full">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineLogout className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Logout
-                </B1>
-              </div>
+              <NavbarLink
+                link="explore"
+                title="Logout"
+                icon={<MdOutlineLogout className={sidenavLinkStyles} />}
+              />
             </div>
           </div>
         </div>

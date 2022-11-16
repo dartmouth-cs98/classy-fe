@@ -1,28 +1,14 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
+import Link from 'next/link';
 import styles from '../../styles/ExploreHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
 import { H3, B1 } from '../../components/ui/typography';
 import { fetchExplore } from '../../actions';
 import ExploreTile from '../../components/explore/ExploreTile';
+import { cardColor, textColor } from '../../data/colors';
 
-const cardColor = [
-  '#EBF9FA',
-  '#EFFAEB',
-  '#FCF0E3',
-  '#EFE7FA',
-  '#FAEBF6',
-  '#F9F3FC',
-];
-const textColor = [
-  '#5B8A8D',
-  '#75946A',
-  '#BA7D37',
-  '#7E5DAC',
-  '#AE5E99',
-  '#8E5BA8',
-];
 // const index = Math.floor(Math.random() * cardColor.length);
 // const customcolor = cardColor[index];
 
@@ -48,8 +34,7 @@ export default function ExploreHome() {
         <div className={styles.horizscroll}>
           {exploreContent.courses ? exploreContent.courses.map((course, index) => (
             <ExploreTile
-              cardColor={cardColor}
-              textColor={textColor}
+              key={`s${course.courseDept}${course.courseNum}`}
               courseDept={course.courseDept}
               courseNum={course.courseNum}
               courseTitle={course.courseTitle}
@@ -64,8 +49,7 @@ export default function ExploreHome() {
         <div className={styles.horizscroll}>
           {exploreContent.professors ? exploreContent.professors.map((professor, index) => (
             <ExploreTile
-              cardColor={cardColor}
-              textColor={textColor}
+              key={professor.name}
               professorName={professor.name}
               professorDepts={professor.departments}
               index={index}
@@ -75,11 +59,11 @@ export default function ExploreHome() {
       </main>
 
       <div className={styles.buttondiv}>
-        <a href="./explore/survey">
+        <Link href="./explore/survey">
           <button type="button" className={styles.button}>
             <B1 color="white">Get a Recommendation!</B1>
           </button>
-        </a>
+        </Link>
       </div>
 
       <H3 className={styles.title}>Best Classes</H3>
@@ -87,8 +71,7 @@ export default function ExploreHome() {
         <div className={styles.horizscroll}>
           {exploreContent.courses ? exploreContent.courses.map((course, index) => (
             <ExploreTile
-              cardColor={cardColor}
-              textColor={textColor}
+              key={`b${course.courseDept}${course.courseNum}`}
               courseDept={course.courseDept}
               courseNum={course.courseNum}
               courseTitle={course.courseTitle}

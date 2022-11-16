@@ -53,7 +53,7 @@
     align-items: flex-start;
     justify-content: left;
     overflow-x: scroll;
-    white-space: break-spaces;
+    white-space: nowrap;
     max-width: 100%;
 }
 

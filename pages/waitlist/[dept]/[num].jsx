@@ -1,13 +1,10 @@
-/* eslint-disable no-unneeded-ternary */
-// import Link  from 'next/link';
-import React from 'react';
+import Link from 'next/link';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import RemoveWaitlist from '../../../components/RemoveWaitlist';
+import RemoveWaitlist from '../../../components/waitlist/RemoveWaitlist';
 import styles from '../../../styles/WaitlistDetail.module.css';
-import WaitlistData from '../../../data/waitlistdata';
 import SideNavbar from '../../../components/SideNavbar';
 import {
   H2, B1,
@@ -70,11 +67,11 @@ export default function WaitlistDetail() {
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
             <RemoveWaitlist />
-            <a href={`/courses/${dept}/${num}`}>
+            <Link href={`/courses/${dept}/${num}`}>
               <button className={styles.button} type="button">
                 Course Info Page
               </button>
-            </a>
+            </Link>
           </div>
 
           <div className={styles.waitlist_details_container}>

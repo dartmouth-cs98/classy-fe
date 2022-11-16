@@ -9,7 +9,7 @@ function Glance(props) {
   } = props;
   return (
     <div className={[styles.glance]}>
-      <CourseInfoTile title="Distrib" val={distribs && distribs.length > 0 ? distribs : 'N/A'} />
+      <CourseInfoTile title="Distrib" val={distribs && distribs.length > 0 ? distribs.join('/') : 'N/A'} />
       <CourseInfoTile title="WC" val={wc || 'N/A'} />
       <CourseInfoTile title="NR Eligible" val={nr ? 'Yes' : 'N/A'} />
       <CourseInfoTile title="Avg Median" val={avgMedian || 'N/A'} />

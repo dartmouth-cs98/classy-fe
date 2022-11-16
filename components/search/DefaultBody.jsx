@@ -5,15 +5,8 @@ import CourseTitleCard from '../CourseTitleCard';
 import Professor from '../Professor';
 import styles from '../../styles/components/SearchPage.module.css';
 import DepartmentCard from '../DepartmentCard';
-
-const cardColors = [
-  { pastel: '#FCF0E3', dark: '#BA7D37' },
-  { pastel: '#EBF9FA', dark: '#5B8A8D' },
-  { pastel: '#EFFAEB', dark: '#75946A' },
-  { pastel: '#EFE7FA', dark: '#7E5DAC' },
-  { pastel: '#FAEBF6', dark: '#AE5E99' },
-  { pastel: '#F9F3FC', dark: '#8E5BA8' },
-];
+import { cardColors } from '../../data/colors';
+import Departments from '../../pages/departments';
 
 const ProfessorMockData = {
   name: 'Tim Tregubov',

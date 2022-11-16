@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { H3 } from '../ui/typography';
 import Professor from '../Professor';
 import styles from '../../styles/components/SearchPage.module.css';
 
@@ -28,7 +27,7 @@ function Professors(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profs}>
-        {ProfessorMockData.map((professor, i) => (
+        {ProfessorMockData.map((professor) => (
           <Professor key={professor.name} professor={professor} />
         ))}
       </div>
