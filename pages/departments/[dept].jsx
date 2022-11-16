@@ -35,6 +35,14 @@ function Department() {
         {dept}
       </H2>
       <H3>{currentDept.department.name}</H3>
+      <B1>
+        {' '}
+        Department Course Pages:
+        {' '}
+        {currentDept.department.codes.map((code) => <Link href={`/courses/${code}`}><A>{`${code}  `}</A></Link>)}
+      </B1>
+      {' '}
+      <br />
       <Link href="/departments"><A>See all departments</A></Link>
       <br />
       <br />
@@ -87,6 +95,8 @@ function Department() {
       <H3>Department Reviews</H3>
       {currentDept.reviews && currentDept.reviews.length > 0
         ? currentDept.reviews.map((review) => review) : <B1>No Reviews</B1>}
+      <br />
+      <br />
     </div>
   );
 }
