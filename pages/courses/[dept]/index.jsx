@@ -27,7 +27,6 @@ export default function DepartmentCourses() {
     );
   }
 
-  console.log(department.department);
   return (
     <div className={stylesp.container}>
       <H2>{`${dept} Courses`}</H2>
