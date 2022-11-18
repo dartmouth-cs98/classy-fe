@@ -3,7 +3,6 @@ import React from 'react';
 import {
   H1, B1, TextLabel,
 } from '../ui/typography';
-// eslint-disable-next-line import/no-unresolved
 import styles from '../../styles/components/ProfessorCard.module.css';
 // import tim from '../../public/tim.png';
 
