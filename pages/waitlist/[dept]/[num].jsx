@@ -15,7 +15,6 @@ export default function WaitlistDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { dept, num } = router.query;
-<<<<<<< HEAD
   useEffect(() => {
     dispatch(fetchCourse(dept, num));
   }, []);
@@ -34,15 +33,6 @@ export default function WaitlistDetail() {
   // const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
   // const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
 
-=======
-  const courseCode = `${dept} ${num}`;
-  const courseURL = `/courses/${dept}/${num}`;
-  const currentCourse = data[courseCode];
-  const waitlistData = WaitlistData();
-  const waitlist = waitlistData[courseCode];
-  //   const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
-  //   const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
->>>>>>> 41bb550 (connect fe to be)
   const profilePicture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
   const termCount = 4;
   const remaining = 3;
