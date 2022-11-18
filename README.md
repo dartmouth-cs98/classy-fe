@@ -54,6 +54,9 @@ You may also find the following snippet helpful when changing routes:
 * Material UI
 * Tailwind CSS
 
+## Styling
+Currently, the project uses a mix of CSS modules, tailwind, and a typography library. By the end of next term, we hope to standardize styling for consistency.
+
 ## Author
 * Vi N Tran
 * Henry Kim
