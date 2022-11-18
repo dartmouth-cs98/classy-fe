@@ -64,7 +64,7 @@ export default function CourseInfo() {
       />
 
       <CourseInfoSubtitle text="Offered" />
-      {currentCourse.offered ? <Offered course={currentCourse} /> : <B1>No Data</B1>}
+      {currentCourse.offerings ? <Offered course={currentCourse} /> : <B1>No Data</B1>}
 
       <CourseInfoSubtitle text="Medians" />
       {currentCourse.medians ? <Medians medians={currentCourse.medians} /> : <B1>No Data</B1>}
