@@ -2,43 +2,61 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the necesary dependencies by running the command:
+
+```bash
+yarn install
+```
+
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+**To avoid merge conflicts, be sure to stick to yarn only or npm only. We preferred to use yarn throughout.**
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Backend calls are made via the actions, reducers, and axios calls. The backend is hosted on [http://localhost:8000](http://localhost:8000) by default but will be hosted on a deployed site when it is ready for release.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Development Notes
+To fetch data from the backend, use code like the following:
 
-## Learn More
+```Javascript
+  import React, { useEffect } from 'react';
+  import { useRouter } from 'next/router';
+  import { useDispatch, useSelector } from 'react-redux';
+  import { fetchCourse } from '../../../actions';
 
-To learn more about Next.js, take a look at the following resources:
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCourse(dept, num));
+  }, []);
+  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use ternary expressions appropriately in case the page tries to reload too quickly before the data comes from the backend. 
+You may also find the following snippet helpful when changing routes:
+```Javascript
+  if (!currentCourse || (currentCourse.courseDept !== dept || currentCourse.courseNum !== num)) {
+    dispatch(fetchCourse(dept, num));
+    return (
+      <B1>Loading...</B1>
+    );
+  }
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Tags
-v0.1 - Initial structure for Classy fe in javascript. Contains some files for waitlist.
+## Dependencies
+* Material UI
+* Tailwind CSS
 
 ## Author
 * Vi N Tran
 * Henry Kim
-* Alex Feng :)
+* Alex Feng
 * Gyuri Hwang
 * Alyssa Anderson
