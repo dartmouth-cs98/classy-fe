@@ -34,7 +34,6 @@ export function fetchCourses() {
   };
 }
 
-<<<<<<< HEAD
 export const fetchDeptCourses = (dept) => (dispatch) => {
   axios.get(`${ROOT_URL}/courses/${dept}`).then((res) => {
     const response = res.data;
@@ -46,10 +45,6 @@ export const fetchDeptCourses = (dept) => (dispatch) => {
 };
 
 export const fetchCourse = (dept, num) => (dispatch) => {
-=======
-export const fetchCourse = (dept, num) => (dispatch) => {
-  console.log(dept, num, 'received');
->>>>>>> 41bb550 (connect fe to be)
   axios.get(`${ROOT_URL}/courses/${dept}/${num}`)
     .then((res) => {
       const response = res.data;
