@@ -24,7 +24,7 @@ Backend calls are made via the actions, reducers, and axios calls. The backend i
 
 
 ## Development Notes
-To fetch data from the backend, use code like the following:
+To fetch data from the backend, use code like the following in the code for your page component:
 
 ```Javascript
   import React, { useEffect } from 'react';
