@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD:components/courses/Medians.jsx
-import styles from '../../styles/ExploreHome.module.css';
-=======
 import styles from '../styles/ExploreHome.module.css';
->>>>>>> 41bb550 (connect fe to be):components/Medians.jsx
 import MedianTile from './MedianTile';
 
 export function convertMedian(avgMedian) {

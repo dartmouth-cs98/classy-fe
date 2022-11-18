@@ -18,19 +18,6 @@ function showCourseCodes(course) {
   );
 }
 
-function showCourseCodes(course) {
-  const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
-  return (
-    <H2>
-      {course.courseDept}
-      {' '}
-      {course.courseNum}
-      {course.xlists ? xlists : ' '}
-      {course.courseTitle}
-    </H2>
-  );
-}
-
 function CourseInfoTitle(props) {
   const { course } = props;
   const [taken, setTaken] = useState(false);
