@@ -11,6 +11,7 @@ import StudentsSay from '../../../components/courses/StudentsSay';
 import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import styles from '../../../styles/ExploreHome.module.css';
+import ReviewForm from '../../../components/courses/ReviewForm';
 
 import {
   B1, A,
@@ -72,6 +73,9 @@ export default function CourseInfo() {
       <CourseInfoSubtitle text="Reviews" />
       {currentCourse.reviews && currentCourse.reviews.length > 0
         ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>}
+
+      <CourseInfoSubtitle text="Add a Review" />
+      <ReviewForm offerings={currentCourse.offerings} />
     </div>
   );
 }

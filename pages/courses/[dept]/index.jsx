@@ -19,8 +19,7 @@ export default function DepartmentCourses() {
     dispatch(fetchDeptCourses(dept));
   }, []);
   const department = useSelector((reduxState) => reduxState.courses.deptCourses);
-
-  if (!department) {
+  if (!department || !department.department) {
     dispatch(fetchDeptCourses(dept));
     return (
       <B1>Loading...</B1>
