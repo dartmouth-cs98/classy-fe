@@ -3,7 +3,7 @@ import { H4 } from '../ui/typography';
 
 function loadOptions(options) {
   return options?.map((element) => (
-    <option key={element.term} value={element.term}>
+    <option key={`${element.term}-${element.period}`} value={element.term}>
       {element.professors}
       {' '}
       (
@@ -17,11 +17,11 @@ function loadOptions(options) {
 }
 
 function SelectInput(props) {
-  const { name, options } = props;
+  const { name, options, onInputChange } = props;
   return (
     <>
       <label htmlFor={name}><H4>{name}</H4></label>
-      <select name={name} id={name}>
+      <select name={name} id={name} onChange={onInputChange}>
         {loadOptions(options)}
       </select>
     </>

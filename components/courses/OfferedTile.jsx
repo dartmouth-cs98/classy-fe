@@ -11,7 +11,7 @@ function getProfessorLink(professors) {
   return professors.map((professor) => {
     const url = `/professors/${professor}`;
     return (
-      <Link href={url}>
+      <Link key={professor} href={url}>
         <A>
           <p>{professor}</p>
         </A>
@@ -32,13 +32,7 @@ function OfferedTile(props) {
   const { term, period, professors } = props;
   return (
     <div className={stylesCI.tile} style={{ background: getColor('term', term) }}>
-      <TextLabel>
-        {term}
-        {' '}
-        (
-        {period}
-        )
-      </TextLabel>
+      <TextLabel>{`${term} (${period})`}</TextLabel>
       <TextLabel>{getProfessors(professors)}</TextLabel>
     </div>
   );

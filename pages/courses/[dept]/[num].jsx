@@ -31,20 +31,21 @@ export default function CourseInfo() {
   if (!currentCourse || (currentCourse.courseDept !== dept || currentCourse.courseNum !== num)) {
     dispatch(fetchCourse(dept, num));
     return (
-      <B1>Loading...</B1>
+      <B1 key="loading">Loading...</B1>
     );
   }
 
   return (
     <div className={styles.container}>
 
-      <CourseInfoTitle course={currentCourse || { dept, num }} />
-      <Link href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
-      <CourseInfoSubtitle text="Description" />
-      <B1>{currentCourse ? currentCourse.description : ''}</B1>
+      <CourseInfoTitle key="cit" course={currentCourse || { dept, num }} />
+      <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
+      <CourseInfoSubtitle key="cis" text="Description" />
+      <B1 key="description">{currentCourse ? currentCourse.description : ''}</B1>
 
-      <CourseInfoSubtitle text="At a Glance" />
+      <CourseInfoSubtitle key="glancetext" text="At a Glance" />
       <Glance
+        key="glance"
         distribs={currentCourse ? currentCourse.distribs : ''}
         wc={currentCourse ? currentCourse.wc : ''}
         avgMedian={currentCourse ? convertMedian(currentCourse.avgMedian) : ''}
@@ -54,28 +55,29 @@ export default function CourseInfo() {
         nr={currentCourse ? currentCourse.nrEligible : ''}
       />
 
-      <CourseInfoSubtitle text="Prerequisites" />
+      <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
       {currentCourse ? getPrereqs(currentCourse.required, currentCourse.counts) : ''}
 
-      <CourseInfoSubtitle text="What Students Say" />
+      <CourseInfoSubtitle key="students" text="What Students Say" />
       <StudentsSay
+        key="studentssay"
         workload={currentCourse && currentCourse.workload ? currentCourse.workload : 'Not Enough Data'}
         difficulty={currentCourse && currentCourse.difficulty ? currentCourse.difficulty : 'Not Enough Data'}
         quality={currentCourse && currentCourse.quality ? currentCourse.quality : 'Not Enough Data'}
       />
 
-      <CourseInfoSubtitle text="Offered" />
-      {currentCourse.offerings ? <Offered course={currentCourse} /> : <B1>No Data</B1>}
+      <CourseInfoSubtitle key="offered" text="Offered" />
+      {currentCourse.offerings ? <Offered key="offerings" course={currentCourse} /> : <B1 key="no offerings">No Data</B1>}
 
-      <CourseInfoSubtitle text="Medians" />
-      {currentCourse.medians ? <Medians medians={currentCourse.medians} /> : <B1>No Data</B1>}
+      <CourseInfoSubtitle key="medians" text="Medians" />
+      {currentCourse.medians ? <Medians key="mediantiles" medians={currentCourse.medians} /> : <B1 key="no data">No Data</B1>}
 
-      <CourseInfoSubtitle text="Reviews" />
-      {currentCourse.reviews && currentCourse.reviews.length > 0
-        ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>}
+      <CourseInfoSubtitle key="reviews" text="Reviews" />
+      {/* {currentCourse.reviews && currentCourse.reviews.length > 0
+        ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>} */}
 
-      <CourseInfoSubtitle text="Add a Review" />
-      <ReviewForm offerings={currentCourse.offerings} />
+      <CourseInfoSubtitle key="addreview" text="Add a Review" />
+      <ReviewForm key="form" offerings={currentCourse.offerings} />
     </div>
   );
 }
