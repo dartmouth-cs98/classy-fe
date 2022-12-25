@@ -20,6 +20,8 @@ export const ActionTypes = {
   FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
   FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
   FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
+  FETCH_COURSE_REVIEWS: 'FETCH_COURSE_REVIEWS',
+  CREATE_REVIEW: 'CREATE_REVIEW',
 };
 
 // trying this out in async await format
@@ -164,6 +166,26 @@ export const fetchDepartment = (code) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_DEPARTMENT,
+      payload: response,
+    });
+  });
+};
+
+export const fetchCourseReviews = (dept, num) => (dispatch) => {
+  axios.get(`${ROOT_URL}/coursereviews/${dept}/${num}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_REVIEWS,
+      payload: response,
+    });
+  });
+};
+
+export const createCourseReview = () => (dispatch) => {
+  axios.post(`${ROOT_URL}/coursereviews`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.CREATE_REVIEW,
       payload: response,
     });
   });

@@ -11,7 +11,7 @@ function FormSlider(props) {
       <H4>{title}</H4>
       <div className={styles.sliderLabels}>
         {type === 'range' ? <H5>{min}</H5> : ''}
-        <input type={type} min={min} max={max} id={data} onChange={onInputChange} />
+        <input required type={type} min={min} max={max} id={data} onChange={onInputChange} />
         {type === 'range' ? <H5>{max}</H5> : ''}
       </div>
     </>

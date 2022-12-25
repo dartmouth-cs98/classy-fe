@@ -73,8 +73,8 @@ export default function CourseInfo() {
       {currentCourse.medians ? <Medians key="mediantiles" medians={currentCourse.medians} /> : <B1 key="no data">No Data</B1>}
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
-      {/* {currentCourse.reviews && currentCourse.reviews.length > 0
-        ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>} */}
+      {currentCourse.reviews && currentCourse.reviews.length > 0
+        ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>}
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
       <ReviewForm key="form" offerings={currentCourse.offerings} />

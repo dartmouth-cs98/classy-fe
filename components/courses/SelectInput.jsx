@@ -3,7 +3,7 @@ import { H4 } from '../ui/typography';
 
 function loadOptions(options) {
   return options?.map((element) => (
-    <option key={`${element.term}-${element.period}`} value={element.term}>
+    <option key={`${element.term}-${element.period}-${element.professors}`} value={`${element.term}-${element.professors.join(',')}`}>
       {element.professors}
       {' '}
       (

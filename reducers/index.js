@@ -8,6 +8,7 @@ import SearchReducer from './searchReducer';
 import ProfessorsReducer from './professorsReducer';
 import WaitlistReducer from './waitlistReducer';
 import DepartmentsReducer from './departmentsReducer';
+import ReviewsReducer from './reviewsReducer';
 
 const rootReducer = combineReducers({
   courses: CoursesReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   search: SearchReducer,
   waitlist: WaitlistReducer,
   departments: DepartmentsReducer,
+  reviews: ReviewsReducer,
 });
 
 export default rootReducer;

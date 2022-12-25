@@ -30,13 +30,13 @@ export default function DepartmentCourses() {
     <div className={stylesp.container}>
       <H2>{`${dept} Courses`}</H2>
       <H3>{`${department.department.name}`}</H3>
-      <Link href="/departments"><A>Explore other departments</A></Link>
+      <Link href="/departments" key="other"><A>Explore other departments</A></Link>
       {' or '}
-      <Link href={`/departments/${dept}`}><A>go to department homepage</A></Link>
+      <Link href={`/departments/${dept}`} key="deptPage"><A>go to department homepage</A></Link>
       <div className={styles.depts}>
 
         {department.courses ? department.courses.map((course, i) => (
-          <CourseTitleCard course={course} color={cardColors[i % cardColors.length]} />
+          <CourseTitleCard key={`${course.courseNum}`} course={course} color={cardColors[i % cardColors.length]} />
         )) : ''}
       </div>
     </div>
