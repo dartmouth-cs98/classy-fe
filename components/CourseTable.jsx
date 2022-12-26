@@ -21,7 +21,8 @@ function getTerms(offerings) {
   offerings.forEach((offering) => {
     termArray.push(offering.term);
   });
-  return termArray;
+  const set = new Set(termArray);
+  return Array.from(set);
 }
 
 function Row(props) {
@@ -51,9 +52,9 @@ function Row(props) {
           {course.courseNum}
         </TableCell>
         <TableCell align="left">{getTerms(course.offerings).join(', ')}</TableCell>
-        <TableCell align="left">{course.quality ? course.quality : Math.round(Math.random() * 4 + 6) / 2}</TableCell>
-        <TableCell align="left">{course.difficulty ? course.difficulty : Math.round(Math.random() * 4 + 6) / 2}</TableCell>
-        <TableCell align="left">{course.hrsPerWeek ? course.hrsPerWeek : Math.round(Math.random() * 8 + 8) }</TableCell>
+        <TableCell align="left">{course.quality ? course.quality : 'N/A'}</TableCell>
+        <TableCell align="left">{course.difficulty ? course.difficulty : 'N/A'}</TableCell>
+        <TableCell align="left">{course.hrsPerWeek ? course.hrsPerWeek : 'N/A' }</TableCell>
         <TableCell align="left">{convertMedian(course.avgMedian)}</TableCell>
       </TableRow>
       <TableRow>

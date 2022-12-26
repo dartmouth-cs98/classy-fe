@@ -7,10 +7,15 @@ import { H4 } from '../ui/typography';
 import { createCourseReview } from '../../actions';
 
 function ReviewForm(props) {
-  const { offerings } = props;
+  const {
+    dept, num, offerings, users,
+  } = props;
   const dispatch = useDispatch();
-  let workload = 0; let difficulty = 5; let quality = 5;
-  let content = ''; let offering = offerings && offerings[0] ? `${offerings[0].term}-${offerings[0].professors.join(',')}` : '';
+  let workload = 0; let difficulty = 5; let quality = 5; let content = '';
+  let offering = offerings && offerings[0] ? `${offerings[0].term}-${offerings[0].professors.join(',')}` : '';
+  // eslint-disable-next-line no-underscore-dangle
+  let user = users && users[0] ? `${users[0]._id}` : '';
+
   const onInputChange = (event) => {
     console.log(event.target.id, event.target.value);
     const eventId = event.target.id;
@@ -24,23 +29,28 @@ function ReviewForm(props) {
       offering = event.target.value;
     } else if (eventId === 'content') {
       content = event.target.value;
+    } else if (eventId === 'User') {
+      user = event.target.value;
     } else {
       console.log('Not sure what you meant with that input');
     }
   };
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
+    event.preventDefault();
     const splitOffering = offering.split('-');
     const term = splitOffering[0];
     const professors = splitOffering[1].split(',');
     const review = {
-      workload, difficulty, quality, content, term, professors,
+      dept, num, workload, difficulty, quality, content, term, professors, user,
     };
+    content = '';
     dispatch(createCourseReview(review));
   };
 
   return (
-    <form method="post" onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
+      <SelectInput name="User" options={users} onInputChange={onInputChange} />
       <div className={styles.reviewform}>
         <FormSlider key="w" data="workload" title="Workload (hrs/week)" type="number" min="1" max="25" onInputChange={onInputChange} />
         <FormSlider key="d" data="difficulty" title="Difficulty (easiest to hardest)" type="range" min="1" max="5" onInputChange={onInputChange} />

@@ -43,7 +43,7 @@ function CourseTitleCard(props) {
             <H1 color={color.dark}>
               {course.quality
                 ? course.quality
-                : (Math.round(Math.random() * 4 + 6) / 2)}
+                : '—'}
 
             </H1>
             <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">

@@ -28,7 +28,8 @@ export default function CourseInfo() {
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
 
-  if (!currentCourse || (currentCourse.courseDept !== dept || currentCourse.courseNum !== num)) {
+  if (!currentCourse.course || (currentCourse.course.courseDept !== dept
+    || currentCourse.course.courseNum !== num)) {
     dispatch(fetchCourse(dept, num));
     return (
       <B1 key="loading">Loading...</B1>
@@ -38,46 +39,46 @@ export default function CourseInfo() {
   return (
     <div className={styles.container}>
 
-      <CourseInfoTitle key="cit" course={currentCourse || { dept, num }} />
+      <CourseInfoTitle key="cit" course={currentCourse.course || { dept, num }} />
       <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
       <CourseInfoSubtitle key="cis" text="Description" />
-      <B1 key="description">{currentCourse ? currentCourse.description : ''}</B1>
+      <B1 key="description">{currentCourse.course ? currentCourse.course.description : ''}</B1>
 
       <CourseInfoSubtitle key="glancetext" text="At a Glance" />
       <Glance
         key="glance"
-        distribs={currentCourse ? currentCourse.distribs : ''}
-        wc={currentCourse ? currentCourse.wc : ''}
-        avgMedian={currentCourse ? convertMedian(currentCourse.avgMedian) : ''}
-        waitlist={currentCourse ? currentCourse.waitlist : 'Unknown'}
-        dept={currentCourse ? currentCourse.courseDept : ''}
-        num={currentCourse ? currentCourse.courseNum : ''}
-        nr={currentCourse ? currentCourse.nrEligible : ''}
+        distribs={currentCourse.course ? currentCourse.course.distribs : ''}
+        wc={currentCourse.course ? currentCourse.course.wc : ''}
+        avgMedian={currentCourse.course ? convertMedian(currentCourse.course.avgMedian) : ''}
+        waitlist={currentCourse.course ? currentCourse.course.waitlist : 'Unknown'}
+        dept={currentCourse.course ? currentCourse.course.courseDept : ''}
+        num={currentCourse.course ? currentCourse.course.courseNum : ''}
+        nr={currentCourse.course ? currentCourse.course.nrEligible : ''}
       />
 
       <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
-      {currentCourse ? getPrereqs(currentCourse.required, currentCourse.counts) : ''}
+      {currentCourse.course ? getPrereqs(currentCourse.course.required, currentCourse.course.counts) : ''}
 
       <CourseInfoSubtitle key="students" text="What Students Say" />
       <StudentsSay
         key="studentssay"
-        workload={currentCourse && currentCourse.workload ? currentCourse.workload : 'Not Enough Data'}
-        difficulty={currentCourse && currentCourse.difficulty ? currentCourse.difficulty : 'Not Enough Data'}
-        quality={currentCourse && currentCourse.quality ? currentCourse.quality : 'Not Enough Data'}
+        workload={currentCourse.course && currentCourse.course.workload ? currentCourse.course.workload : 'Not Enough Data'}
+        difficulty={currentCourse.course && currentCourse.course.difficulty ? currentCourse.course.difficulty : 'Not Enough Data'}
+        quality={currentCourse.course && currentCourse.course.quality ? currentCourse.course.quality : 'Not Enough Data'}
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
-      {currentCourse.offerings ? <Offered key="offerings" course={currentCourse} /> : <B1 key="no offerings">No Data</B1>}
+      {currentCourse.course.offerings ? <Offered key="offerings" course={currentCourse.course} /> : <B1 key="no offerings">No Data</B1>}
 
       <CourseInfoSubtitle key="medians" text="Medians" />
-      {currentCourse.medians ? <Medians key="mediantiles" medians={currentCourse.medians} /> : <B1 key="no data">No Data</B1>}
+      {currentCourse.course.medians ? <Medians key="mediantiles" medians={currentCourse.course.medians} /> : <B1 key="no data">No Data</B1>}
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
       {currentCourse.reviews && currentCourse.reviews.length > 0
-        ? currentCourse.reviews.map((review) => review) : <B1>No Reviews</B1>}
+        ? currentCourse.reviews.map((review) => <B1>{review.content}</B1>) : <B1>No Reviews</B1>}
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
-      <ReviewForm key="form" offerings={currentCourse.offerings} />
+      <ReviewForm dept={dept} num={num} key="form" users={currentCourse.users} offerings={currentCourse.course.offerings} />
     </div>
   );
 }

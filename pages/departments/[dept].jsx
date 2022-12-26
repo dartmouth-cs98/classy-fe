@@ -92,11 +92,7 @@ function Department() {
 
       <br />
       <br />
-      <H3>Department Reviews</H3>
-      {currentDept.reviews && currentDept.reviews.length > 0
-        ? currentDept.reviews.map((review) => review) : <B1>No Reviews</B1>}
-      <br />
-      <br />
+
     </div>
   );
 }

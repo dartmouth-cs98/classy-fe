@@ -16,13 +16,22 @@ function loadOptions(options) {
   ));
 }
 
+function loadUsers(users) {
+  return users?.map((element) => (
+    // eslint-disable-next-line no-underscore-dangle
+    <option key={`${element._id}`} value={`${element._id}`}>
+      {`${element.firstName} ${element.lastName}`}
+    </option>
+  ));
+}
+
 function SelectInput(props) {
   const { name, options, onInputChange } = props;
   return (
     <>
       <label htmlFor={name}><H4>{name}</H4></label>
       <select name={name} id={name} onChange={onInputChange}>
-        {loadOptions(options)}
+        {name === 'Offering' ? loadOptions(options) : loadUsers(options)}
       </select>
     </>
   );
