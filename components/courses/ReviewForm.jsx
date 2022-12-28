@@ -8,11 +8,12 @@ import { createCourseReview } from '../../actions';
 
 function ReviewForm(props) {
   const {
-    dept, num, offerings, users,
+    courseId, offerings, users,
   } = props;
   const dispatch = useDispatch();
   let workload = 0; let difficulty = 5; let quality = 5; let content = '';
-  let offering = offerings && offerings[0] ? `${offerings[0].term}-${offerings[0].professors.join(',')}` : '';
+  // eslint-disable-next-line no-underscore-dangle
+  let offering = offerings && offerings[0] ? `${offerings[0]._id}` : '';
   // eslint-disable-next-line no-underscore-dangle
   let user = users && users[0] ? `${users[0]._id}` : '';
 
@@ -38,33 +39,35 @@ function ReviewForm(props) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const splitOffering = offering.split('-');
-    const term = splitOffering[0];
-    const professors = splitOffering[1].split(',');
     const review = {
-      dept, num, workload, difficulty, quality, content, term, professors, user,
+      user,
+      workload: parseInt(workload, 10),
+      difficulty: parseInt(difficulty, 10),
+      quality: parseInt(quality, 10),
+      content,
     };
     content = '';
-    dispatch(createCourseReview(review));
+    dispatch(createCourseReview(courseId, offering, review));
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <SelectInput name="User" options={users} onInputChange={onInputChange} />
-      <div className={styles.reviewform}>
-        <FormSlider key="w" data="workload" title="Workload (hrs/week)" type="number" min="1" max="25" onInputChange={onInputChange} />
-        <FormSlider key="d" data="difficulty" title="Difficulty (easiest to hardest)" type="range" min="1" max="5" onInputChange={onInputChange} />
-        <FormSlider key="q" data="quality" title="Quality (worst to best)" type="range" min="1" max="5" onInputChange={onInputChange} />
-      </div>
-      <SelectInput name="Offering" options={offerings} onInputChange={onInputChange} />
-      <H4>Review</H4>
-      <input key="r" id="content" required type="textarea" className={styles.textarea} onChange={onInputChange} />
+    <div className={styles.reviewContainer}>
+      <form onSubmit={onSubmit}>
+        <SelectInput name="User" options={users} onInputChange={onInputChange} />
+        <div className={styles.reviewform}>
+          <FormSlider key="w" data="workload" title="Workload (hrs/week)" type="number" min="1" max="25" onInputChange={onInputChange} />
+          <FormSlider key="d" data="difficulty" title="Difficulty (easiest to hardest)" type="range" min="1" max="5" onInputChange={onInputChange} />
+          <FormSlider key="q" data="quality" title="Quality (worst to best)" type="range" min="1" max="5" onInputChange={onInputChange} />
+        </div>
+        <SelectInput name="Offering" options={offerings} onInputChange={onInputChange} />
+        <H4>Review</H4>
+        <input key="r" id="content" required type="textarea" className={styles.textarea} onChange={onInputChange} />
 
-      <div>
-        <button className={styles.button} type="submit">Submit Review</button>
-      </div>
-    </form>
-
+        <div>
+          <button className={styles.button} type="submit">Submit Review</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

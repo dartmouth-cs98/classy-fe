@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/ExploreHome.module.css';
+import styles from '../../styles/CourseInfo.module.css';
 import MedianTile from './MedianTile';
 
 export function convertMedian(avgMedian) {
@@ -22,7 +22,7 @@ function loadMedians(values) {
 function Medians(props) {
   const { medians } = props;
   return (
-    <div className={[styles.horizscroll]}>
+    <div className={[styles.reviewRow]}>
       {medians ? loadMedians(medians) : ''}
     </div>
   );

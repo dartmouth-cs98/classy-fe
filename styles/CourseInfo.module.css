@@ -88,3 +88,24 @@
 .textarea {
     width: 90%;
 }
+
+.reviewRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.reviewComp {
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-around;
+}
+
+.reviewContainer {
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid lightgray;
+    border-radius: 0.25em;
+}

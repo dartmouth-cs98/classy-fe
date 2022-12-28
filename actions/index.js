@@ -181,10 +181,10 @@ export const fetchCourseReviews = (dept, num) => (dispatch) => {
   });
 };
 
-export const createCourseReview = (review) => (dispatch) => {
-  axios.post(`${ROOT_URL}/coursereviews`, review).then((res) => {
+export const createCourseReview = (courseId, offering, review) => (dispatch) => {
+  // eslint-disable-next-line no-underscore-dangle
+  axios.post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review).then((res) => {
     const response = res.data;
-
     dispatch({
       type: ActionTypes.CREATE_REVIEW,
       payload: response,

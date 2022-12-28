@@ -47,7 +47,7 @@ function CourseTitleCard(props) {
 
             </H1>
             <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
-              {course && course.reviews ? course.reviews.length : 0}
+              {course.reviewCount ? course.reviewCount : 0}
               {' '}
               Reviews
             </B3>

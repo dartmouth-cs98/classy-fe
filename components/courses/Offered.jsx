@@ -16,10 +16,10 @@ function loadOfferings(values) {
 }
 
 function Offered(props) {
-  const { course } = props;
+  const { offerings } = props;
   return (
     <div className={[styles.horizscroll]}>
-      {course.offerings ? loadOfferings(course.offerings) : ''}
+      {offerings ? loadOfferings(offerings) : ''}
     </div>
   );
 }

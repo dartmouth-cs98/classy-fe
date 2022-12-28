@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +17,7 @@ import ReviewForm from '../../../components/courses/ReviewForm';
 import {
   B1, A,
 } from '../../../components/ui/typography';
+import ReviewComponent from '../../../components/courses/ReviewComponent';
 
 export default function CourseInfo() {
   const router = useRouter();
@@ -35,6 +37,26 @@ export default function CourseInfo() {
       <B1 key="loading">Loading...</B1>
     );
   }
+
+  const loadReviews = () => {
+    if (!currentCourse.course.reviewCount) {
+      return <B1>No Reviews</B1>;
+    }
+    return currentCourse.offerings.map(
+      (offering) => offering.reviews.map(
+        (review) => (
+          <ReviewComponent
+            key={review.content}
+          // eslint-disable-next-line no-underscore-dangle
+            user={currentCourse.users.find((user) => user._id === review.user)}
+            term={offering.term}
+            professors={offering.professors}
+            review={review}
+          />
+        ),
+      ),
+    );
+  };
 
   return (
     <div className={styles.container}>
@@ -68,17 +90,16 @@ export default function CourseInfo() {
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
-      {currentCourse.course.offerings ? <Offered key="offerings" course={currentCourse.course} /> : <B1 key="no offerings">No Data</B1>}
+      {currentCourse.offerings ? <Offered key="offerings" offerings={currentCourse.offerings} /> : <B1 key="no offerings">No Data</B1>}
 
       <CourseInfoSubtitle key="medians" text="Medians" />
       {currentCourse.course.medians ? <Medians key="mediantiles" medians={currentCourse.course.medians} /> : <B1 key="no data">No Data</B1>}
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
-      {currentCourse.reviews && currentCourse.reviews.length > 0
-        ? currentCourse.reviews.map((review) => <B1>{review.content}</B1>) : <B1>No Reviews</B1>}
+      { loadReviews() }
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
-      <ReviewForm dept={dept} num={num} key="form" users={currentCourse.users} offerings={currentCourse.course.offerings} />
+      <ReviewForm courseId={currentCourse.course._id} key="form" users={currentCourse.users} offerings={currentCourse.offerings} />
     </div>
   );
 }

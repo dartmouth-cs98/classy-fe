@@ -87,10 +87,10 @@ export default function CollapsibleTable(props) {
             <TableCell />
             <TableCell align="left">Course</TableCell>
             <TableCell align="left">Name</TableCell>
-            <TableCell align="left">Term</TableCell>
+            <TableCell align="left">Terms</TableCell>
             <TableCell align="left">Quality</TableCell>
             <TableCell align="left">Difficulty</TableCell>
-            <TableCell align="left">Hrs/week</TableCell>
+            <TableCell align="left">Hrs/Week</TableCell>
             <TableCell align="left">Median</TableCell>
           </TableRow>
         </TableHead>
