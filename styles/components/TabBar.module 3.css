@@ -1,0 +1,36 @@
+.tabGroup {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tab {
+    height: 30px;
+    border-radius: 43px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px 0px 15px;
+}
+
+.active {
+    background: black;
+    cursor: default;
+}
+
+.Courses {
+    background: var(--pastel-green);
+}
+
+.Professors {
+    background: var(--pastel-orange);
+}
+
+.Distribs {
+    background: var(--pastel-pink);
+}
+
+.All {
+    background: var(--pastel-blue);
+}
