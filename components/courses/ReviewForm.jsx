@@ -18,7 +18,6 @@ function ReviewForm(props) {
   let user = users && users[0] ? `${users[0]._id}` : '';
 
   const onInputChange = (event) => {
-    console.log(event.target.id, event.target.value);
     const eventId = event.target.id;
     if (eventId === 'workload') {
       workload = event.target.value;
@@ -32,8 +31,6 @@ function ReviewForm(props) {
       content = event.target.value;
     } else if (eventId === 'User') {
       user = event.target.value;
-    } else {
-      console.log('Not sure what you meant with that input');
     }
   };
 
