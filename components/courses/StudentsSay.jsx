@@ -1,5 +1,5 @@
 import React from 'react';
-import stylesCI from '../styles/CourseInfo.module.css';
+import stylesCI from '../../styles/CourseInfo.module.css';
 import CourseInfoTile from './Tile';
 
 function StudentsSay(props) {

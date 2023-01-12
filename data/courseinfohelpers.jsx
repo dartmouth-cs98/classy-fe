@@ -10,11 +10,11 @@ function getPrereqLinks(bucket) {
     if (parseFloat(num) > 0) {
       const url = `/courses/${dept}/${num}`;
       if (index === 0) {
-        return <Link href={url}><A>{element}</A></Link>;
+        return <Link href={url} key={element}><A>{element}</A></Link>;
       }
       return (
-        <Link href={url}>
-          <A>
+        <Link href={url} key={url}>
+          <A key={`${url}-A`}>
             {' '}
             or
             {' '}
@@ -30,14 +30,13 @@ function getPrereqLinks(bucket) {
 export default function getPrereqs(prereqs, counts) {
   if (prereqs && prereqs.length > 0) {
     return prereqs.map((bucket, index) => (
-      <li>
-        <B1>
+      <li key={bucket.name}>
+        <B1 key={`${bucket.name}-b1`}>
           {bucket.length > 1 ? `${counts[index]} of ` : ''}
           {getPrereqLinks(bucket)}
         </B1>
-
       </li>
     ));
   }
-  return <B1>None</B1>;
+  return <B1 key="none">None</B1>;
 }

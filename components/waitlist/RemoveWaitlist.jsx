@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
+import Link from 'next/link';
 import { Button, Modal } from 'reactstrap';
-import styles from '../styles/WaitlistDetail.module.css';
+import styles from '../../styles/WaitlistDetail.module.css';
 // reactstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,11 +28,11 @@ function RemoveWaitlist() {
           </div>
         </div>
         <div className=" modal-footer">
-          <a href="/waitlist/">
+          <Link href="/waitlist/">
             <button className={styles.button} type="button">
               Yes, remove request
             </button>
-          </a>
+          </Link>
           <Button
             className=" text-black ml-auto"
             color="default"

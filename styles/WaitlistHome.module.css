@@ -97,9 +97,7 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #5B8A8D;
-  background-color: #fafafa;
-  border-color: #5B8A8D;
+  opacity: 0.5;
 }
 
 .card h2 {

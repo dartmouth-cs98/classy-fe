@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import stylesCI from '../styles/CourseInfo.module.css';
+
+import styles from '../../styles/ExploreHome.module.css';
 import OfferedTile from './OfferedTile';
 
 function loadOfferings(values) {
   return values.map((value) => (
     <OfferedTile
-      key={`${value.term}${value.professors}`}
+      key={`offering-${value.term}-${value.period}-${value.professors}`}
       term={value.term}
       professors={value.professors}
       period={value.period}
@@ -15,10 +16,10 @@ function loadOfferings(values) {
 }
 
 function Offered(props) {
-  const { course } = props;
+  const { offerings } = props;
   return (
-    <div className={[stylesCI.glance]}>
-      {loadOfferings(course.termsOffered)}
+    <div className={[styles.horizscroll]}>
+      {offerings ? loadOfferings(offerings) : ''}
     </div>
   );
 }

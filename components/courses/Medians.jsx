@@ -1,5 +1,5 @@
 import React from 'react';
-import stylesCI from '../styles/CourseInfo.module.css';
+import styles from '../../styles/CourseInfo.module.css';
 import MedianTile from './MedianTile';
 
 export function convertMedian(avgMedian) {
@@ -20,11 +20,10 @@ function loadMedians(values) {
 }
 
 function Medians(props) {
-  // eslint-disable-next-line react/prop-types
   const { medians } = props;
   return (
-    <div className={[stylesCI.glance]}>
-      {loadMedians(medians)}
+    <div className={[styles.reviewRow]}>
+      {medians ? loadMedians(medians) : ''}
     </div>
   );
 }
