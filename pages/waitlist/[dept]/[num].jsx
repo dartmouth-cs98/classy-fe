@@ -20,7 +20,8 @@ export default function WaitlistDetail() {
   }, []);
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
-  if (!currentCourse || (currentCourse.courseDept !== dept || currentCourse.courseNum !== num)) {
+  if (!currentCourse || !currentCourse.course
+    || (currentCourse.course.courseDept !== dept || currentCourse.course.courseNum !== num)) {
     dispatch(fetchCourse(dept, num));
     return (
       <B1>Loading...</B1>
@@ -55,11 +56,11 @@ export default function WaitlistDetail() {
         </H2>
         <div className={styles.course_title}>
           <h1>
-            {currentCourse ? currentCourse.courseDept : 'Placeholder Course'}
+            {currentCourse.course ? currentCourse.course.courseDept : 'Placeholder Course'}
             {' '}
-            {currentCourse ? currentCourse.courseNum : ' '}
+            {currentCourse.course ? currentCourse.course.courseNum : ' '}
           </h1>
-          <h3>{currentCourse ? currentCourse.courseTitle : 'This course has not been linked. Check back later!'}</h3>
+          <h3>{currentCourse.course ? currentCourse.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
         </div>
       </div>
 
@@ -122,7 +123,7 @@ export default function WaitlistDetail() {
             {/* <div className={styles.profile_picture}>
               photo
             </div> */}
-            <h3>{currentCourse.offerings && currentCourse.offerings.length > 0 ? currentCourse.offerings[0].professors.join(', ') : ''}</h3>
+            <h3>{currentCourse.course.offerings && currentCourse.course.offerings.length > 0 ? currentCourse.course.offerings[0].professors.join(', ') : ''}</h3>
             <button type="button" className={styles.small_btn}>
               Email
             </button>

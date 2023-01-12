@@ -9,6 +9,7 @@ import CourseInfoTitle from '../../../components/courses/CourseInfoTitle';
 import Offered from '../../../components/courses/Offered';
 import Medians, { convertMedian } from '../../../components/courses/Medians';
 import StudentsSay from '../../../components/courses/StudentsSay';
+
 import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import styles from '../../../styles/ExploreHome.module.css';
@@ -66,9 +67,10 @@ export default function CourseInfo() {
       <CourseInfoSubtitle key="cis" text="Description" />
       <B1 key="description">{currentCourse.course ? currentCourse.course.description : ''}</B1>
 
-      <CourseInfoSubtitle key="glancetext" text="At a Glance" />
+      <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
+      {currentCourse.course ? getPrereqs(currentCourse.course.required, currentCourse.course.counts) : ''}
+      <CourseInfoSubtitle text="At a Glance" />
       <Glance
-        key="glance"
         distribs={currentCourse.course ? currentCourse.course.distribs : ''}
         wc={currentCourse.course ? currentCourse.course.wc : ''}
         avgMedian={currentCourse.course ? convertMedian(currentCourse.course.avgMedian) : ''}
@@ -77,9 +79,6 @@ export default function CourseInfo() {
         num={currentCourse.course ? currentCourse.course.courseNum : ''}
         nr={currentCourse.course ? currentCourse.course.nrEligible : ''}
       />
-
-      <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
-      {currentCourse.course ? getPrereqs(currentCourse.course.required, currentCourse.course.counts) : ''}
 
       <CourseInfoSubtitle key="students" text="What Students Say" />
       <StudentsSay

@@ -47,56 +47,64 @@ export const fetchDeptCourses = (dept) => (dispatch) => {
 };
 
 export const fetchCourse = (dept, num) => (dispatch) => {
-  axios.get(`${ROOT_URL}/courses/${dept}/${num}`)
-    .then((res) => {
-      const response = res.data;
-      dispatch({
-        type: ActionTypes.FETCH_COURSE,
-        payload: response,
-      });
+  axios.get(`${ROOT_URL}/courses/${dept}/${num}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_COURSE,
+      payload: response,
     });
+  });
 };
 
 export function updateCourse(id, post) {
   console.log('UPDATING COURSE WITH', id);
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/courses/${id}`, post).then((response) => {
-      dispatch({
-        type: ActionTypes.UPDATE_COURSE,
-        payload: response.data,
+    axios
+      .put(`${ROOT_URL}/courses/${id}`, post)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.UPDATE_COURSE,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 }
 
 export function createCourse(post, navigate) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/courses/new`, post).then((response) => {
-      dispatch({
-        type: ActionTypes.CREATE_COURSE,
-        payload: response.data,
+    axios
+      .post(`${ROOT_URL}/courses/new`, post)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.CREATE_COURSE,
+          payload: response.data,
+        });
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      navigate('/');
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 }
 
 export function deleteCourse(id, navigate) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/courses/${id}`).then((response) => {
-      dispatch({
-        type: ActionTypes.DELETE_COURSE,
-        payload: null,
+    axios
+      .delete(`${ROOT_URL}/courses/${id}`)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.DELETE_COURSE,
+          payload: null,
+        });
+        navigate('/');
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      navigate('/');
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 }
 
@@ -182,26 +190,31 @@ export const fetchCourseReviews = (dept, num) => (dispatch) => {
 };
 
 export const createCourseReview = (courseId, offering, review) => (dispatch) => {
-  // eslint-disable-next-line no-underscore-dangle
-  axios.post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.CREATE_REVIEW,
-      payload: response,
+// eslint-disable-next-line no-underscore-dangle
+  axios
+    .post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review)
+    .then((res) => {
+      const response = res.data;
+      dispatch({
+        type: ActionTypes.CREATE_REVIEW,
+        payload: response,
+      });
     });
-  });
 };
 
 export function search(query, navigate) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/search/courses/${query}`).then((response) => {
-      dispatch({
-        type: ActionTypes.SEARCH,
-        payload: response.data,
+    axios
+      .get(`${ROOT_URL}/search/courses/${query}`)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.SEARCH,
+          payload: response.data,
+        });
+        console.log(navigate);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      console.log(navigate);
-    }).catch((error) => {
-      console.log(error);
-    });
   };
 }
