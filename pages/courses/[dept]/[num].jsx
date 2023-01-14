@@ -31,7 +31,7 @@ export default function CourseInfo() {
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
 
-  if (!currentCourse.course || (currentCourse.course.courseDept !== dept
+  if (!currentCourse || !currentCourse.course || (currentCourse.course.courseDept !== dept
     || currentCourse.course.courseNum !== num)) {
     dispatch(fetchCourse(dept, num));
     return (
@@ -48,7 +48,7 @@ export default function CourseInfo() {
         (review) => (
           <ReviewComponent
             key={review.content}
-          // eslint-disable-next-line no-underscore-dangle
+            // eslint-disable-next-line no-underscore-dangle
             user={currentCourse.users.find((user) => user._id === review.user)}
             term={offering.term}
             professors={offering.professors}
@@ -95,7 +95,7 @@ export default function CourseInfo() {
       {currentCourse.course.medians ? <Medians key="mediantiles" medians={currentCourse.course.medians} /> : <B1 key="no data">No Data</B1>}
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
-      { loadReviews() }
+      {loadReviews()}
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
       <ReviewForm courseId={currentCourse.course._id} key="form" users={currentCourse.users} offerings={currentCourse.offerings} />
