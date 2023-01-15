@@ -1,29 +1,45 @@
-/* eslint-disable no-unneeded-ternary */
-// import Link  from 'next/link';
-import React from 'react';
+import Link from 'next/link';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import RemoveWaitlist from '../../../components/RemoveWaitlist';
+import { useDispatch, useSelector } from 'react-redux';
+import RemoveWaitlist from '../../../components/waitlist/RemoveWaitlist';
 import styles from '../../../styles/WaitlistDetail.module.css';
-import CourseData from '../../../data/data';
-import WaitlistData from '../../../data/waitlistdata';
 import SideNavbar from '../../../components/SideNavbar';
 import {
-  H2,
+  H2, B1,
 } from '../../../components/ui/typography';
+import { fetchCourse } from '../../../actions';
 
 export default function WaitlistDetail() {
-  const data = CourseData();
+  const dispatch = useDispatch();
   const router = useRouter();
   const { dept, num } = router.query;
-  const courseCode = `${dept} ${num}`;
-  const courseURL = `/courses/${dept}/${num}`;
-  const currentCourse = data[courseCode];
-  const waitlistData = WaitlistData();
-  const waitlist = waitlistData[courseCode];
+  useEffect(() => {
+    dispatch(fetchCourse(dept, num));
+  }, []);
+
+  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
+  if (!currentCourse || !currentCourse.course
+    || (currentCourse.course.courseDept !== dept || currentCourse.course.courseNum !== num)) {
+    dispatch(fetchCourse(dept, num));
+    return (
+      <B1>Loading...</B1>
+    );
+  }
+
+  //   const waitlistData = WaitlistData();
+  const waitlist = null;
+
   // const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
   // const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
+
   const profilePicture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
+  const termCount = 4;
+  const remaining = 3;
+  const totalSpots = 100;
+  const position = 10;
+  const todayDate = new Date().toLocaleDateString();
   return (
     <div className={styles.container}>
       <Head>
@@ -40,11 +56,11 @@ export default function WaitlistDetail() {
         </H2>
         <div className={styles.course_title}>
           <h1>
-            {currentCourse ? currentCourse.dept : 'Placeholder Course'}
+            {currentCourse.course ? currentCourse.course.courseDept : 'Placeholder Course'}
             {' '}
-            {currentCourse ? currentCourse.num : ' '}
+            {currentCourse.course ? currentCourse.course.courseNum : ' '}
           </h1>
-          <h3>{currentCourse ? currentCourse.courseTitle : 'This course has not been linked. Check back later!'}</h3>
+          <h3>{currentCourse.course ? currentCourse.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
         </div>
       </div>
 
@@ -52,11 +68,11 @@ export default function WaitlistDetail() {
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
             <RemoveWaitlist />
-            <a href={courseURL}>
+            <Link href={`/courses/${dept}/${num}`}>
               <button className={styles.button} type="button">
                 Course Info Page
               </button>
-            </a>
+            </Link>
           </div>
 
           <div className={styles.waitlist_details_container}>
@@ -64,9 +80,9 @@ export default function WaitlistDetail() {
               <h2>
                 Estimated terms remaining:
                 {' '}
-                {waitlist ? waitlist.remaining_terms : 'N/A'}
+                {waitlist ? waitlist.remaining_terms : remaining}
                 {' '}
-                terms
+                term(s)
               </h2>
             </div>
             <div className={styles.waitlist_element}>
@@ -74,16 +90,16 @@ export default function WaitlistDetail() {
                 <h2>
                   Average time spent on waitlist:
                   {' '}
-                  {waitlist ? waitlist.avg_terms : 'N/A'}
+                  {waitlist ? waitlist.avg_terms : termCount}
                   {' '}
-                  terms
+                  term(s)
                 </h2>
               </div>
               <div>
                 <h2>
                   Joined the waitlist:
                   {' '}
-                  {waitlist ? waitlist.joined : 'N/A'}
+                  {waitlist ? waitlist.joined : todayDate}
                 </h2>
               </div>
             </div>
@@ -94,9 +110,9 @@ export default function WaitlistDetail() {
           <div className={styles.waitlist_position}>
             <div className={styles.info_graphic}>
               <h1>
-                {waitlist ? waitlist.waitlist_pos : 'N/A'}
+                {waitlist ? waitlist.waitlist_pos : position}
                 {' / '}
-                {waitlist ? waitlist.waitlist_total : 'N/A'}
+                {waitlist ? waitlist.waitlist_total : totalSpots}
               </h1>
             </div>
             <p>waitlist position</p>
@@ -107,7 +123,7 @@ export default function WaitlistDetail() {
             {/* <div className={styles.profile_picture}>
               photo
             </div> */}
-            <h3>Tim Tregubov</h3>
+            <h3>{currentCourse.course.offerings && currentCourse.course.offerings.length > 0 ? currentCourse.course.offerings[0].professors.join(', ') : ''}</h3>
             <button type="button" className={styles.small_btn}>
               Email
             </button>

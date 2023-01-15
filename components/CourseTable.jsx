@@ -14,39 +14,16 @@ import {
   B3, TextLabel,
 } from './ui/typography';
 import styles from '../styles/components/CourseTable.module.css';
+// import { convertMedian } from './courses/Medians';
 
-const CourseTableMockData = [
-  {
-    courseNumber: 'COSC 52',
-    courseName: 'Full Stack Web Development',
-    term: '21F',
-    quality: '4.0 (3)',
-    difficulty: '3.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A-',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.01',
-    courseName: 'Senior Design and Implementation I',
-    term: '19F',
-    quality: '5.0 (3)',
-    difficulty: '4.0 (3)',
-    hrsPerWeek: '3.0 (4)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0 (3)',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-];
+// function getTerms(offerings) {
+//   const termArray = [];
+//   offerings.forEach((offering) => {
+//     termArray.push(offering.term);
+//   });
+//   const set = new Set(termArray);
+//   return Array.from(set);
+// }
 
 const SearchTableMockData = [
   {
@@ -94,7 +71,7 @@ function Row(props) {
           </TableCell>
         ) : <TableCell />}
         <TableCell component="th" scope="row">
-          {course.courseNumber}
+          {course.courseTitle}
         </TableCell>
         <TableCell align="left">{course.courseName}</TableCell>
         <TableCell align="left">{course.term ? course.term : course.offeredNextTerm}</TableCell>
@@ -114,9 +91,9 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className={styles.collapseContainer}>
               <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
-              {course.reviews.map((review) => (
+              {course.reviews ? course.reviews.map((review) => (
                 <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">{review}</B3>
-              ))}
+              )) : <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">No Reviews</B3>}
             </div>
           </Collapse>
         </TableCell>
