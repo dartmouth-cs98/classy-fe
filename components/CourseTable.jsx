@@ -93,6 +93,7 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
+  console.log(props);
   const courses = CourseTableMockData;
   if (courses === {}) {
     return <div />;
