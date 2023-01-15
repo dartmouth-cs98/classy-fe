@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import getColor from '../data/colorscheme';
-import stylesCI from '../styles/CourseInfo.module.css';
+import getColor from '../../data/colorscheme';
+import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   B1, TextLabel,
-} from './ui/typography';
+} from '../ui/typography';
 
 function MedianTile(props) {
   const { term, median } = props;

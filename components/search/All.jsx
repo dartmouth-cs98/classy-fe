@@ -5,6 +5,7 @@ import { H3 } from '../ui/typography';
 import CourseTitleCard from '../CourseTitleCard';
 import Professor from '../Professor';
 import styles from '../../styles/components/SearchPage.module.css';
+import { cardColors } from '../../data/colors';
 
 const course = {
   courseNumber: 'COSC 52',
@@ -17,15 +18,6 @@ const course = {
   reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
   distribs: ['TLA', 'NW'],
 };
-
-const cardColors = [
-  { pastel: '#FCF0E3', dark: '#BA7D37' },
-  { pastel: '#EBF9FA', dark: '#5B8A8D' },
-  { pastel: '#EFFAEB', dark: '#75946A' },
-  { pastel: '#EFE7FA', dark: '#7E5DAC' },
-  { pastel: '#FAEBF6', dark: '#AE5E99' },
-  { pastel: '#F9F3FC', dark: '#8E5BA8' },
-];
 
 const ProfessorMockData = [
   {
