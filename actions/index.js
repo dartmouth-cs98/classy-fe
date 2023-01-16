@@ -16,6 +16,7 @@ export const ActionTypes = {
   DELETE_PROFESSOR: 'DELETE_PROFESSOR',
   FETCH_EXPLORE: 'FETCH_EXPLORE',
   FETCH_SEARCH: 'FETCH_SEARCH',
+  FETCH_WAITLISTS: 'FETCH_WAITLISTS',
   FETCH_WAITLIST: 'FETCH_WAITLIST',
   FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
   FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
@@ -149,8 +150,18 @@ export const fetchSearch = () => (dispatch) => {
   });
 };
 
-export const fetchWaitlist = () => (dispatch) => {
-  axios.get(`${ROOT_URL}/waitlist/`).then((res) => {
+export const fetchWaitlists = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/waitlist`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_WAITLISTS,
+      payload: response,
+    });
+  });
+};
+
+export const fetchWaitlist = (dept, num) => (dispatch) => {
+  axios.get(`${ROOT_URL}/waitlist/${dept}/${num}`).then((res) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_WAITLIST,

@@ -9,20 +9,21 @@ import SideNavbar from '../../../components/SideNavbar';
 import {
   H2, B1,
 } from '../../../components/ui/typography';
-import { fetchCourse } from '../../../actions';
+import { fetchWaitlist } from '../../../actions';
 
 export default function WaitlistDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { dept, num } = router.query;
   useEffect(() => {
-    dispatch(fetchCourse(dept, num));
+    dispatch(fetchWaitlist(dept, num));
   }, []);
 
-  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
-  if (!currentCourse || !currentCourse.course
-    || (currentCourse.course.courseDept !== dept || currentCourse.course.courseNum !== num)) {
-    dispatch(fetchCourse(dept, num));
+  const currentWaitlist = useSelector((reduxState) => reduxState.waitlist.current);
+  console.log(currentWaitlist);
+  if (!currentWaitlist || !currentWaitlist.course
+    || (currentWaitlist.course.courseDept !== dept || currentWaitlist.course.courseNum !== num)) {
+    dispatch(fetchWaitlist(dept, num));
     return (
       <B1>Loading...</B1>
     );
@@ -33,7 +34,7 @@ export default function WaitlistDetail() {
 
   // const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
   // const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
-
+  console.log();
   const profilePicture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
   const termCount = 4;
   const remaining = 3;
@@ -56,11 +57,11 @@ export default function WaitlistDetail() {
         </H2>
         <div className={styles.course_title}>
           <h1>
-            {currentCourse.course ? currentCourse.course.courseDept : 'Placeholder Course'}
+            {currentWaitlist.course ? currentWaitlist.course.courseDept : 'Placeholder Course'}
             {' '}
-            {currentCourse.course ? currentCourse.course.courseNum : ' '}
+            {currentWaitlist.course ? currentWaitlist.course.courseNum : ' '}
           </h1>
-          <h3>{currentCourse.course ? currentCourse.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
+          <h3>{currentWaitlist.course ? currentWaitlist.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
         </div>
       </div>
 
@@ -123,7 +124,7 @@ export default function WaitlistDetail() {
             {/* <div className={styles.profile_picture}>
               photo
             </div> */}
-            <h3>{currentCourse.course.offerings && currentCourse.course.offerings.length > 0 ? currentCourse.course.offerings[0].professors.join(', ') : ''}</h3>
+            <h3>{currentWaitlist.course.offerings && currentWaitlist.course.offerings.length > 0 ? currentWaitlist.course.offerings[0].professors.join(', ') : ''}</h3>
             <button type="button" className={styles.small_btn}>
               Email
             </button>
