@@ -53,16 +53,10 @@ export default function WaitlistDetail() {
 
       <div className={styles.page_header}>
         <H2 className={styles.title}>
-          My Waitlists
+          {currentWaitlist.onWaitlist
+            ? `Waitlist Status for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`
+            : `Join Waitlist for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`}
         </H2>
-        <div className={styles.course_title}>
-          <h1>
-            {currentWaitlist.course ? currentWaitlist.course.courseDept : 'Placeholder Course'}
-            {' '}
-            {currentWaitlist.course ? currentWaitlist.course.courseNum : ' '}
-          </h1>
-          <h3>{currentWaitlist.course ? currentWaitlist.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
-        </div>
       </div>
 
       <main className={styles.main}>
