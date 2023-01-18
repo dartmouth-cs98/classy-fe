@@ -10,6 +10,7 @@ import {
   MdOutlinePersonOutline,
   MdOutlineSettings,
   MdOutlineLogout,
+  MdOutlineAnimation,
 } from 'react-icons/md';
 import { H4, B1 } from './ui/typography';
 import logo from '../images/logo.png';
@@ -28,7 +29,6 @@ function SideNavbar() {
         <div className="p-6 w-1/2 h-screen bg-black z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start items-center">
             <Image src={logo} width={60} height={60} alt="classy logo" />
-            {/* <img src={logo} alt="logo" /> NOT WORKING */}
             <H4
               color="white"
               className="text-base text-center cursor-pointer font-bold pb-4 w-full mt-3.5"
@@ -55,6 +55,16 @@ function SideNavbar() {
                 <MdOutlineExplore className="text-2xl text-white group-hover:text-black" />
                 <B1 color="white" className="text-base group-hover:text-black">
                   Explore
+                </B1>
+              </a>
+
+              <a
+                href="/social"
+                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
+              >
+                <MdOutlineAnimation className="text-2xl text-white group-hover:text-black" />
+                <B1 color="white" className="text-base group-hover:text-black">
+                  Social
                 </B1>
               </a>
 

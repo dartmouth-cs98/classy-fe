@@ -1,0 +1,21 @@
+.container {
+  padding: 0 2rem;
+  margin-left: 250px;
+  margin-top: 2%;
+  /* height: 100%; */
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.middleContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}

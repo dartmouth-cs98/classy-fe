@@ -1,0 +1,20 @@
+.container {
+  /* display: inline-block; */
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.photoMargin {
+  margin: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
