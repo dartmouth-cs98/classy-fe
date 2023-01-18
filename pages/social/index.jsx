@@ -19,6 +19,10 @@ function Social() {
     if (recButtonState) {
       // add something here to lead to recommended courses
       setRecButtonState(false);
+      setAllFriendsState('neutral');
+      setDPlanState('neutral');
+      setOnNextTermState('neutral');
+      setSameMajorState('neutral');
     } else {
       setAllFriendsState('unselected');
       setDPlanState('unselected');
@@ -42,22 +46,39 @@ function Social() {
         <SearchBar />
       </div>
       <div className={styles.flexCenter}>
-        <button type="button" className={styles.button} onClick={() => setFriendsGroupState(allFriendsState, setAllFriendsState)}>
-          <FriendsGroup title="All Friends" state={allFriendsState} />
-        </button>
+        {allFriendsState === 'neutral'
+          ? <FriendsGroup title="All Friends" state={allFriendsState} />
+          : (
+            <button type="button" className={styles.button} onClick={() => setFriendsGroupState(allFriendsState, setAllFriendsState)}>
+              <FriendsGroup title="All Friends" state={allFriendsState} />
+            </button>
+          )}
         <div className={styles.middleContainer}>
-          <button type="button" className={styles.button} onClick={() => setFriendsGroupState(dPlanState, setDPlanState)}>
-            <FriendsGroup title="Same D-Plan" state={dPlanState} />
-          </button>
+          {dPlanState === 'neutral'
+            ? <div><FriendsGroup title="Same D-Plan" state={dPlanState} /></div>
+            : (
+              <button type="button" className={styles.button} onClick={() => setFriendsGroupState(dPlanState, setDPlanState)}>
+                <FriendsGroup title="Same D-Plan" state={dPlanState} />
+              </button>
+            )}
           <BlackButton title={recButtonState ? 'Done' : 'Recommend me a Course'} onClickFunction={recommendCourse} />
-          <button type="button" className={styles.button} onClick={() => setFriendsGroupState(onNextTermState, setOnNextTermState)}>
-            <FriendsGroup title="On Next Term" state={onNextTermState} />
-          </button>
+          {dPlanState === 'neutral'
+            ? <div><FriendsGroup title="On Next Term" state={onNextTermState} /></div>
+            : (
+              <button type="button" className={styles.button} onClick={() => setFriendsGroupState(onNextTermState, setOnNextTermState)}>
+                <FriendsGroup title="On Next Term" state={onNextTermState} />
+              </button>
+            )}
         </div>
         <div>
-          <button type="button" className={styles.button} onClick={() => setFriendsGroupState(sameMajorState, setSameMajorState)}>
-            <FriendsGroup title="Same Major" state={sameMajorState} />
-          </button>
+          {dPlanState === 'neutral'
+            ? <FriendsGroup title="Same Major" state={sameMajorState} />
+            : (
+              <button type="button" className={styles.button} onClick={() => setFriendsGroupState(sameMajorState, setSameMajorState)}>
+                <FriendsGroup title="Same Major" state={sameMajorState} />
+              </button>
+            )}
+
         </div>
       </div>
     </div>
