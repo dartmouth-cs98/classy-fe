@@ -1,8 +1,8 @@
 import React from 'react';
-import stylesCI from '../styles/CourseInfo.module.css';
+import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   H3,
-} from './ui/typography';
+} from '../ui/typography';
 
 function CourseInfoSubtitle(props) {
   const { text } = props;

@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState } from 'react';
-import styles from '../styles/WaitlistDetail.module.css';
+import styles from '../../styles/WaitlistDetail.module.css';
 
 function EditWaitlist() {
   const [showModal, setShowModal] = useState(false);

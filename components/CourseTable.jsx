@@ -14,76 +14,86 @@ import {
   B3, TextLabel,
 } from './ui/typography';
 import styles from '../styles/components/CourseTable.module.css';
+// import { convertMedian } from './courses/Medians';
 
-const CourseTableMockData = [
+// function getTerms(offerings) {
+//   const termArray = [];
+//   offerings.forEach((offering) => {
+//     termArray.push(offering.term);
+//   });
+//   const set = new Set(termArray);
+//   return Array.from(set);
+// }
+
+const SearchTableMockData = [
   {
     courseNumber: 'COSC 52',
     courseName: 'Full Stack Web Development',
-    term: '21F',
+    offeredNextTerm: 'Yes',
+    distribs: ['TLA', 'NW'],
     quality: '4.0 (3)',
     difficulty: '3.0 (3)',
     hrsPerWeek: '3.0 (3)',
-    median: 'A-',
+    NREligible: 'Yes',
     reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
   },
   {
     courseNumber: 'COSC 98.01',
     courseName: 'Senior Design and Implementation I',
-    term: '19F',
+    offeredNextTerm: 'Yes',
+    distribs: ['SCI'],
     quality: '5.0 (3)',
     difficulty: '4.0 (3)',
     hrsPerWeek: '3.0 (4)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0 (3)',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
+    NREligible: 'No',
     reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
   },
 ];
 
 function Row(props) {
   const {
-    course,
+    course, tableType,
   } = props;
   const [open, setOpen] = React.useState(false);
-
+  console.log(tableType);
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
-          </IconButton>
-        </TableCell>
+        {tableType === 'profInfo' ? (
+          <TableCell>
+            <IconButton
+              aria-label="expand row"
+              size="small"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+            </IconButton>
+          </TableCell>
+        ) : <TableCell />}
         <TableCell component="th" scope="row">
-          {course.courseNumber}
+          {course.courseTitle}
         </TableCell>
         <TableCell align="left">{course.courseName}</TableCell>
-        <TableCell align="left">{course.term}</TableCell>
+        <TableCell align="left">{course.term ? course.term : course.offeredNextTerm}</TableCell>
+        {course.distribs && tableType !== 'profInfo'
+          ? <TableCell align="left">{course.distribs.map((distrib) => <p>{distrib}</p>)}</TableCell>
+          : null}
         <TableCell align="left">{course.quality}</TableCell>
         <TableCell align="left">{course.difficulty}</TableCell>
         <TableCell align="left">{course.hrsPerWeek}</TableCell>
-        <TableCell align="left">{course.median}</TableCell>
+        {course.median ? <TableCell align="left">{course.median}</TableCell> : null}
+        {course.NREligible && tableType !== 'profInfo'
+          ? <TableCell align="left">{course.NREligible}</TableCell> : null}
+
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className={styles.collapseContainer}>
               <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
-              {course.reviews.map((review) => (
+              {course.reviews ? course.reviews.map((review) => (
                 <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">{review}</B3>
-              ))}
+              )) : <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">No Reviews</B3>}
             </div>
           </Collapse>
         </TableCell>
@@ -93,8 +103,11 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
-  console.log(props);
-  const courses = CourseTableMockData;
+  // const { tableType } = props;
+  const tableType = 'search';
+  const courses = SearchTableMockData;
+  // const tableType = 'profInfo';
+  // const courses = CourseTableMockData;
   if (courses === {}) {
     return <div />;
   }
@@ -102,21 +115,38 @@ export default function CollapsibleTable(props) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell align="left">Course</TableCell>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="left">Term</TableCell>
-            <TableCell align="left">Quality</TableCell>
-            <TableCell align="left">Difficulty</TableCell>
-            <TableCell align="left">Hrs/week</TableCell>
-            <TableCell align="left">Median</TableCell>
-          </TableRow>
-        </TableHead>
+        {tableType === 'profInfo'
+          ? (
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell align="left">Course</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Term</TableCell>
+                <TableCell align="left">Quality</TableCell>
+                <TableCell align="left">Difficulty</TableCell>
+                <TableCell align="left">Hrs/week</TableCell>
+                <TableCell align="left">Median</TableCell>
+              </TableRow>
+            </TableHead>
+          ) : (
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell align="left">Course</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Offered Next Term?</TableCell>
+                <TableCell align="left">Distribs</TableCell>
+                <TableCell align="left">Quality</TableCell>
+                <TableCell align="left">Difficulty</TableCell>
+                <TableCell align="left">Hrs/week</TableCell>
+                <TableCell align="left">NR Eligible</TableCell>
+              </TableRow>
+            </TableHead>
+          )}
         <TableBody>
           {courses.map((course) => (
-            <Row key={course.courseNumber} course={course} />
+            <Row key={course.courseNumber} course={course} tableType={tableType} />
           ))}
         </TableBody>
       </Table>
