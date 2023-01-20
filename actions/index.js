@@ -23,6 +23,10 @@ export const ActionTypes = {
   FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
   FETCH_COURSE_REVIEWS: 'FETCH_COURSE_REVIEWS',
   CREATE_REVIEW: 'CREATE_REVIEW',
+  JOIN_WAITLISTS: 'JOIN_WAITLISTS',
+  ADD_TO_ONE_WAITLIST: 'ADD_TO_ONE_WAITLIST',
+  REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
+  WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
 };
 
 // trying this out in async await format
@@ -165,6 +169,46 @@ export const fetchWaitlist = (dept, num) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_WAITLIST,
+      payload: response,
+    });
+  });
+};
+
+export const joinWaitlists = (joinRequest) => (dispatch) => {
+  axios.post(`${ROOT_URL}/waitlist/join`, joinRequest).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.JOIN_WAITLISTS,
+      payload: response,
+    });
+  });
+};
+
+export const addToOneWaitlist = (addRequest) => (dispatch) => {
+  axios.put(`${ROOT_URL}/waitlist/addone`, addRequest).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.ADD_TO_ONE_WAITLIST,
+      payload: response,
+    });
+  });
+};
+
+export const removeFromWaitlist = (removalRequest) => (dispatch) => {
+  axios.put(`${ROOT_URL}/waitlist/remove`, removalRequest).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.REMOVE_FROM_WAITLIST,
+      payload: response,
+    });
+  });
+};
+
+export const withdrawFromWaitlist = (withdrawalRequest) => (dispatch) => {
+  axios.put(`${ROOT_URL}/waitlist/withdraw`, withdrawalRequest).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.WITHDRAW_FROM_WAITLIST,
       payload: response,
     });
   });

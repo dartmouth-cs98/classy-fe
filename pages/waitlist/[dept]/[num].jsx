@@ -8,9 +8,10 @@ import RemoveWaitlist from '../../../components/waitlist/RemoveWaitlist';
 import styles from '../../../styles/WaitlistDetail.module.css';
 import SideNavbar from '../../../components/SideNavbar';
 import {
-  H2, B1,
+  H2, B1, H4, H3,
 } from '../../../components/ui/typography';
-import { fetchWaitlist } from '../../../actions';
+import { addToOneWaitlist, fetchWaitlist } from '../../../actions';
+import WaitlistForm from '../../../components/waitlist/WaitlistForm';
 
 export default function WaitlistDetail() {
   const dispatch = useDispatch();
@@ -32,30 +33,54 @@ export default function WaitlistDetail() {
   const loadOfferings = () => currentWaitlist.course.offerings.map((offering) => {
     const studentObjectId = `ObjectId('${currentWaitlist.student._id}')`;
     let position = -1;
-    if (offering.priorityWaitlist.includes(studentObjectId)) {
-      position = 0;
-    } else if (offering.waitlist.includes(studentObjectId)) {
-      position = offering.priorityWaitlist.length + offering.waitlist.indexOf(studentObjectId) + 1;
-    }
     const totalLength = offering.priorityWaitlist.length + offering.waitlist.length;
+    if (offering.priorityWaitlist.includes(studentObjectId)) {
+      position = 'Priority';
+    } else if (offering.waitlist.includes(studentObjectId)) {
+      position = `${offering.priorityWaitlist.length + offering.waitlist.indexOf(studentObjectId) + 1}/${totalLength}`;
+    }
+
+    const positionDisplay = () => {
+      if (position === -1) {
+        if (currentWaitlist.onWaitlist) {
+          return (
+            <B1>
+              <button
+                className={styles.button}
+                type="button"
+                onClick={dispatch(addToOneWaitlist({
+                  courseDept: dept,
+                  courseNum: num,
+                  studentId: studentObjectId,
+                  term: offering.term,
+                }))}
+              >
+                {`Join ${offering.term} Waitlist`}
+              </button>
+            </B1>
+          );
+        }
+        return '-';
+      }
+      return (
+        <RemoveWaitlist
+          dept={currentWaitlist.course.courseDept}
+          num={currentWaitlist.course.courseNum}
+          offering={offering}
+          studentId={`ObjectId('${currentWaitlist.student._id}')`}
+        />
+      );
+    };
+
     // display position out of total if on a waitlist for the term,
     // otherwise just show waitlist length
     return (
       <tr key={offering.term}>
-        <td>{offering.term}</td>
-        <td>{offering.professors}</td>
-        <td>{position === -1 ? totalLength : `${position}/${totalLength}`}</td>
+        <td><B1>{offering.term}</B1></td>
+        <td><B1>{offering.professors.join(', ')}</B1></td>
+        <td><B1>{position === -1 ? totalLength : position}</B1></td>
         <td>
-          {position === -1
-            ? '-'
-            : (
-              <RemoveWaitlist
-                dept={currentWaitlist.course.courseDept}
-                num={currentWaitlist.course.courseNum}
-                offering={offering}
-              />
-            )}
-
+          <B1>{positionDisplay()}</B1>
         </td>
       </tr>
     );
@@ -81,12 +106,25 @@ export default function WaitlistDetail() {
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
             {currentWaitlist.onWaitlist
-              ? `Withdraw from All ${dept} ${num} Waitlists`
-              : `Join ${dept} ${num} Waitlists`}
+              ? (
+                <RemoveWaitlist
+                  dept={currentWaitlist.course.courseDept}
+                  num={currentWaitlist.course.courseNum}
+                  studentId={`ObjectId('${currentWaitlist.student._id}')`}
+                />
+              )
+              : (
+                <WaitlistForm
+                  course={currentWaitlist.course}
+                  studentId={`ObjectId('${currentWaitlist.student._id}')`}
+                />
+              )}
             <Link href={`/courses/${dept}/${num}`}>
-              <button className={styles.button} type="button">
-                Course Info Page
-              </button>
+              <H3>
+                <button className={styles.button} type="button">
+                  Course Info Page
+                </button>
+              </H3>
             </Link>
           </div>
 
@@ -94,10 +132,10 @@ export default function WaitlistDetail() {
             <table>
               <thead>
                 <tr>
-                  <th>Term</th>
-                  <th>Professor(s)</th>
-                  <th># on Waitlist</th>
-                  <th>Action</th>
+                  <th><H4>Term</H4></th>
+                  <th><H4>Professor(s)</H4></th>
+                  <th><H4># on Waitlist</H4></th>
+                  <th><H4>Action</H4></th>
                 </tr>
               </thead>
               <tbody>
