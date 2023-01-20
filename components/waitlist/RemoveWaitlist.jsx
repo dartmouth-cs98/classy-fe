@@ -5,8 +5,9 @@ import styles from '../../styles/WaitlistDetail.module.css';
 // reactstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function RemoveWaitlist() {
-//   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
+function RemoveWaitlist(props) {
+  const { dept, num, offering } = props;
+  //   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
   const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
     false,
   );
@@ -14,23 +15,24 @@ function RemoveWaitlist() {
   return (
     <>
       <button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
-        Remove Waitlist Request
+        Withdraw
       </button>
 
       <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger" onClick={() => setModalNotificationOpen(false)}>
         <div className=" modal-body">
           <div className=" py-3 text-center">
             <i className=" ni ni-bell-55 ni-3x" />
-            <h4 className=" heading mt-4">Remove Waitlist Request</h4>
+            <h4 className=" heading mt-4">{`Withdraw from waitlist for ${dept} ${num} (${offering.term})?`}</h4>
             <p>
-              If you would like to be removed from this wailtist, please confirm your intent below
+              Once you withdraw your spot, you will be placed on the end of the waitlist
+              should you choose to get back on.
             </p>
           </div>
         </div>
         <div className=" modal-footer">
           <Link href="/waitlist/">
             <button className={styles.button} type="button">
-              Yes, remove request
+              Yes, withdraw
             </button>
           </Link>
           <Button

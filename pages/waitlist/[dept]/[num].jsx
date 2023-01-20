@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -20,7 +21,6 @@ export default function WaitlistDetail() {
   }, []);
 
   const currentWaitlist = useSelector((reduxState) => reduxState.waitlist.current);
-  console.log(currentWaitlist);
   if (!currentWaitlist || !currentWaitlist.course
     || (currentWaitlist.course.courseDept !== dept || currentWaitlist.course.courseNum !== num)) {
     dispatch(fetchWaitlist(dept, num));
@@ -29,18 +29,37 @@ export default function WaitlistDetail() {
     );
   }
 
-  //   const waitlistData = WaitlistData();
-  const waitlist = null;
+  const loadOfferings = () => currentWaitlist.course.offerings.map((offering) => {
+    const studentObjectId = `ObjectId('${currentWaitlist.student._id}')`;
+    let position = -1;
+    if (offering.priorityWaitlist.includes(studentObjectId)) {
+      position = 0;
+    } else if (offering.waitlist.includes(studentObjectId)) {
+      position = offering.priorityWaitlist.length + offering.waitlist.indexOf(studentObjectId) + 1;
+    }
+    const totalLength = offering.priorityWaitlist.length + offering.waitlist.length;
+    // display position out of total if on a waitlist for the term,
+    // otherwise just show waitlist length
+    return (
+      <tr key={offering.term}>
+        <td>{offering.term}</td>
+        <td>{offering.professors}</td>
+        <td>{position === -1 ? totalLength : `${position}/${totalLength}`}</td>
+        <td>
+          {position === -1
+            ? '-'
+            : (
+              <RemoveWaitlist
+                dept={currentWaitlist.course.courseDept}
+                num={currentWaitlist.course.courseNum}
+                offering={offering}
+              />
+            )}
 
-  // const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
-  // const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
-  console.log();
-  const profilePicture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
-  const termCount = 4;
-  const remaining = 3;
-  const totalSpots = 100;
-  const position = 10;
-  const todayDate = new Date().toLocaleDateString();
+        </td>
+      </tr>
+    );
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -53,16 +72,17 @@ export default function WaitlistDetail() {
 
       <div className={styles.page_header}>
         <H2 className={styles.title}>
-          {currentWaitlist.onWaitlist
-            ? `Waitlist Status for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`
-            : `Join Waitlist for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`}
+          {`Waitlist ${currentWaitlist.onWaitlist ? 'Status' : 'Info'}
+           for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`}
         </H2>
       </div>
 
       <main className={styles.main}>
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
-            <RemoveWaitlist />
+            {currentWaitlist.onWaitlist
+              ? `Withdraw from All ${dept} ${num} Waitlists`
+              : `Join ${dept} ${num} Waitlists`}
             <Link href={`/courses/${dept}/${num}`}>
               <button className={styles.button} type="button">
                 Course Info Page
@@ -71,70 +91,22 @@ export default function WaitlistDetail() {
           </div>
 
           <div className={styles.waitlist_details_container}>
-            <div className={styles.waitlist_element}>
-              <h2>
-                Estimated terms remaining:
-                {' '}
-                {waitlist ? waitlist.remaining_terms : remaining}
-                {' '}
-                term(s)
-              </h2>
-            </div>
-            <div className={styles.waitlist_element}>
-              <div>
-                <h2>
-                  Average time spent on waitlist:
-                  {' '}
-                  {waitlist ? waitlist.avg_terms : termCount}
-                  {' '}
-                  term(s)
-                </h2>
-              </div>
-              <div>
-                <h2>
-                  Joined the waitlist:
-                  {' '}
-                  {waitlist ? waitlist.joined : todayDate}
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.right_info}>
-          <div className={styles.waitlist_position}>
-            <div className={styles.info_graphic}>
-              <h1>
-                {waitlist ? waitlist.waitlist_pos : position}
-                {' / '}
-                {waitlist ? waitlist.waitlist_total : totalSpots}
-              </h1>
-            </div>
-            <p>waitlist position</p>
-          </div>
-
-          <div className={styles.prof_info_container}>
-            <img className={styles.profile_picture} src={profilePicture} alt="Tim" />
-            {/* <div className={styles.profile_picture}>
-              photo
-            </div> */}
-            <h3>{currentWaitlist.course.offerings && currentWaitlist.course.offerings.length > 0 ? currentWaitlist.course.offerings[0].professors.join(', ') : ''}</h3>
-            <button type="button" className={styles.small_btn}>
-              Email
-            </button>
+            <table>
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Professor(s)</th>
+                  <th># on Waitlist</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loadOfferings()}
+              </tbody>
+            </table>
           </div>
         </div>
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="_blank"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Classy
-        </a>
-      </footer> */}
     </div>
   );
 }
