@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['classy-api-bucket.s3.amazonaws.com', 's3.amazonaws.com'],
+  },
 };
 
 // const imagesConfig = {
@@ -9,9 +12,9 @@ const nextConfig = {
 //     remotePatterns: [
 //       {
 //         protocol: 'https',
-//         hostname: 'example.com',
+//         hostname: 'classy-api-bucket.s3.amazonaws.com',
 //         port: '',
-//         pathname: '/account123/**',
+//         pathname: '**',
 //       },
 //     ],
 //   },
