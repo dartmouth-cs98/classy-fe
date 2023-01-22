@@ -14,7 +14,7 @@ function RemoveWaitlist() {
   return (
     <>
       <button className={styles.button} onClick={() => setModalNotificationOpen(true)} type="button">
-        Remove Waitlist Request
+        Remove
       </button>
 
       <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger" onClick={() => setModalNotificationOpen(false)}>
