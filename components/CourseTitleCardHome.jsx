@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  H1, H4, B1, B3, TextLabel,
+  H1, H4, B1, TextLabel,
 } from './ui/typography';
 // eslint-disable-next-line import/no-unresolved
 import styles from '../styles/components/CourseTitleCard.module.css';
@@ -32,30 +32,16 @@ function CourseTitleCard(props) {
     <Link href={`/courses/COSC/${courseNum}`}>
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
-
           <div className={styles.topLeft}>
-            {course.distribs.map((distrib, i) => (
-              <TextLabel key={distrib} color="var(--dark-grey)">
-                {i + 1 === course.distribs.length ? distrib : `${distrib} • `}
-              </TextLabel>
-            ))}
+            <TextLabel color="var(--dark-grey)">
+              {course.location}
+            </TextLabel>
           </div>
-
-          <div className={styles.qualityReview}>
-            <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
-            <H1 color={color.dark}>{course.quality}</H1>
-            <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
-              {course.reviews.length}
-              {' '}
-              Reviews
-            </B3>
-          </div>
-
+          <H1 color={color.dark} style={{ marginBottom: '-13px' }}>{course.timeBlock}</H1>
         </div>
-
         <div>
-          <H4 className={styles.name} style={{ margin: '0px' }}>{course.courseNumber}</H4>
-          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseName}</B1>
+          <H4 color="var(--white)" className={styles.name} style={{ margin: '0px' }}>{course.courseNumber}</H4>
+          <B1 color="var(--lighter-grey)" className={styles.description}>{course.courseName}</B1>
         </div>
 
       </div>

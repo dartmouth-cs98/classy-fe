@@ -54,6 +54,7 @@ const professorInfoMockData = {
       median: 'A-',
       reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
       distribs: ['TLA', 'NW'],
+      location: 'ECSC202',
     },
     {
       courseNumber: 'COSC 98.01',
@@ -65,6 +66,7 @@ const professorInfoMockData = {
       median: 'A',
       reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
       distribs: ['TLA', 'NW'],
+      location: 'ECSC101',
     },
     {
       courseNumber: 'COSC 98.02',
@@ -76,6 +78,7 @@ const professorInfoMockData = {
       median: 'A',
       reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
       distribs: ['TLA', 'NW'],
+      location: 'LSC101',
     },
   ],
 };

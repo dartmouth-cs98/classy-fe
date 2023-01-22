@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/components/CourseProfessorCard.module.css';
+import styles from '../styles/components/ProfessorCard.module.css';
 import { H4, B1 } from './ui/typography';
 
 function Professor(props) {
