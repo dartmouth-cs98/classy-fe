@@ -54,7 +54,7 @@ function Department(props) {
             Computer Science
             {' ('}
             {dept}
-            ) Department
+            )
           </H2>
           <div className={styles.header}>
             <H3>Professors</H3>
