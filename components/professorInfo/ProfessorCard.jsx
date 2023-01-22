@@ -19,9 +19,9 @@ function ProfessorCard(props) {
     <div className={styles.container}>
       <img className={styles.pic} src={pic} alt="Tim" />
       <div className={styles.wordSection}>
-        <TextLabel color="var(--darkest-grey)">Professor</TextLabel>
+        <TextLabel>Professor</TextLabel>
         <H1 style={{ margin: '0px' }}>{name}</H1>
-        <B1>{department}</B1>
+        <B1 color="var(--darkest-grey)">{department}</B1>
       </div>
     </div>
   );

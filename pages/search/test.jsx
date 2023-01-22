@@ -27,6 +27,10 @@ function HomePage() {
           <B1 color="var(--darkest-grey)">Computer Science Major • Economics Minor </B1>
           <H3>test</H3>
         </div>
+        <A>Edit Profile</A>
+        <H1>Tim Tregubov</H1>
+        <B1>Computer Science Major • Economics Minor </B1>
+        <H3>test</H3>
       </div>
 
     </div>
