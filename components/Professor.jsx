@@ -8,7 +8,7 @@ function Professor(props) {
   const { professor } = props;
   const { pic, name, department } = professor;
   return (
-    <Link href="/professorInfo">
+    <Link href={`/professors/${name}`}>
       <div className={styles.card}>
         <img className={styles.pic} style={{ marginBottom: 5 }} src={pic} alt="Tim" />
         <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
