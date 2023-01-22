@@ -42,7 +42,7 @@ function All(props) {
 
   return (
     <div>
-      <div>
+      <div className={styles.horizontalContainer}>
         <div className={styles.container}>
           <div className={styles.header}>
             <H3>Top Result</H3>
