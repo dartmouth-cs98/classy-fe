@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/api';
+export const ROOT_URL = 'http://localhost:8000/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -190,7 +190,7 @@ export const fetchCourseReviews = (dept, num) => (dispatch) => {
 };
 
 export const createCourseReview = (courseId, offering, review) => (dispatch) => {
-// eslint-disable-next-line no-underscore-dangle
+  // eslint-disable-next-line no-underscore-dangle
   axios
     .post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review)
     .then((res) => {
