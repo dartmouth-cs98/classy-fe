@@ -33,6 +33,7 @@ export default function WaitlistDetail() {
   const loadOfferings = () => currentWaitlist.course.offerings.map((offering) => {
     const studentObjectId = `ObjectId('${currentWaitlist.student._id}')`;
     let position = -1;
+    console.log(offering);
     const totalLength = offering.priorityWaitlist.length + offering.waitlist.length;
     if (offering.priorityWaitlist.includes(studentObjectId)) {
       position = 'Priority';
