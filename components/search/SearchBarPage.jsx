@@ -9,7 +9,7 @@ function SearchBarPage(props) {
   const [searchInput, setSearchInput] = useState('');
   const [tab, setTab] = useState('All');
   const [searchResults, setSearchResults] = useState(null);
-  const { body } = props;
+  const { children } = props;
 
   const input = useCallback((inputElement) => {
     if (inputElement) {
@@ -39,7 +39,7 @@ function SearchBarPage(props) {
             </div>
           )
           : ( // else show default body
-            body
+            children
           )
 
       }

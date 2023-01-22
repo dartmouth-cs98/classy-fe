@@ -5,7 +5,9 @@ import DefaultBody from '../../components/search/DefaultBody';
 
 function SearchPage() {
   return (
-    <SearchBarPage body={<DefaultBody />} />
+    <SearchBarPage>
+      <DefaultBody />
+    </SearchBarPage>
   );
 }
 

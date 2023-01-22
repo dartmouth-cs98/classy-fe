@@ -47,53 +47,36 @@ function Department(props) {
   };
 
   return (
-    <div style={{ padding: '20px 80px 50px 275px' }}>
+    <SearchBarPage>
       <div>
-        <SearchBar
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          input={input}
-          setSearchResults={setSearchResults}
-          onBlur={onBlur}
-        />
+        <div className={styles.container}>
+          <H2 style={{ marginTop: 60 }}>
+            Computer Science
+            {' ('}
+            {dept}
+            ) Department
+          </H2>
+          <div className={styles.header}>
+            <H3>Professors</H3>
+            <A>See All</A>
+          </div>
+          <div className={styles.resultContainer}>
+            {ProfessorMockData.map((professor, i) => (
+              <Professor key={professor.name} professor={professor} />
+            ))}
+          </div>
+        </div>
 
-        {
-        searchInput // if search input exists, show tab bar page
-          ? (
-            <div>
-              <TabBar tab={tab} setTab={setTab} />
-              <SearchResults tab={tab} results={searchResults} />
-            </div>
-          )
-          : ( // else show default page
-            <div>
-              <div className={styles.container}>
-                <H2>{dept}</H2>
-                <div className={styles.header}>
-                  <H3>Professors</H3>
-                  <A>See All</A>
-                </div>
-                <div className={styles.resultContainer}>
-                  {ProfessorMockData.map((professor, i) => (
-                    <Professor key={professor.name} professor={professor} />
-                  ))}
-                </div>
-              </div>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <H3>Courses</H3>
+          </div>
+          <div className={styles.resultContainer}>
 
-              <div className={styles.container}>
-                <div className={styles.header}>
-                  <H3>Courses</H3>
-                </div>
-                <div className={styles.resultContainer}>
-
-                </div>
-              </div>
-            </div>
-          )
-
-      }
+          </div>
+        </div>
       </div>
-    </div>
+    </SearchBarPage>
   );
 }
 
