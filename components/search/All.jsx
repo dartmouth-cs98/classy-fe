@@ -54,7 +54,7 @@ function All(props) {
 
         <div className={styles.container}>
           <div className={styles.header}>
-            <H3>Featured Professors</H3>
+            <H3>Professors</H3>
           </div>
           <div className={styles.resultContainer}>
             {ProfessorMockData.map((professor, i) => (
@@ -66,7 +66,7 @@ function All(props) {
       </div>
 
       <div className={styles.header}>
-        <H3>Featured Courses</H3>
+        <H3>Courses</H3>
       </div>
     </div>
   );
