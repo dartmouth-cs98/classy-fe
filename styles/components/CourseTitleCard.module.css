@@ -20,22 +20,13 @@
   box-sizing: border-box;
 }
 
-.card {
-  margin: 0;
-  width: 174px;
-  cursor: pointer;
-}
-
-.card:hover {
-  opacity: 0.5;
-}
-
-.distribs {
+.topLeft {
   position: absolute;
   top: 5px;
   left: 10px;
 }
 
+/* following classes are same as those found in ProfessorCard.module.css */
 .description {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -50,11 +41,12 @@
   white-space: nowrap;
 }
 
+.card {
+  margin: 0;
+  width: 174px;
+  cursor: pointer;
+}
 
-.pic {
-    height: 174px;
-    width: 174px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 5px;
+.card:hover {
+  opacity: 0.75;
 }

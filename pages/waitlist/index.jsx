@@ -5,7 +5,7 @@ import styles from '../../styles/WaitlistHome.module.css';
 import SideNavbar from '../../components/SideNavbar';
 import { H2, B1 } from '../../components/ui/typography';
 import WaitlistCard from '../../components/waitlist/WaitlistCard';
-import { fetchWaitlist } from '../../actions';
+import { fetchWaitlists } from '../../actions';
 
 const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
 const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
@@ -13,9 +13,10 @@ const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5B
 export default function WaitlistHome() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchWaitlist());
+    dispatch(fetchWaitlists());
   }, []);
   const waitlistContent = useSelector((reduxState) => reduxState.waitlist.current);
+  console.log(waitlistContent);
   return (
     <div className={styles.container}>
       <Head>
@@ -44,6 +45,7 @@ export default function WaitlistHome() {
               courseNum={course.courseNum}
               courseTitle={course.courseTitle}
               index={index}
+              key={`${course.courseDept}${course.courseNum}`}
             />
           )) : ''}
         </div>

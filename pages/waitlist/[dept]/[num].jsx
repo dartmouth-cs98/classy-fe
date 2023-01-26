@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -7,39 +8,84 @@ import RemoveWaitlist from '../../../components/waitlist/RemoveWaitlist';
 import styles from '../../../styles/WaitlistDetail.module.css';
 import SideNavbar from '../../../components/SideNavbar';
 import {
-  H2, B1,
+  H2, B1, H4, H3,
 } from '../../../components/ui/typography';
-import { fetchCourse } from '../../../actions';
+import { addToOneWaitlist, fetchWaitlist } from '../../../actions';
+import WaitlistForm from '../../../components/waitlist/WaitlistForm';
 
 export default function WaitlistDetail() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { dept, num } = router.query;
   useEffect(() => {
-    dispatch(fetchCourse(dept, num));
+    dispatch(fetchWaitlist(dept, num));
   }, []);
 
-  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
-  if (!currentCourse || !currentCourse.course
-    || (currentCourse.course.courseDept !== dept || currentCourse.course.courseNum !== num)) {
-    dispatch(fetchCourse(dept, num));
+  const currentWaitlist = useSelector((reduxState) => reduxState.waitlist.current);
+  if (!currentWaitlist || !currentWaitlist.course
+    || (currentWaitlist.course.courseDept !== dept || currentWaitlist.course.courseNum !== num)) {
+    dispatch(fetchWaitlist(dept, num));
     return (
       <B1>Loading...</B1>
     );
   }
 
-  //   const waitlistData = WaitlistData();
-  const waitlist = null;
+  const loadOfferings = () => currentWaitlist.course.offerings.map((offering) => {
+    const studentObjectId = `ObjectId('${currentWaitlist.student._id}')`;
+    let position = -1;
+    console.log(offering);
+    const totalLength = offering.priorityWaitlist.length + offering.waitlist.length;
+    if (offering.priorityWaitlist.includes(studentObjectId)) {
+      position = 'Priority';
+    } else if (offering.waitlist.includes(studentObjectId)) {
+      position = `${offering.priorityWaitlist.length + offering.waitlist.indexOf(studentObjectId) + 1}/${totalLength}`;
+    }
 
-  // const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
-  // const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
+    const positionDisplay = () => {
+      if (position === -1) {
+        if (currentWaitlist.onWaitlist) {
+          return (
+            <B1>
+              <button
+                className={styles.button}
+                type="button"
+                onClick={dispatch(addToOneWaitlist({
+                  courseDept: dept,
+                  courseNum: num,
+                  studentId: studentObjectId,
+                  term: offering.term,
+                }))}
+              >
+                {`Join ${offering.term} Waitlist`}
+              </button>
+            </B1>
+          );
+        }
+        return '-';
+      }
+      return (
+        <RemoveWaitlist
+          dept={currentWaitlist.course.courseDept}
+          num={currentWaitlist.course.courseNum}
+          offering={offering}
+          studentId={`ObjectId('${currentWaitlist.student._id}')`}
+        />
+      );
+    };
 
-  const profilePicture = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
-  const termCount = 4;
-  const remaining = 3;
-  const totalSpots = 100;
-  const position = 10;
-  const todayDate = new Date().toLocaleDateString();
+    // display position out of total if on a waitlist for the term,
+    // otherwise just show waitlist length
+    return (
+      <tr key={offering.term}>
+        <td><B1>{offering.term}</B1></td>
+        <td><B1>{offering.professors.join(', ')}</B1></td>
+        <td><B1>{position === -1 ? totalLength : position}</B1></td>
+        <td>
+          <B1>{positionDisplay()}</B1>
+        </td>
+      </tr>
+    );
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -52,94 +98,54 @@ export default function WaitlistDetail() {
 
       <div className={styles.page_header}>
         <H2 className={styles.title}>
-          My Waitlists
+          {`Waitlist ${currentWaitlist.onWaitlist ? 'Status' : 'Info'}
+           for ${currentWaitlist.course.courseDept} ${currentWaitlist.course.courseNum}`}
         </H2>
-        <div className={styles.course_title}>
-          <h1>
-            {currentCourse.course ? currentCourse.course.courseDept : 'Placeholder Course'}
-            {' '}
-            {currentCourse.course ? currentCourse.course.courseNum : ' '}
-          </h1>
-          <h3>{currentCourse.course ? currentCourse.course.courseTitle : 'This course has not been linked. Check back later!'}</h3>
-        </div>
       </div>
 
       <main className={styles.main}>
         <div className={styles.left_info}>
           <div className={styles.waitlist_btns}>
-            <RemoveWaitlist />
+            {currentWaitlist.onWaitlist
+              ? (
+                <RemoveWaitlist
+                  dept={currentWaitlist.course.courseDept}
+                  num={currentWaitlist.course.courseNum}
+                  studentId={`ObjectId('${currentWaitlist.student._id}')`}
+                />
+              )
+              : (
+                <WaitlistForm
+                  course={currentWaitlist.course}
+                  studentId={`ObjectId('${currentWaitlist.student._id}')`}
+                />
+              )}
             <Link href={`/courses/${dept}/${num}`}>
-              <button className={styles.button} type="button">
-                Course Info Page
-              </button>
+              <H3>
+                <button className={styles.button} type="button">
+                  Course Info Page
+                </button>
+              </H3>
             </Link>
           </div>
 
           <div className={styles.waitlist_details_container}>
-            <div className={styles.waitlist_element}>
-              <h2>
-                Estimated terms remaining:
-                {' '}
-                {waitlist ? waitlist.remaining_terms : remaining}
-                {' '}
-                term(s)
-              </h2>
-            </div>
-            <div className={styles.waitlist_element}>
-              <div>
-                <h2>
-                  Average time spent on waitlist:
-                  {' '}
-                  {waitlist ? waitlist.avg_terms : termCount}
-                  {' '}
-                  term(s)
-                </h2>
-              </div>
-              <div>
-                <h2>
-                  Joined the waitlist:
-                  {' '}
-                  {waitlist ? waitlist.joined : todayDate}
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.right_info}>
-          <div className={styles.waitlist_position}>
-            <div className={styles.info_graphic}>
-              <h1>
-                {waitlist ? waitlist.waitlist_pos : position}
-                {' / '}
-                {waitlist ? waitlist.waitlist_total : totalSpots}
-              </h1>
-            </div>
-            <p>waitlist position</p>
-          </div>
-
-          <div className={styles.prof_info_container}>
-            <img className={styles.profile_picture} src={profilePicture} alt="Tim" />
-            {/* <div className={styles.profile_picture}>
-              photo
-            </div> */}
-            <h3>{currentCourse.course.offerings && currentCourse.course.offerings.length > 0 ? currentCourse.course.offerings[0].professors.join(', ') : ''}</h3>
-            <button type="button" className={styles.small_btn}>
-              Email
-            </button>
+            <table>
+              <thead>
+                <tr>
+                  <th><H4>Term</H4></th>
+                  <th><H4>Professor(s)</H4></th>
+                  <th><H4># on Waitlist</H4></th>
+                  <th><H4>Action</H4></th>
+                </tr>
+              </thead>
+              <tbody>
+                {loadOfferings()}
+              </tbody>
+            </table>
           </div>
         </div>
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="_blank"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Classy
-        </a>
-      </footer> */}
     </div>
   );
 }

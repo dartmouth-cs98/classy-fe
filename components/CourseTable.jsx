@@ -92,7 +92,7 @@ function Row(props) {
             <div className={styles.collapseContainer}>
               <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
               {course.reviews ? course.reviews.map((review) => (
-                <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">{review}</B3>
+                <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)" key={review}>{review}</B3>
               )) : <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">No Reviews</B3>}
             </div>
           </Collapse>

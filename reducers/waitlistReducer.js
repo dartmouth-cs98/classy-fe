@@ -8,6 +8,8 @@ const initialState = {
 
 const WaitlistReducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case ActionTypes.FETCH_WAITLISTS:
+      return { current: action.payload };
     case ActionTypes.FETCH_WAITLIST:
       return { current: action.payload };
     default:

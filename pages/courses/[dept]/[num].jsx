@@ -43,7 +43,7 @@ export default function CourseInfo() {
     if (!currentCourse.course.reviewCount) {
       return <B1>No Reviews</B1>;
     }
-    return currentCourse.offerings.map(
+    return currentCourse.course.offerings.map(
       (offering) => offering.reviews.map(
         (review) => (
           <ReviewComponent
@@ -89,7 +89,7 @@ export default function CourseInfo() {
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
-      {currentCourse.offerings ? <Offered key="offerings" offerings={currentCourse.offerings} /> : <B1 key="no offerings">No Data</B1>}
+      {currentCourse.course.offerings ? <Offered key="offerings" offerings={currentCourse.course.offerings} /> : <B1 key="no offerings">No Data</B1>}
 
       <CourseInfoSubtitle key="medians" text="Medians" />
       {currentCourse.course.medians ? <Medians key="mediantiles" medians={currentCourse.course.medians} /> : <B1 key="no data">No Data</B1>}

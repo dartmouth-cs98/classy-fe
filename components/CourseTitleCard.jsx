@@ -4,7 +4,7 @@ import {
   H1, H4, B1, B3, TextLabel,
 } from './ui/typography';
 // eslint-disable-next-line import/no-unresolved
-import styles from '../styles/components/CourseProfessorCard.module.css';
+import styles from '../styles/components/CourseTitleCard.module.css';
 
 // const CourseTitleMockData = {
 //   distribs: ['TLA', 'NW'],
@@ -29,7 +29,8 @@ function CourseTitleCard(props) {
     <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
-          <div className={styles.distribs}>
+
+          <div className={styles.topLeft}>
             {distribsWC ? distribsWC.map((distrib, i) => (
               <TextLabel key={distrib} color="var(--dark-grey)">
                 {i + 1 === course.distribs.length ? distrib : `${distrib} • `}
@@ -38,6 +39,7 @@ function CourseTitleCard(props) {
               <TextLabel key="N/A" color="var(--dark-grey)" />
             )}
           </div>
+
           <div className={styles.qualityReview}>
             <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
             <H1 color={color.dark}>
@@ -52,7 +54,9 @@ function CourseTitleCard(props) {
               Reviews
             </B3>
           </div>
+
         </div>
+
         <div>
           <H4 className={styles.name} style={{ margin: '0px' }}>
             {course.courseDept}

@@ -95,7 +95,11 @@ function ProfessorInfo() {
         <TextLabel color="var(--darkest-grey)">Featured Courses</TextLabel>
         <div className={styles.featuredCardsContainer}>
           {professorInfoMockData.featuredCourses.map((course, i) => (
-            <CourseTitleCard course={course} color={cardColors[i % cardColors.length]} />
+            <CourseTitleCard
+              course={course}
+              color={cardColors[i % cardColors.length]}
+              key={course.courseName}
+            />
           ))}
         </div>
       </div>
