@@ -1,0 +1,25 @@
+.container {
+  padding: 0 2rem;
+  margin-left: 250px;
+  margin-top: 2%;
+}
+
+.professorContainer {
+  min-height: 20vh;
+  margin-bottom: 20px;
+}
+
+.featuredCoursesContainer {
+  min-height: 20vh;
+  margin-bottom: 20px;
+}
+
+.featuredCardsContainer {
+  display: flex;
+  gap: 60px;
+  margin: 20px;
+}
+
+.courseTableContainer {
+  height: 60vh;
+}
