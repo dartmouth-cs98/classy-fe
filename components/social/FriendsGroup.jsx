@@ -15,7 +15,7 @@ function FriendsGroup(props) {
       <div className={styles.row}>
         <div className={styles.photoMargin}>
           <Image
-            src={photo}
+            src="https://classy-api-bucket.s3.amazonaws.com/Tran_Vi.png"
             width={100}
             height={100}
             alt="classy logo"

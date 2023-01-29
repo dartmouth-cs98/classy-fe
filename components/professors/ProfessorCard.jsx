@@ -6,9 +6,10 @@ import styles from '../../styles/components/ProfessorCard.module.css';
 
 function ProfessorCard(props) {
   const { name, departments } = props;
+
   return (
     <div className={styles.container}>
-      <img className={styles.pic} src="https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6" alt="Tim" />
+      <img className={styles.pic} src="https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6" alt="prof pic" />
       <div className={styles.wordSection}>
         <TextLabel color="var(--darkest-grey)">Professor</TextLabel>
         <H1 style={{ margin: '0px' }}>{name}</H1>
