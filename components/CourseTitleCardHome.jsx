@@ -29,7 +29,12 @@ function CourseTitleCard(props) {
   // } = CourseTitleMockData;
   const courseNum = course.courseNumber.split(' ')[1];
   return (
-    <Link href={`/courses/COSC/${courseNum}`}>
+    <Link
+      href={`/courses/COSC/${courseNum}`}
+      style={{
+        marginBottom: '15px',
+      }}
+    >
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
           <div className={styles.topLeft}>

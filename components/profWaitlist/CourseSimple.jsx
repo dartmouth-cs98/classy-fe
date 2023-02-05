@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import {
   H1, H4, H5, B1, TextLabel,
-} from './ui/typography';
+} from '../ui/typography';
 // eslint-disable-next-line import/no-unresolved
-import styles from '../styles/components/CourseSimple.module.css';
+import styles from '../../styles/components/CourseSimple.module.css';
 
 // const CourseTitleMockData = {
 //   distribs: ['TLA', 'NW'],

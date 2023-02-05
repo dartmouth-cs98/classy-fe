@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import CourseSimple from '../../components/CourseSimple';
+import CourseSimple from '../../components/profWaitlist/CourseSimple';
 import {
   A, H3, H1, B1,
 } from '../../components/ui/typography';

@@ -1,0 +1,20 @@
+.text {
+    text-align: right;
+    padding-top: 3%;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagenum {
+    margin: 20px 30px;
+
+}
+
+.pagenum li {
+    display: inline-block;
+    margin: 0 10px;
+}
