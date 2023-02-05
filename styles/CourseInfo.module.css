@@ -109,3 +109,8 @@
     border: 1px solid lightgray;
     border-radius: 0.25em;
 }
+
+.marginTopBottom {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

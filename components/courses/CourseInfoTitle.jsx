@@ -4,6 +4,7 @@ import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   H2, TextLabel,
 } from '../ui/typography';
+import RecommendCourseModal from './RecommendCourseModal';
 
 function showCourseCodes(course) {
   const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
@@ -34,6 +35,7 @@ function CourseInfoTitle(props) {
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>
       </button>
+      <RecommendCourseModal />
     </div>
   );
 }
