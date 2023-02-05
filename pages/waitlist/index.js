@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
-// import Head from 'next/head';
-// import SideNavbar from '../../components/SideNavbar';
 import React from 'react';
+// import Head from 'next/head';
 import styles from '../../styles/WaitlistHome.module.css';
 import WaitlistCard from '../../components/WaitlistCard';
 import {
@@ -27,8 +26,9 @@ const waitlistMockData = {
       courseName: 'Full-Stack Web Development',
       waitlistPos: 10,
       waitlistTotal: 76,
-      terms: '23F',
+      terms: ['23S', '24S', '25S'],
       joined: 'June 21, 2022',
+      comments: '',
     },
     {
       courseDepartment: 'COSC',
@@ -36,8 +36,9 @@ const waitlistMockData = {
       courseName: 'Machine Learning and Statistical Data Analysis',
       waitlistPos: 2,
       waitlistTotal: 14,
-      terms: '23W',
+      terms: ['23W'],
       joined: 'April 10, 2022',
+      comments: '',
     },
     {
       courseDepartment: 'MATH',
@@ -46,8 +47,9 @@ const waitlistMockData = {
       waitlistPos: 5,
       waitlistTotal: 7,
       remainingTerms: 1,
-      terms: '25F',
+      terms: ['25F'],
       joined: 'August 14, 2022',
+      comments: '',
     },
     {
       courseDepartment: 'ECON',
@@ -56,8 +58,9 @@ const waitlistMockData = {
       waitlistPos: 32,
       waitlistTotal: 35,
       remainingTerms: 2,
-      terms: '23X',
+      terms: ['23X'],
       joined: 'November 11, 2022',
+      comments: '',
     },
   ],
 };
