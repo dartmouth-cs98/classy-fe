@@ -6,20 +6,6 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import styles from '../styles/components/CourseTitleCard.module.css';
 
-// const CourseTitleMockData = {
-//   distribs: ['TLA', 'NW'],
-//   quality: '3.5',
-//   reviews: '5',
-//   id: 'COSC52',
-//   name: 'Full Stack Web Development',
-// };
-
-// const cardColors = {
-//   pastelOrange: '#FCF0E3',
-//   pastelBlue: '#EBF9FA',
-//   pastelGreen: '#EFFAEB',
-// };
-
 function CourseTitleCard(props) {
   const {
     course, color,
