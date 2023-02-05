@@ -72,7 +72,7 @@ function ProfWaitlist() {
         {/* <Button buttonType="icon" className={styles.btn1}> */}
         <MdOutlineChevronLeft />
         {/* </Button> */}
-        <ul>
+        <ul className={styles.pagenum}>
           <li>1</li>
           <li>2</li>
           <li>3</li>
