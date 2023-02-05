@@ -12,7 +12,7 @@ import StudentsSay from '../../../components/courses/StudentsSay';
 
 import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
-import styles from '../../../styles/ExploreHome.module.css';
+import styles from '../../../styles/CourseInfo.module.css';
 import ReviewForm from '../../../components/courses/ReviewForm';
 
 import {

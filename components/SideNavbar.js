@@ -4,15 +4,14 @@ import React from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import {
+  MdOutlineHome,
   MdOutlineSearch,
-  MdOutlineExplore,
+  MdPeopleOutline,
   MdOutlineFormatListBulleted,
-  MdOutlinePersonOutline,
   MdOutlineSettings,
   MdOutlineLogout,
-  MdOutlineAnimation,
 } from 'react-icons/md';
-import { H4, B1 } from './ui/typography';
+import { H4 } from './ui/typography';
 import logo from '../images/logo.png';
 import NavbarLink from './NavbarLink';
 // import icons from react-icon
@@ -42,46 +41,27 @@ function SideNavbar() {
             {/* main tabs */}
             <div className="my-40 pb-10 w-full">
               <NavbarLink
+                link="home"
+                title="Home"
+                icon={<MdOutlineHome className={sidenavLinkStyles} />}
+              />
+
+              <NavbarLink
                 link="search"
                 title="Search"
                 icon={<MdOutlineSearch className={sidenavLinkStyles} />}
               />
 
               <NavbarLink
-                link="explore"
-                title="Explore"
-                icon={<MdOutlineExplore className={sidenavLinkStyles} />}
+                link="social"
+                title="Social"
+                icon={<MdPeopleOutline className={sidenavLinkStyles} />}
               />
 
-              <a
-                href="/social"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineAnimation className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Social
-                </B1>
-              </a>
-
-              <a
-                href="/waitlist"
-                className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-white p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto"
-              >
-                <MdOutlineFormatListBulleted className="text-2xl text-white group-hover:text-black" />
-                <B1 color="white" className="text-base group-hover:text-black">
-                  Waitlist
-                </B1>
-              </a>
               <NavbarLink
                 link="waitlist"
                 title="Waitlists"
                 icon={<MdOutlineFormatListBulleted className={sidenavLinkStyles} />}
-              />
-
-              <NavbarLink
-                link="profile"
-                title="Profile"
-                icon={<MdOutlinePersonOutline className={sidenavLinkStyles} />}
               />
 
               <NavbarLink
