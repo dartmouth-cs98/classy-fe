@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import styles from '../../styles/ExploreHome.module.css';
+import styles from '../../styles/CourseInfo.module.css';
 import OfferedTile from './OfferedTile';
 
 function loadOfferings(values) {

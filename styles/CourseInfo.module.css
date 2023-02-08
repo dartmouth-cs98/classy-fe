@@ -109,3 +109,42 @@
     border: 1px solid lightgray;
     border-radius: 0.25em;
 }
+
+.marginTopBottom {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.horizscroll {
+    padding-top: 2%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    overflow-x: scroll;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.horizscroll a {
+    width: 300px;
+    height: 175px;
+    margin: 1rem;
+    padding: 1.5rem;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: color 0.15s ease;
+    max-width: 300px;
+}
+
+.horizscroll a:hover,
+.horizscroll a:focus,
+.horizscroll a:active {
+    color: black;
+    background-color: #fafafa;
+}
+
+.container {
+    padding: 0 2rem;
+    margin-left: 250px;
+}

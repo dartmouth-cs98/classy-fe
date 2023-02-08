@@ -1,0 +1,32 @@
+.colorCard {
+    height: 52px;
+    width: 1143px;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.left {
+    position: absolute;
+    left: 20px;
+}
+
+.right {
+    position: right;
+    right: 20px;
+}
+
+.inline {
+    display: inline-block;
+
+}
+
+.card {
+    margin: 0;
+    width: 174px;
+    cursor: pointer;
+}
