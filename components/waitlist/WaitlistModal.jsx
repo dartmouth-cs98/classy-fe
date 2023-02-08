@@ -60,7 +60,7 @@ function WaitlistModal(props) {
 
     const positionDisplay = () => {
       if (position === -1) {
-        if (!onOfferingWaitlist) {
+        if (!onOfferingWaitlist && !(parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === "23w")) {
           return (
             <B1>
               <button
@@ -127,8 +127,7 @@ function WaitlistModal(props) {
         <>
         <div className={styles.page_header}>
         <H2 className={styles.title}>
-          {`Waitlist ${onWaitlist ? 'Status' : 'Info'}
-           for ${course.courseDept} ${course.courseNum}`}
+          {`Waitlist for ${course.courseDept} ${course.courseNum}`}
         </H2>
       </div>
 
