@@ -16,7 +16,7 @@ import styles from '../../../styles/CourseInfo.module.css';
 import ReviewForm from '../../../components/courses/ReviewForm';
 
 import {
-  B1, A,
+  B1, A, H2,
 } from '../../../components/ui/typography';
 import ReviewComponent from '../../../components/courses/ReviewComponent';
 
@@ -59,11 +59,33 @@ export default function CourseInfo() {
     );
   };
 
+  const showCourseCodes = (course) => {
+    const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
+    return (
+        <H2>
+        {course.courseDept}
+        {' '}
+        {course.courseNum}
+        {course.xlists ? xlists : ' '}
+        {course.courseTitle}
+        </H2>
+    );
+}
+
   return (
     <div className={styles.container}>
-
-      <CourseInfoTitle key="cit" course={currentCourse.course || { dept, num }} />
-      <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
+        <div className={styles.ciTitle}>
+            {currentCourse.course ? (
+                showCourseCodes(currentCourse.course)
+            ) : <H2 />}
+        </div>
+        <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
+        <CourseInfoTitle
+            key="cit"
+            course={currentCourse.course || { dept, num }}
+            studentId={currentCourse.student._id}
+            onWaitlist={currentCourse.onWaitlist}
+        />
       <CourseInfoSubtitle key="cis" text="Description" />
       <B1 key="description">{currentCourse.course ? currentCourse.course.description : ''}</B1>
 
@@ -74,7 +96,6 @@ export default function CourseInfo() {
         distribs={currentCourse.course ? currentCourse.course.distribs : ''}
         wc={currentCourse.course ? currentCourse.course.wc : ''}
         avgMedian={currentCourse.course ? convertMedian(currentCourse.course.avgMedian) : ''}
-        waitlist={currentCourse.course ? currentCourse.course.waitlist : 'Unknown'}
         dept={currentCourse.course ? currentCourse.course.courseDept : ''}
         num={currentCourse.course ? currentCourse.course.courseNum : ''}
         nr={currentCourse.course ? currentCourse.course.nrEligible : ''}

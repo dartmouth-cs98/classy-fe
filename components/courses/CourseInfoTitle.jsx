@@ -5,22 +5,10 @@ import {
   H2, TextLabel,
 } from '../ui/typography';
 import RecommendCourseModal from './RecommendCourseModal';
-
-function showCourseCodes(course) {
-  const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
-  return (
-    <H2>
-      {course.courseDept}
-      {' '}
-      {course.courseNum}
-      {course.xlists ? xlists : ' '}
-      {course.courseTitle}
-    </H2>
-  );
-}
+import WaitlistModal from '../waitlist/WaitlistModal';
 
 function CourseInfoTitle(props) {
-  const { course } = props;
+  const { course, studentId, onWaitlist } = props;
   const [taken, setTaken] = useState(false);
 
   const onTakenClick = () => {
@@ -29,12 +17,16 @@ function CourseInfoTitle(props) {
 
   return (
     <div className={stylesCI.ciTitle}>
-      {course ? (
-        showCourseCodes(course)
-      ) : <H2 />}
+      <WaitlistModal
+        course={course}
+        studentId={`ObjectId('${studentId}')`}
+        onWaitlist={onWaitlist}
+      />
+
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>
       </button>
+
       <RecommendCourseModal />
     </div>
   );
