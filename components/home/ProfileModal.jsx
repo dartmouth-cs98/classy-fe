@@ -1,16 +1,42 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from './Modal';
 import { H2, H3, A } from '../ui/typography';
+import Button from '@mui/material/Button';
 import styles from '../../styles/components/HomePage.module.css';
+import uploadImage from '../../services/s3';
 
 function ProfileModal(props) {
   const {
-    isOpen, setIsOpen, pic,
+    isOpen, setIsOpen,
   } = props;
 
+  const [pic, setPic] = useState({ url: null, img: null, file: null });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
+
+  const onImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setPic({ ...pic, img: window.URL.createObjectURL(file), file });
+      console.log(pic);
+    }
+  };
+
+  const onImageSubmit = () => {
+    if (pic.file != null) {
+      uploadImage(pic.file).then((url) => {
+        setPic({ ...pic, url });
+        setIsOpen(false)
+        // use url for content_url and
+        // either run your createPost actionCreator
+        // or your updatePost actionCreator
+      }).catch((error) => {
+        // handle error
+        console.log('error in submitting image', error);
+      });
+    }
+  };
 
   return (
     <Modal
@@ -18,8 +44,12 @@ function ProfileModal(props) {
       setIsOpen={setIsOpen}
       header="Edit Profile"
     >
-      <img className={styles.pic} src={pic} alt="Tim" />
-      <A>Change Photo</A>
+      <img className={styles.pic} src={pic.url} alt="Professor Picture" />
+
+      <Button variant="contained" component="label">
+        Upload Picture
+        <input hidden accept="image/*" multiple type="file" name="coverImage" onChange={onImageUpload} />
+      </Button>
       <input
         type="text"
         placeholder="First Name"
@@ -32,8 +62,8 @@ function ProfileModal(props) {
       <select defaultValue="">
         <option selected value="">Year</option>
         {
-       years.map((year, index) => <option key={year} value={year}>{year}</option>)
-     }
+          years.map((year, index) => <option key={year} value={year}>{year}</option>)
+        }
       </select>
 
       <input
@@ -44,7 +74,20 @@ function ProfileModal(props) {
         type="text"
         placeholder="Minor"
       />
-    </Modal>
+      <button
+        onClick={() => { onImageSubmit(); setIsOpen(false) }}
+        style={{
+          backgroundColor: 'var(--navy)',
+          borderRadius: '8px',
+          width: '130px',
+          height: '60px',
+          alignSelf: 'flex-end',
+        }}
+        type="submit"
+      >
+        <H3 color="var(--white)">Save</H3>
+      </button>
+    </Modal >
   );
 }
 
