@@ -7,8 +7,9 @@ import styles from '../../styles/components/TabBar.module.css';
 
 function TabBar(props) {
   const tabs = ['Courses', 'Professors', 'Distribs/World Culture', 'Users'];
+  const colors = ['var(--pastel-green)', 'var(--pastel-orange)', 'var(--pastel-pink)', 'var(--pastel-blue)'];
   const { tab, setTab } = props;
-  const tabDivs = tabs.map((tabName) => {
+  const tabDivs = tabs.map((tabName, index) => {
     if (tabName === tab) {
       return (
         <div key={tabName} className={`${styles.tab} ${styles.active}`}>
@@ -17,7 +18,12 @@ function TabBar(props) {
       );
     }
     return (
-      <div key={tabName} onClick={() => setTab(tabName)} className={`${styles.tab} ${styles[tabName]}`}>
+      <div
+        key={tabName}
+        onClick={() => setTab(tabName)}
+        className={styles.tab}
+        style={{ background: colors[index] }}
+      >
         <B1 color="var(--darkest-grey)">{tabName}</B1>
       </div>
     );

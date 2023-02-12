@@ -13,7 +13,7 @@ function SearchBar(props) {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    setSearchResults(true);
+    // setSearchResults(true);
     dispatch(fetchSearch(e.target.value));
   };
 

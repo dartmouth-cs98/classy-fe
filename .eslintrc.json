@@ -18,6 +18,6 @@
     ],
     "rules": {
         "react/prop-types": "off"
-        // "react/jsx-props-no-spreading": "enabled"
+        // "react/jsx-props-no-spreading": "enabled" commented out since this syntax breaks eslint
     }
 }

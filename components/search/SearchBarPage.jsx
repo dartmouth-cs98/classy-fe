@@ -10,7 +10,7 @@ function SearchBarPage(props) {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState('');
   const [tab, setTab] = useState('Courses');
-  const [searchResults, setSearchResults] = useState(null);
+  // const [searchResults, setSearchResults] = useState(null);
   const { children } = props;
 
   return (
@@ -18,14 +18,14 @@ function SearchBarPage(props) {
       <SearchBar
         searchInput={searchInput}
         setSearchInput={setSearchInput}
-        setSearchResults={setSearchResults}
+        // setSearchResults={setSearchResults}
       />
       {
         searchInput // if search input exists, show tab bar page
           ? (
             <div>
               <TabBar tab={tab} setTab={setTab} />
-              <SearchResults tab={tab} results={searchResults} />
+              <SearchResults tab={tab} />
             </div>
           )
           : ( // else show default body
