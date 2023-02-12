@@ -6,7 +6,7 @@ import { B1 } from '../ui/typography';
 import styles from '../../styles/components/TabBar.module.css';
 
 function TabBar(props) {
-  const tabs = ['All', 'Courses', 'Professors', 'Distribs'];
+  const tabs = ['Courses', 'Professors', 'Distribs/World Culture', 'Users'];
   const { tab, setTab } = props;
   const tabDivs = tabs.map((tabName) => {
     if (tabName === tab) {

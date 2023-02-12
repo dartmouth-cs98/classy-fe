@@ -144,8 +144,13 @@ export const fetchExplore = () => (dispatch) => {
   });
 };
 
-export const fetchSearch = () => (dispatch) => {
-  axios.get(`${ROOT_URL}/search`).then((res) => {
+export const fetchSearch = (searchInput) => (dispatch) => {
+  console.log(searchInput);
+  axios.get(`${ROOT_URL}/search`, {
+    params: {
+      query: searchInput,
+    },
+  }).then((res) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_SEARCH,
