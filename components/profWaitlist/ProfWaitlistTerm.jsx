@@ -11,7 +11,7 @@ import {
   H3, H5,
 } from '../ui/typography';
 // eslint-disable-next-line import/no-unresolved
-import Pagination from '../Pagination';
+// import Pagination from '../Pagination';
 import styles from '../../styles/components/ProfWaitlistTerm.module.css';
 import ProfWaitlistTable from './ProfWaitlistTable';
 
