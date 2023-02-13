@@ -6,7 +6,7 @@ import styles from '../../styles/components/TabBar.module.css';
 import CourseTable from '../CourseTable';
 
 function Courses(props) {
-  const searchResults = useSelector((reduxState) => reduxState.search.current);
+  const searchResults = useSelector((reduxState) => reduxState.search.searchResults);
   console.log(searchResults);
 
   return (
