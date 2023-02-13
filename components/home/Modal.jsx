@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
-import { H2, H3 } from '../ui/typography';
+import { H2 } from '../ui/typography';
 
 ReactModal.setAppElement('#__next');
 

@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import Modal from './Modal';
-import { H2, H3, A } from '../ui/typography';
 import Button from '@mui/material/Button';
+import Modal from './Modal';
+import { H3 } from '../ui/typography';
 import styles from '../../styles/components/HomePage.module.css';
 import uploadImage from '../../services/s3';
 
@@ -27,7 +28,7 @@ function ProfileModal(props) {
     if (pic.file != null) {
       uploadImage(pic.file).then((url) => {
         setPic({ ...pic, url });
-        setIsOpen(false)
+        setIsOpen(false);
         // use url for content_url and
         // either run your createPost actionCreator
         // or your updatePost actionCreator
@@ -75,7 +76,7 @@ function ProfileModal(props) {
         placeholder="Minor"
       />
       <button
-        onClick={() => { onImageSubmit(); setIsOpen(false) }}
+        onClick={() => { onImageSubmit(); setIsOpen(false); }}
         style={{
           backgroundColor: 'var(--navy)',
           borderRadius: '8px',
@@ -87,7 +88,7 @@ function ProfileModal(props) {
       >
         <H3 color="var(--white)">Save</H3>
       </button>
-    </Modal >
+    </Modal>
   );
 }
 
