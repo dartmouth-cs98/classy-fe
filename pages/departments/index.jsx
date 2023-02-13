@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/SearchPage.module.css';
-import stylesp from '../../styles/ProfessorInfo.module.css';
+import stylesp from '../../styles/professorInfo.module.css';
 import DepartmentCard from '../../components/DepartmentCard';
 import { cardColors } from '../../data/colors';
 import { fetchDepartments } from '../../actions';
