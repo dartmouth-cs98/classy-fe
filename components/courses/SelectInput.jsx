@@ -2,17 +2,10 @@ import React from 'react';
 import { H4 } from '../ui/typography';
 
 function loadOptions(options) {
-  return options?.map((element) => (
+  return options?.map((element, index) => (
     // eslint-disable-next-line no-underscore-dangle
-    <option key={`${element._id}`} value={`${element._id}`}>
-      {element.professors}
-      {' '}
-      (
-      {element.term}
-      ,
-      {' '}
-      {element.period}
-      )
+    <option key={`${element._id}`} value={index}>
+      {`${element.professors} (${element.term}, ${element.period})`}
     </option>
   ));
 }
@@ -21,7 +14,7 @@ function loadUsers(users) {
   return users?.map((element) => (
     // eslint-disable-next-line no-underscore-dangle
     <option key={`${element._id}`} value={`${element._id}`}>
-      {`${element.firstName} ${element.lastName}`}
+      {`${element.user.firstName} ${element.user.lastName}`}
     </option>
   ));
 }

@@ -1,18 +1,26 @@
 import React from 'react';
-// import { Button } from '@react-md/button';
 import {
-  MdOutlineChevronLeft,
-  MdOutlineChevronRight,
+  MdAddCircle,
 } from 'react-icons/md';
 import {
-  H1, H5, B1,
+  H1,
 } from '../../components/ui/typography';
-import styles from '../../styles/components/ProfWaitlist.module.css';
+import styles from '../../styles/ProfWaitlist.module.css';
 import ProfWaitlistTerm from '../../components/profWaitlist/ProfWaitlistTerm';
-import ProfWaitlistTable from '../../components/profWaitlist/ProfWaitlistTable';
 
 const professorInfoMockData = {
   featuredCourses: [{
+    courseNumber: 'COSC 52',
+    courseName: 'Full Stack Web Development',
+    term: '21F',
+    quality: '4.0',
+    difficulty: '3.0 (3)',
+    hrsPerWeek: '3.0 (3)',
+    median: 'A-',
+    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
+    distribs: ['TLA', 'NW'],
+  },
+  {
     courseNumber: 'COSC 52',
     courseName: 'Full Stack Web Development',
     term: '21F',
@@ -51,35 +59,21 @@ const cardColors = [
 
 function ProfWaitlist() {
   return (
-    <div style={{ padding: '50px 80px 50px 290px' }}>
+    <div className={styles.all}>
+      <div className={styles.header}>
+        <H1>COSC 25 Waitlists</H1>
+      </div>
 
-      <H1 style={{ paddingBottom: '50px' }}>COSC 25 Waitlists</H1>
-
-      <div>
+      <MdAddCircle className={styles.addbtn} size={25} />
+      <br />
+      <br />
+      <div className={styles.body}>
         {professorInfoMockData.featuredCourses.map((course, i) => (
           <ProfWaitlistTerm
             color={cardColors[i % cardColors.length]}
+            i={i}
           />
         ))}
-      </div>
-      <ProfWaitlistTable />
-
-      <div>
-        <H5 className={styles.text}>viewing 2/25 signups</H5>
-      </div>
-
-      <div className={styles.pagination}>
-        {/* <Button buttonType="icon" className={styles.btn1}> */}
-        <MdOutlineChevronLeft />
-        {/* </Button> */}
-        <ul className={styles.pagenum}>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-        </ul>
-        <MdOutlineChevronRight />
       </div>
 
     </div>

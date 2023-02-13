@@ -11,13 +11,14 @@ import { B1, H3, H4 } from '../ui/typography';
 function RemoveWaitlist(props) {
   const dispatch = useDispatch();
   const {
-    dept, num, offering, studentId,
+    dept, num, offering, offeringIndex, studentId,
   } = props;
   //   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
   const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
     false,
   );
   //   const [modalFormOpen, setModalFormOpen] = React.useState(false);
+
   return (
     <>
       {offering
@@ -52,7 +53,7 @@ function RemoveWaitlist(props) {
           </div>
         </div>
         <div className=" modal-footer">
-          <Link href="/waitlist/">
+          <Link href={`/courses/${dept}/${num}`}>
             <B1>
               <button
                 className={styles.button}
@@ -62,7 +63,7 @@ function RemoveWaitlist(props) {
                     dispatch(removeFromWaitlist({
                       courseDept: dept,
                       courseNum: num,
-                      term: offering.term,
+                      offeringIndex,
                       studentId,
                     }));
                   } else {

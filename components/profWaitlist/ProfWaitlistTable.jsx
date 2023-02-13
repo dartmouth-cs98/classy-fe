@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
-  B3, TextLabel,
+  TextLabel,
 } from '../ui/typography';
 import styles from '../../styles/components/ProfWaitlistTable.module.css';
 
@@ -39,7 +39,6 @@ function Row(props) {
     waitlist, tableType,
   } = props;
   const [open, setOpen] = React.useState(false);
-  console.log(tableType);
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -77,7 +76,7 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable(props) {
+export default function CollapsibleTable() {
   const tableType = 'search';
   const waitlists = WaitlistMockData;
   if (waitlists === {}) {

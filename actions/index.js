@@ -27,6 +27,7 @@ export const ActionTypes = {
   ADD_TO_ONE_WAITLIST: 'ADD_TO_ONE_WAITLIST',
   REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
+  MARK_AS_TAKEN: 'MARK_AS_TAKEN',
 };
 
 // trying this out in async await format
@@ -62,7 +63,6 @@ export const fetchCourse = (dept, num) => (dispatch) => {
 };
 
 export function updateCourse(id, post) {
-  console.log('UPDATING COURSE WITH', id);
   return (dispatch) => {
     axios
       .put(`${ROOT_URL}/courses/${id}`, post)
@@ -182,6 +182,7 @@ export const fetchWaitlist = (dept, num) => (dispatch) => {
 export const joinWaitlists = (joinRequest) => (dispatch) => {
   axios.post(`${ROOT_URL}/waitlist/join`, joinRequest).then((res) => {
     const response = res.data;
+    console.log('received request', res);
     dispatch({
       type: ActionTypes.JOIN_WAITLISTS,
       payload: response,
@@ -210,7 +211,7 @@ export const removeFromWaitlist = (removalRequest) => (dispatch) => {
 };
 
 export const withdrawFromWaitlist = (withdrawalRequest) => (dispatch) => {
-  axios.put(`${ROOT_URL}/waitlist/withdraw`, withdrawalRequest).then((res) => {
+  axios.post(`${ROOT_URL}/waitlist/withdraw`, withdrawalRequest).then((res) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.WITHDRAW_FROM_WAITLIST,
@@ -260,6 +261,17 @@ export const createCourseReview = (courseId, offering, review) => (dispatch) => 
         payload: response,
       });
     });
+};
+
+export const markAsTaken = (studentId, courseId, taken) => (dispatch) => {
+  // eslint-disable-next-line no-underscore-dangle
+  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${taken}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.MARK_AS_TAKEN,
+      payload: response,
+    });
+  });
 };
 
 export function search(query, navigate) {

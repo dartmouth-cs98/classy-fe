@@ -58,7 +58,7 @@ function Modal(props) {
           <CloseIcon onClick={() => setIsOpen(false)} style={{ cursor: 'pointer' }} />
         </div>
         {children}
-        <button
+        {/* <button
           onClick={() => setIsOpen(false)}
           style={{
             backgroundColor: 'var(--navy)',
@@ -70,7 +70,7 @@ function Modal(props) {
           type="submit"
         >
           <H3 color="var(--white)">Save</H3>
-        </button>
+        </button> */}
 
       </div>
     </ReactModal>
