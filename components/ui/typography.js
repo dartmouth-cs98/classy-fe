@@ -111,7 +111,7 @@ export const TextLabel = styled.b`
 `;
 
 /* Asap/Links */
-export const A = styled.a`
+export const A = styled.b`
   color: ${(props) => (props.color ? props.color : 'var(--navy)')};
   font-family: 'Asap';
   font-style: normal;
