@@ -11,7 +11,7 @@ import { B1, H3, H4 } from '../ui/typography';
 function RemoveWaitlist(props) {
   const dispatch = useDispatch();
   const {
-    dept, num, offering, offeringIndex, studentId
+    dept, num, offering, offeringIndex, studentId,
   } = props;
   //   const [modalDefaultOpen, setModalDefaultOpen] = React.useState(false);
   const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
