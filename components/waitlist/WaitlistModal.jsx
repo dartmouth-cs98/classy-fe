@@ -120,133 +120,132 @@ function WaitlistModal(props) {
 
   const modalButton = (entryPoint) => {
     if (entryPoint === 'waitlist') {
-        return (
-					<div
-						className={styleswh.card}
-						style={{ background: cardColor[index] }}
-						onClick={() => setModalNotificationOpen(true)}
-					>
-						<Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-							<H2 color={textColor[index]}>
-								{` ${course.courseDept} ${course.courseNum}`}
-							</H2>
-						</Link>
-						<H4 color={textColor[index]}>{course.courseTitle}</H4>
-					</div>
-				);
+      return (
+        <div
+          className={styleswh.card}
+          style={{ background: cardColor[index] }}
+          onClick={() => setModalNotificationOpen(true)}
+        >
+          <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+              <H2 color={textColor[index]}>
+                  {` ${course.courseDept} ${course.courseNum}`}
+              </H2>
+          </Link>
+          <H4 color={textColor[index]}>{course.courseTitle}</H4>
+        </div>
+      );
     }
     return (<button className={stylesCI.ciButton} style={{ background: '#FCF0E3' }} onClick={() => setModalNotificationOpen(true)} type="button">
-          <TextLabel>
-            {onWaitlist ? `Check Waitlist Status` : `Join ${course.courseDept} ${course.courseNum} Waitlists`}
-          </TextLabel>
-        </button>)
+      <TextLabel>
+        {onWaitlist ? `Check Waitlist Status` : `Join ${course.courseDept} ${course.courseNum} Waitlists`}
+      </TextLabel>
+    </button>)
   }
 
   const loadFormOfferings = () => {
     var index = -1;
     return course.offerings.map((offering) => {
-        index += 1;
-        if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === "23w"))  return <label />;
+      index += 1;
+      if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === "23w"))  return <label />;
         return (
-        <label class={styles.cblabel} htmlFor={`offering${index}`}>
+          <label class={styles.cblabel} htmlFor={`offering${index}`}>
             <B1>
-                <input 
-                type="checkbox" 
-                className={styles.cb} 
-                id={`offering${index}`} 
-                value={index} 
-                onChange={onInputChange}/>
-                {`${offering.term} ${offering.professors.join(', ')}`}
+              <input 
+              type="checkbox" 
+              className={styles.cb} 
+              id={`offering${index}`} 
+              value={index} 
+              onChange={onInputChange}/>
+              {`${offering.term} ${offering.professors.join(', ')}`}
             </B1>
         </label>
     )});
   };
 
   //   const [modalFormOpen, setModalFormOpen] = React.useState(false);
-    return (
+  return (
     <>
       {modalButton(entryPoint)}
       <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger">
         {onWaitlist ?
-        <>
+      <>
         <div className={styles.page_header}>
-            <H2 className={styles.title}>
-            {`Waitlist for ${course.courseDept} ${course.courseNum}`}
-            </H2>
+          <H2 className={styles.title}>
+          {`Waitlist for ${course.courseDept} ${course.courseNum}`}
+          </H2>
         </div>
         <div className={styles.waitlist_btns}>
-            {onWaitlist
-                ? (
-                <RemoveWaitlist
-                    dept={course.courseDept}
-                    num={course.courseNum}
-                    studentId={studentId}
-                />
-                )
-                : ''}
+          {onWaitlist
+              ? (
+              <RemoveWaitlist
+                  dept={course.courseDept}
+                  num={course.courseNum}
+                  studentId={studentId}
+              />
+              )
+              : ''}
         </div>
-
-          <div className={styles.waitlist_details_container}>
-            <table>
-              <thead>
-                <tr>
-                  <th><H4>Term</H4></th>
-                  <th><H4>Professor(s)</H4></th>
-                  <th><H4># on Waitlist</H4></th>
-                  <th><H4>Action</H4></th>
-                </tr>
-              </thead>
-              <tbody>
-                {loadOfferings()}
-              </tbody>
-            </table>
-          </div>
-        </> 
-        : 
-        <>
-        <div className="modal-body">
-            <div className=" py-3 text-center">
-                <i className=" ni ni-bell-55 ni-3x" />
-                <H3>
+        <div className={styles.waitlist_details_container}>
+          <table>
+            <thead>
+              <tr>
+                <th><H4>Term</H4></th>
+                <th><H4>Professor(s)</H4></th>
+                <th><H4># on Waitlist</H4></th>
+                <th><H4>Action</H4></th>
+              </tr>
+            </thead>
+            <tbody>
+              {loadOfferings()}
+            </tbody>
+          </table>
+        </div>
+      </> 
+      : 
+      <>
+      <div className="modal-body">
+          <div className=" py-3 text-center">
+            <i className=" ni ni-bell-55 ni-3x" />
+              <H3>
                 {`Join ${course.courseDept} ${course.courseNum} Waitlists`}
-                </H3>
-            </div>
-            <div className="py-3">
-                <form onSubmit={onSubmit}>
-                    <H4>Select the waitlists you wish to join.</H4>
-                    {loadFormOfferings()}
-                    <H4>
-                        Make your case to the professor(s) about why you want to take their course.
-                        Be concise.
-                    </H4>
-                    <input type="textarea" onChange={onInputChange} id="reason" />
-                </form>
-            </div>
+              </H3>
+          </div>
+        <div className="py-3">
+          <form onSubmit={onSubmit}>
+            <H4>Select the waitlists you wish to join.</H4>
+              {loadFormOfferings()}
+            <H4>
+              Make your case to the professor(s) about why you want to take their course.
+              Be concise.
+            </H4>
+            <input type="textarea" onChange={onInputChange} id="reason" />
+          </form>
         </div>
-        <div className="modal-footer">
-            <B1>
-            <Link href="/waitlist">
-                <button
-                    className={styles.button}
-                    type="submit"
-                    onClick={onSubmit}
-                >
-                    Sign Up
-                </button>
-            </Link>
-            </B1>
-            <B1>
-                <Button
-                className=" text-black ml-auto"
-                color="default"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-                >
-                Cancel
-                </Button>
-            </B1>
-        </div>
-    </>
+      </div>
+      <div className="modal-footer">
+        <B1>
+          <Link href="/waitlist">
+            <button
+              className={styles.button}
+              type="submit"
+              onClick={onSubmit}
+            >
+            Sign Up
+            </button>
+          </Link>
+        </B1>
+        <B1>
+        <Button
+          className=" text-black ml-auto"
+          color="default"
+          onClick={() => setModalNotificationOpen(false)}
+          type="button"
+        >
+          Cancel
+        </Button>
+      </B1>
+    </div>
+  </>
 }
 
     <div className=" py-3 text-center">
