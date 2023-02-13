@@ -6,6 +6,7 @@ import {
 import ProfessorCard from '../../components/professorInfo/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
+// eslint-disable-import/no-unresolved
 import styles from '../../styles/professorInfo.module.css';
 import { cardColors } from '../../constants/colors';
 import { professorInfoMockData } from '../../constants/mockData';

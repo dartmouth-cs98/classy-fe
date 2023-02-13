@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/SearchPage.module.css';
+// eslint-disable-import/no-unresolved
 import stylesp from '../../styles/professorInfo.module.css';
 import DepartmentCard from '../../components/DepartmentCard';
 import { cardColors } from '../../data/colors';
