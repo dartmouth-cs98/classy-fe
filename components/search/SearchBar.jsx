@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/SearchBar.module.css';
+import { fetchSearch } from '../../actions';
 
 function SearchBar(props) {
   const {
-    searchInput, setSearchInput, input, setSearchResults, onBlur,
+    searchInput, setSearchInput, setSearchResults,
   } = props;
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    setSearchResults(true);
+    // setSearchResults(true);
+    dispatch(fetchSearch(e.target.value));
   };
+
+  const onBlur = (e) => {
+    window.setTimeout(() => e.target.focus(), 0);
+  };
+
+  // focus on input when search bar loaded
+  const input = useCallback((inputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
 
   return (
     <div className={styles.bar}>

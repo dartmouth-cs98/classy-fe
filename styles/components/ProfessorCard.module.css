@@ -5,6 +5,15 @@
     object-fit: cover;
 }
 
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.wordSection {
+    margin-left: 20px;
+}
+
 /* following classes are same as those found in CourseTitleCard.module.css */
 .description {
   overflow: hidden;

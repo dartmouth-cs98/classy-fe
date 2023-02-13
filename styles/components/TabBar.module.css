@@ -19,19 +19,3 @@
     background: var(--navy);
     cursor: default;
 }
-
-.Courses {
-    background: var(--pastel-green);
-}
-
-.Professors {
-    background: var(--pastel-orange);
-}
-
-.Distribs {
-    background: var(--pastel-pink);
-}
-
-.All {
-    background: var(--pastel-blue);
-}
