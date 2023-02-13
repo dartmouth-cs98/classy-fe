@@ -39,9 +39,10 @@
 }
 
 .content {
-    max-height: 0;
+    /* height: 0; */
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0,1,0,1);
+    display: none;
 }
 
 .content.show {
