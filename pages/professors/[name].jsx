@@ -7,7 +7,7 @@ import {
 import ProfessorCard from '../../components/professors/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
-import styles from '../../styles/professorInfo.module.css';
+import styles from '../../styles/ProfessorInfo.module.css';
 import { fetchProfessor } from '../../actions';
 
 const cardColors = [

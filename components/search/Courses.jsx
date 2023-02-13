@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { B1 } from '../ui/typography';
-import styles from '../../styles/components/TabBar.module.css';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import CourseTable from '../CourseTable';
 
 function Courses(props) {

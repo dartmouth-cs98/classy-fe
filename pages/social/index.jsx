@@ -1,14 +1,14 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import { cardColors } from '../../constants/colors';
-import { professorInfoMockData } from '../../constants/mockData';
+import { professorInfoMockData, friendsMockData } from '../../constants/mockData';
 import {
-  H3
+  H3,
 } from '../../components/ui/typography';
 import FriendCard from '../../components/social/FriendCard';
-import { friendsMockData } from '../../constants/mockData';
 import BlackButton from '../../components/BlackButton';
 
 function Social() {
@@ -16,10 +16,9 @@ function Social() {
 
   const showAllFriends = () => {
     if (seeAllFriends) {
-      setSeeAllFriends(false)
-    }
-    else {
-      setSeeAllFriends(true)
+      setSeeAllFriends(false);
+    } else {
+      setSeeAllFriends(true);
     }
   };
 
@@ -27,7 +26,7 @@ function Social() {
     <div className={styles.container}>
       <div>
         <SearchBar />
-        <div style={{ "marginTop": '15px' }}>
+        <div style={{ marginTop: '15px' }}>
           <H3>Your Friends Recommend</H3>
         </div>
         <div className={styles.coursesContainer}>
@@ -43,9 +42,8 @@ function Social() {
         </div>
         <H3>All Friends</H3>
         {friendsMockData.friends.map((friend, i) => (
-          i < 6 || seeAllFriends ? <FriendCard student={friend}></FriendCard> : null)
-        )}
-        <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends}></BlackButton>
+          i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null))}
+        <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
       </div>
     </div>
   );
