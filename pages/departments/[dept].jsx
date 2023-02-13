@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {
   H2, H3, B1, A,
 } from '../../components/ui/typography';
-import styles from '../../styles/professorInfo.module.css';
+import styles from '../../styles/ProfessorInfo.module.css';
 import stylese from '../../styles/CourseInfo.module.css';
 import { fetchDepartment } from '../../actions';
 import ExploreTile from '../../components/explore/ExploreTile';
