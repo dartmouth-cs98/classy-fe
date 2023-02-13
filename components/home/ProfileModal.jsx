@@ -44,7 +44,7 @@ function ProfileModal(props) {
       setIsOpen={setIsOpen}
       header="Edit Profile"
     >
-      <img className={styles.pic} src={pic.url} alt="Professor Picture" />
+      <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Professor Picture" />
 
       <Button variant="contained" component="label">
         Upload Picture
