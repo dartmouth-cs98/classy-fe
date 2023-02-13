@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Link from 'next/link';
 import getColor from '../../data/colorscheme';
 import stylesCI from '../../styles/CourseInfo.module.css';
 import {
   TextLabel, A, B1,
 } from '../ui/typography';
+import WaitlistModal from '../waitlist/WaitlistModal';
 
 function extraText(type) {
   if (type === 'Workload') {
@@ -22,14 +22,13 @@ function extraText(type) {
 
 function CourseInfoTile(props) {
   const {
-    title, val, dept, num,
+    course, studentId, title, val, dept, num, onWaitlist
   } = props;
-  const waitlistLink = <Link href={`/waitlist/${dept}/${num}`}><A>{val}</A></Link>;
   return (
     <div className={stylesCI.tile} style={{ background: getColor(title, val) }}>
       <TextLabel>{title}</TextLabel>
       <B1>
-        {title.toLowerCase() === 'waitlist' && val === 'Sign Up Here' ? waitlistLink : val}
+        {val}
         {extraText(val === 'Not Enough Data' ? 'Unknown' : title)}
       </B1>
     </div>

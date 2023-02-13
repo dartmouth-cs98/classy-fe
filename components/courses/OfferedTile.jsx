@@ -23,7 +23,7 @@ function getProfessorLink(professors) {
 function getProfessors(professor) {
   return (
     <B1>
-      {getProfessorLink(professor)}
+      {professor !== 'N/A' && professor !== 'TBD' ? getProfessorLink(professor) : 'TBD'}
     </B1>
   );
 }
@@ -32,7 +32,7 @@ function OfferedTile(props) {
   const { term, period, professors } = props;
   return (
     <div className={stylesCI.tile} style={{ background: getColor('term', term) }}>
-      <TextLabel>{`${term} (${period})`}</TextLabel>
+      <TextLabel>{`${term} (${period || 'TBD'})`}</TextLabel>
       <TextLabel>{getProfessors(professors)}</TextLabel>
     </div>
   );
