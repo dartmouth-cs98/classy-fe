@@ -1,0 +1,20 @@
+.all {
+    padding: 50px 80px 50px 290px;
+}
+
+.header {
+    padding-bottom: 50px;
+}
+
+/* .body {
+} */
+
+.addbtn {
+    margin-bottom: 15px;
+    float: right;
+}
+
+.addbtn :hover {
+    opacity: 50%;
+    cursor: pointer;
+}
