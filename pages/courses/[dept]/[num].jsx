@@ -22,7 +22,7 @@ import ReviewComponent from '../../../components/courses/ReviewComponent';
 
 export default function CourseInfo() {
   const router = useRouter();
-  const { dept, num } = router.query;
+  const { dept, num } = router.query
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,28 +62,26 @@ export default function CourseInfo() {
   const showCourseCodes = (course) => {
     const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
     return (
-        <H2>
-        {course.courseDept}
-        {' '}
-        {course.courseNum}
-        {course.xlists ? xlists : ' '}
-        {course.courseTitle}
-        </H2>
-    );
+			<H2>
+				{`${course.courseDept} ${course.courseNum} ${
+					course.xlists ? xlists : " "
+				} ${course.courseTitle}`}
+			</H2>
+		);
 }
 
   return (
     <div className={styles.container}>
         <div className={styles.ciTitle}>
             {currentCourse.course ? (
-                showCourseCodes(currentCourse.course)
+              showCourseCodes(currentCourse.course)
             ) : <H2 />}
         </div>
         <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
         <CourseInfoTitle
             key="cit"
             course={currentCourse.course || { dept, num }}
-            studentId={currentCourse.student._id}
+            student={currentCourse.student}
             onWaitlist={currentCourse.onWaitlist}
         />
       <CourseInfoSubtitle key="cis" text="Description" />
@@ -119,7 +117,10 @@ export default function CourseInfo() {
       {loadReviews()}
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
-      <ReviewForm courseId={currentCourse.course._id} key="form" users={currentCourse.users} offerings={currentCourse.offerings} />
+      {currentCourse.student?.coursesTaken?.includes(currentCourse.course._id) 
+      ? <ReviewForm courseId={currentCourse.course._id} key="form" users={currentCourse.users} offerings={currentCourse.course.offerings} />
+      : <B1>Add a review after taking the course!</B1>}
+      <br/>
     </div>
   );
 }

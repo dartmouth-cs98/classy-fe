@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import getColor from '../../data/colorscheme';
 import stylesCI from '../../styles/CourseInfo.module.css';
 import {
-  H2, TextLabel,
+  TextLabel,
 } from '../ui/typography';
 import RecommendCourseModal from './RecommendCourseModal';
 import WaitlistModal from '../waitlist/WaitlistModal';
+import { markAsTaken } from '../../actions';
+import { useDispatch } from 'react-redux';
 
 function CourseInfoTitle(props) {
-  const { course, studentId, onWaitlist } = props;
-  const [taken, setTaken] = useState(false);
+  const { course, student, onWaitlist } = props;
+  const [taken, setTaken] = useState(student?.coursesTaken?.includes(course._id));
+  const dispatch = useDispatch();
 
   const onTakenClick = () => {
     setTaken(!taken);
+    dispatch(markAsTaken(student._id, course._id, taken));
   };
 
   return (
     <div className={stylesCI.ciTitle}>
       <WaitlistModal
         course={course}
-        studentId={`ObjectId('${studentId}')`}
+        studentId={`ObjectId('${student._id}')`}
         onWaitlist={onWaitlist}
       />
 
