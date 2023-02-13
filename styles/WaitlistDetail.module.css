@@ -132,7 +132,7 @@
 }
 
 .waitlist_btns {
-  padding-top: 50px;
+  padding-top: 1em;
   /* padding-bottom: 175px; */
   /* margin-right: 5%; */
   flex: 1;
@@ -146,8 +146,9 @@
 
 .waitlist_details_container {
   /* background-color: #EBF9FA; */
-  margin-top: 100px;
+  margin-top: 1em;
   border-radius: 10px;
+  margin-left: 5%;
   margin-right: 5%;
   /* height: 120%; */
   display: flex;
@@ -236,6 +237,29 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.py-3 input[type="checkbox"] {
+    /* removing default appearance */
+        -webkit-appearance: none;
+        appearance: none;
+        /* creating a custom design */
+        width: 1.6em;
+        height: 1.6em;
+        border-radius: 0.15em;
+        margin-right: 0.5em;
+        border: 0.15em solid #007a7e;
+        outline: none;
+        cursor: pointer;
+}
+
+.cb {
+    width: 2em;
+    margin: 1em;
+}
+
+.cblabel {
+    width: 95%;
 }
 
 @media (max-width: 600px) {

@@ -7,13 +7,27 @@ import { professorInfoMockData } from '../../constants/mockData';
 import {
   H3
 } from '../../components/ui/typography';
+import FriendCard from '../../components/social/FriendCard';
+import { friendsMockData } from '../../constants/mockData';
+import BlackButton from '../../components/BlackButton';
 
 function Social() {
+  const [seeAllFriends, setSeeAllFriends] = useState(false);
+
+  const showAllFriends = () => {
+    if (seeAllFriends) {
+      setSeeAllFriends(false)
+    }
+    else {
+      setSeeAllFriends(true)
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div>
         <SearchBar />
-        <div>
+        <div style={{ "marginTop": '15px' }}>
           <H3>Your Friends Recommend</H3>
         </div>
         <div className={styles.coursesContainer}>
@@ -27,6 +41,11 @@ function Social() {
             </div>
           ))}
         </div>
+        <H3>All Friends</H3>
+        {friendsMockData.friends.map((friend, i) => (
+          i < 6 || seeAllFriends ? <FriendCard student={friend}></FriendCard> : null)
+        )}
+        <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends}></BlackButton>
       </div>
     </div>
   );

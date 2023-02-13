@@ -1,0 +1,28 @@
+.pic {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 20px;
+  margin-right: 50px;
+}
+
+.container {
+  display: flex;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.majorMinorContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.card:hover {
+  opacity: 0.75;
+}

@@ -70,4 +70,27 @@ export const professorInfoMockData = {
   ],
 };
 
-export default professorInfoMockData;
+export const studentMockData = {
+  name: 'Vi Tran',
+  year: '2023',
+  major: ['Computer Science', 'Mathematics'],
+  minor: ['Economics', 'Statistics'],
+  profilePic: 'https://classy-api-bucket.s3.amazonaws.com/Tran_Vi.png',
+};
+
+export const friendsMockData = {
+  friends: [
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+  ],
+};

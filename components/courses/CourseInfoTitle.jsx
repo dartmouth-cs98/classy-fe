@@ -2,39 +2,35 @@ import React, { useState } from 'react';
 import getColor from '../../data/colorscheme';
 import stylesCI from '../../styles/CourseInfo.module.css';
 import {
-  H2, TextLabel,
+  TextLabel,
 } from '../ui/typography';
 import RecommendCourseModal from './RecommendCourseModal';
-
-function showCourseCodes(course) {
-  const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
-  return (
-    <H2>
-      {course.courseDept}
-      {' '}
-      {course.courseNum}
-      {course.xlists ? xlists : ' '}
-      {course.courseTitle}
-    </H2>
-  );
-}
+import WaitlistModal from '../waitlist/WaitlistModal';
+import { markAsTaken } from '../../actions';
+import { useDispatch } from 'react-redux';
 
 function CourseInfoTitle(props) {
-  const { course } = props;
-  const [taken, setTaken] = useState(false);
+  const { course, student, onWaitlist } = props;
+  const [taken, setTaken] = useState(student?.coursesTaken?.includes(course._id));
+  const dispatch = useDispatch();
 
   const onTakenClick = () => {
     setTaken(!taken);
+    dispatch(markAsTaken(student._id, course._id, taken));
   };
 
   return (
     <div className={stylesCI.ciTitle}>
-      {course ? (
-        showCourseCodes(course)
-      ) : <H2 />}
+      <WaitlistModal
+        course={course}
+        studentId={`ObjectId('${student._id}')`}
+        onWaitlist={onWaitlist}
+      />
+
       <button type="button" className={stylesCI.ciButton} style={{ background: getColor('cititle', taken) }} onClick={onTakenClick}>
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>
       </button>
+
       <RecommendCourseModal />
     </div>
   );
