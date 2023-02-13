@@ -4,4 +4,6 @@ export const cardColors = [
   { pastel: '#EFFAEB', dark: '#75946A' },
 ];
 
+export default cardColors;
+
 // This file will contain arrays of all pastel and dark colors
