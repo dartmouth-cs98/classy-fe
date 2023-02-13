@@ -22,6 +22,7 @@ function ProfWaitlistTerm(props) {
 
   const [selected, setSelected] = useState(null);
 
+  // eslint-disable-next-line consistent-return, no-shadow
   const toggle = (i) => {
     if (selected === i) {
       return setSelected(null);

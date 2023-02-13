@@ -76,7 +76,7 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable(props) {
+export default function CollapsibleTable() {
   const tableType = 'search';
   const waitlists = WaitlistMockData;
   if (waitlists === {}) {
