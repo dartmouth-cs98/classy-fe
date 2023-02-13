@@ -25,13 +25,6 @@ function WaitlistCard(props) {
   const courseURL = `/courses/${course.courseDepartment}/${course.courseNum}`;
   return (
     <div className={styles.card} style={{ background: color.pastel }}>
-      <div className={styles.edit}>
-        <a
-          href=" "
-        >
-          <MdOutlineSettings className="text-2xl text-black group-hover:text-black" />
-        </a>
-      </div>
       <div className={styles.waitlistCardsContainer}>
         <div>
           <H3>
@@ -39,14 +32,16 @@ function WaitlistCard(props) {
             {' '}
             {course.courseNum}
           </H3>
-          <H3 color={color.dark}>
-            {' '}
-            {course.courseName}
-          </H3>
+          <a href={courseURL}>
+            <H3 color={color.dark}>
+              {' '}
+              {course.courseName}
+            </H3>
+          </a>
         </div>
       </div>
       <div>
-        <H3 color={color.dark}> position on 23s</H3>
+        <H3 color={color.dark}> position on 23S</H3>
         <H3>
           {course.waitlistPos}
           /
@@ -55,35 +50,14 @@ function WaitlistCard(props) {
       </div>
       <div>
         <H3 color={color.dark}> terms </H3>
-        {terms}
-      </div>
-      <div>
-        <H3 color={color.dark}> notes </H3>
-        <TextField
-          id="notes"
-          defaultValue="Normal"
-          variant="standard"
-          color="secondary"
-        />
+        <H3>{terms}</H3>
       </div>
       <div className={styles.bottomButtons}>
         <div className={styles.buttonContainer}>
-          <a href={courseURL}>
-            <button className={styles.btn} type="button">
-              Course Info Page
-            </button>
-          </a>
-        </div>
-        <div className={styles.buttonContainer}>
           <button className={styles.btn} type="button">
-            Remove
+            Edit
           </button>
         </div>
-        {/* <div className={styles.buttonContainer}>
-          <div className={styles.button}>
-            <RemoveWaitlist />
-          </div>
-        </div> */}
       </div>
     </div>
   );
