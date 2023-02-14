@@ -146,6 +146,8 @@ export const fetchExplore = () => (dispatch) => {
 
 export const fetchSearch = (searchInput) => (dispatch) => {
   console.log(searchInput);
+  const timestamp = Date.now();
+
   axios.get(`${ROOT_URL}/search`, {
     params: {
       query: searchInput,
@@ -154,7 +156,7 @@ export const fetchSearch = (searchInput) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_SEARCH,
-      payload: response,
+      payload: { timestamp, searchResults: response },
     });
   });
 };
