@@ -12,15 +12,15 @@ function FriendCard(props) {
     <div className={styles.container}>
       <img className={styles.pic} src={student.profilePic} alt="friend pic" />
       <div className={styles.description}>
-        <H3 style={{ margin: '0px' }}>{student.name + " '" + student.year}</H3>
-        <div className='majorMinorContainer'>
+        <H3 style={{ margin: '0px' }}>{`${student.name} '${student.year}`}</H3>
+        <div className="majorMinorContainer">
           {student.major.map((major, i) => (
-            <B1>{i + 1 === student.major.length ? major + " Major" : `${major} Major • `}</B1>
+            <B1>{i + 1 === student.major.length ? `${major} Major` : `${major} Major • `}</B1>
           ))}
         </div>
-        <div className='majorMinorContainer'>
+        <div className="majorMinorContainer">
           {student.minor.map((minor, i) => (
-            <B1>{i + 1 === student.minor.length ? minor + " Minor" : `${minor} Minor • `}</B1>
+            <B1>{i + 1 === student.minor.length ? `${minor} Minor` : `${minor} Minor • `}</B1>
           ))}
         </div>
       </div>

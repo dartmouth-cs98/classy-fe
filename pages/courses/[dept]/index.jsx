@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+// eslint-disable-import/no-unresolved
 import stylesp from '../../../styles/professorInfo.module.css';
 import styles from '../../../styles/components/SearchPage.module.css';
 import {
