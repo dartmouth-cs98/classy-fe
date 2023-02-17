@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Button, Modal } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import styles from '../../styles/WaitlistDetail.module.css';
-import styleswh from '../../styles/WaitlistHome.module.css';
+import styleswt from '../../styles/WaitlistTileCard.module.css';
 // reactstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -122,19 +122,77 @@ function WaitlistModal(props) {
   };
 
   const modalButton = (entryPoint) => {
+    /* Get terms for waitlist */
+    // store waitlist terms and student position in dictionary
+    const studentWaitlists = {};
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < course.offerings.length; i++) {
+      if (course.offerings[i].priorityWaitlist.includes(studentId)) {
+        studentWaitlists[course.offerings[i].term] = 'Priority';
+      } else if (course.offerings[i].waitlist.includes(studentId)) {
+        // eslint-disable-next-line max-len
+        const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
+        const studentPos = course.offerings[i].waitlist.indexOf(studentId) + 1;
+        const position = `${studentPos} / ${totalStudents}`;
+        studentWaitlists[course.offerings[i].term] = position;
+      }
+    }
+    // get list of terms student is signed up for
+    const termArray = Object.keys(studentWaitlists);
+    // format waitlist list
+    const waitlistTerms = termArray.join(', ');
+    // Get next term and student's position
+    const nextTerm = termArray[0];
+    const nextTermPos = studentWaitlists[nextTerm];
+
     if (entryPoint === 'waitlist') {
       return (
         <div
-          className={styleswh.card}
+          className={styleswt.card}
           style={{ background: cardColor[index] }}
           onClick={() => setModalNotificationOpen(true)}
         >
-          <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-            <H2 color={textColor[index]}>
-              {` ${course.courseDept} ${course.courseNum}`}
-            </H2>
-          </Link>
-          <H4 color={textColor[index]}>{course.courseTitle}</H4>
+          <div className={styleswt.waitlistCardsContainer}>
+            <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+              <H3>
+                {` ${course.courseDept} ${course.courseNum}`}
+              </H3>
+            </Link>
+            <H3 color={textColor[index]}>{course.courseTitle}</H3>
+          </div>
+          <div className={styleswt.waitlistCardsContainer}>
+            <div>
+              <H3 color={textColor[index]}>terms enrolled</H3>
+              <H3>{waitlistTerms}</H3>
+            </div>
+            <div>
+              <H3 color={textColor[index]}>
+                status for
+                {' '}
+                {nextTerm}
+              </H3>
+              {/* <H4>For additonal terms, select edit below</H4> */}
+              <H3>{nextTermPos}</H3>
+            </div>
+          </div>
+          <div>
+            <div className={styleswt.bottomButtons}>
+              <div className={styleswt.buttonContainer}>
+                <a href={`/courses/${course.courseDept}/${course.courseNum}`}>
+                  <button className={styleswt.btn} type="button">
+                    Course Info Page
+                  </button>
+                </a>
+              </div>
+              <div className={styleswt.buttonContainer}>
+                <button className={styleswt.btn} type="button">
+                  {/* Could also say details, not sure what is clearer */}
+                  {/* Details */}
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
