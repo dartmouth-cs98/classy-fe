@@ -27,10 +27,9 @@ function CourseTitleCard(props) {
   // const {
   //   distribs, quality, reviews, id, name,
   // } = CourseTitleMockData;
-  const courseNum = course.courseNumber.split(' ')[1];
   return (
     <Link
-      href={`/courses/COSC/${courseNum}`}
+      href={`/courses/${course.courseDept}/${course.courseNum}`}
       style={{
         marginBottom: '15px',
       }}
@@ -38,17 +37,24 @@ function CourseTitleCard(props) {
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
           <div className={styles.topLeft}>
-            <TextLabel color="var(--dark-grey)">
-              {course.location}
-            </TextLabel>
+            <TextLabel color="var(--dark-grey)">{course.location}</TextLabel>
           </div>
-          <H1 color={color.dark} style={{ marginBottom: '-13px' }}>{course.timeBlock}</H1>
+          <H1 color={color.dark} style={{ marginBottom: '-13px' }}>
+            {course.timeBlock}
+          </H1>
         </div>
         <div>
-          <H4 color="var(--white)" className={styles.name} style={{ margin: '0px' }}>{course.courseNumber}</H4>
-          <B1 color="var(--lighter-grey)" className={styles.description}>{course.courseName}</B1>
+          <H4
+            color="var(--white)"
+            className={styles.name}
+            style={{ margin: '0px' }}
+          >
+            {`${course.courseDept} ${course.courseNum}`}
+          </H4>
+          <B1 color="var(--lighter-grey)" className={styles.description}>
+            {course.courseTitle}
+          </B1>
         </div>
-
       </div>
     </Link>
   );

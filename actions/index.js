@@ -27,7 +27,8 @@ export const ActionTypes = {
   ADD_TO_ONE_WAITLIST: 'ADD_TO_ONE_WAITLIST',
   REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
-  MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+  MARK_COURSE: 'MARK_COURSE',
+  FETCH_HOME: 'FETCH_HOME',
 };
 
 // trying this out in async await format
@@ -253,7 +254,7 @@ export const fetchCourseReviews = (dept, num) => (dispatch) => {
 export const createCourseReview = (courseId, offering, review) => (dispatch) => {
   // eslint-disable-next-line no-underscore-dangle
   axios
-    .post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review)
+    .post(`${ROOT_URL}/reviews/${courseId}/${offering}`, review)
     .then((res) => {
       const response = res.data;
       dispatch({
@@ -263,12 +264,12 @@ export const createCourseReview = (courseId, offering, review) => (dispatch) => 
     });
 };
 
-export const markAsTaken = (studentId, courseId, taken) => (dispatch) => {
+export const markCourse = (studentId, courseId, mode, taken) => (dispatch) => {
   // eslint-disable-next-line no-underscore-dangle
-  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${taken}`).then((res) => {
+  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${mode}/${taken}`).then((res) => {
     const response = res.data;
     dispatch({
-      type: ActionTypes.MARK_AS_TAKEN,
+      type: ActionTypes.MARK_COURSE,
       payload: response,
     });
   });
@@ -290,3 +291,13 @@ export function search(query, navigate) {
       });
   };
 }
+
+export const fetchHome = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/home`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_HOME,
+      payload: response,
+    });
+  });
+};

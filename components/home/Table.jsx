@@ -1,62 +1,83 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 import { B1 } from '../ui/typography';
+import styles from '../../styles/Home.module.css';
+import stylesw from '../../styles/WaitlistDetail.module.css';
+import { markCourse } from '../../actions';
 
 function Table(props) {
   const {
-    data,
+    courses, mode, studentId,
   } = props;
+  const dispatch = useDispatch();
+  const removeCourse = (courseId) => {
+    if (mode === 'cart') {
+      dispatch(markCourse(studentId, courseId, 'cart', true));
+    } else if (mode === 'completed') {
+      dispatch(markCourse(studentId, courseId, 'taken', true));
+    }
+  };
 
+  const loadCourses = () => courses.map((course) => {
+    console.log('course', course);
+    return (
+      <tr>
+        <td>
+          <B1>
+            <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+              {`${course.courseDept} ${course.courseNum}`}
+            </Link>
+          </B1>
+        </td>
+        <td>
+          <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+            <B1>{course.courseTitle}</B1>
+          </Link>
+        </td>
+        <td>
+          <Link href="/home">
+            <button
+              type="button"
+              className={stylesw.button}
+              onClick={removeCourse(course._id)}
+            >
+              X
+            </button>
+          </Link>
+        </td>
+      </tr>
+    );
+  });
+
+  const tableOrEmpty = () => {
+    if (courses?.length > 0) {
+      return (
+        <table>
+          <thead>
+            <th>Course Code</th>
+            <th>Course Title</th>
+            <th>Remove</th>
+          </thead>
+          <tbody>{loadCourses()}</tbody>
+        </table>
+      );
+    }
+    if (mode === 'cart') {
+      return <B1>Add courses to your shopping cart</B1>;
+    }
+    if (mode === 'completed') {
+      return <B1>Mark courses as completed</B1>;
+    }
+    return '';
+  };
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'row', gap: '70px', alignItems: 'flex-start', padding: '20px 30px 0px 30px', width: '100%', height: '100%', overflow: 'scroll',
-    }}
+    <div
+      className={styles.table}
     >
-      <div style={{
-        display: 'flex', flexDirection: 'column', width: '100px', gap: '20px',
-      }}
-      >
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>COSC050.001</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>WRIT5</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>LING1</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>COSC050.001</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>WRIT5</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>LING1</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>COSC050.001</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>WRIT5</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>LING1</B1>
-      </div>
-
-      <div style={{
-        display: 'flex', flexDirection: 'column', width: '300px', gap: '20px',
-      }}
-      >
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Software Design and Implementation</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Expository Writing</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Introductory Linguistics</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Software Design and Implementation</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Expository Writing</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Introductory Linguistics</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Software Design and Implementation</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Expository Writing</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>Introductory Linguistics</B1>
-      </div>
-
-      <div style={{
-        display: 'flex', flexDirection: 'column', width: '50px', gap: '20px',
-      }}
-      >
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>44X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>55X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>20S</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>44X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>55X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>20S</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>44X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>55X</B1>
-        <B1 style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>20S</B1>
-      </div>
-
+      {tableOrEmpty()}
     </div>
   );
 }

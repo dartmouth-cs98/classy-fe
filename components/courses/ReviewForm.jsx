@@ -37,7 +37,7 @@ function ReviewForm(props) {
   const onSubmit = (event) => {
     event.preventDefault();
     const review = {
-      user,
+      user: `ObjectId('${user}')`,
       workload: parseInt(workload, 10),
       difficulty: parseInt(difficulty, 10),
       quality: parseInt(quality, 10),

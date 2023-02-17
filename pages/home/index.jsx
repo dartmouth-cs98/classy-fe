@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {
@@ -13,6 +15,7 @@ import ProfileModal from '../../components/home/ProfileModal';
 import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
+import { fetchHome } from '../../actions';
 
 const allCourses = [
   {
@@ -84,7 +87,21 @@ function HomePage() {
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
-  const progress = 66;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchHome());
+  }, []);
+
+  const currentHome = useSelector((reduxState) => reduxState.home.current);
+  if (!currentHome) {
+    dispatch(fetchHome());
+    return <B1 key="loading">Loading...</B1>;
+  }
+  const progress = currentHome?.student?.coursesTaken
+    ? Math.round((100 * currentHome.student.coursesTaken.length) / 35, 10)
+    : 0;
+
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
       <ProfileModal
@@ -105,32 +122,62 @@ function HomePage() {
         setIsOpen={setCompletedModalIsOpen}
       />
       <div className={styles.verticalContainer} style={{ gap: '50px' }}>
-        <div style={{
-          display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '35px',
-        }}
+        <div
+          style={{
+					  display: 'flex',
+					  flexDirection: 'row',
+					  alignItems: 'flex-end',
+					  gap: '35px',
+          }}
         >
           <img className={styles.pic} src={pic} alt="Tim" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
-            <H1>Tim Tregubov</H1>
-            <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>Computer Science Major • Economics Minor </B1>
+            <H1>
+              {`${currentHome?.student?.user?.firstName} ${currentHome?.student?.user?.lastName}`}
+            </H1>
+            <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
+              {`${currentHome?.student?.majors?.join(', ')} Major(s)`}
+            </B1>
           </div>
         </div>
 
         <div className={styles.verticalContainer}>
-          <div className={styles.horizontalContainer} style={{ height: '350px' }}>
-            <div className={styles.box} style={{ backgroundColor: 'var(--navy)', width: '880px', minWidth: '880px' }}>
+          <div
+            className={styles.horizontalContainer}
+            style={{ height: '350px' }}
+          >
+            <div
+              className={styles.box}
+              style={{
+							  backgroundColor: 'var(--navy)',
+							  width: '880px',
+							  minWidth: '880px',
+              }}
+            >
               <div className={styles.header}>
                 <H3 color="var(--white)">Current Courses</H3>
-                <A color="var(--white)" onClick={() => setCurrentModalIsOpen(true)}>Edit</A>
+                <A
+                  color="var(--white)"
+                  onClick={() => setCurrentModalIsOpen(true)}
+                >
+                  Edit
+                </A>
               </div>
-              <div style={{
-                display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'flex-start', gap: '40px', overflow: 'scroll', padding: '0 30px',
-              }}
+              <div
+                style={{
+								  display: 'flex',
+								  width: '100%',
+								  flexDirection: 'row',
+								  justifyContent: 'flex-start',
+								  gap: '40px',
+								  overflow: 'scroll',
+								  padding: '0 30px',
+                }}
               >
-                {allCourses.map((course, i) => (
+                {currentHome?.student?.currentCourses?.map((course, i) => (
                   <CourseTitleCardHome
-                    key={course.courseName}
+                    key={course.courseTitle}
                     course={course}
                     color={cardColors[i % cardColors.length]}
                   />
@@ -139,60 +186,101 @@ function HomePage() {
             </div>
 
             <div className={styles.verticalContainer}>
-              <DataBox width="165px" height="130px" text="Friends" data="74" pastelColor="var(--pastel-pink)" darkColor="var(--dark-pink) " />
-              <DataBox width="165px" height="200px" text="Waitlists Joined" data="74" pastelColor="var(--pastel-violet)" darkColor="var(--dark-violet) " />
+              <DataBox
+                width="165px"
+                height="130px"
+                text="Friends"
+                data={currentHome?.student?.friends?.length}
+                pastelColor="var(--pastel-pink)"
+                darkColor="var(--dark-pink) "
+              />
+              <DataBox
+                width="165px"
+                height="200px"
+                text="Waitlists Joined"
+                data={currentHome?.waitlists?.length}
+                pastelColor="var(--pastel-violet)"
+                darkColor="var(--dark-violet) "
+              />
             </div>
-
           </div>
 
           <div className={styles.horizontalContainer}>
-            <div className={styles.verticalContainer} style={{ width: '715px' }}>
-              <div className={styles.box} style={{ backgroundColor: 'var(--lightest-grey)', height: '320px', minWidth: '615px' }}>
+            <div
+              className={styles.verticalContainer}
+              style={{ width: '715px' }}
+            >
+              <div
+                className={styles.box}
+                style={{
+								  backgroundColor: 'var(--lightest-grey)',
+								  height: '320px',
+								  minWidth: '615px',
+                }}
+              >
                 <div className={styles.header}>
                   <H3>Shopping Cart for Next Term</H3>
                   <A onClick={() => setShoppingModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table />
-
+                <Table
+                  courses={currentHome?.student?.shoppingCart}
+                  mode="cart"
+                  studentId={currentHome?.student?._id}
+                />
               </div>
 
-              <div className={styles.box} style={{ backgroundColor: 'var(--lightest-grey)', height: '320px', minWidth: '615px' }}>
+              <div
+                className={styles.box}
+                style={{
+								  backgroundColor: 'var(--lightest-grey)',
+								  height: '320px',
+								  minWidth: '615px',
+                }}
+              >
                 <div className={styles.header}>
                   <H3>Completed Courses</H3>
                   <A onClick={() => setCompletedModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table />
+                <Table
+                  courses={currentHome?.student?.coursesTaken}
+                  mode="completed"
+                  studentId={currentHome?.student?._id}
+                />
               </div>
-
             </div>
 
             <div className={styles.verticalContainer}>
               <div
                 className={styles.box}
                 style={{
-                  backgroundColor: 'var(--lightest-grey)', minWidth: '330px', width: '330px', paddingBottom: '35px',
+								  backgroundColor: 'var(--lightest-grey)',
+								  minWidth: '330px',
+								  width: '330px',
+								  paddingBottom: '35px',
                 }}
               >
                 <div className={styles.header}>
                   <H3>Your Progress</H3>
                 </div>
-                <div style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
-                }}
+                <div
+                  style={{
+									  display: 'flex',
+									  flexDirection: 'column',
+									  alignItems: 'center',
+									  gap: '10px',
+                  }}
                 >
                   <div style={{ width: 200, height: 200, marginTop: '20px' }}>
                     <CircularProgressbarWithChildren
                       value={progress}
                       styles={buildStyles({
-
-                        // How long animation takes to go from one percentage to another, in seconds
-                        pathTransitionDuration: 0.5,
-
-                        // Colors
-                        pathColor: 'var(--dark-green)',
-                        trailColor: 'var(--light-grey)',
+											  // How long animation takes to go from one percentage to another, in seconds
+											  pathTransitionDuration: 0.5,
+											  // Colors
+											  pathColor: 'var(--dark-green)',
+											  trailColor: 'var(--light-grey)',
                       })}
                       strokeWidth="18"
                     >
@@ -203,32 +291,46 @@ function HomePage() {
                     </CircularProgressbarWithChildren>
                   </div>
 
-                  <div style={{
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px',
-                  }}
+                  <div
+                    style={{
+										  display: 'flex',
+										  flexDirection: 'column',
+										  alignItems: 'center',
+										  gap: '2px',
+                    }}
                   >
                     <H4>Degree</H4>
-                    <B1 color="var(--dark-grey)">22/35 Courses Completed</B1>
+                    <B1 color="var(--dark-grey)">{`${currentHome?.student?.coursesTaken?.length}/35 Courses Completed`}</B1>
                   </div>
-
                 </div>
               </div>
 
-              <div className={styles.horizontalContainer} style={{ gap: '20px' }}>
-                <DataBox width="175px" height="180px" text="Departments Explored" data="74" pastelColor="var(--pastel-orange)" darkColor="var(--dark-orange) " />
-                <DataBox width="135px" height="180px" text="9Ls Endured" data="74" pastelColor="var(--pastel-green)" darkColor="var(--dark-green) " />
-              </div>
-
+              {/* <div
+                className={styles.horizontalContainer}
+                style={{ gap: '20px' }}
+              >
+                <DataBox
+                  width="175px"
+                  height="180px"
+                  text="Departments Explored"
+                  data="74"
+                  pastelColor="var(--pastel-orange)"
+                  darkColor="var(--dark-orange) "
+                />
+                <DataBox
+                  width="135px"
+                  height="180px"
+                  text="9Ls Endured"
+                  data="74"
+                  pastelColor="var(--pastel-green)"
+                  darkColor="var(--dark-green) "
+                />
+              </div> */}
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   );
 }
 

@@ -9,11 +9,11 @@ import CourseInfoTitle from '../../../components/courses/CourseInfoTitle';
 import Offered from '../../../components/courses/Offered';
 import Medians, { convertMedian } from '../../../components/courses/Medians';
 import StudentsSay from '../../../components/courses/StudentsSay';
-
 import { fetchCourse } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import styles from '../../../styles/CourseInfo.module.css';
 import ReviewForm from '../../../components/courses/ReviewForm';
+import TopIcons from '../../../components/courses/TopIcons';
 
 import {
   B1, A, H2,
@@ -49,7 +49,7 @@ export default function CourseInfo() {
           <ReviewComponent
             key={review.content}
             // eslint-disable-next-line no-underscore-dangle
-            user={currentCourse.users.find((user) => user._id === review.user)}
+            user={currentCourse.student}
             term={offering.term}
             professors={offering.professors}
             review={review}
@@ -70,30 +70,59 @@ export default function CourseInfo() {
     );
   };
 
+  const loadForm = () => {
+    if (currentCourse.wroteReview) {
+      return <B1>Thanks for submitting a review!</B1>;
+    }
+    if (currentCourse.student?.coursesTaken?.includes(
+      currentCourse.course._id,
+    )) {
+      return (
+        <ReviewForm
+          courseId={currentCourse.course._id}
+          key="form"
+          users={currentCourse.users}
+          offerings={currentCourse.course.offerings}
+        />
+      );
+    }
+    return <B1>Add a review after taking the course!</B1>;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.ciTitle}>
-        {currentCourse.course ? (
-          showCourseCodes(currentCourse.course)
-        ) : <H2 />}
+        {currentCourse.course ? showCourseCodes(currentCourse.course) : <H2 />}
+        <TopIcons course={currentCourse.course} student={currentCourse.student} />
       </div>
-      <Link key={`${dept}-courses`} href={`/courses/${dept}`}><A>{`Find more ${dept} courses`}</A></Link>
+      <Link key={`${dept}-courses`} href={`/courses/${dept}`}>
+        <A>{`Find more ${dept} courses`}</A>
+      </Link>
       <CourseInfoTitle
         key="cit"
         course={currentCourse.course || { dept, num }}
         student={currentCourse.student}
+        wroteReview={currentCourse.wroteReview}
         onWaitlist={currentCourse.onWaitlist}
       />
       <CourseInfoSubtitle key="cis" text="Description" />
-      <B1 key="description">{currentCourse.course ? currentCourse.course.description : ''}</B1>
+      <B1 key="description">
+        {currentCourse.course ? currentCourse.course.description : ''}
+      </B1>
 
       <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
-      {currentCourse.course ? getPrereqs(currentCourse.course.required, currentCourse.course.counts) : ''}
+      {currentCourse.course
+        ? getPrereqs(currentCourse.course.required, currentCourse.course.counts)
+        : ''}
       <CourseInfoSubtitle text="At a Glance" />
       <Glance
         distribs={currentCourse.course ? currentCourse.course.distribs : ''}
         wc={currentCourse.course ? currentCourse.course.wc : ''}
-        avgMedian={currentCourse.course ? convertMedian(currentCourse.course.avgMedian) : ''}
+        avgMedian={
+            currentCourse.course
+              ? convertMedian(currentCourse.course.avgMedian)
+              : ''
+        }
         dept={currentCourse.course ? currentCourse.course.courseDept : ''}
         num={currentCourse.course ? currentCourse.course.courseNum : ''}
         nr={currentCourse.course ? currentCourse.course.nrEligible : ''}
@@ -102,24 +131,42 @@ export default function CourseInfo() {
       <CourseInfoSubtitle key="students" text="What Students Say" />
       <StudentsSay
         key="studentssay"
-        workload={currentCourse.course && currentCourse.course.workload ? currentCourse.course.workload : 'Not Enough Data'}
-        difficulty={currentCourse.course && currentCourse.course.difficulty ? currentCourse.course.difficulty : 'Not Enough Data'}
-        quality={currentCourse.course && currentCourse.course.quality ? currentCourse.course.quality : 'Not Enough Data'}
+        workload={
+            currentCourse.course && currentCourse.course.workload
+              ? currentCourse.course.workload
+              : 'Not Enough Data'
+        }
+        difficulty={
+            currentCourse.course && currentCourse.course.difficulty
+              ? currentCourse.course.difficulty
+              : 'Not Enough Data'
+            }
+        quality={
+            currentCourse.course && currentCourse.course.quality
+              ? currentCourse.course.quality
+              : 'Not Enough Data'
+            }
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
-      {currentCourse.course.offerings ? <Offered key="offerings" offerings={currentCourse.course.offerings} /> : <B1 key="no offerings">No Data</B1>}
+      {currentCourse.course.offerings ? (
+        <Offered key="offerings" offerings={currentCourse.course.offerings} />
+      ) : (
+        <B1 key="no offerings">No Data</B1>
+      )}
 
       <CourseInfoSubtitle key="medians" text="Medians" />
-      {currentCourse.course.medians ? <Medians key="mediantiles" medians={currentCourse.course.medians} /> : <B1 key="no data">No Data</B1>}
+      {currentCourse.course.medians ? (
+        <Medians key="mediantiles" medians={currentCourse.course.medians} />
+      ) : (
+        <B1 key="no data">No Data</B1>
+      )}
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
       {loadReviews()}
 
       <CourseInfoSubtitle key="addreview" text="Add a Review" />
-      {currentCourse.student?.coursesTaken?.includes(currentCourse.course._id)
-        ? <ReviewForm courseId={currentCourse.course._id} key="form" users={currentCourse.users} offerings={currentCourse.course.offerings} />
-        : <B1>Add a review after taking the course!</B1>}
+      {loadForm()}
       <br />
     </div>
   );
