@@ -7,6 +7,7 @@ import {
 import ProfessorCard from '../../components/professors/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
+// eslint-disable-import/no-unresolved
 import styles from '../../styles/professorInfo.module.css';
 import { fetchProfessor } from '../../actions';
 

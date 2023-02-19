@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useCallback } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from '../../styles/components/SearchBar.module.css';
 import { fetchSearch } from '../../actions';
 

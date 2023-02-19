@@ -1,4 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import getColor from '../../data/colorscheme';
 import stylesCI from '../../styles/CourseInfo.module.css';
 import {
@@ -7,7 +9,6 @@ import {
 import RecommendCourseModal from './RecommendCourseModal';
 import WaitlistModal from '../waitlist/WaitlistModal';
 import { markAsTaken } from '../../actions';
-import { useDispatch } from 'react-redux';
 
 function CourseInfoTitle(props) {
   const { course, student, onWaitlist } = props;
