@@ -10,7 +10,7 @@ import {
 } from '../../components/ui/typography';
 import FriendCard from '../../components/social/FriendCard';
 import BlackButton from '../../components/BlackButton';
-import { fetchFriends, fetchUser } from '../../actions';
+import { fetchFriends } from '../../actions';
 
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);

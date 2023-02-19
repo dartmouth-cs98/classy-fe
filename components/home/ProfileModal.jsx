@@ -5,32 +5,32 @@ import { H2, H3, A } from '../ui/typography';
 import Button from '@mui/material/Button';
 import styles from '../../styles/components/HomePage.module.css';
 import uploadImage from '../../services/s3';
+import { updateUser } from '../../actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 function ProfileModal(props) {
   const {
-    isOpen, setIsOpen,
+    isOpen, setIsOpen, user, setUpdatedUser
   } = props;
-
-  const [pic, setPic] = useState({ url: null, img: null, file: null });
+  // const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [pic, setPic] = useState({ url: user.user.profileImageUrl, img: null, file: null });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
 
   const onImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setPic({ ...pic, img: window.URL.createObjectURL(file), file });
-      console.log(pic);
+      setPic({ ...pic, img: window.URL.createObjectURL(file), file, url: null });
     }
   };
 
   const onImageSubmit = () => {
     if (pic.file != null) {
       uploadImage(pic.file).then((url) => {
-        setPic({ ...pic, url });
         setIsOpen(false)
-        // use url for content_url and
-        // either run your createPost actionCreator
-        // or your updatePost actionCreator
+        dispatch(updateUser(user.user._id, { ...user.user, profileImageUrl: url }));
+        setUpdatedUser(true);
       }).catch((error) => {
         // handle error
         console.log('error in submitting image', error);
@@ -44,7 +44,7 @@ function ProfileModal(props) {
       setIsOpen={setIsOpen}
       header="Edit Profile"
     >
-      <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Professor Picture" />
+      <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Profile Image" />
 
       <Button variant="contained" component="label">
         Upload Picture
