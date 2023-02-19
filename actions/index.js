@@ -4,30 +4,63 @@ export const ROOT_URL = 'http://localhost:8000/api';
 
 // keys for actiontypes
 export const ActionTypes = {
-	FETCH_COURSES: "FETCH_COURSES",
-	FETCH_COURSE: "FETCH_COURSE",
-	UPDATE_COURSE: "UPDATE_COURSE",
-	CREATE_COURSE: "CREATE_COURSE",
-	DELETE_COURSE: "DELETE_COURSE",
-	FETCH_PROFESSORS: "FETCH_PROFESSORS",
-	FETCH_PROFESSOR: "FETCH_PROFESSOR",
-	UPDATE_PROFESSOR: "UPDATE_PROFESSOR",
-	CREATE_PROFESSOR: "CREATE_PROFESSOR",
-	DELETE_PROFESSOR: "DELETE_PROFESSOR",
-	FETCH_EXPLORE: "FETCH_EXPLORE",
-	FETCH_SEARCH: "FETCH_SEARCH",
-	FETCH_WAITLISTS: "FETCH_WAITLISTS",
-	FETCH_WAITLIST: "FETCH_WAITLIST",
-	FETCH_DEPARTMENT: "FETCH_DEPARTMENT",
-	FETCH_DEPARTMENTS: "FETCH_DEPARTMENTS",
-	FETCH_DEPT_COURSES: "FETCH_DEPT_COURSES",
-	FETCH_COURSE_REVIEWS: "FETCH_COURSE_REVIEWS",
-	CREATE_REVIEW: "CREATE_REVIEW",
-	JOIN_WAITLISTS: "JOIN_WAITLISTS",
-	ADD_TO_ONE_WAITLIST: "ADD_TO_ONE_WAITLIST",
-	REMOVE_FROM_WAITLIST: "REMOVE_FROM_WAITLIST",
-	WITHDRAW_FROM_WAITLIST: "WITHDRAW_FROM_WAITLIST",
-	MARK_AS_TAKEN: "MARK_AS_TAKEN",
+  FETCH_USER: 'FETCH_USER',
+  FETCH_STUDENT: 'FETCH_STUDENT',
+  FETCH_FRIENDS: 'FETCH_FRIENDS',
+  FETCH_COURSES: 'FETCH_COURSES',
+  FETCH_COURSE: 'FETCH_COURSE',
+  UPDATE_COURSE: 'UPDATE_COURSE',
+  CREATE_COURSE: 'CREATE_COURSE',
+  DELETE_COURSE: 'DELETE_COURSE',
+  FETCH_PROFESSORS: 'FETCH_PROFESSORS',
+  FETCH_PROFESSOR: 'FETCH_PROFESSOR',
+  UPDATE_PROFESSOR: 'UPDATE_PROFESSOR',
+  CREATE_PROFESSOR: 'CREATE_PROFESSOR',
+  DELETE_PROFESSOR: 'DELETE_PROFESSOR',
+  FETCH_EXPLORE: 'FETCH_EXPLORE',
+  FETCH_SEARCH: 'FETCH_SEARCH',
+  FETCH_WAITLISTS: 'FETCH_WAITLISTS',
+  FETCH_WAITLIST: 'FETCH_WAITLIST',
+  FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
+  FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
+  FETCH_COURSE_REVIEWS: 'FETCH_COURSE_REVIEWS',
+  CREATE_REVIEW: 'CREATE_REVIEW',
+  JOIN_WAITLISTS: 'JOIN_WAITLISTS',
+  ADD_TO_ONE_WAITLIST: 'ADD_TO_ONE_WAITLIST',
+  REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
+  WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
+  MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+};
+
+export const fetchUser = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/users/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_USER,
+      payload: response,
+    });
+  });
+};
+
+export const fetchStudent = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/students/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_STUDENT,
+      payload: response,
+    });
+  });
+};
+
+export const fetchFriends = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/students/friends/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_FRIENDS,
+      payload: response,
+    });
+  });
 };
 
 // trying this out in async await format
@@ -264,16 +297,15 @@ export const createCourseReview = (courseId, offering, review) => (dispatch) => 
 };
 
 export const markAsTaken = (studentId, courseId, taken) => (dispatch) => {
-    // eslint-disable-next-line no-underscore-dangle
-    axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${taken}`).then((res) => {
-        const response = res.data;
-        dispatch({
-            type: ActionTypes.MARK_AS_TAKEN,
-            payload: response,
-        });
+  // eslint-disable-next-line no-underscore-dangle
+  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${taken}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.MARK_AS_TAKEN,
+      payload: response,
     });
+  });
 };
-
 
 export function search(query, navigate) {
   return (dispatch) => {

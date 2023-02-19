@@ -76,8 +76,13 @@ export const studentMockData = {
   major: ['Computer Science', 'Mathematics'],
   minor: ['Economics', 'Statistics'],
   profilePic: 'https://classy-api-bucket.s3.amazonaws.com/Tran_Vi.png',
-}
+};
 
 export const friendsMockData = {
-  friends: [studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData, studentMockData,]
-}
+  friends:
+    [studentMockData, studentMockData, studentMockData, studentMockData,
+      studentMockData, studentMockData, studentMockData, studentMockData,
+      studentMockData, studentMockData, studentMockData, studentMockData],
+};
+
+export const userId = '63c4424be18e75a330906120';
