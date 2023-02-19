@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   H2, H3, B1, A,
 } from '../../components/ui/typography';
+// eslint-disable-import/no-unresolved
 import styles from '../../styles/professorInfo.module.css';
 import stylese from '../../styles/CourseInfo.module.css';
 import { fetchDepartment } from '../../actions';

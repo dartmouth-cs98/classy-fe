@@ -4,7 +4,7 @@ import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import { cardColors } from '../../constants/colors';
-import { professorInfoMockData, userId } from '../../constants/mockData';
+import { professorInfoMockData } from '../../constants/mockData';
 import {
   H3,
 } from '../../components/ui/typography';

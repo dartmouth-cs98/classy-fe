@@ -20,8 +20,8 @@ export default function Profile() {
   const onImageSubmit = () => {
     if (pic.file != null) {
       uploadImage(pic.file).then((url) => {
-        console.log("hot in on imagesubmit")
-        console.log(url)
+        console.log('hot in on imagesubmit');
+        console.log(url);
         setPic({ ...pic, url });
         // use url for content_url and
         // either run your createPost actionCreator

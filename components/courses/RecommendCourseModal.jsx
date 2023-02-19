@@ -32,10 +32,11 @@ export default function FormDialog() {
         <DialogTitle>Recommend This Course</DialogTitle>
         <DialogContent>
           {/* <div style={stylesCI.marginTopBottom}> */}
-          <FriendsCheckBoxes></FriendsCheckBoxes>
+          <FriendsCheckBoxes />
           {/* </div> */}
           <DialogContentText>
-            Your friend is not on Classy? No worries! Enter their email address below and we'll send them an invite.
+            Your friend is not on Classy? No worries!
+            Enter their email address below and we will send them an invite.
           </DialogContentText>
           <TextField
             autoFocus
