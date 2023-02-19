@@ -5,17 +5,17 @@ import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-pro
 import 'react-circular-progressbar/dist/styles.css';
 import {
   A, H3, H2, H1, B1, H4,
-} from '../../components/ui/typography';
-import CourseTitleCardHome from '../../components/CourseTitleCardHome';
-import DataBox from '../../components/home/DataBox';
-import Table from '../../components/home/Table';
-import styles from '../../styles/components/HomePage.module.css';
-import ProfileModal from '../../components/home/ProfileModal';
-import CurrentModal from '../../components/home/CurrentModal';
-import ShoppingModal from '../../components/home/ShoppingModal';
-import CompletedModal from '../../components/home/CompletedModal';
-import { fetchUser } from '../../actions';
-import { userId } from '../../constants/mockData';
+} from '../components/ui/typography';
+import CourseTitleCardHome from '../components/CourseTitleCardHome';
+import DataBox from '../components/home/DataBox';
+import Table from '../components/home/Table';
+import styles from '../styles/components/HomePage.module.css';
+import ProfileModal from '../components/home/ProfileModal';
+import CurrentModal from '../components/home/CurrentModal';
+import ShoppingModal from '../components/home/ShoppingModal';
+import CompletedModal from '../components/home/CompletedModal';
+import { fetchUser } from '../actions';
+import { userId } from '../constants/mockData';
 
 const allCourses = [
   {
