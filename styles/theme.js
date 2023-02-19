@@ -17,13 +17,20 @@ const theme = createTheme({
 
   components: {
     MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: 'transparent !important',
+          },
+        },
+      },
       defaultProps: {
         disableRipple: true,
       },
     },
   },
 
-  shadows: ['none'],
+  shadows: Array(25).fill('none'),
 });
 
 export default theme;

@@ -1,73 +1,40 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState, useCallback, useEffect, useRef,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { IconButton } from '@mui/material';
+import { IconButton, Checkbox } from '@mui/material';
 import CourseData from '../../data/data';
 import TabBar from './TabBar';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Modal from '../Modal';
-import { H2, H3 } from '../ui/typography';
+import {
+  H2, H3, H4, B1,
+} from '../ui/typography';
+import { distribs, wcs } from '../../constants/colors';
+import { addDistribFilter, removeDistribFilter } from '../../actions';
+import FilterModal from './FilterModal';
 
 function SearchBarPage(props) {
-  const dispatch = useDispatch();
-  const [searchInput, setSearchInput] = useState('');
+  // const [searchInput, setSearchInput] = useState('');
   const [searchModalIsOpen, setSearchModalIsOpen] = useState(false);
   const [tab, setTab] = useState('Courses');
-  // const [searchResults, setSearchResults] = useState(null);
+  // const inputRef = useRef(null);
   const { children } = props;
+  const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
-      <Modal
-        isOpen={searchModalIsOpen}
-        setIsOpen={setSearchModalIsOpen}
-      // onButtonClick={onImageSubmit}
-        buttonText="Apply"
-        header="Course Search Filters"
-      >
-        <div style={{
-          alignSelf: 'flex-start', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', height: '100%',
-        }}
-        >
-          <div style={{ height: '150px' }}>
-            <H3 style={{ margin: '10px 0' }}>Distributive Requirements</H3>
-            <select defaultValue="">
-              <option selected value="">Select to Filter</option>
-              {
-          // years.map((year, index) => <option key={year} value={year}>{year}</option>)
-        }
-            </select>
-
-          </div>
-
-          <div style={{ height: '150px' }}>
-            <H3 style={{ margin: '10px 0' }}>World Culture Requirements</H3>
-            <select defaultValue="">
-              <option selected value="">Select to Filter</option>
-              {
-          // years.map((year, index) => <option key={year} value={year}>{year}</option>)
-        }
-            </select>
-
-          </div>
-
-        </div>
-
-      </Modal>
-      <SearchBar
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        // setSearchResults={setSearchResults}
-      />
+      <FilterModal setIsOpen={setSearchModalIsOpen} isOpen={searchModalIsOpen} />
+      <SearchBar />
       {
-        tab === 'Courses' && searchInput
+        tab === 'Courses'
           ? (
-            <IconButton style={{ backgroundColor: 'transparent' }} onClick={() => setSearchModalIsOpen(true)}>
-              <FilterAltOutlinedIcon />
-            </IconButton>
-
+            <FilterAltOutlinedIcon style={{ cursor: 'pointer', marginLeft: '5px' }} onClick={() => setSearchModalIsOpen(true)} />
           )
           : (
             null
@@ -75,7 +42,7 @@ function SearchBarPage(props) {
       }
 
       {
-        searchInput // if search input exists, show search history page
+        searchQuery // if search input exists, show results page
           ? (
             <div>
               <TabBar tab={tab} setTab={setTab} />
