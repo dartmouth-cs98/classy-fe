@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import {
   TextLabel,
@@ -5,7 +6,8 @@ import {
 import ProfessorCard from '../../components/professorInfo/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
-import styles from '../../styles/ProfessorInfo.module.css';
+// eslint-disable-import/no-unresolved
+import styles from '../../styles/professorInfo.module.css';
 import { cardColors } from '../../constants/colors';
 import { professorInfoMockData } from '../../constants/mockData';
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,12 +35,13 @@ export default function WaitlistHome() {
 
         <div className={styles.grid}>
           {waitlistContent.courses ? waitlistContent.courses.map((course, index) => (
-            <WaitlistModal 
-            course={course}
-            studentId={`ObjectId('${waitlistContent.student._id}')`}
-            onWaitlist={true}
-            index={index}
-            entryPoint={'waitlist'}/>
+            <WaitlistModal
+              course={course}
+              studentId={`ObjectId('${waitlistContent.student._id}')`}
+              onWaitlist
+              index={index}
+              entryPoint="waitlist"
+            />
           )) : ''}
         </div>
       </main>
@@ -50,7 +52,7 @@ export default function WaitlistHome() {
           target="_blank"
           rel="noopener noreferrer"
         >
-        Classy
+          Classy
 
         </a>
       </footer>

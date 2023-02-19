@@ -20,13 +20,50 @@
     right: 20px;
 }
 
+.btn :hover {
+    opacity: 50%;
+}
+
 .inline {
     display: inline-block;
-
+    margin-left: 15px;
 }
 
 .card {
-    margin: 0;
-    width: 174px;
-    cursor: pointer;
+    display: flex;
+}
+
+.text {
+    text-align: right;
+    padding-top: 3%;
+}
+
+.content {
+    /* height: 0; */
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+    display: none;
+}
+
+.content.show {
+    height: auto;
+    max-height: 9999px;
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.pagenum {
+    margin: 20px 30px;
+
+}
+
+.pagenum li {
+    display: inline-block;
+    margin: 0 10px;
 }
