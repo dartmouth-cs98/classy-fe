@@ -224,7 +224,7 @@ function Register() {
           <br />
           <span className="line">
             {/* put router link here, placeholder link below */}
-            <a href="#">Sign in instead</a>
+            <a href="/Login">Sign in instead</a>
           </span>
         </p>
       </div>

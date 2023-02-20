@@ -92,7 +92,7 @@ function Login() {
             <br />
             <span className="line">
               {/* put router link here, placeholder link below */}
-              <a href="#">Sign up instead</a>
+              <a href="/Register">Sign up instead</a>
             </span>
           </p>
         </div>
