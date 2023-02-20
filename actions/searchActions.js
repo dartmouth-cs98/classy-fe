@@ -8,10 +8,12 @@ export const SearchActionTypes = {
   REMOVE_DISTRIB_FILTER: 'REMOVE_DISTRIB_FILTER',
   REMOVE_WC_FILTER: 'REMOVE_WC_FILTER',
   SET_SEARCH_QUERY: 'SET_SEARCH_QUERY',
+  TOGGLE_OFFERED_NEXT: 'TOGGLE_OFFERED_NEXT',
+  TOGGLE_NR_ELIGIBLE: 'TOGGLE_NR_ELIGIBLE',
 };
 
 // never called directly, implicitly called by setSearchQuery, addDistribFilter,
-// removeDistribFilter, addWcFilter, removeWcFilter
+// removeDistribFilter, addWcFilter, removeWcFilter, and toggle functions
 export const fetchSearch = () => (dispatch, getState) => {
   const searchResultsTimestamp = Date.now();
   const { searchQuery } = getState().search;
@@ -65,6 +67,20 @@ export const removeWcFilter = (distrib) => (dispatch) => {
   dispatch({
     type: SearchActionTypes.REMOVE_WC_FILTER,
     payload: distrib,
+  });
+  dispatch(fetchSearch());
+};
+
+export const toggleOfferedNext = () => (dispatch) => {
+  dispatch({
+    type: SearchActionTypes.TOGGLE_OFFERED_NEXT,
+  });
+  dispatch(fetchSearch());
+};
+
+export const toggleNrEligible = () => (dispatch) => {
+  dispatch({
+    type: SearchActionTypes.TOGGLE_NR_ELIGIBLE,
   });
   dispatch(fetchSearch());
 };

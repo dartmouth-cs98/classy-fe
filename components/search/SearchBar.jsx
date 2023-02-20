@@ -9,9 +9,6 @@ import styles from '../../styles/components/SearchBar.module.css';
 import { setSearchQuery } from '../../actions';
 
 function SearchBar(props) {
-  const {
-    searchInput, setSearchInput, setSearchResults, focusSearchBar,
-  } = props;
   const dispatch = useDispatch();
   const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
 
@@ -21,22 +18,22 @@ function SearchBar(props) {
     // e.preventDefault();
     // setSearchInput(e.target.value);
     // setSearchResults(true);
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     dispatch(setSearchQuery(e.target.value));
     // dispatch(fetchSearch(e.target.value));
   };
 
   // focus on input when search bar loaded
-  const input = useCallback((inputElement) => {
-    if (inputElement) {
-      inputElement.focus();
-    }
-  }, []);
+  // const input = useCallback((inputElement) => {
+  //   if (inputElement) {
+  //     inputElement.focus();
+  //   }
+  // }, []);
 
-  // useEffect(() => {
-  //   // inputRef.current.focus();
-  // });
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   // useEffect(() => {
   //   // console.log('hi');

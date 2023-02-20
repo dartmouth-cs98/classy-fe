@@ -6,6 +6,8 @@ const initialState = {
   searchResults: [],
   searchResultsTimestamp: Date.now(),
   searchQuery: '',
+  offeredNext: false,
+  nrEligible: false,
 };
 
 const SearchReducer = (state = initialState, action = {}) => {
@@ -17,8 +19,10 @@ const SearchReducer = (state = initialState, action = {}) => {
       }
       return state;
     case ActionTypes.ADD_DISTRIB_FILTER:
-      // console.log(action.payload);
-      return { ...state, distribFilters: [...state.distribFilters, action.payload] };
+      if (!state.distribFilters.includes(action.payload)) {
+        return { ...state, distribFilters: [...state.distribFilters, action.payload] };
+      }
+      return { ...state };
     case ActionTypes.REMOVE_DISTRIB_FILTER:
       return {
         ...state,
@@ -26,8 +30,10 @@ const SearchReducer = (state = initialState, action = {}) => {
         state.distribFilters.filter((distrib) => distrib.name !== action.payload.name),
       };
     case ActionTypes.ADD_WC_FILTER:
-      // console.log(action.payload);
-      return { ...state, wcFilters: [...state.wcFilters, action.payload] };
+      if (!state.wcFilters.includes(action.payload)) {
+        return { ...state, wcFilters: [...state.wcFilters, action.payload] };
+      }
+      return { ...state };
     case ActionTypes.REMOVE_WC_FILTER:
       return {
         ...state,
@@ -36,6 +42,10 @@ const SearchReducer = (state = initialState, action = {}) => {
       };
     case ActionTypes.SET_SEARCH_QUERY:
       return { ...state, searchQuery: action.payload.searchQuery };
+    case ActionTypes.TOGGLE_NR_ELIGIBLE:
+      return { ...state, nrEligible: !state.nrEligible };
+    case ActionTypes.TOGGLE_OFFERED_NEXT:
+      return { ...state, offeredNext: !state.offeredNext };
     default:
       return state;
   }

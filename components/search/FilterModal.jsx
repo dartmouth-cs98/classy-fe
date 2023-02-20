@@ -12,7 +12,8 @@ import {
 } from '../ui/typography';
 import { distribs as allDistribs, wcs as allWcs } from '../../constants/colors';
 import {
-  addDistribFilter, removeDistribFilter, addWcFilter, removeWcFilter,
+  addDistribFilter, removeDistribFilter, addWcFilter, removeWcFilter, toggleNrEligible,
+  toggleOfferedNext,
 } from '../../actions';
 import FilterSelector from './FilterSelector';
 
@@ -21,12 +22,19 @@ function FilterModal(props) {
   const dispatch = useDispatch();
   const stateDistribFilters = useSelector((reduxState) => reduxState.search.distribFilters);
   const stateWcFilters = useSelector((reduxState) => reduxState.search.wcFilters);
+  const offeredNext = useSelector((reduxState) => reduxState.search.offeredNext);
+  const nrEligible = useSelector((reduxState) => reduxState.search.nrEligible);
 
   const handleDistribChange = (e) => {
+    if (e.target.value === 'Select All') {
+      allDistribs.map((distrib) => dispatch(addDistribFilter(distrib)));
+      return null;
+    }
     const distrib = allDistribs.find((distribObj) => distribObj.name === e.target.value);
     if (distrib) {
       dispatch(addDistribFilter(distrib));
     }
+    return null;
   };
 
   const handleDistribClick = (distrib) => {
@@ -35,10 +43,15 @@ function FilterModal(props) {
   };
 
   const handleWcChange = (e) => {
+    if (e.target.value === 'Select All') {
+      allWcs.map((distrib) => dispatch(addWcFilter(distrib)));
+      return null;
+    }
     const distrib = allWcs.find((distribObj) => distribObj.name === e.target.value);
     if (distrib) {
       dispatch(addWcFilter(distrib));
     }
+    return null;
   };
 
   const handleWcClick = (distrib) => {
@@ -51,14 +64,15 @@ function FilterModal(props) {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       // onButtonClick={inputRef.current.focus}
-      buttonText="Apply"
+      // buttonText="Apply"
       header="Course Search Filters"
+      hideButton
     >
       <div style={{
         alignSelf: 'flex-start', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', height: '100%', marginTop: '35px', gap: '10px',
       }}
       >
-        <div style={{ height: '130px' }}>
+        <div style={{ height: '180px' }}>
           <H3>Distributive Requirements</H3>
           <FilterSelector
             handleChange={handleDistribChange}
@@ -80,13 +94,13 @@ function FilterModal(props) {
 
         <div>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <Checkbox style={{ marginLeft: '-10px' }} />
-            <H4>Offered Next Term</H4>
+            <Checkbox style={{ marginLeft: '-10px' }} checked={offeredNext} onChange={() => dispatch(toggleOfferedNext())} />
+            <H4 style={{ cursor: 'pointer' }} onClick={() => dispatch(toggleOfferedNext())}>Offered Next Term</H4>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <Checkbox style={{ marginLeft: '-10px' }} />
-            <H4>NR Eligible</H4>
+            <Checkbox style={{ marginLeft: '-10px' }} checked={nrEligible} onChange={() => dispatch(toggleNrEligible())} />
+            <H4 style={{ cursor: 'pointer' }} onClick={() => dispatch(toggleNrEligible())}>NR Eligible</H4>
           </div>
         </div>
 

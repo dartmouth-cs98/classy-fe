@@ -39,7 +39,6 @@ function FilterModal(props) {
                         value={distrib.name}
                       >
                         {distrib.name}
-
                       </option>
                     );
                   }
@@ -47,9 +46,14 @@ function FilterModal(props) {
                   return <option key={distrib.name} value={distrib.name}>{distrib.name}</option>;
                 })
               }
+        { stateFilters.length === allFilters.length
+          ? <option disabled value="Select All">Select All</option> : <option value="Select All">Select All</option>}
       </select>
 
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <div style={{
+        display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: '10px 0px',
+      }}
+      >
         {stateFilters.map((distrib, i) => (
           <div
             key={distrib.name}
@@ -64,7 +68,7 @@ function FilterModal(props) {
               borderRadius: '35px',
               width: '105px',
               height: '35px',
-              margin: '15px 5px',
+              margin: '5px',
               cursor: 'pointer',
             }}
           >

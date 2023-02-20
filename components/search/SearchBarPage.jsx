@@ -26,6 +26,7 @@ function SearchBarPage(props) {
   // const inputRef = useRef(null);
   const { children } = props;
   const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
+  const searchResults = useSelector((reduxState) => reduxState.search.searchResults);
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -41,8 +42,8 @@ function SearchBarPage(props) {
           )
       }
 
-      {
-        searchQuery // if search input exists, show results page
+      {// if search input or search results exist, show results page
+        searchQuery || searchResults.length !== 0
           ? (
             <div>
               <TabBar tab={tab} setTab={setTab} />
