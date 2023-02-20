@@ -16,11 +16,17 @@ export const SearchActionTypes = {
 // removeDistribFilter, addWcFilter, removeWcFilter, and toggle functions
 export const fetchSearch = () => (dispatch, getState) => {
   const searchResultsTimestamp = Date.now();
-  const { searchQuery } = getState().search;
+  const {
+    searchQuery, distribFilters, wcFilters, offeredNext, nrEligible,
+  } = getState().search;
 
   axios.get(`${ROOT_URL}/search`, {
     params: {
       query: searchQuery,
+      distribFilters,
+      wcFilters,
+      offeredNext,
+      nrEligible,
     },
   }).then((res) => {
     const response = res.data;
