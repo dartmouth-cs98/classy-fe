@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { ROOT_URL } from './root_url';
+import { SearchActionTypes } from './searchActions';
 
-export const ROOT_URL = 'http://localhost:8000/api';
+export * from './searchActions';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -32,6 +34,7 @@ export const ActionTypes = {
   REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+  ...SearchActionTypes,
 };
 
 export const fetchUser = (id) => (dispatch) => {
@@ -189,21 +192,6 @@ export const fetchExplore = () => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_EXPLORE,
-      payload: response,
-    });
-  });
-};
-
-export const fetchSearch = (searchInput) => (dispatch) => {
-  console.log(searchInput);
-  axios.get(`${ROOT_URL}/search`, {
-    params: {
-      query: searchInput,
-    },
-  }).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_SEARCH,
       payload: response,
     });
   });
