@@ -7,6 +7,7 @@ export const ActionTypes = {
   FETCH_USER: 'FETCH_USER',
   UPDATE_USER: 'UPDATE_USER',
   FETCH_STUDENT: 'FETCH_STUDENT',
+  UPDATE_STUDENT: 'UPDATE_STUDENT',
   FETCH_FRIENDS: 'FETCH_FRIENDS',
   FETCH_COURSES: 'FETCH_COURSES',
   FETCH_COURSE: 'FETCH_COURSE',
@@ -69,6 +70,22 @@ export const fetchStudent = (id) => (dispatch) => {
     });
   });
 };
+
+export function updateStudent(id, student) {
+  return (dispatch) => {
+    axios
+      .put(`${ROOT_URL}/students/${id}`, student)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.UPDATE_STUDENT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export const fetchFriends = (id) => (dispatch) => {
   axios.get(`${ROOT_URL}/students/friends/${id}`).then((res) => {

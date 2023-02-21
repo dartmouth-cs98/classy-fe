@@ -8,20 +8,16 @@ export default function Profile() {
 
   const onImageUpload = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     // Handle null file
     // Get url of the file and set it to the src of preview
     if (file) {
       setPic({ ...pic, img: window.URL.createObjectURL(file), file });
-      console.log(pic);
     }
   };
 
   const onImageSubmit = () => {
     if (pic.file != null) {
       uploadImage(pic.file).then((url) => {
-        console.log('hot in on imagesubmit');
-        console.log(url);
         setPic({ ...pic, url });
         // use url for content_url and
         // either run your createPost actionCreator

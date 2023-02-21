@@ -6,11 +6,14 @@ const initialState = {
 };
 
 const StudentsReducer = (state = initialState, action = {}) => {
+  console.log('in students reducer', action)
   switch (action.type) {
     case ActionTypes.FETCH_STUDENT:
       return { ...state, student: action.payload };
     case ActionTypes.FETCH_FRIENDS:
       return { ...state, friends: action.payload };
+    case ActionTypes.UPDATE_STUDENT:
+      return { ...state, student: action.payload };
     default:
       return state;
   }

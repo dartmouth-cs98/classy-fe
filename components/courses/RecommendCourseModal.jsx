@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -11,9 +12,22 @@ import {
   TextLabel,
 } from '../ui/typography';
 import FriendsCheckBoxes from './FriendsCheckBoxes';
+import { fetchUser, fetchFriends, updateStudent } from '../../actions';
+import { userId } from '../../constants/mockData';
 
-export default function FormDialog() {
+export default function FormDialog(props) {
+  const { course } = props;
   const [open, setOpen] = React.useState(false);
+  const [selectedFriends, setSelectedFriends] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const friends = useSelector((state) => state.student.friends);
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, [user.user === {}]);
+  useEffect(() => {
+    dispatch(fetchFriends(user.user.student._id));
+  }, [friends === []]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,6 +35,15 @@ export default function FormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+    setSelectedFriends([]);
+  };
+
+  const handleSubmit = () => {
+    selectedFriends.forEach((friend) => {
+      const coursesRecommended = [...friend.coursesRecommended];
+      coursesRecommended.push({ course: course._id, friend: user.user.student._id });
+      dispatch(updateStudent(friend._id, { ...friend, coursesRecommended: coursesRecommended }));
+    });
   };
 
   return (
@@ -31,9 +54,7 @@ export default function FormDialog() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Recommend This Course</DialogTitle>
         <DialogContent>
-          {/* <div style={stylesCI.marginTopBottom}> */}
-          <FriendsCheckBoxes />
-          {/* </div> */}
+          <FriendsCheckBoxes friends={friends} selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
           <DialogContentText>
             Your friend is not on Classy? No worries!
             Enter their email address below and we will send them an invite.
@@ -50,7 +71,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Recommend</Button>
+          <Button onClick={handleSubmit}>Recommend</Button>
         </DialogActions>
       </Dialog>
     </div>
