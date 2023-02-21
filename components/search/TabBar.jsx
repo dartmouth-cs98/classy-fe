@@ -6,8 +6,8 @@ import { B1 } from '../ui/typography';
 import styles from '../../styles/components/TabBar.module.css';
 
 function TabBar(props) {
-  const tabs = ['Courses', 'Professors', 'Distribs/World Culture', 'Users'];
-  const colors = ['var(--pastel-green)', 'var(--pastel-orange)', 'var(--pastel-pink)', 'var(--pastel-blue)'];
+  const tabs = ['Courses', 'Professors', 'Users'];
+  const colors = ['var(--pastel-green)', 'var(--pastel-orange)', 'var(--pastel-blue)'];
   const { tab, setTab } = props;
   const tabDivs = tabs.map((tabName, index) => {
     if (tabName === tab) {
