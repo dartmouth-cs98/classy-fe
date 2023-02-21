@@ -20,7 +20,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '&:hover': {
-            backgroundColor: 'transparent !important',
+            backgroundColor: '#14121D', // navy
           },
         },
       },
