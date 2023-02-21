@@ -1,0 +1,109 @@
+.container {
+  padding: 0 2rem;
+  margin-left: 200px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formsection {
+  padding-top: 5%;
+  padding-bottom: 8%;
+}
+
+.formbuttons {
+  display: flex;
+  padding-top: 10%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10%;
+}
+
+.loginform {
+  height: 550px;
+  width: 450px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10%;
+  padding-left: 12%;
+}
+
+.formcontainer {
+  display: flex;
+  align-items: center;
+}
+
+.headercontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15%;
+  padding-top: 12%;
+}
+
+.btn {
+  background-color: #FCF0E3;
+  color: #14121D;
+  border-color: transparent;
+  border-radius: 10px;
+  height: 75px;
+  width: 250px;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.btn:hover,
+.btn:visited,
+.btn:focus,
+.btn:active {
+  background-color: #14121D;
+  color: #FCF0E3;
+  border-color: transparent;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errormsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
+}

@@ -1,0 +1,56 @@
+.title {
+  color: #14121D ;
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+  padding-bottom: 8%;
+}
+
+.rowcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: 4%;
+}
+
+.formfield {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+}
+
+.formbuttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bottominfo {
+  display: flex;
+  padding-top: 2%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.btn {
+  background-color: #14121D;
+  color: white;
+  border-color: transparent;
+  border-radius: 10px;
+  height: 75px;
+  width: 250px;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.btn:hover,
+.btn:visited,
+.btn:focus,
+.btn:active {
+  color: #14121D;
+  background-color: #fafafa;
+  border-color: transparent;
+}
