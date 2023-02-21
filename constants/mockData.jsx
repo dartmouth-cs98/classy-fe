@@ -79,7 +79,18 @@ export const studentMockData = {
 };
 
 export const friendsMockData = {
-  friends: [studentMockData, studentMockData, studentMockData, studentMockData,
-    studentMockData, studentMockData, studentMockData, studentMockData,
-    studentMockData, studentMockData, studentMockData, studentMockData],
+  friends: [
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+    studentMockData,
+  ],
 };
