@@ -1,18 +1,25 @@
-/* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import { cardColors } from '../../constants/colors';
-import { professorInfoMockData, friendsMockData } from '../../constants/mockData';
+import { professorInfoMockData } from '../../constants/mockData';
 import {
   H3,
 } from '../../components/ui/typography';
 import FriendCard from '../../components/social/FriendCard';
 import BlackButton from '../../components/BlackButton';
+import { fetchFriends, fetchUser } from '../../actions';
 
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);
+  const user = useSelector((state) => state.user);
+  const friends = useSelector((state) => state.student.friends);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchFriends(user.user.student._id));
+  }, []);
 
   const showAllFriends = () => {
     if (seeAllFriends) {
@@ -35,17 +42,19 @@ function Social() {
               <CourseTitleCard
                 course={course}
                 color={cardColors[i % cardColors.length]}
-                key={course.courseName + i}
+                key={course.courseName}
               />
             </div>
           ))}
         </div>
         <H3>All Friends</H3>
-        {friendsMockData.friends.map((friend, i) => (
-          i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null))}
+        {
+          friends ? friends.map((friend, i) => (
+            i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null
+        }
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
