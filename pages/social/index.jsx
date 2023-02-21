@@ -51,8 +51,8 @@ function Social() {
         {friends ? friends.map((friend, i) => (
           i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
