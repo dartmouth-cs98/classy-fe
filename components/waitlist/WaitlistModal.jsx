@@ -132,7 +132,8 @@ function WaitlistModal(props) {
       } else if (course.offerings[i].waitlist.includes(studentId)) {
         // eslint-disable-next-line max-len
         const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
-        const studentPos = course.offerings[i].waitlist.indexOf(studentId) + 1;
+        // eslint-disable-next-line max-len
+        const studentPos = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.indexOf(studentId) + 1;
         const position = `${studentPos} / ${totalStudents}`;
         studentWaitlists[course.offerings[i].term] = position;
       }
