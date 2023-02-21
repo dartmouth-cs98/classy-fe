@@ -8,7 +8,6 @@ import styles from '../../styles/components/social/FriendCard.module.css';
 
 function FriendCard(props) {
   const { student } = props;
-  console.log(student)
   return (
     <div className={styles.container}>
       <img className={styles.pic} src={student.profilePic} alt="friend pic" />

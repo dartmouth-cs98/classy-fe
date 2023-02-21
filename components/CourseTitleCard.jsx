@@ -52,9 +52,9 @@ function CourseTitleCard(props) {
           <B1 color="var(--dark-grey)" className={styles.description}>{course.courseTitle}</B1>
         </div>
 
-        {friend ?
-          <div>
-            <B3 color="var(--dark-grey)" className={styles.description}>{`- ${friend.firstName} `}</B3>
+        {friend && friend.user ?
+          <div style={{ marginTop: '5px' }}>
+            <B3 color="var(--dark-grey)" className={styles.description}>{`- ${friend.user.firstName} ${friend.user.lastName}`}</B3>
           </div> : null
         }
 

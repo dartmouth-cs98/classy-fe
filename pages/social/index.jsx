@@ -14,7 +14,7 @@ import { fetchStudent } from '../../actions';
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);
   const user = useSelector((state) => state.user);
-  const student = useSelector((state) => state.student);
+  const student = useSelector((state) => state.student).student;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function Social() {
           <H3>Your Friends Recommend</H3>
         </div>
         <div className={styles.coursesContainer}>
-          {student.student && student.student.coursesRecommended ? student.student.coursesRecommended.map((course, i) => (
+          {student && student.coursesRecommended ? student.coursesRecommended.map((course, i) => (
             <div style={{ margin: '10px' }}>
               <CourseTitleCard
                 course={course.course}
@@ -49,11 +49,11 @@ function Social() {
           )) : null}
         </div>
         <H3>All Friends</H3>
-        {student.student && student.student.friends ? student.student.friends.map((friend, i) => (
+        {student && student.friends ? student.friends.map((friend, i) => (
           i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

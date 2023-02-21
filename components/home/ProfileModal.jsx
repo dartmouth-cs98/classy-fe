@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import Modal from './Modal';
+import Modal from '../Modal';
 import { H3 } from '../ui/typography';
 import styles from '../../styles/components/HomePage.module.css';
 import uploadImage from '../../services/s3';
@@ -43,12 +43,14 @@ function ProfileModal(props) {
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
+      onButtonClick={onImageSubmit}
+      buttonText="Save"
       header="Edit Profile"
     >
       <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Profile Image" />
 
       <Button variant="contained" component="label">
-        Upload Picture
+        Upload Image
         <input hidden accept="image/*" multiple type="file" name="coverImage" onChange={onImageUpload} />
       </Button>
       <input
@@ -75,19 +77,6 @@ function ProfileModal(props) {
         type="text"
         placeholder="Minor"
       />
-      <button
-        onClick={() => { onImageSubmit(); setIsOpen(false); }}
-        style={{
-          backgroundColor: 'var(--navy)',
-          borderRadius: '8px',
-          width: '130px',
-          height: '60px',
-          alignSelf: 'flex-end',
-        }}
-        type="submit"
-      >
-        <H3 color="var(--white)">Save</H3>
-      </button>
     </Modal>
   );
 }

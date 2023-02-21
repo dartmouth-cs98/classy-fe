@@ -2,13 +2,13 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
-import { H2 } from '../ui/typography';
+import { H2, H3 } from './ui/typography';
 
 ReactModal.setAppElement('#__next');
 
 function Modal(props) {
   const {
-    isOpen, setIsOpen, header, children,
+    isOpen, setIsOpen, header, children, onButtonClick, buttonText, hideButton,
   } = props;
 
   return (
@@ -57,20 +57,29 @@ function Modal(props) {
           <H2>{header}</H2>
           <CloseIcon onClick={() => setIsOpen(false)} style={{ cursor: 'pointer' }} />
         </div>
+
         {children}
-        {/* <button
-          onClick={() => setIsOpen(false)}
-          style={{
-            backgroundColor: 'var(--navy)',
-            borderRadius: '8px',
-            width: '130px',
-            height: '60px',
-            alignSelf: 'flex-end',
-          }}
-          type="submit"
-        >
-          <H3 color="var(--white)">Save</H3>
-        </button> */}
+
+        { hideButton ? null : (
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              if (onButtonClick) {
+                onButtonClick();
+              }
+            }}
+            style={{
+              backgroundColor: 'var(--navy)',
+              borderRadius: '8px',
+              width: '130px',
+              height: '60px',
+              alignSelf: 'flex-end',
+            }}
+            type="submit"
+          >
+            <H3 color="var(--white)">{buttonText}</H3>
+          </button>
+        )}
 
       </div>
     </ReactModal>
