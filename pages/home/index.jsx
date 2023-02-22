@@ -82,14 +82,16 @@ const cardColors = [
 ];
 
 function HomePage() {
-  // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser(userId));
   }, []);
+  const user = useSelector((state) => state.user);
+  const [updatedUser, setUpdatedUser] = useState(false);
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, [updatedUser === true]);
 
-  // console.log(user);
-  const pic = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
@@ -101,7 +103,8 @@ function HomePage() {
       <ProfileModal
         isOpen={profileModalIsOpen}
         setIsOpen={setProfileModalIsOpen}
-        pic={pic}
+        user={user}
+        setUpdatedUser={setUpdatedUser}
       />
       <ShoppingModal
         isOpen={shoppingModalIsOpen}
@@ -120,7 +123,7 @@ function HomePage() {
           display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '35px',
         }}
         >
-          <img className={styles.pic} src={pic} alt="Tim" />
+          <img className={styles.pic} src={user.user.profileImageUrl} alt="profile Image" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>Tim Tregubov</H1>

@@ -7,6 +7,7 @@ export * from './searchActions';
 // keys for actiontypes
 export const ActionTypes = {
   FETCH_USER: 'FETCH_USER',
+  UPDATE_USER: 'UPDATE_USER',
   FETCH_STUDENT: 'FETCH_STUDENT',
   FETCH_FRIENDS: 'FETCH_FRIENDS',
   FETCH_COURSES: 'FETCH_COURSES',
@@ -45,6 +46,22 @@ export const fetchUser = (id) => (dispatch) => {
     });
   });
 };
+
+export function updateUser(id, user) {
+  return (dispatch) => {
+    axios
+      .put(`${ROOT_URL}/users/${id}`, user)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.UPDATE_USER,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export const fetchStudent = (id) => (dispatch) => {
   axios.get(`${ROOT_URL}/students/${id}`).then((res) => {

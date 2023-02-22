@@ -28,7 +28,7 @@ export default function Profile() {
         // or your updatePost actionCreator
       }).catch((error) => {
         // handle error
-        console.log('error in submitting image', error);
+        // console.log('error in submitting image', error);
       });
     }
   };

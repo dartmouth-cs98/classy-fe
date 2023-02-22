@@ -10,7 +10,7 @@ import {
 } from '../../components/ui/typography';
 import FriendCard from '../../components/social/FriendCard';
 import BlackButton from '../../components/BlackButton';
-import { fetchFriends, fetchUser } from '../../actions';
+import { fetchFriends } from '../../actions';
 
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);
@@ -48,10 +48,8 @@ function Social() {
           ))}
         </div>
         <H3>All Friends</H3>
-        {
-          friends ? friends.map((friend, i) => (
-            i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null
-        }
+        {friends ? friends.map((friend, i) => (
+          i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
       </div >
     </div >
