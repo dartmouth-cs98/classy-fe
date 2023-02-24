@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {
@@ -15,7 +16,10 @@ import ProfileModal from '../../components/home/ProfileModal';
 import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
+
 import { fetchHome } from '../../actions';
+import { fetchUser } from '../../actions';
+import { userId } from '../../constants/mockData';
 
 const allCourses = [
   {
@@ -82,16 +86,20 @@ const cardColors = [
 ];
 
 function HomePage() {
-  const pic = 'https://faculty-directory.dartmouth.edu/sites/faculty_directory.prod/files/styles/profile_portrait/public/profile_square.jpg?itok=lVqJtQt6';
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, []);
+  const user = useSelector((state) => state.user);
+  const [updatedUser, setUpdatedUser] = useState(false);
+  useEffect(() => {
+    dispatch(fetchUser(userId));
+  }, [updatedUser === true]);
+
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHome());
-  }, []);
 
   const currentHome = useSelector((reduxState) => reduxState.home.current);
   if (!currentHome) {
@@ -107,7 +115,8 @@ function HomePage() {
       <ProfileModal
         isOpen={profileModalIsOpen}
         setIsOpen={setProfileModalIsOpen}
-        pic={pic}
+        user={user}
+        setUpdatedUser={setUpdatedUser}
       />
       <ShoppingModal
         isOpen={shoppingModalIsOpen}
@@ -130,7 +139,7 @@ function HomePage() {
 					  gap: '35px',
           }}
         >
-          <img className={styles.pic} src={pic} alt="Tim" />
+          <img className={styles.pic} src={user.user.profileImageUrl} alt="profile Image" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>

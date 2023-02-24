@@ -1,9 +1,15 @@
 import axios from 'axios';
+import { ROOT_URL } from './root_url';
+import { SearchActionTypes } from './searchActions';
 
-export const ROOT_URL = 'http://localhost:8000/api';
+export * from './searchActions';
 
 // keys for actiontypes
 export const ActionTypes = {
+  FETCH_USER: 'FETCH_USER',
+  UPDATE_USER: 'UPDATE_USER',
+  FETCH_STUDENT: 'FETCH_STUDENT',
+  FETCH_FRIENDS: 'FETCH_FRIENDS',
   FETCH_COURSES: 'FETCH_COURSES',
   FETCH_COURSE: 'FETCH_COURSE',
   UPDATE_COURSE: 'UPDATE_COURSE',
@@ -29,6 +35,54 @@ export const ActionTypes = {
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
   MARK_COURSE: 'MARK_COURSE',
   FETCH_HOME: 'FETCH_HOME',
+  MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+  ...SearchActionTypes,
+};
+
+export const fetchUser = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/users/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_USER,
+      payload: response,
+    });
+  });
+};
+
+export function updateUser(id, user) {
+  return (dispatch) => {
+    axios
+      .put(`${ROOT_URL}/users/${id}`, user)
+      .then((response) => {
+        dispatch({
+          type: ActionTypes.UPDATE_USER,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export const fetchStudent = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/students/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_STUDENT,
+      payload: response,
+    });
+  });
+};
+
+export const fetchFriends = (id) => (dispatch) => {
+  axios.get(`${ROOT_URL}/students/friends/${id}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_FRIENDS,
+      payload: response,
+    });
+  });
 };
 
 // trying this out in async await format
@@ -140,21 +194,6 @@ export const fetchExplore = () => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_EXPLORE,
-      payload: response,
-    });
-  });
-};
-
-export const fetchSearch = (searchInput) => (dispatch) => {
-  console.log(searchInput);
-  axios.get(`${ROOT_URL}/search`, {
-    params: {
-      query: searchInput,
-    },
-  }).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_SEARCH,
       payload: response,
     });
   });

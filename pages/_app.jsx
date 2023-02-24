@@ -7,8 +7,10 @@ import '../styles/Home.module.css';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { ThemeProvider } from '@mui/material';
 import SideNavbar from '../components/SideNavbar';
 import rootReducer from '../reducers';
+import theme from '../styles/theme';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -17,10 +19,13 @@ const store = configureStore({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <SideNavbar />
-      <Component {...pageProps} />
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <SideNavbar />
+        <Component {...pageProps} />
+      </Provider>
+
+    </ThemeProvider>
   );
 }
 
