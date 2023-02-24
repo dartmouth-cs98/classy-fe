@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
+import Link from 'next/link';
 import { cardColors } from '../../constants/colors';
 import {
   H3,
@@ -50,7 +51,10 @@ function Social() {
         </div>
         <H3>All Friends</H3>
         {student && student.friends ? student.friends.map((friend, i) => (
-          i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null}
+          i < 6 || seeAllFriends ?
+            <Link href={`/social/friendProfile/${friend._id}`}>
+              <FriendCard student={friend} />
+            </Link> : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
       </div >
     </div >

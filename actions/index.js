@@ -11,6 +11,7 @@ export const ActionTypes = {
   FETCH_STUDENT: 'FETCH_STUDENT',
   UPDATE_STUDENT: 'UPDATE_STUDENT',
   FETCH_FRIENDS: 'FETCH_FRIENDS',
+  FETCH_FRIEND: 'FETCH_FRIEND',
   FETCH_COURSES: 'FETCH_COURSES',
   FETCH_COURSE: 'FETCH_COURSE',
   UPDATE_COURSE: 'UPDATE_COURSE',
@@ -69,6 +70,18 @@ export const fetchStudent = (id) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_STUDENT,
+      payload: response,
+    });
+  });
+};
+
+export const fetchFriend = (id) => (dispatch) => {
+  console.log('fetching friend::', id);
+  axios.get(`${ROOT_URL}/students/${id}`).then((res) => {
+    const response = res.data;
+    console.log('response::', response);
+    dispatch({
+      type: ActionTypes.FETCH_FRIEND,
       payload: response,
     });
   });
