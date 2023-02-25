@@ -1,9 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Link from 'next/link';
 import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
-import Link from 'next/link';
 import { cardColors } from '../../constants/colors';
 import {
   H3,
@@ -15,7 +16,7 @@ import { fetchStudent } from '../../actions';
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);
   const user = useSelector((state) => state.user);
-  const student = useSelector((state) => state.student).student;
+  const { student } = useSelector((state) => state.student);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,13 +52,15 @@ function Social() {
         </div>
         <H3>All Friends</H3>
         {student && student.friends ? student.friends.map((friend, i) => (
-          i < 6 || seeAllFriends ?
-            <Link href={`/social/friendProfile/${friend._id}`}>
-              <FriendCard student={friend} />
-            </Link> : null)) : null}
+          i < 6 || seeAllFriends
+            ? (
+              <Link href={`/social/friendProfile/${friend._id}`}>
+                <FriendCard student={friend} />
+              </Link>
+            ) : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 
