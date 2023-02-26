@@ -12,16 +12,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Link from 'next/link';
+import Button from '@mui/material/Button';
 import {
+  B1,
   TextLabel,
 } from '../ui/typography';
+import getColor from '../../data/colorscheme';
 import styles from '../../styles/components/ProfWaitlistTable.module.css';
+import { updatePriority } from '../../actions';
 
 function Row(props) {
   const {
-    waitlist, tableType, courseId, spot,
+    waitlist, tableType, courseId, spot, dept, num, i,
   } = props;
   const [open, setOpen] = React.useState(false);
+  const [priority, setPriority] = React.useState(false);
+  const studentId = waitlist?._id;
 
   const findReasoning = () => {
     for (const reason of waitlist.waitlistReasons) {
@@ -30,6 +37,16 @@ function Row(props) {
       }
     }
     return '';
+  };
+
+  const prioritize = (event) => {
+    event.preventDefault();
+    console.log('prioritize');
+    setPriority(spot === 'PRIORITY');
+    setPriority(!priority);
+    console.log('about to send');
+    updatePriority(dept, num, i, studentId, priority);
+    console.log('request sent');
   };
 
   return (
@@ -49,13 +66,32 @@ function Row(props) {
           <TableCell />
         )}
         <TableCell component="th" scope="row">
-          {spot}
+          {spot === 'PRIORITY' ? <strong>PRIORITY</strong> : spot}
         </TableCell>
         <TableCell align="left">{`${waitlist?.user?.firstName} ${waitlist?.user?.lastName}`}</TableCell>
         <TableCell align="left">{waitlist?.classYear}</TableCell>
-        <TableCell align="left">{waitlist?.user?.email}</TableCell>
+        <TableCell align="left">
+          <Link
+            href={`mailto: ${waitlist?.user?.email}?subject=${`${dept} ${num}` || ''}
+            Waitlist&body=Dear ${waitlist?.user?.firstName},
+            %0D%0A%0D%0AThank you for your interest in my course. About your waitlist inquiry on Classy...`}
+          >
+            <B1>
+              {waitlist?.user?.email.substring(0, waitlist.user.email.length - 14)}
+            </B1>
+          </Link>
+        </TableCell>
         <TableCell align="left">{waitlist?.user?.netID}</TableCell>
         <TableCell align="left">{findReasoning()}</TableCell>
+        <TableCell align="left">
+          <Button
+            type="button"
+            style={{ background: getColor('prioritize', spot) }}
+            onClick={prioritize}
+          >
+            {spot === 'PRIORITY' ? 'Unprioritize' : 'Prioritize'}
+          </Button>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -77,7 +113,9 @@ function Row(props) {
 
 export default function CollapsibleTable(props) {
   const tableType = 'search';
-  const { courseId, offering } = props;
+  const {
+    courseId, offering, dept, num, i,
+  } = props;
   if (!offering.waitlist && !offering.priorityWaitlist) {
     return <div />;
   }
@@ -96,7 +134,7 @@ export default function CollapsibleTable(props) {
                 <strong>Student Name</strong>
               </TableCell>
               <TableCell align="left">
-                <strong>Class</strong>
+                <strong>Year</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Email</strong>
@@ -123,16 +161,19 @@ export default function CollapsibleTable(props) {
                 <strong>Student Name</strong>
               </TableCell>
               <TableCell align="left">
-                <strong>Class</strong>
+                <strong>Year</strong>
               </TableCell>
               <TableCell align="left">
-                <strong>Email</strong>
+                <strong>Email (@dartmouth.edu)</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Student ID</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Reasoning</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Prioritize</strong>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -144,7 +185,10 @@ export default function CollapsibleTable(props) {
               waitlist={student}
               tableType={tableType}
               courseId={courseId}
+              dept={dept}
+              num={num}
               spot="PRIORITY"
+              i={i}
             />
           ))}
           {offering?.waitlist?.map((student, index) => (
@@ -153,11 +197,14 @@ export default function CollapsibleTable(props) {
               waitlist={student}
               tableType={tableType}
               courseId={courseId}
+              dept={dept}
+              num={num}
               spot={
                 offering?.priorityWaitlist?.length
                   ? offering.priorityWaitlist.length + index + 1
                   : index + 1
             }
+              i={i}
             />
           ))}
         </TableBody>

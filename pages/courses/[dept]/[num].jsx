@@ -93,11 +93,11 @@ export default function CourseInfo() {
     <div className={styles.container}>
       <div className={styles.ciTitle}>
         {currentCourse.course ? showCourseCodes(currentCourse.course) : <H2 />}
-        <TopIcons course={currentCourse.course} student={currentCourse.student} />
+        <TopIcons
+          course={currentCourse.course}
+          student={currentCourse.student}
+        />
       </div>
-      <Link key={`${dept}-courses`} href={`/courses/${dept}`}>
-        <A>{`Find more ${dept} courses`}</A>
-      </Link>
       <CourseInfoTitle
         key="cit"
         course={currentCourse.course || { dept, num }}
@@ -112,17 +112,17 @@ export default function CourseInfo() {
 
       <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
       {currentCourse.course
-        ? getPrereqs(currentCourse.course.required, currentCourse.course.counts)
-        : ''}
+			  ? getPrereqs(currentCourse.course.required, currentCourse.course.counts)
+			  : ''}
       <CourseInfoSubtitle text="At a Glance" />
       <Glance
         distribs={currentCourse.course ? currentCourse.course.distribs : ''}
         wc={currentCourse.course ? currentCourse.course.wc : ''}
         avgMedian={
-            currentCourse.course
-              ? convertMedian(currentCourse.course.avgMedian)
-              : ''
-        }
+					currentCourse.course
+					  ? convertMedian(currentCourse.course.avgMedian)
+					  : ''
+				}
         dept={currentCourse.course ? currentCourse.course.courseDept : ''}
         num={currentCourse.course ? currentCourse.course.courseNum : ''}
         nr={currentCourse.course ? currentCourse.course.nrEligible : ''}
@@ -132,20 +132,20 @@ export default function CourseInfo() {
       <StudentsSay
         key="studentssay"
         workload={
-            currentCourse.course && currentCourse.course.workload
-              ? currentCourse.course.workload
-              : 'Not Enough Data'
-        }
+					currentCourse.course && currentCourse.course.workload
+					  ? currentCourse.course.workload
+					  : 'Not Enough Data'
+				}
         difficulty={
-            currentCourse.course && currentCourse.course.difficulty
-              ? currentCourse.course.difficulty
-              : 'Not Enough Data'
-            }
+					currentCourse.course && currentCourse.course.difficulty
+					  ? currentCourse.course.difficulty
+					  : 'Not Enough Data'
+				}
         quality={
-            currentCourse.course && currentCourse.course.quality
-              ? currentCourse.course.quality
-              : 'Not Enough Data'
-            }
+					currentCourse.course && currentCourse.course.quality
+					  ? currentCourse.course.quality
+					  : 'Not Enough Data'
+				}
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
@@ -161,6 +161,10 @@ export default function CourseInfo() {
       ) : (
         <B1 key="no data">No Data</B1>
       )}
+
+      <Link key={`${dept}-courses`} href={`/courses/${dept}`}>
+        <A>{`Find more ${dept} courses`}</A>
+      </Link>
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
       {loadReviews()}

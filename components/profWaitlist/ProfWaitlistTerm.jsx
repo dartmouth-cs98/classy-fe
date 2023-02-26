@@ -17,12 +17,10 @@ import ProfWaitlistTable from './ProfWaitlistTable';
 
 function ProfWaitlistTerm(props) {
   const {
-    color, i, offering, courseId,
+    color, i, offering, courseId, dept, num,
   } = props;
 
   const [selected, setSelected] = useState(null);
-  console.log('the offering is', offering);
-  console.log('the offering waitlist is', offering.waitlist);
   // eslint-disable-next-line consistent-return, no-shadow
   const toggle = (i) => {
     if (selected === i) {
@@ -37,48 +35,64 @@ function ProfWaitlistTerm(props) {
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
           <div className={styles.left}>
-            <H3 color={color.dark}>{`${offering.term} ${offering.period ? offering.period : 'TBD'}`}</H3>
+            <H3 color={color.dark}>
+              {`${offering.term} ${
+                offering.period ? offering.period : 'TBD'
+              }`}
+
+            </H3>
           </div>
 
           <div className={styles.right}>
             {/* eslint-disable-next-line */}
-            <button type="button" className={styles.btn}>
-              <MdOutlineModeEditOutline className={styles.inline} size={20} />
-            </button>
+						<button type="button" className={styles.btn}>
+  <MdOutlineModeEditOutline className={styles.inline} size={20} />
+						</button>
             {/* eslint-disable-next-line */}
-            <button type="button" className={styles.btn}>
-              <MdOutlineMailOutline className={styles.inline} size={20} />
-            </button>
+						<button type="button" className={styles.btn}>
+  <MdOutlineMailOutline className={styles.inline} size={20} />
+						</button>
             {/* eslint-disable-next-line */}
-            <button
-              type="button"
-              className={styles.btn}
-              onClick={() => toggle(i)}
-            >
-              {selected === i ? (
-                <MdOutlineExpandLess className={styles.inline} size={20} />
-              ) : (
-                <MdOutlineExpandMore className={styles.inline} size={20} />
-              )}
-            </button>
+						<button
+  type="button"
+  className={styles.btn}
+  onClick={() => toggle(i)}
+						>
+  {selected === i ? (
+    <MdOutlineExpandLess className={styles.inline} size={20} />
+  ) : (
+    <MdOutlineExpandMore className={styles.inline} size={20} />
+  )}
+						</button>
           </div>
         </div>
       </div>
 
       <div className={selected === i ? 'content show' : 'content '}>
-        <ProfWaitlistTable courseId={courseId} offering={offering} />
+        <ProfWaitlistTable
+          courseId={courseId}
+          offering={offering}
+          i={i}
+          dept={dept}
+          num={num}
+        />
 
         <div>
           {/* !!! 2 should be replaced with data */}
-          <H5 className={styles.text}>viewing 2/25 signups</H5>
+          <H5 className={styles.text}>
+            {`${
+              offering.waitlist.length + offering.priorityWaitlist.length
+            } signups`}
+
+          </H5>
         </div>
 
         {/* <Pagination /> */}
         <div className={styles.pagination}>
           {/* eslint-disable-next-line */}
-            <button type="button" className={styles.btn}>
-              <MdOutlineChevronLeft />
-            </button>
+					<button type="button" className={styles.btn}>
+  <MdOutlineChevronLeft />
+					</button>
           <ul className={styles.pagenum}>
             <button type="button" className={styles.btn}>
               <li>1</li>
@@ -97,9 +111,9 @@ function ProfWaitlistTerm(props) {
             </button>
           </ul>
           {/* eslint-disable-next-line */}
-            <button type="button" className={styles.btn}>
-              <MdOutlineChevronRight />
-            </button>
+					<button type="button" className={styles.btn}>
+  <MdOutlineChevronRight />
+					</button>
         </div>
       </div>
     </div>

@@ -37,6 +37,7 @@ export const ActionTypes = {
   FETCH_HOME: 'FETCH_HOME',
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
+  PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
 };
 
@@ -306,6 +307,7 @@ export const createCourseReview = (courseId, offering, review) => (dispatch) => 
 
 export const markCourse = (studentId, courseId, mode, taken) => (dispatch) => {
   // eslint-disable-next-line no-underscore-dangle
+  console.log('marking course');
   axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${mode}/${taken}`).then((res) => {
     const response = res.data;
     dispatch({
@@ -347,6 +349,17 @@ export const fetchProfessorHome = (name) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_PROFESSOR_HOME,
+      payload: response,
+    });
+  });
+};
+
+export const updatePriority = (dept, num, offeringIndex, studentId, priority) => (dispatch) => {
+  console.log('sending request');
+  axios.put(`${ROOT_URL}/prioritize/${dept}/${num}/${offeringIndex}/${studentId}/${priority}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.PRIORITIZE,
       payload: response,
     });
   });

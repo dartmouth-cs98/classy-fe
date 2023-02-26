@@ -31,6 +31,7 @@ function ProfWaitlist() {
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
   const currentProfessor = useSelector((reduxState) => reduxState.professors.current);
+
   if (
     !currentCourse
     || !currentCourse.course
@@ -64,6 +65,8 @@ function ProfWaitlist() {
                   color={cardColors[i % cardColors.length]}
                   i={i}
                   courseId={currentCourse?.course?._id}
+                  dept={currentCourse.course.courseDept}
+                  num={currentCourse.course.courseNum}
                   offering={offering}
                 />
               );
