@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -15,30 +17,21 @@ import {
 } from '../ui/typography';
 import styles from '../../styles/components/ProfWaitlistTable.module.css';
 
-const WaitlistMockData = [
-  {
-    spot: '1',
-    name: 'Vi Tran',
-    class: '23',
-    email: 'vi.n.tran.23@dartmouth.edu',
-    id: 'ABC123',
-    reasoning: 'senior who needs for major',
-  },
-  {
-    spot: '2',
-    name: 'Gyuri Hwang',
-    class: '24',
-    email: 'gyuri.hwang.24@dartmouth.edu',
-    id: 'ADS824',
-    reasoning: 'want to learn UI/UX',
-  },
-];
-
 function Row(props) {
   const {
-    waitlist, tableType,
+    waitlist, tableType, courseId, spot,
   } = props;
   const [open, setOpen] = React.useState(false);
+
+  const findReasoning = () => {
+    for (const reason of waitlist.waitlistReasons) {
+      if (reason.course === courseId) {
+        return reason.reason;
+      }
+    }
+    return '';
+  };
+
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -52,22 +45,28 @@ function Row(props) {
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
           </TableCell>
-        ) : <TableCell />}
+        ) : (
+          <TableCell />
+        )}
         <TableCell component="th" scope="row">
-          {waitlist.spot}
+          {spot}
         </TableCell>
-        <TableCell align="left">{waitlist.name}</TableCell>
-        <TableCell align="left">{waitlist.term ? waitlist.term : waitlist.class}</TableCell>
-        <TableCell align="left">{waitlist.email}</TableCell>
-        <TableCell align="left">{waitlist.id}</TableCell>
-        <TableCell align="left">{waitlist.reasoning}</TableCell>
-
+        <TableCell align="left">{`${waitlist?.user?.firstName} ${waitlist?.user?.lastName}`}</TableCell>
+        <TableCell align="left">{waitlist?.classYear}</TableCell>
+        <TableCell align="left">{waitlist?.user?.email}</TableCell>
+        <TableCell align="left">{waitlist?.user?.netID}</TableCell>
+        <TableCell align="left">{findReasoning()}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className={styles.collapseContainer}>
-              <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
+              <TextLabel
+                style={{ marginBottom: '10px', marginTop: '10px' }}
+                color="var(--dark-grey)"
+              >
+                Reviews
+              </TextLabel>
             </div>
           </Collapse>
         </TableCell>
@@ -76,45 +75,90 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable() {
+export default function CollapsibleTable(props) {
   const tableType = 'search';
-  const waitlists = WaitlistMockData;
-  if (waitlists === {}) {
+  const { courseId, offering } = props;
+  if (!offering.waitlist && !offering.priorityWaitlist) {
     return <div />;
   }
 
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
-        {tableType === 'profInfo'
-          ? (
-            <TableHead>
-              <TableRow>
-                <TableCell />
-                <TableCell align="left"><strong>Spot #</strong></TableCell>
-                <TableCell align="left"><strong>Student Name</strong></TableCell>
-                <TableCell align="left"><strong>Class</strong></TableCell>
-                <TableCell align="left"><strong>Email</strong></TableCell>
-                <TableCell align="left"><strong>Student ID</strong></TableCell>
-                <TableCell align="left"><strong>Reasoning</strong></TableCell>
-              </TableRow>
-            </TableHead>
-          ) : (
-            <TableHead>
-              <TableRow>
-                <TableCell />
-                <TableCell align="left"><strong>Spot #</strong></TableCell>
-                <TableCell align="left"><strong>Student Name</strong></TableCell>
-                <TableCell align="left"><strong>Class</strong></TableCell>
-                <TableCell align="left"><strong>Email</strong></TableCell>
-                <TableCell align="left"><strong>Student ID</strong></TableCell>
-                <TableCell align="left"><strong>Reasoning</strong></TableCell>
-              </TableRow>
-            </TableHead>
-          )}
+        {tableType === 'profInfo' ? (
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell align="left">
+                <strong>Spot #</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Student Name</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Class</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Email</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Student ID</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Reasoning</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Reasoning</strong>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+        ) : (
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell align="left">
+                <strong>Spot #</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Student Name</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Class</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Email</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Student ID</strong>
+              </TableCell>
+              <TableCell align="left">
+                <strong>Reasoning</strong>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+        )}
         <TableBody>
-          {waitlists.map((waitlist) => (
-            <Row key={waitlist.spot} waitlist={waitlist} tableType={tableType} />
+          {offering?.priorityWaitlist?.map((student) => (
+            <Row
+              key={student._id}
+              waitlist={student}
+              tableType={tableType}
+              courseId={courseId}
+              spot="PRIORITY"
+            />
+          ))}
+          {offering?.waitlist?.map((student, index) => (
+            <Row
+              key={student._id}
+              waitlist={student}
+              tableType={tableType}
+              courseId={courseId}
+              spot={
+                offering?.priorityWaitlist?.length
+                  ? offering.priorityWaitlist.length + index + 1
+                  : index + 1
+            }
+            />
           ))}
         </TableBody>
       </Table>

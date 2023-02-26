@@ -17,8 +17,7 @@ import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
 
-import { fetchHome } from '../../actions';
-import { fetchUser } from '../../actions';
+import { fetchHome, fetchUser } from '../../actions';
 import { userId } from '../../constants/mockData';
 
 const allCourses = [

@@ -36,6 +36,7 @@ export const ActionTypes = {
   MARK_COURSE: 'MARK_COURSE',
   FETCH_HOME: 'FETCH_HOME',
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+  FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   ...SearchActionTypes,
 };
 
@@ -336,6 +337,16 @@ export const fetchHome = () => (dispatch) => {
     const response = res.data;
     dispatch({
       type: ActionTypes.FETCH_HOME,
+      payload: response,
+    });
+  });
+};
+
+export const fetchProfessorHome = (name) => (dispatch) => {
+  axios.get(`${ROOT_URL}/prof_home/${name}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_PROFESSOR_HOME,
       payload: response,
     });
   });
