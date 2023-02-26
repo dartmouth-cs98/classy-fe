@@ -1,9 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {
   A, H3, H2, H1, B1, H4,
@@ -16,8 +17,7 @@ import ProfileModal from '../../components/home/ProfileModal';
 import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
-
-import { fetchHome, fetchUser } from '../../actions';
+import { fetchUser } from '../../actions';
 import { userId } from '../../constants/mockData';
 
 const allCourses = [
@@ -99,15 +99,7 @@ function HomePage() {
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
-
-  const currentHome = useSelector((reduxState) => reduxState.home.current);
-  if (!currentHome) {
-    dispatch(fetchHome());
-    return <B1 key="loading">Loading...</B1>;
-  }
-  const progress = currentHome?.student?.coursesTaken
-    ? Math.round((100 * currentHome.student.coursesTaken.length) / 35, 10)
-    : 0;
+  const progress = 66;
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -138,14 +130,17 @@ function HomePage() {
 					  gap: '35px',
           }}
         >
-          <img className={styles.pic} src={user.user.profileImageUrl} alt="profile Image" />
+          <img
+            className={styles.pic}
+            src={user.user.profileImageUrl}
+            alt="profile Image"
+          />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
-            <H1>
-              {`${currentHome?.student?.user?.firstName} ${currentHome?.student?.user?.lastName}`}
-            </H1>
+            <H1>Tim Tregubov</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {`${currentHome?.student?.majors?.join(', ')} Major(s)`}
+              Computer Science Major • Economics Minor
+              {' '}
             </B1>
           </div>
         </div>
@@ -183,9 +178,9 @@ function HomePage() {
 								  padding: '0 30px',
                 }}
               >
-                {currentHome?.student?.currentCourses?.map((course, i) => (
+                {allCourses.map((course, i) => (
                   <CourseTitleCardHome
-                    key={course.courseTitle}
+                    key={course.courseName}
                     course={course}
                     color={cardColors[i % cardColors.length]}
                   />
@@ -198,7 +193,7 @@ function HomePage() {
                 width="165px"
                 height="130px"
                 text="Friends"
-                data={currentHome?.student?.friends?.length}
+                data="74"
                 pastelColor="var(--pastel-pink)"
                 darkColor="var(--dark-pink) "
               />
@@ -206,7 +201,7 @@ function HomePage() {
                 width="165px"
                 height="200px"
                 text="Waitlists Joined"
-                data={currentHome?.waitlists?.length}
+                data="74"
                 pastelColor="var(--pastel-violet)"
                 darkColor="var(--dark-violet) "
               />
@@ -231,11 +226,7 @@ function HomePage() {
                   <A onClick={() => setShoppingModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table
-                  courses={currentHome?.student?.shoppingCart}
-                  mode="cart"
-                  studentId={currentHome?.student?._id}
-                />
+                <Table />
               </div>
 
               <div
@@ -251,11 +242,7 @@ function HomePage() {
                   <A onClick={() => setCompletedModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table
-                  courses={currentHome?.student?.coursesTaken}
-                  mode="completed"
-                  studentId={currentHome?.student?._id}
-                />
+                <Table />
               </div>
             </div>
 
@@ -286,16 +273,17 @@ function HomePage() {
                       styles={buildStyles({
 											  // How long animation takes to go from one percentage to another, in seconds
 											  pathTransitionDuration: 0.5,
+
 											  // Colors
 											  pathColor: 'var(--dark-green)',
 											  trailColor: 'var(--light-grey)',
-                      })}
+                    })}
                       strokeWidth="18"
                     >
                       <H2>
-                        {progress}
-                        %
-                      </H2>
+                      {progress}
+                      %
+</H2>
                     </CircularProgressbarWithChildren>
                   </div>
 
@@ -308,12 +296,12 @@ function HomePage() {
                     }}
                   >
                     <H4>Degree</H4>
-                    <B1 color="var(--dark-grey)">{`${currentHome?.student?.coursesTaken?.length}/35 Courses Completed`}</B1>
+                    <B1 color="var(--dark-grey)">22/35 Courses Completed</B1>
                   </div>
                 </div>
               </div>
 
-              {/* <div
+              <div
                 className={styles.horizontalContainer}
                 style={{ gap: '20px' }}
               >
@@ -333,7 +321,7 @@ function HomePage() {
                   pastelColor="var(--pastel-green)"
                   darkColor="var(--dark-green) "
                 />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

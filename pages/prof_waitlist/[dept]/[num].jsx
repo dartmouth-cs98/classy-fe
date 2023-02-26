@@ -58,15 +58,16 @@ function ProfWaitlist() {
       <div className={styles.body}>
         {currentCourse?.course?.offerings?.map((offering, i) => {
           if (offering.professors.includes(name)) {
-            return (
-              <ProfWaitlistTerm
-                color={cardColors[i % cardColors.length]}
-                i={i}
-                courseId={currentCourse?.course?._id}
-                offering={offering}
-                spot="Priority"
-              />
-            );
+            if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
+              return (
+                <ProfWaitlistTerm
+                  color={cardColors[i % cardColors.length]}
+                  i={i}
+                  courseId={currentCourse?.course?._id}
+                  offering={offering}
+                />
+              );
+            }
           }
           return '';
         })}
