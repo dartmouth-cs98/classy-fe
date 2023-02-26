@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button } from '@mui/material';
 import { H2, H3 } from './ui/typography';
 
 ReactModal.setAppElement('#__next');
@@ -61,24 +62,25 @@ function Modal(props) {
         {children}
 
         { hideButton ? null : (
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              if (onButtonClick) {
-                onButtonClick();
-              }
-            }}
-            style={{
-              backgroundColor: 'var(--navy)',
-              borderRadius: '8px',
-              width: '130px',
-              height: '60px',
-              alignSelf: 'flex-end',
-            }}
-            type="submit"
-          >
-            <H3 color="var(--white)">{buttonText}</H3>
-          </button>
+          <Button variant="contained">Test</Button>
+          // <button
+          //   onClick={() => {
+          //     setIsOpen(false);
+          //     if (onButtonClick) {
+          //       onButtonClick();
+          //     }
+          //   }}
+          //   style={{
+          //     backgroundColor: 'var(--navy)',
+          //     borderRadius: '8px',
+          //     width: '130px',
+          //     height: '60px',
+          //     alignSelf: 'flex-end',
+          //   }}
+          //   type="submit"
+          // >
+          //   <H3 color="var(--white)">{buttonText}</H3>
+          // </button>
         )}
 
       </div>

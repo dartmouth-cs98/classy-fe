@@ -59,7 +59,7 @@ function Row(props) {
   console.log(tableType);
   return (
     <>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow hover sx={{ '& > *': { borderBottom: 'unset' } }}>
         {tableType === 'profInfo' ? (
           <TableCell>
             <IconButton
@@ -70,7 +70,7 @@ function Row(props) {
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
           </TableCell>
-        ) : <TableCell />}
+        ) : null}
         <TableCell component="th" scope="row">
           {course.courseTitle}
         </TableCell>
@@ -133,7 +133,7 @@ export default function CollapsibleTable(props) {
           ) : (
             <TableHead>
               <TableRow>
-                <TableCell />
+                {/* <TableCell /> */}
                 <TableCell align="left">Course</TableCell>
                 <TableCell align="left">Name</TableCell>
                 <TableCell align="left">Offered Next Term?</TableCell>
