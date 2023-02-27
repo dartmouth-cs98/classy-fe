@@ -9,7 +9,6 @@ function SideNav() {
       <Link href="/search">Search</Link>
       <Link href="/social">Social</Link>
       <Link href="/waitlist">Waitlists</Link>
-      <Link href="/settings">Settings</Link>
     </nav>
   );
 }
