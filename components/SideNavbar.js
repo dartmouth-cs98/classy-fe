@@ -8,7 +8,6 @@ import {
   MdOutlineSearch,
   MdPeopleOutline,
   MdOutlineFormatListBulleted,
-  MdOutlineSettings,
   MdOutlineLogout,
 } from 'react-icons/md';
 import { H4 } from './ui/typography';
@@ -32,19 +31,19 @@ function SideNavbar() {
           />
         </Disclosure.Button> */}
         <div className="p-6 w-1/2 h-screen bg-black z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
-          <div className="flex flex-col justify-start items-center">
+          <div className="flex flex-col justify-start items-center my-6">
             <Image src={logo} width={60} height={60} alt="classy logo" />
             <H4
               color="white"
               className="text-base text-center cursor-pointer font-bold pb-4 w-full mt-3.5"
             >
-              Hi, Tim!
+              Classy
             </H4>
 
             {/* main tabs */}
             <div className="my-40 pb-10 w-full">
               <NavbarLink
-                link="home"
+                link="/home"
                 title="Home"
                 icon={<MdOutlineHome className={sidenavLinkStyles} />}
               />
@@ -67,11 +66,6 @@ function SideNavbar() {
                 icon={<MdOutlineFormatListBulleted className={sidenavLinkStyles} />}
               />
 
-              <NavbarLink
-                link="settings"
-                title="Settings"
-                icon={<MdOutlineSettings className={sidenavLinkStyles} />}
-              />
             </div>
 
             {/* logout */}

@@ -8,7 +8,7 @@ import styles from '../styles/components/CourseTitleCard.module.css';
 
 function CourseTitleCard(props) {
   const {
-    course, color,
+    course, color, friend
   } = props;
   const distribsWC = course.wc ? course.distribs.concat(course.wc) : course.distribs;
   return (
@@ -51,6 +51,13 @@ function CourseTitleCard(props) {
           </H4>
           <B1 color="var(--dark-grey)" className={styles.description}>{course.courseTitle}</B1>
         </div>
+
+        {friend && friend.user ?
+          <div style={{ marginTop: '5px' }}>
+            <B3 color="var(--dark-grey)" className={styles.description}>{`- ${friend.user.firstName} ${friend.user.lastName}`}</B3>
+          </div> : null
+        }
+
 
       </div>
     </Link>
