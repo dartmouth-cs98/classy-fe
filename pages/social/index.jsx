@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../../components/search/SearchBar';
@@ -14,7 +15,7 @@ import { fetchStudent } from '../../actions';
 function Social() {
   const [seeAllFriends, setSeeAllFriends] = useState(false);
   const user = useSelector((state) => state.user);
-  const student = useSelector((state) => state.student).student;
+  const { student } = useSelector((state) => state.student);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,8 +53,8 @@ function Social() {
         {student && student.friends ? student.friends.map((friend, i) => (
           i < 6 || seeAllFriends ? <FriendCard student={friend} /> : null)) : null}
         <BlackButton title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'} onClickFunction={showAllFriends} />
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 

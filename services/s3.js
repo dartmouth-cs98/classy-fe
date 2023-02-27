@@ -2,10 +2,10 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
 import FormData from 'form-data';
-import { ROOT_URL } from '../actions';
+import { ROOT_URL } from '../actions/root_url';
 
 export default async function uploadImage(file) {
-  const data = new FormData();
+  let data = new FormData();
   data.append('uploaded_file', file, file.name);
 
   const response = await axios.post(
