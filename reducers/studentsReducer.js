@@ -11,6 +11,8 @@ const StudentsReducer = (state = initialState, action = {}) => {
       return { ...state, student: action.payload };
     case ActionTypes.FETCH_FRIENDS:
       return { ...state, friends: action.payload };
+    case ActionTypes.UPDATE_STUDENT:
+      return { ...state, student: action.payload };
     default:
       return state;
   }

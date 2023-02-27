@@ -32,7 +32,7 @@ function CourseInfoTitle(props) {
         <TextLabel>{taken ? 'Mark as Not Taken' : 'Mark as Taken'}</TextLabel>
       </button>
 
-      <RecommendCourseModal />
+      <RecommendCourseModal course={course} />
     </div>
   );
 }

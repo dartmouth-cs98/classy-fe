@@ -56,7 +56,6 @@ function Row(props) {
     course, tableType,
   } = props;
   const [open, setOpen] = React.useState(false);
-  console.log(tableType);
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
