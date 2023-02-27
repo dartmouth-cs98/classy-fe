@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-underscore-dangle */
@@ -20,10 +21,10 @@ export default function FriendProfile() {
   const { friendStudentId } = router.query;
   const { friend } = useSelector((state) => state.student);
   const [friendState, setFriendState] = useState(
-    user.student.friends.findIndex(
+    user?.student?.friends.findIndex(
       (x) => x === friend._id,
     ) !== -1 ? 'friends'
-      : user.student.outgoingFriendRequests.findIndex(
+      : user?.student?.outgoingFriendRequests.findIndex(
         (x) => x === friend._id,
       ) !== -1 ? 'requested' : 'request',
   );
@@ -34,8 +35,8 @@ export default function FriendProfile() {
   }, []);
 
   const requestFriend = () => {
-    const outgoingFriendRequests = [...user.student.outgoingFriendRequests];
-    const existingFriendRequest = user.student.outgoingFriendRequests.findIndex(
+    const outgoingFriendRequests = [...user?.student?.outgoingFriendRequests];
+    const existingFriendRequest = user?.student?.outgoingFriendRequests.findIndex(
       (x) => x === friend._id,
     ) !== -1;
     if (!existingFriendRequest) {
