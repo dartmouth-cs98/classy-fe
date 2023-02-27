@@ -43,20 +43,6 @@ function SearchBarPage(props) {
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
-      <Button variant="text">Hi</Button>
-      <FormControl size="small">
-        <InputLabel>Search</InputLabel>
-        <TextField select placeholder="Search" style={{ width: 400 }}>
-          <MenuItem value={10}>Ten</MenuItem>
-        </TextField>
-      </FormControl>
-
-      <FormControl size="small">
-        <InputLabel>Search</InputLabel>
-        <TextField select placeholder="Search" style={{ width: 400 }}>
-          <MenuItem value={10}>Ten</MenuItem>
-        </TextField>
-      </FormControl>
 
       <TextField
         // size="small"
@@ -74,7 +60,6 @@ function SearchBarPage(props) {
       {/* <TabBar tab={tab} setTab={setTab} /> */}
       <SearchBar />
 
-      <TextField select placeholder="Search" />
       {
         tab === 'Courses'
           ? (
@@ -94,10 +79,6 @@ function SearchBarPage(props) {
       {/* {searchQuery || filtersApplied
         ? <TabBar tab={tab} setTab={setTab} />
         : null} */}
-
-      <Select label="Test" autoWidth>
-        <MenuItem value={10}>Ten</MenuItem>
-      </Select>
 
       {// if search input or any filters applied, show results page
         searchQuery || filtersApplied

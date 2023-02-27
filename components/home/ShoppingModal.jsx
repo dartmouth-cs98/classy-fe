@@ -6,16 +6,15 @@ import { Autocomplete, TextField } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../Modal';
 import { searchCourses } from '../../actions';
+import CourseSearchDropdown from '../CourseSearchDropdown';
 
 function ShoppingModal(props) {
   const {
     isOpen, setIsOpen,
   } = props;
 
-  const [query, setQuery] = useState('');
-  const [courseObj, setCourseObj] = useState(null);
-
-  console.log(courseObj);
+  const [inputValue, setInputValue] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   const dispatch = useDispatch();
   const searchResults = useSelector((reduxState) => reduxState.home.searchResults);
@@ -28,7 +27,13 @@ function ShoppingModal(props) {
       setIsOpen={setIsOpen}
       header="Edit Shopping Cart"
     >
-      <Autocomplete
+      <CourseSearchDropdown
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        selectedCourse={selectedCourse}
+        setSelectedCourse={setSelectedCourse}
+      />
+      {/* <Autocomplete
         options={searchResults}
         clearOnBlur={false}
         onInputChange={(event, NewInputValue) => {
@@ -39,7 +44,8 @@ function ShoppingModal(props) {
         onChange={(e, newValue) => setCourseObj(newValue)}
         inputValue={query}
         value={courseObj}
-        getOptionLabel={(option) => (`${option.courseDept + option.courseNum} - ${option.courseTitle}`) || ''}
+        getOptionLabel={(option) => (`${option.courseDept +
+          option.courseNum} - ${option.courseTitle}`) || ''}
         isOptionEqualToValue={(option, value) => option._id === value._id}
         style={{ width: 300 }}
         renderInput={(params) => (
@@ -52,7 +58,7 @@ function ShoppingModal(props) {
             {option.courseTitle}
           </li>
         )}
-      />
+      /> */}
     </Modal>
   );
 }

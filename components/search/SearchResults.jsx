@@ -30,7 +30,7 @@ function SearchResults(props) {
   console.log(searchResults);
 
   if (tab === 'Courses') {
-    return <CourseTable courses={searchResults} />;
+    return <CourseTable courses={searchResults} style={{ marginTop: '30px' }} />;
   }
   if (tab === 'Professors') {
     return (
