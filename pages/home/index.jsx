@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -17,63 +19,9 @@ import ProfileModal from '../../components/home/ProfileModal';
 import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
-import { fetchUser } from '../../actions';
-import { userId } from '../../constants/mockData';
 
-const allCourses = [
-  {
-    courseNumber: 'COSC 52',
-    courseName: 'Full Stack Web Development',
-    term: '21F',
-    quality: '4.0',
-    difficulty: '3.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A-',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-    timeBlock: '9L',
-    location: 'ECSC202',
-  },
-  {
-    courseNumber: 'COSC 98.01',
-    courseName: 'Senior Design and Implementation I',
-    term: '19F',
-    quality: '5.0',
-    difficulty: '4.0 (3)',
-    hrsPerWeek: '3.0 (4)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-    timeBlock: '10',
-    location: 'LSC101',
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-    timeBlock: '2A',
-    location: 'ECSC101',
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-    timeBlock: '2A',
-    location: 'ECSC101',
-  },
-];
+import { fetchHome, fetchUser } from '../../actions';
+import { userId } from '../../constants/mockData';
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -89,7 +37,7 @@ function HomePage() {
   useEffect(() => {
     dispatch(fetchUser(userId));
   }, []);
-  const user = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
     dispatch(fetchUser(userId));
@@ -99,7 +47,15 @@ function HomePage() {
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
-  const progress = 66;
+
+  const currentHome = useSelector((reduxState) => reduxState.home.current);
+  if (!currentHome) {
+    dispatch(fetchHome());
+    return <B1 key="loading">Loading...</B1>;
+  }
+  const progress = currentHome?.student?.coursesTaken
+    ? Math.round((100 * currentHome.student.coursesTaken.length) / 35, 10)
+    : 0;
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -132,15 +88,17 @@ function HomePage() {
         >
           <img
             className={styles.pic}
-            src={user.user.profileImageUrl}
+            src={user?.profileImageUrl}
             alt="profile Image"
           />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
-            <H1>Tim Tregubov</H1>
+            <H1>
+              {`${user?.firstName} ${user?.lastName}`}
+            </H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              Computer Science Major • Economics Minor
-              {' '}
+              {console.log('user is', user)}
+              {`${user?.student?.majors?.join(', ')} Major(s)`}
             </B1>
           </div>
         </div>
@@ -178,9 +136,9 @@ function HomePage() {
 								  padding: '0 30px',
                 }}
               >
-                {allCourses.map((course, i) => (
+                {currentHome?.student?.currentCourses?.map((course, i) => (
                   <CourseTitleCardHome
-                    key={course.courseName}
+                    key={course.courseTitle}
                     course={course}
                     color={cardColors[i % cardColors.length]}
                   />
@@ -193,7 +151,7 @@ function HomePage() {
                 width="165px"
                 height="130px"
                 text="Friends"
-                data="74"
+                data={currentHome?.student?.friends?.length}
                 pastelColor="var(--pastel-pink)"
                 darkColor="var(--dark-pink) "
               />
@@ -201,7 +159,7 @@ function HomePage() {
                 width="165px"
                 height="200px"
                 text="Waitlists Joined"
-                data="74"
+                data={currentHome?.waitlists?.length}
                 pastelColor="var(--pastel-violet)"
                 darkColor="var(--dark-violet) "
               />
@@ -226,7 +184,11 @@ function HomePage() {
                   <A onClick={() => setShoppingModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table />
+                <Table
+                  courses={currentHome?.student?.shoppingCart}
+                  mode="cart"
+                  studentId={currentHome?.student?._id}
+                />
               </div>
 
               <div
@@ -242,7 +204,11 @@ function HomePage() {
                   <A onClick={() => setCompletedModalIsOpen(true)}>Edit</A>
                 </div>
 
-                <Table />
+                <Table
+                  courses={currentHome?.student?.coursesTaken}
+                  mode="completed"
+                  studentId={currentHome?.student?._id}
+                />
               </div>
             </div>
 
@@ -273,17 +239,16 @@ function HomePage() {
                       styles={buildStyles({
 											  // How long animation takes to go from one percentage to another, in seconds
 											  pathTransitionDuration: 0.5,
-
 											  // Colors
 											  pathColor: 'var(--dark-green)',
 											  trailColor: 'var(--light-grey)',
-                    })}
+                      })}
                       strokeWidth="18"
                     >
                       <H2>
-                      {progress}
-                      %
-</H2>
+                        {progress}
+                        %
+                      </H2>
                     </CircularProgressbarWithChildren>
                   </div>
 
@@ -296,12 +261,12 @@ function HomePage() {
                     }}
                   >
                     <H4>Degree</H4>
-                    <B1 color="var(--dark-grey)">22/35 Courses Completed</B1>
+                    <B1 color="var(--dark-grey)">{`${currentHome?.student?.coursesTaken?.length}/35 Courses Completed`}</B1>
                   </div>
                 </div>
               </div>
 
-              <div
+              {/* <div
                 className={styles.horizontalContainer}
                 style={{ gap: '20px' }}
               >
@@ -321,7 +286,7 @@ function HomePage() {
                   pastelColor="var(--pastel-green)"
                   darkColor="var(--dark-green) "
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

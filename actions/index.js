@@ -355,7 +355,7 @@ export const fetchProfessorHome = (name) => (dispatch) => {
 };
 
 export const updatePriority = (dept, num, offeringIndex, studentId, priority) => (dispatch) => {
-  console.log('sending request');
+  console.log('sending request with', dept, num, offeringIndex, studentId, priority);
   axios.put(`${ROOT_URL}/prioritize/${dept}/${num}/${offeringIndex}/${studentId}/${priority}`).then((res) => {
     const response = res.data;
     dispatch({

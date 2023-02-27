@@ -12,7 +12,7 @@ function ReviewComponent(props) {
 
   // const stars = (n) => [...Array(n)].map((e) =>
   // <FontAwesomeIcon key={`star${e}`} icon={faStar} />);
-  const stars = (n) => [...Array(n)].map((e) => <span key={`star${e}`}><StarIcon /></span>);
+  const stars = (n) => [...Array(n)].map(() => <span><StarIcon /></span>);
   return (
     <div className={styles.reviewContainer}>
       <div>

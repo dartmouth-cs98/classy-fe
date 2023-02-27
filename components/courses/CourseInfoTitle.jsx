@@ -71,11 +71,9 @@ function CourseInfoTitle(props) {
           <option value="taking">Currently Taking</option>
           <option value="reset">Reset</option>
         </select>
-        <Link href={`/courses/${course?.courseDept}/${course?.courseNum}`}>
-          <button type="submit" className={stylesCI.button} value="Submit">
-            Update
-          </button>
-        </Link>
+        <button type="submit" className={stylesCI.button} value="Submit">
+          Update
+        </button>
       </form>
     </div>
   );

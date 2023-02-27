@@ -44,7 +44,7 @@ function Row(props) {
     console.log('prioritize');
     setPriority(spot === 'PRIORITY');
     setPriority(!priority);
-    console.log('about to send');
+    console.log('about to send', dept, num, i, studentId, priority);
     updatePriority(dept, num, i, studentId, priority);
     console.log('request sent');
   };
