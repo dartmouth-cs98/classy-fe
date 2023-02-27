@@ -30,10 +30,10 @@ export default function CourseInfo() {
   }, []);
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
-
+  console.log('reloading');
   if (!currentCourse || !currentCourse.course || (currentCourse.course.courseDept !== dept
     || currentCourse.course.courseNum !== num)) {
-    dispatch(fetchCourse(dept, num));
+    fetchCourse(dept, num);
     return (
       <B1 key="loading">Loading...</B1>
     );

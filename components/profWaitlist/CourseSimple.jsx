@@ -22,11 +22,14 @@ import styles from '../../styles/components/CourseSimple.module.css';
 
 function CourseSimple(props) {
   const {
-    course, color,
+    course, color, type,
   } = props;
   const distribsWC = course.wc ? course.distribs.concat(course.wc) : course.distribs;
   return (
-    <Link href={`/prof_waitlist/${course.courseDept}/${course.courseNum}`}>
+    <Link href={type === 'home'
+      ? `/courses/${course.courseDept}/${course.courseNum}`
+      : `/prof_waitlist/${course.courseDept}/${course.courseNum}`}
+    >
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
 
@@ -51,7 +54,7 @@ function CourseSimple(props) {
         </div>
 
         <div>
-          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseTitle}</B1>
+          <B1 color={type === 'home' ? 'var(--white)' : 'var(--dark-grey)'} className={styles.description}>{course.courseTitle}</B1>
         </div>
 
       </div>

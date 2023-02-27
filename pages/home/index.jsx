@@ -11,7 +11,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import {
   A, H3, H2, H1, B1, H4,
 } from '../../components/ui/typography';
-import CourseTitleCardHome from '../../components/CourseTitleCardHome';
+import CourseSimple from '../../components/profWaitlist/CourseSimple';
 import DataBox from '../../components/home/DataBox';
 import Table from '../../components/home/Table';
 import styles from '../../styles/components/HomePage.module.css';
@@ -107,8 +107,7 @@ function HomePage() {
               className={styles.box}
               style={{
 							  backgroundColor: 'var(--navy)',
-							  width: '880px',
-							  minWidth: '880px',
+							  width: '100%',
               }}
             >
               <div className={styles.header}>
@@ -132,10 +131,11 @@ function HomePage() {
                 }}
               >
                 {user?.student?.currentCourses?.map((course, i) => (
-                  <CourseTitleCardHome
-                    key={course.courseTitle}
+                  <CourseSimple
+                    key={course?.courseTitle}
                     course={course}
                     color={cardColors[i % cardColors.length]}
+                    type="home"
                   />
                 ))}
               </div>
@@ -143,10 +143,7 @@ function HomePage() {
           </div>
 
           <div className={styles.horizontalContainer}>
-            <div
-              className={styles.verticalContainer}
-              style={{ width: '715px' }}
-            >
+            <div className={styles.verticalContainer} style={{ width: '70%' }}>
               <div
                 className={styles.box}
                 style={{
@@ -188,13 +185,11 @@ function HomePage() {
               </div>
             </div>
 
-            <div className={styles.verticalContainer}>
+            <div className={styles.verticalContainer} style={{ width: '30%' }}>
               <div
                 className={styles.box}
                 style={{
 								  backgroundColor: 'var(--lightest-grey)',
-								  minWidth: '330px',
-								  width: '330px',
 								  paddingBottom: '35px',
                 }}
               >
@@ -209,7 +204,9 @@ function HomePage() {
 									  gap: '10px',
                   }}
                 >
-                  <div style={{ width: 200, height: 200, marginTop: '20px' }}>
+                  <div
+                    style={{ width: '75%', height: '75%', marginTop: '20px' }}
+                  >
                     <CircularProgressbarWithChildren
                       value={progress}
                       styles={buildStyles({
@@ -242,14 +239,19 @@ function HomePage() {
                 </div>
               </div>
 
-              <div className={styles.verticalContainer}>
+              <div
+                className={styles.horizontalContainer}
+                style={{ width: '100%' }}
+              >
                 <DataBox
+                  height="150px"
                   text="Friends"
                   data={user?.student?.friends?.length}
                   pastelColor="var(--pastel-pink)"
                   darkColor="var(--dark-pink) "
                 />
                 <DataBox
+                  height="150px"
                   text="Waitlists Joined"
                   data={user?.student?.waitlists?.length || 0}
                   pastelColor="var(--pastel-violet)"

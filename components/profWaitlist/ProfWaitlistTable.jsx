@@ -14,6 +14,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
+import { useDispatch } from 'react-redux';
 import {
   B1,
   TextLabel,
@@ -27,8 +28,9 @@ function Row(props) {
     waitlist, tableType, courseId, spot, dept, num, i,
   } = props;
   const [open, setOpen] = React.useState(false);
-  const [priority, setPriority] = React.useState(false);
+  const [priority, setPriority] = React.useState(spot === 'PRIORITY');
   const studentId = waitlist?._id;
+  const dispatch = useDispatch();
 
   const findReasoning = () => {
     for (const reason of waitlist.waitlistReasons) {
@@ -38,14 +40,11 @@ function Row(props) {
     }
     return '';
   };
-
   const prioritize = (event) => {
     event.preventDefault();
-    console.log('prioritize');
-    setPriority(spot === 'PRIORITY');
     setPriority(!priority);
     console.log('about to send', dept, num, i, studentId, priority);
-    updatePriority(dept, num, i, studentId, priority);
+    dispatch(updatePriority(dept, num, i, studentId, priority));
     console.log('request sent');
   };
 
@@ -69,7 +68,6 @@ function Row(props) {
           {spot === 'PRIORITY' ? <strong>PRIORITY</strong> : spot}
         </TableCell>
         <TableCell align="left">{`${waitlist?.user?.firstName} ${waitlist?.user?.lastName}`}</TableCell>
-        <TableCell align="left">{waitlist?.classYear}</TableCell>
         <TableCell align="left">
           <Link
             href={`mailto: ${waitlist?.user?.email}?subject=${`${dept} ${num}` || ''}
@@ -134,16 +132,10 @@ export default function CollapsibleTable(props) {
                 <strong>Student Name</strong>
               </TableCell>
               <TableCell align="left">
-                <strong>Year</strong>
-              </TableCell>
-              <TableCell align="left">
                 <strong>Email</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Student ID</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Reasoning</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Reasoning</strong>
@@ -159,9 +151,6 @@ export default function CollapsibleTable(props) {
               </TableCell>
               <TableCell align="left">
                 <strong>Student Name</strong>
-              </TableCell>
-              <TableCell align="left">
-                <strong>Year</strong>
               </TableCell>
               <TableCell align="left">
                 <strong>Email (@dartmouth.edu)</strong>

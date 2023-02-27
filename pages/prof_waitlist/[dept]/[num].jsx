@@ -63,6 +63,7 @@ function ProfWaitlist() {
               return (
                 <ProfWaitlistTerm
                   color={cardColors[i % cardColors.length]}
+                  key={offering.professors}
                   i={i}
                   courseId={currentCourse?.course?._id}
                   dept={currentCourse.course.courseDept}
