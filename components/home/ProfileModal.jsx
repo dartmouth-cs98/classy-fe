@@ -27,9 +27,9 @@ function ProfileModal(props) {
   };
 
   const onImageSubmit = () => {
-    if (pic.file != null) {
+    if (pic.file) {
       uploadImage(pic.file).then((url) => {
-        setIsOpen(false)
+        setIsOpen(false);
         dispatch(updateUser(user.user._id, { ...user.user, profileImageUrl: url }));
         setUpdatedUser(true);
       }).catch((error) => {
