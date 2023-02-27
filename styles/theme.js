@@ -1,4 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { createTheme } from '@mui/material/styles';
+
+const navy = '#14121D';
+const darkestGrey = '#28282D';
+const midGrey = '#848698';
+const lightGrey = '#AFB1C1';
+const lighterGrey = '#DEDFE8';
+const lightestGrey = '#F4F5F9';
+const white = '#FFFFFF';
 
 const theme = createTheme({
   typography: {
@@ -8,7 +17,7 @@ const theme = createTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: '#14121D', // navy
+      main: navy, // navy
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -61,20 +70,12 @@ const theme = createTheme({
         },
       },
     },
-    MuiMenu: {
-
+    MuiPaper: {
       styleOverrides: {
         root: {
-
-          '& .MuiPaper-root': {
-            // backgroundColor: '#F4F5F9',
-            // border: 'black',
-            border: '0.5px solid #AFB1C1',
-
-          },
+          border: '0.5px solid #AFB1C1',
         },
       },
-
     },
     MuiFormLabel: {
       styleOverrides: {
@@ -98,10 +99,10 @@ const theme = createTheme({
               borderColor: '#AFB1C1',
             },
             '&:hover fieldset': {
-              border: '1px solid #AFB1C1',
+              border: '1px solid #848698',
             },
             '&.Mui-focused fieldset': {
-              border: '1px solid #AFB1C1',
+              border: '1px solid #848698',
             },
           },
           background: '#F4F5F9',
@@ -115,17 +116,24 @@ const theme = createTheme({
       },
 
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent!important',
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
           // '& $notchedOutline': {
-          //   borderColor: 'green',
+          //   borderColor: 'green!important',
           // },
           // '&:hover fieldset': {
           //   borderColor: 'red!important',
           // },
-          // '&:focused fieldset': {
-          //   borderColor: 'purple!important',
+          // '&:.Mui-focused fieldset': {
+          //   borderColor: 'red!important',
           // },
           background: '#F4F5F9',
           // fontSize: 18,

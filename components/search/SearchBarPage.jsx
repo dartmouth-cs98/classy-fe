@@ -43,7 +43,7 @@ function SearchBarPage(props) {
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
-      <Button variant="contained">Hi</Button>
+      <Button variant="text">Hi</Button>
       <FormControl size="small">
         <InputLabel>Search</InputLabel>
         <TextField select placeholder="Search" style={{ width: 400 }}>

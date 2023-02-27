@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
+import { HomeActionTypes } from './homeActions';
 
 export * from './searchActions';
+export * from './homeActions';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -35,6 +37,7 @@ export const ActionTypes = {
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
   ...SearchActionTypes,
+  ...HomeActionTypes,
 };
 
 export const fetchUser = (id) => (dispatch) => {
