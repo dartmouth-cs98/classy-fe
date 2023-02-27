@@ -10,7 +10,8 @@ function FriendCard(props) {
   const { student } = props;
   return (
     <div className={styles.container}>
-      <img className={styles.pic} src={student.profilePic} alt="friend pic" />
+      {console.log('student:::', student)}
+      <img className={styles.pic} src={student.user.profileImageUrl} alt="friend pic" />
       <div className={styles.description}>
         <H3 style={{ margin: '0px' }}>{`${student.user.firstName} ${student.user.lastName} '${student.classYear}`}</H3>
         <div className="majorMinorContainer">
