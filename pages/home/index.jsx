@@ -20,7 +20,7 @@ import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
 
-import { fetchHome, fetchUser } from '../../actions';
+import { fetchUser } from '../../actions';
 import { userId } from '../../constants/mockData';
 
 const cardColors = [
@@ -36,11 +36,13 @@ function HomePage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser(userId));
+    console.log('in first updateUser');
   }, []);
   const { user } = useSelector((state) => state.user);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
     dispatch(fetchUser(userId));
+    console.log('in second updateUser with update user');
   }, [updatedUser === true]);
 
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
@@ -48,13 +50,8 @@ function HomePage() {
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
 
-  const currentHome = useSelector((reduxState) => reduxState.home.current);
-  if (!currentHome) {
-    dispatch(fetchHome());
-    return <B1 key="loading">Loading...</B1>;
-  }
-  const progress = currentHome?.student?.coursesTaken
-    ? Math.round((100 * currentHome.student.coursesTaken.length) / 35, 10)
+  const progress = user?.student?.coursesTaken
+    ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
 
   return (
@@ -93,11 +90,9 @@ function HomePage() {
           />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
-            <H1>
-              {`${user?.firstName} ${user?.lastName}`}
-            </H1>
+            <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {console.log('user is', user)}
+              {/* {console.log('user is', user)} */}
               {`${user?.student?.majors?.join(', ')} Major(s)`}
             </B1>
           </div>
@@ -136,7 +131,7 @@ function HomePage() {
 								  padding: '0 30px',
                 }}
               >
-                {currentHome?.student?.currentCourses?.map((course, i) => (
+                {user?.student?.currentCourses?.map((course, i) => (
                   <CourseTitleCardHome
                     key={course.courseTitle}
                     course={course}
@@ -144,25 +139,6 @@ function HomePage() {
                   />
                 ))}
               </div>
-            </div>
-
-            <div className={styles.verticalContainer}>
-              <DataBox
-                width="165px"
-                height="130px"
-                text="Friends"
-                data={currentHome?.student?.friends?.length}
-                pastelColor="var(--pastel-pink)"
-                darkColor="var(--dark-pink) "
-              />
-              <DataBox
-                width="165px"
-                height="200px"
-                text="Waitlists Joined"
-                data={currentHome?.waitlists?.length}
-                pastelColor="var(--pastel-violet)"
-                darkColor="var(--dark-violet) "
-              />
             </div>
           </div>
 
@@ -183,11 +159,11 @@ function HomePage() {
                   <H3>Shopping Cart for Next Term</H3>
                   <A onClick={() => setShoppingModalIsOpen(true)}>Edit</A>
                 </div>
-
+                {/* {console.log('shopping cart', user?.student?.shoppingCart)} */}
                 <Table
-                  courses={currentHome?.student?.shoppingCart}
+                  courses={user?.student?.shoppingCart}
                   mode="cart"
-                  studentId={currentHome?.student?._id}
+                  studentId={user?.student?._id}
                 />
               </div>
 
@@ -205,9 +181,9 @@ function HomePage() {
                 </div>
 
                 <Table
-                  courses={currentHome?.student?.coursesTaken}
+                  courses={user?.student?.coursesTaken}
                   mode="completed"
-                  studentId={currentHome?.student?._id}
+                  studentId={user?.student?._id}
                 />
               </div>
             </div>
@@ -261,32 +237,25 @@ function HomePage() {
                     }}
                   >
                     <H4>Degree</H4>
-                    <B1 color="var(--dark-grey)">{`${currentHome?.student?.coursesTaken?.length}/35 Courses Completed`}</B1>
+                    <B1 color="var(--dark-grey)">{`${user?.student?.coursesTaken?.length}/35 Courses Completed`}</B1>
                   </div>
                 </div>
               </div>
 
-              {/* <div
-                className={styles.horizontalContainer}
-                style={{ gap: '20px' }}
-              >
+              <div className={styles.verticalContainer}>
                 <DataBox
-                  width="175px"
-                  height="180px"
-                  text="Departments Explored"
-                  data="74"
-                  pastelColor="var(--pastel-orange)"
-                  darkColor="var(--dark-orange) "
+                  text="Friends"
+                  data={user?.student?.friends?.length}
+                  pastelColor="var(--pastel-pink)"
+                  darkColor="var(--dark-pink) "
                 />
                 <DataBox
-                  width="135px"
-                  height="180px"
-                  text="9Ls Endured"
-                  data="74"
-                  pastelColor="var(--pastel-green)"
-                  darkColor="var(--dark-green) "
+                  text="Waitlists Joined"
+                  data={user?.student?.waitlists?.length || 0}
+                  pastelColor="var(--pastel-violet)"
+                  darkColor="var(--dark-violet) "
                 />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

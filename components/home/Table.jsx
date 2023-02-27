@@ -42,7 +42,7 @@ function Table(props) {
             <button
               type="button"
               className={stylesw.button}
-              onClick={removeCourse(course._id)}
+              onClick={() => removeCourse(course._id)}
             >
               X
             </button>

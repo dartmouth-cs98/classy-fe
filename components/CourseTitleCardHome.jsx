@@ -27,6 +27,7 @@ function CourseTitleCard(props) {
   // const {
   //   distribs, quality, reviews, id, name,
   // } = CourseTitleMockData;
+  console.log('in course title card', course);
   return (
     <Link
       href={`/courses/${course.courseDept}/${course.courseNum}`}

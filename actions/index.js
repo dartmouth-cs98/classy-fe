@@ -334,16 +334,6 @@ export function search(query, navigate) {
   };
 }
 
-export const fetchHome = () => (dispatch) => {
-  axios.get(`${ROOT_URL}/home`).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_HOME,
-      payload: response,
-    });
-  });
-};
-
 export const fetchProfessorHome = (name) => (dispatch) => {
   axios.get(`${ROOT_URL}/prof_home/${name}`).then((res) => {
     const response = res.data;
