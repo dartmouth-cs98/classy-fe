@@ -36,10 +36,14 @@
     margin: 25px
 }
 
+.courses {
+    margin: 20px 0px 25px 0px;
+}
+
 .profs {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 30px 60px;
-    margin: 50px 0 25px 25px;
+    margin: 50px 25px 25px 25px;
 }

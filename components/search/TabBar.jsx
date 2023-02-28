@@ -3,12 +3,12 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import { Tabs, Tab } from '@mui/material';
+import { Tabs, Tab, Box } from '@mui/material';
 import { B1 } from '../ui/typography';
 import styles from '../../styles/components/TabBar.module.css';
 
 function TabBar(props) {
-  const tabs = ['Courses', 'Professors', 'Users'];
+  // const tabs = ['Courses', 'Professors', 'Students'];
   const { tab, setTab } = props;
 
   // const tabDivs = tabs.map((tabName, index) => {
@@ -34,16 +34,20 @@ function TabBar(props) {
     // <div className={styles.tabGroup}>
     //   {tabDivs}
     // </div>
-    <Tabs
-      value={tab}
-      onChange={(e, value) => setTab(value)}
-      style={{ marginTop: '20px' }}
-    >
-      <Tab label="Courses" value="Courses"> </Tab>
-      <Tab label="Professors" value="Professors" />
-      <Tab label="Users" value="Users" />
+    <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
+      <Tabs
+        value={tab}
+        onChange={(e, value) => setTab(value)}
+        style={{ marginTop: '20px' }}
+      >
+        <Tab label="Courses" value="Courses"> </Tab>
+        <Tab label="Professors" value="Professors" />
+        <Tab label="Students" value="Students" />
 
-    </Tabs>
+      </Tabs>
+
+    </Box>
+
   );
 }
 

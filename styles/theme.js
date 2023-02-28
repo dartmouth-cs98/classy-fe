@@ -77,6 +77,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableContainer: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+        },
+      },
+    },
     MuiFormLabel: {
       styleOverrides: {
         root: {
@@ -92,7 +99,7 @@ const theme = createTheme({
             // border: '1px solid #AFB1C1',
           },
           '& .MuiInput-underline:after': {
-            border: '1px solid #AFB1C1',
+            // border: '1px solid #AFB1C1',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {

@@ -32,6 +32,7 @@ function AddMajorMinor(props) {
             variant="outlined"
             onDelete={(e) => handleDelete(e)}
             label={majorMinor}
+            clickable
           />
         ))}
       </div>
