@@ -21,6 +21,7 @@ export default function FormDialog(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const friends = useSelector((state) => state.student.friends);
+  console.log('in component', user);
   useEffect(() => {
     dispatch(fetchUser(userId));
   }, [user.user === {}]);
@@ -57,7 +58,6 @@ export default function FormDialog(props) {
     <div>
       <button
         type="button"
-        style={{ background: '#EBF9FA' }}
         onClick={handleClickOpen}
       >
         <IosShareIcon fontSize="large" />
