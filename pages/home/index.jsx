@@ -36,13 +36,11 @@ function HomePage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser(userId));
-    console.log('in first updateUser');
   }, []);
   const { user } = useSelector((state) => state.user);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
     dispatch(fetchUser(userId));
-    console.log('in second updateUser with update user');
   }, [updatedUser === true]);
 
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
@@ -50,6 +48,7 @@ function HomePage() {
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
 
+  console.log('the user is', user);
   const progress = user?.student?.coursesTaken
     ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
