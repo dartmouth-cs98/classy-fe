@@ -35,7 +35,11 @@ export const ActionTypes = {
   ADD_TO_ONE_WAITLIST: 'ADD_TO_ONE_WAITLIST',
   REMOVE_FROM_WAITLIST: 'REMOVE_FROM_WAITLIST',
   WITHDRAW_FROM_WAITLIST: 'WITHDRAW_FROM_WAITLIST',
+  MARK_COURSE: 'MARK_COURSE',
+  FETCH_HOME: 'FETCH_HOME',
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
+  FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
+  PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
 };
 
@@ -321,7 +325,7 @@ export const fetchCourseReviews = (dept, num) => (dispatch) => {
 export const createCourseReview = (courseId, offering, review) => (dispatch) => {
   // eslint-disable-next-line no-underscore-dangle
   axios
-    .post(`${ROOT_URL}/coursereviews/${courseId}/${offering}`, review)
+    .post(`${ROOT_URL}/reviews/${courseId}/${offering}`, review)
     .then((res) => {
       const response = res.data;
       dispatch({
@@ -331,12 +335,13 @@ export const createCourseReview = (courseId, offering, review) => (dispatch) => 
     });
 };
 
-export const markAsTaken = (studentId, courseId, taken) => (dispatch) => {
+export const markCourse = (studentId, courseId, mode, taken) => (dispatch) => {
   // eslint-disable-next-line no-underscore-dangle
-  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${taken}`).then((res) => {
+  console.log('marking course');
+  axios.put(`${ROOT_URL}/student/${studentId}/${courseId}/${mode}/${taken}`).then((res) => {
     const response = res.data;
     dispatch({
-      type: ActionTypes.MARK_AS_TAKEN,
+      type: ActionTypes.MARK_COURSE,
       payload: response,
     });
   });
@@ -358,3 +363,24 @@ export function search(query, navigate) {
       });
   };
 }
+
+export const fetchProfessorHome = (name) => (dispatch) => {
+  axios.get(`${ROOT_URL}/prof_home/${name}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.FETCH_PROFESSOR_HOME,
+      payload: response,
+    });
+  });
+};
+
+export const updatePriority = (dept, num, offeringIndex, studentId, priority) => (dispatch) => {
+  axios.put(`${ROOT_URL}/prioritize/${dept}/${num}/${offeringIndex}/${studentId}/${priority}`).then((res) => {
+    const response = res.data;
+    console.log('update priority action', res.data);
+    dispatch({
+      type: ActionTypes.PRIORITIZE,
+      payload: response,
+    });
+  });
+};

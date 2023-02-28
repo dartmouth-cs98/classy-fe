@@ -1,85 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProfessorHome } from '../../actions';
 import CourseSimple from '../../components/profWaitlist/CourseSimple';
 import {
   A, H3, H1, B1,
 } from '../../components/ui/typography';
 import styles from '../../styles/components/ProfHome.module.css';
-
-const professorInfoMockData = {
-  featuredCourses: [{
-    courseNumber: 'COSC 52',
-    courseName: 'Full Stack Web Development',
-    term: '21F',
-    quality: '4.0',
-    difficulty: '3.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A-',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-  },
-  {
-    courseNumber: 'COSC 98.01',
-    courseName: 'Senior Design and Implementation I',
-    term: '19F',
-    quality: '5.0',
-    difficulty: '4.0 (3)',
-    hrsPerWeek: '3.0 (4)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-  },
-  {
-    courseNumber: 'COSC 98.02',
-    courseName: 'Senior Design and Implementation II',
-    term: '19W',
-    quality: '5.0',
-    difficulty: '5.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    median: 'A',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-    distribs: ['TLA', 'NW'],
-  },
-  ],
-  allCourses: [
-    {
-      courseNumber: 'COSC 52',
-      courseName: 'Full Stack Web Development',
-      term: '21F',
-      quality: '4.0',
-      difficulty: '3.0 (3)',
-      hrsPerWeek: '3.0 (3)',
-      median: 'A-',
-      reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-      distribs: ['TLA', 'NW'],
-      location: 'ECSC202',
-    },
-    {
-      courseNumber: 'COSC 98.01',
-      courseName: 'Senior Design and Implementation I',
-      term: '19F',
-      quality: '5.0',
-      difficulty: '4.0 (3)',
-      hrsPerWeek: '3.0 (4)',
-      median: 'A',
-      reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-      distribs: ['TLA', 'NW'],
-      location: 'ECSC101',
-    },
-    {
-      courseNumber: 'COSC 98.02',
-      courseName: 'Senior Design and Implementation II',
-      term: '19W',
-      quality: '5.0',
-      difficulty: '5.0 (3)',
-      hrsPerWeek: '3.0 (3)',
-      median: 'A',
-      reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-      distribs: ['TLA', 'NW'],
-      location: 'LSC101',
-    },
-  ],
-};
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -91,6 +18,18 @@ const cardColors = [
 ];
 
 function ProfHome() {
+  const name = 'Lorie Loeb';
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProfessorHome(name));
+  }, []);
+
+  const currentProfHome = useSelector((reduxState) => reduxState.profHome.current);
+  if (!currentProfHome) {
+    dispatch(fetchProfessorHome(name));
+    return <B1 key="loading">Loading...</B1>;
+  }
+
   const pic = 'https://web.cs.dartmouth.edu/sites/department_computer_science/files/styles/profile_portrait/public/LorieLoeb.png?itok=A6088OY8';
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -101,9 +40,10 @@ function ProfHome() {
         <img className={styles.pic} src={pic} alt="Lorie" />
         <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
           <A>Edit Profile</A>
-          <H1>Lorie Loeb</H1>
-          <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>Research Professor of Computer Science and Director of Digital Arts </B1>
-          <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>Faculty Director of DALI lab</B1>
+          <H1>{currentProfHome?.professor?.name}</H1>
+          <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
+            {`Professor of ${currentProfHome?.professor?.departments?.join(', ')}`}
+          </B1>
         </div>
       </div>
 
@@ -113,18 +53,16 @@ function ProfHome() {
         </div>
 
         <div className={styles.resultContainer}>
-          {professorInfoMockData.featuredCourses.map((course, i) => (
+          {currentProfHome?.courses?.map((course, i) => (
             <CourseSimple
-              key={course.courseName}
+              key={course?.courseName}
               course={course}
               color={cardColors[i % cardColors.length]}
             />
           ))}
         </div>
       </div>
-
     </div>
-
   );
 }
 

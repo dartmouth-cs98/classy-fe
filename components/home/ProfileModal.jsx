@@ -2,27 +2,29 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../Modal';
 import { H3 } from '../ui/typography';
 import styles from '../../styles/components/HomePage.module.css';
 import uploadImage from '../../services/s3';
 import { updateUser } from '../../actions';
-import { useSelector, useDispatch } from 'react-redux';
 
 function ProfileModal(props) {
   const {
-    isOpen, setIsOpen, user, setUpdatedUser
+    isOpen, setIsOpen, user, setUpdatedUser,
   } = props;
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [pic, setPic] = useState({ url: user.user.profileImageUrl, img: null, file: null });
+  const [pic, setPic] = useState({ url: user?.profileImageUrl, img: null, file: null });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
 
   const onImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setPic({ ...pic, img: window.URL.createObjectURL(file), file, url: null });
+      setPic({
+        ...pic, img: window.URL.createObjectURL(file), file, url: null,
+      });
     }
   };
 

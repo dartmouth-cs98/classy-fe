@@ -120,6 +120,10 @@ function generateDistribs(possibleDistribs) {
   return studentDistribs;
 }
 
+function getPrioritizeColor(value) {
+  return value ? pink : green;
+}
+
 // returns the color a term tile should be based on the season
 export default function getColor(tile, val) {
   if (tile.toLowerCase() === 'distrib' || tile.toLowerCase() === 'distribs') {
@@ -146,6 +150,8 @@ export default function getColor(tile, val) {
     return getInstructorColor();
   } if (tile.toLowerCase() === 'cititle') {
     return getCITitleColor(val);
+  } if (tile.toLowerCase() === 'prioritize') {
+    return getPrioritizeColor(val);
   }
   return null;
 }

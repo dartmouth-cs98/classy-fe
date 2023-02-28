@@ -1,6 +1,7 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faClock, faSignal5, faStar } from '@fortawesome/free-solid-svg-icons';
+import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
+import StarIcon from '@mui/icons-material/Star';
+import SpeedIcon from '@mui/icons-material/Speed';
 import styles from '../../styles/CourseInfo.module.css';
 import { H4, B1 } from '../ui/typography';
 
@@ -11,7 +12,7 @@ function ReviewComponent(props) {
 
   // const stars = (n) => [...Array(n)].map((e) =>
   // <FontAwesomeIcon key={`star${e}`} icon={faStar} />);
-  const stars = (n) => [...Array(n)].map((e) => <span key={`star${e}`}>*</span>);
+  const stars = (n) => [...Array(n)].map(() => <span><StarIcon /></span>);
   return (
     <div className={styles.reviewContainer}>
       <div>
@@ -20,11 +21,11 @@ function ReviewComponent(props) {
 
       <div className={styles.reviewRow}>
         <div className={styles.reviewComp}>
-          {/* <FontAwesomeIcon icon={faClock} /> */}
+          <AccessTimeOutlinedIcon />
           <B1>{` ${review.workload} hrs/week `}</B1>
         </div>
         <div className={styles.reviewComp}>
-          {/* <FontAwesomeIcon icon={faSignal5} /> */}
+          <SpeedIcon />
           <B1>{` ${review.difficulty}/5`}</B1>
         </div>
         <div className={styles.reviewComp}>{stars(review.quality)}</div>
@@ -32,7 +33,7 @@ function ReviewComponent(props) {
       <B1>{review.content}</B1>
       <br />
       <B1>
-        {`${user.firstName} ${user.lastName}`}
+        <i>{`${user.user.firstName} ${user.user.lastName}`}</i>
       </B1>
     </div>
   );

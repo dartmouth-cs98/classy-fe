@@ -22,8 +22,6 @@ export default function WaitlistHome() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SideNavbar />
-
       <H2 className={styles.title}>
         My Waitlists
       </H2>

@@ -34,7 +34,6 @@ function ProfessorInfo() {
       <B1>Loading...</B1>
     );
   }
-
   return (
     <div className={styles.container}>
       <div className={styles.professorContainer}>
@@ -47,13 +46,20 @@ function ProfessorInfo() {
         <TextLabel color="var(--darkest-grey)">Featured Courses</TextLabel>
         <div className={styles.featuredCardsContainer}>
           {currentProfessor.courses.map((course, i) => (
-            <CourseTitleCard course={course} color={cardColors[i % cardColors.length]} />
+            <CourseTitleCard
+              course={course}
+              color={cardColors[i % cardColors.length]}
+            />
           ))}
         </div>
       </div>
       <div className={styles.courseTableContainer}>
         <TextLabel color="var(--darkest-grey)">All Courses</TextLabel>
-        <CourseTable courses={currentProfessor.courses} />
+        <CourseTable
+          courses={currentProfessor.courses}
+          tableType="profInfo"
+          professorName={currentProfessor.professor.name}
+        />
       </div>
     </div>
   );

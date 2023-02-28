@@ -9,8 +9,10 @@ import ProfessorsReducer from './professorsReducer';
 import WaitlistReducer from './waitlistReducer';
 import DepartmentsReducer from './departmentsReducer';
 import ReviewsReducer from './reviewsReducer';
+import HomeReducer from './homeReducer';
 import UserReducer from './userReducer';
 import StudentsReducer from './studentsReducer';
+import ProfHomeReducer from './profHomeReducer';
 
 const rootReducer = combineReducers({
   courses: CoursesReducer,
@@ -20,8 +22,10 @@ const rootReducer = combineReducers({
   waitlist: WaitlistReducer,
   departments: DepartmentsReducer,
   reviews: ReviewsReducer,
+  home: HomeReducer,
   user: UserReducer,
   student: StudentsReducer,
+  profHome: ProfHomeReducer,
 });
 
 export default rootReducer;
