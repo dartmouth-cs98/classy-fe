@@ -3,6 +3,7 @@ import { ActionTypes } from '../actions';
 const initialState = {
   student: {},
   friends: [],
+  friend: {},
 };
 
 const StudentsReducer = (state = initialState, action = {}) => {
@@ -11,6 +12,10 @@ const StudentsReducer = (state = initialState, action = {}) => {
       return { ...state, student: action.payload };
     case ActionTypes.FETCH_FRIENDS:
       return { ...state, friends: action.payload };
+    case ActionTypes.FETCH_FRIEND:
+      return { ...state, friend: action.payload };
+    case ActionTypes.UPDATE_STUDENT:
+      return { ...state, student: action.payload };
     default:
       return state;
   }

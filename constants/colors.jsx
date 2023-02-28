@@ -32,4 +32,10 @@ export const wcs = [
   { name: 'CI', pastel: 'var(--pastel-purple)', dark: 'var(--dark-purple)' },
 ];
 
+export const friendButtonColors = {
+  friends: '#75946A',
+  request: '#AE5E99',
+  requested: '#BA7D37'
+}
+
 // This file will contain arrays of all pastel and dark colors

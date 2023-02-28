@@ -33,7 +33,7 @@ export default function CourseInfo() {
   console.log('reloading');
   if (!currentCourse || !currentCourse.course || (currentCourse.course.courseDept !== dept
     || currentCourse.course.courseNum !== num)) {
-    fetchCourse(dept, num);
+    dispatch(fetchCourse(dept, num));
     return (
       <B1 key="loading">Loading...</B1>
     );

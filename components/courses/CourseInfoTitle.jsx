@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-underscore-dangle */
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import stylesCI from '../../styles/CourseInfo.module.css';
 
@@ -22,6 +21,7 @@ function CourseInfoTitle(props) {
     }
     return '';
   };
+
   const [status, setStatus] = useState(determineStatus);
   const dispatch = useDispatch();
 
@@ -51,18 +51,16 @@ function CourseInfoTitle(props) {
     }
   };
 
+  const loadWaitlistButton = () => {
+    if (taken) {
+      return '';
+    }
+    return <WaitlistModal course={course} studentId={student._id} onWaitlist={onWaitlist} />;
+  };
+
   return (
     <div className={stylesCI.ciTitle}>
-      {taken ? (
-			  ''
-      ) : (
-        <WaitlistModal
-          course={course}
-          studentId={`ObjectId('${student._id}')`}
-          onWaitlist={onWaitlist}
-        />
-      )}
-
+      {loadWaitlistButton()}
       <form onSubmit={onStatusClick}>
         <label htmlFor="statuses">Course Status:</label>
         <select name="statuses" id="statuses" onChange={changeStatus}>

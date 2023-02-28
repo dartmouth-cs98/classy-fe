@@ -86,3 +86,9 @@ export const friendsMockData = {
 };
 
 export const userId = '63c4424be18e75a330906120';
+export const userId1 = '63c4424be18e75a330906121';
+export const userId2 = '63c4424be18e75a330906122';
+
+export const studentId = '63c4424ce18e75a330906125';
+export const studentId1 = '63c4424ce18e75a330906126';
+export const studentId2 = '63c4424ce18e75a330906127';
