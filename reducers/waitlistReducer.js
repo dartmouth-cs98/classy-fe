@@ -12,6 +12,8 @@ const WaitlistReducer = (state = initialState, action = {}) => {
       return { current: action.payload };
     case ActionTypes.FETCH_WAITLIST:
       return { current: action.payload };
+    case ActionTypes.PRIORITIZE:
+      return { current: action.payload };
     default:
       return state;
   }

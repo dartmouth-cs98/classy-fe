@@ -121,7 +121,7 @@ function generateDistribs(possibleDistribs) {
 }
 
 function getPrioritizeColor(value) {
-  return value === 'PRIORITY' ? pink : green;
+  return value ? pink : green;
 }
 
 // returns the color a term tile should be based on the season

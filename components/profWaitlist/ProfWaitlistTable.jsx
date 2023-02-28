@@ -31,6 +31,7 @@ function Row(props) {
   const [priority, setPriority] = React.useState(spot === 'PRIORITY');
   const studentId = waitlist?._id;
   const dispatch = useDispatch();
+  //   const course = useSelector((reduxState) => reduxState.waitlist.current);
 
   const findReasoning = () => {
     for (const reason of waitlist.waitlistReasons) {
@@ -43,10 +44,10 @@ function Row(props) {
   const prioritize = (event) => {
     event.preventDefault();
     setPriority(!priority);
-    console.log('about to send', dept, num, i, studentId, priority);
     dispatch(updatePriority(dept, num, i, studentId, priority));
-    console.log('request sent');
   };
+
+  console.log(waitlist?.user?.firstName, priority);
 
   return (
     <>
@@ -65,17 +66,22 @@ function Row(props) {
           <TableCell />
         )}
         <TableCell component="th" scope="row">
-          {spot === 'PRIORITY' ? <strong>PRIORITY</strong> : spot}
+          {priority ? <strong>PRIORITY</strong> : spot}
         </TableCell>
         <TableCell align="left">{`${waitlist?.user?.firstName} ${waitlist?.user?.lastName}`}</TableCell>
         <TableCell align="left">
           <Link
-            href={`mailto: ${waitlist?.user?.email}?subject=${`${dept} ${num}` || ''}
+            href={`mailto: ${waitlist?.user?.email}?subject=${
+						  `${dept} ${num}` || ''
+            }
             Waitlist&body=Dear ${waitlist?.user?.firstName},
             %0D%0A%0D%0AThank you for your interest in my course. About your waitlist inquiry on Classy...`}
           >
             <B1>
-              {waitlist?.user?.email.substring(0, waitlist.user.email.length - 14)}
+              {waitlist?.user?.email.substring(
+							  0,
+							  waitlist.user.email.length - 14,
+              )}
             </B1>
           </Link>
         </TableCell>
@@ -84,10 +90,10 @@ function Row(props) {
         <TableCell align="left">
           <Button
             type="button"
-            style={{ background: getColor('prioritize', spot) }}
+            style={{ background: getColor('prioritize', priority) }}
             onClick={prioritize}
           >
-            {spot === 'PRIORITY' ? 'Unprioritize' : 'Prioritize'}
+            {priority ? 'Unprioritize' : 'Prioritize'}
           </Button>
         </TableCell>
       </TableRow>
