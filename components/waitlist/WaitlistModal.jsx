@@ -152,15 +152,14 @@ function WaitlistModal(props) {
         <div
           className={styleswt.card}
           style={{ background: cardColor[index] }}
-          onClick={() => setModalNotificationOpen(true)}
         >
           <div className={styleswt.waitlistCardsContainer}>
+            <H3>
+              {` ${course.courseDept} ${course.courseNum}`}
+            </H3>
             <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-              <H3>
-                {` ${course.courseDept} ${course.courseNum}`}
-              </H3>
+              <H3 color={textColor[index]}>{course.courseTitle}</H3>
             </Link>
-            <H3 color={textColor[index]}>{course.courseTitle}</H3>
           </div>
           <div className={styleswt.waitlistCardsContainer}>
             <div>
@@ -177,23 +176,10 @@ function WaitlistModal(props) {
               <H3>{nextTermPos}</H3>
             </div>
           </div>
-          <div>
-            <div className={styleswt.bottomButtons}>
-              <div className={styleswt.buttonContainer}>
-                <a href={`/courses/${course.courseDept}/${course.courseNum}`}>
-                  <button className={styleswt.btn} type="button">
-                    Course Info Page
-                  </button>
-                </a>
-              </div>
-              <div className={styleswt.buttonContainer}>
-                <button className={styleswt.btn} type="button">
-                  {/* Could also say details, not sure what is clearer */}
-                  {/* Details */}
-                  Edit
-                </button>
-              </div>
-            </div>
+          <div className={styleswt.bottomButtons}>
+            <button className={styleswt.btn} type="button" onClick={() => setModalNotificationOpen(true)}>
+              Edit
+            </button>
           </div>
         </div>
       );
