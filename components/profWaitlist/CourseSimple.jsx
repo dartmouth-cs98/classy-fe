@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  H1, H4, H5, B1, TextLabel,
+  H2, H4, H5, B1, TextLabel,
 } from '../ui/typography';
 // eslint-disable-next-line import/no-unresolved
 import styles from '../../styles/components/CourseSimple.module.css';
@@ -22,11 +22,14 @@ import styles from '../../styles/components/CourseSimple.module.css';
 
 function CourseSimple(props) {
   const {
-    course, color,
+    course, color, type,
   } = props;
   const distribsWC = course.wc ? course.distribs.concat(course.wc) : course.distribs;
   return (
-    <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+    <Link href={type === 'home'
+      ? `/courses/${course.courseDept}/${course.courseNum}`
+      : `/prof_waitlist/${course.courseDept}/${course.courseNum}`}
+    >
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
 
@@ -41,22 +44,17 @@ function CourseSimple(props) {
           </div>
 
           <div className={styles.qualityReview}>
-            <H1 color={color.dark}>
+            <H2 color={color.dark}>
               {course.courseDept
-                ? course.courseDept
+                ? `${course.courseDept} ${course.courseNum}`
                 : '—'}
-            </H1>
+            </H2>
           </div>
 
         </div>
 
         <div>
-          <H4 className={styles.name} style={{ margin: '0px' }}>
-            {course.courseDept}
-            {' '}
-            {course.courseNum}
-          </H4>
-          <B1 color="var(--dark-grey)" className={styles.description}>{course.courseTitle}</B1>
+          <B1 color={type === 'home' ? 'var(--white)' : 'var(--dark-grey)'} className={styles.description}>{course.courseTitle}</B1>
         </div>
 
       </div>

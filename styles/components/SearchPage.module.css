@@ -22,8 +22,12 @@
 
 .resultContainer {
     display: flex;
-    flex-direction: row;
+    padding-top: 2%;
     align-items: flex-start;
+    justify-content: left;
+    overflow-x: scroll;
+    white-space: nowrap;
+    max-width: 100%;
     gap: 60px;
     margin: 25px;
 }

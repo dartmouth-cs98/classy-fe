@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
@@ -7,10 +8,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import stylesCI from '../../styles/CourseInfo.module.css';
-import {
-  TextLabel,
-} from '../ui/typography';
+import IosShareIcon from '@mui/icons-material/IosShare';
+
 import FriendsCheckBoxes from './FriendsCheckBoxes';
 import { fetchUser, fetchFriends, updateStudent } from '../../actions';
 import { userId } from '../../constants/mockData';
@@ -22,11 +21,12 @@ export default function FormDialog(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const friends = useSelector((state) => state.student.friends);
+  console.log('in component', user);
   useEffect(() => {
     dispatch(fetchUser(userId));
   }, [user.user === {}]);
   useEffect(() => {
-    dispatch(fetchFriends(user.user.student._id));
+    dispatch(fetchFriends(user?.user?.student?._id));
   }, [friends === []]);
 
   const handleClickOpen = () => {
@@ -41,23 +41,38 @@ export default function FormDialog(props) {
   const handleSubmit = () => {
     selectedFriends.forEach((friend) => {
       const coursesRecommended = [...friend.coursesRecommended];
-      coursesRecommended.push({ course: course._id, friend: user.user.student._id });
-      dispatch(updateStudent(friend._id, { ...friend, coursesRecommended: coursesRecommended }));
+      coursesRecommended.push({
+        course: course._id,
+        friend: user.user.student._id,
+      });
+      dispatch(
+        updateStudent(friend._id, {
+          ...friend,
+          coursesRecommended,
+        }),
+      );
     });
   };
 
   return (
     <div>
-      <button type="button" className={stylesCI.ciButton} style={{ background: '#EBF9FA' }} onClick={handleClickOpen}>
-        <TextLabel>Recommend A Friend</TextLabel>
+      <button
+        type="button"
+        onClick={handleClickOpen}
+      >
+        <IosShareIcon fontSize="large" />
       </button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Recommend This Course</DialogTitle>
         <DialogContent>
-          <FriendsCheckBoxes friends={friends} selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
+          <FriendsCheckBoxes
+            friends={friends}
+            selectedFriends={selectedFriends}
+            setSelectedFriends={setSelectedFriends}
+          />
           <DialogContentText>
-            Your friend is not on Classy? No worries!
-            Enter their email address below and we will send them an invite.
+            Your friend is not on Classy? No worries! Enter their email address
+            below and we will send them an invite.
           </DialogContentText>
           <TextField
             autoFocus

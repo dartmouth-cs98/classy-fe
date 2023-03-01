@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
@@ -21,7 +22,7 @@ function ProfileModal(props) {
   } = props;
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [pic, setPic] = useState({ url: user.user.profileImageUrl, img: null, file: null });
+  const [pic, setPic] = useState({ url: user?.profileImageUrl, img: null, file: null });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
   const [year, setYear] = useState('');

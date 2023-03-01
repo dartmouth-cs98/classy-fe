@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
@@ -59,12 +60,12 @@ function WaitlistModal(props) {
     return course.offerings.map((offering) => {
       index += 1;
       let position = -1;
-      const totalLength = offering.priorityWaitlist.length + offering.waitlist.length;
+      const totalLength = offering?.priorityWaitlist?.length + offering?.waitlist?.length;
       let onOfferingWaitlist = false;
-      if (offering.priorityWaitlist.includes(studentId)) {
+      if (offering?.priorityWaitlist?.includes(studentId)) {
         position = 'Priority';
         onOfferingWaitlist = true;
-      } else if (offering.waitlist.includes(studentId)) {
+      } else if (offering?.waitlist?.includes(studentId)) {
         position = `${offering.priorityWaitlist.length + offering.waitlist.indexOf(studentId) + 1}/${totalLength}`;
         onOfferingWaitlist = true;
       }
@@ -127,9 +128,9 @@ function WaitlistModal(props) {
     const studentWaitlists = {};
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
-      if (course.offerings[i].priorityWaitlist.includes(studentId)) {
+      if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
-      } else if (course.offerings[i].waitlist.includes(studentId)) {
+      } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
         // eslint-disable-next-line max-len
         const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
         // eslint-disable-next-line max-len
@@ -198,9 +199,16 @@ function WaitlistModal(props) {
       );
     }
     return (
-      <button className={stylesCI.ciButton} style={{ background: '#FCF0E3' }} onClick={() => setModalNotificationOpen(true)} type="button">
-        <TextLabel>
-          {onWaitlist ? 'Check Waitlist Status' : `Join ${course.courseDept} ${course.courseNum} Waitlists`}
+      <button
+        className={stylesCI.ciButton}
+        style={{ background: 'var(--navy)' }}
+        onClick={() => setModalNotificationOpen(true)}
+        type="button"
+      >
+        <TextLabel color="var(--white)">
+          {onWaitlist
+            ? 'Check Waitlist Status'
+            : `Join ${course.courseDept} ${course.courseNum} Waitlists`}
         </TextLabel>
       </button>
     );

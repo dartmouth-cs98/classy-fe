@@ -15,7 +15,7 @@ import {
   B3, TextLabel,
 } from './ui/typography';
 import styles from '../styles/components/CourseTable.module.css';
-// import { convertMedian } from './courses/Medians';
+import { convertMedian } from './courses/Medians';
 
 // function getTerms(offerings) {
 //   const termArray = [];
@@ -26,36 +26,25 @@ import styles from '../styles/components/CourseTable.module.css';
 //   return Array.from(set);
 // }
 
-const SearchTableMockData = [
-  {
-    courseNumber: 'COSC 52',
-    courseName: 'Full Stack Web Development',
-    offeredNextTerm: 'Yes',
-    distribs: ['TLA', 'NW'],
-    quality: '4.0 (3)',
-    difficulty: '3.0 (3)',
-    hrsPerWeek: '3.0 (3)',
-    NREligible: 'Yes',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-  {
-    courseNumber: 'COSC 98.01',
-    courseName: 'Senior Design and Implementation I',
-    offeredNextTerm: 'Yes',
-    distribs: ['SCI'],
-    quality: '5.0 (3)',
-    difficulty: '4.0 (3)',
-    hrsPerWeek: '3.0 (4)',
-    NREligible: 'No',
-    reviews: ['This class was awesome', 'Tim is great', 'Natalie is amazing'],
-  },
-];
-
 function Row(props) {
   const {
-    course, tableType,
+    course, tableType, professorName,
   } = props;
   const [open, setOpen] = React.useState(false);
+
+  const loadReviews = () => course?.offerings?.map((offering) => {
+    if (!offering.professors.includes(professorName)) return '';
+    return offering.reviews?.map((review) => (
+      <B3
+        style={{ marginBottom: '10px' }}
+        color="var(--dark-grey)"
+        key={review}
+      >
+        {review.content}
+      </B3>
+    ));
+  });
+
   return (
     <>
       <TableRow hover sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -73,27 +62,38 @@ function Row(props) {
         <TableCell component="th" scope="row">
           {course.courseTitle}
         </TableCell>
-        <TableCell align="left">{course.courseName}</TableCell>
-        <TableCell align="left">{course.term ? course.term : course.offeredNextTerm}</TableCell>
-        {course.distribs && tableType !== 'profInfo'
-          ? <TableCell align="left">{course.distribs.map((distrib) => <p>{distrib}</p>)}</TableCell>
-          : null}
+        <TableCell align="left">{`${course.courseDept} ${course.courseNum}`}</TableCell>
+        <TableCell align="left">
+          {course.term ? course.term : course.offeredNextTerm}
+        </TableCell>
+        {course.distribs && tableType !== 'profInfo' ? (
+          <TableCell align="left">
+            {course.distribs.map((distrib) => (
+              <p>{distrib}</p>
+            ))}
+          </TableCell>
+        ) : null}
         <TableCell align="left">{course.quality}</TableCell>
         <TableCell align="left">{course.difficulty}</TableCell>
         <TableCell align="left">{course.hrsPerWeek}</TableCell>
-        {course.median ? <TableCell align="left">{course.median}</TableCell> : null}
-        {course.NREligible && tableType !== 'profInfo'
-          ? <TableCell align="left">{course.NREligible}</TableCell> : null}
-
+        {course.avgMedian ? (
+          <TableCell align="left">{convertMedian(course.avgMedian)}</TableCell>
+        ) : null}
+        {course.nrEligible && tableType !== 'profInfo' ? (
+          <TableCell align="left">{course.nrEligible}</TableCell>
+        ) : null}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className={styles.collapseContainer}>
-              <TextLabel style={{ marginBottom: '10px', marginTop: '10px' }} color="var(--dark-grey)">Reviews</TextLabel>
-              {course.reviews ? course.reviews.map((review) => (
-                <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)" key={review}>{review}</B3>
-              )) : <B3 style={{ marginBottom: '10px' }} color="var(--dark-grey)">No Reviews</B3>}
+              <TextLabel
+                style={{ marginBottom: '10px', marginTop: '10px' }}
+                color="var(--dark-grey)"
+              >
+                Reviews
+              </TextLabel>
+              {loadReviews()}
             </div>
           </Collapse>
         </TableCell>
@@ -103,12 +103,8 @@ function Row(props) {
 }
 
 export default function CollapsibleTable(props) {
-  // const { tableType } = props;
-  const tableType = 'search';
-  const courses = SearchTableMockData;
-  // const tableType = 'profInfo';
-  // const courses = CourseTableMockData;
-  if (courses === {}) {
+  const { courses, tableType, professorName } = props;
+  if (!courses) {
     return <div />;
   }
 
@@ -146,7 +142,12 @@ export default function CollapsibleTable(props) {
           )}
         <TableBody>
           {courses.map((course) => (
-            <Row key={course.courseNumber} course={course} tableType={tableType} />
+            <Row
+              key={`${course.courseDept} ${course.courseNum}`}
+              course={course}
+              tableType={tableType}
+              professorName={professorName}
+            />
           ))}
         </TableBody>
       </Table>
