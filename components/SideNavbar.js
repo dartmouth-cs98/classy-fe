@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import { Disclosure } from '@headlessui/react';
 import React from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
+// import { GiHamburgerMenu } from 'react-icons/gi';
 import Image from 'next/image';
 import {
   MdOutlineHome,
