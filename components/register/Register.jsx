@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useRef, useState, useEffect } from 'react';
 import { H3, H2, B1 } from '../ui/typography';
 import styles from '../../styles/Register.module.css';
@@ -126,10 +127,10 @@ function Register() {
               Year
             </label>
             <select id="classYear" name="classYear">
-              <option value="23">'23</option>
-              <option value="24">'24</option>
-              <option value="25">'25</option>
-              <option value="26">'26</option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
+              <option value="25">2025</option>
+              <option value="26">2026</option>
             </select>
           </div>
         </div>
@@ -224,7 +225,7 @@ function Register() {
           <br />
           <span className="line">
             {/* put router link here, placeholder link below */}
-            <a href="/Login">Sign in instead</a>
+            <a href="/login">Sign in instead</a>
           </span>
         </p>
       </div>
