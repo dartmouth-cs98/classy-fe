@@ -47,7 +47,7 @@ function Row(props) {
 
   return (
     <>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow hover sx={{ '& > *': { borderBottom: 'unset' } }}>
         {tableType === 'profInfo' ? (
           <TableCell>
             <IconButton
@@ -58,9 +58,7 @@ function Row(props) {
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             </IconButton>
           </TableCell>
-        ) : (
-          <TableCell />
-        )}
+        ) : null}
         <TableCell component="th" scope="row">
           {course.courseTitle}
         </TableCell>
@@ -113,34 +111,35 @@ export default function CollapsibleTable(props) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
-        {tableType === 'profInfo' ? (
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell align="left">Course</TableCell>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Term</TableCell>
-              <TableCell align="left">Quality</TableCell>
-              <TableCell align="left">Difficulty</TableCell>
-              <TableCell align="left">Hrs/week</TableCell>
-              <TableCell align="left">Median</TableCell>
-            </TableRow>
-          </TableHead>
-        ) : (
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell align="left">Course</TableCell>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Offered Next Term?</TableCell>
-              <TableCell align="left">Distribs</TableCell>
-              <TableCell align="left">Quality</TableCell>
-              <TableCell align="left">Difficulty</TableCell>
-              <TableCell align="left">Hrs/week</TableCell>
-              <TableCell align="left">NR Eligible</TableCell>
-            </TableRow>
-          </TableHead>
-        )}
+        {tableType === 'profInfo'
+          ? (
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell align="left">Course</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Term</TableCell>
+                <TableCell align="left">Quality</TableCell>
+                <TableCell align="left">Difficulty</TableCell>
+                <TableCell align="left">Hrs/week</TableCell>
+                <TableCell align="left">Median</TableCell>
+              </TableRow>
+            </TableHead>
+          ) : (
+            <TableHead>
+              <TableRow>
+                {/* <TableCell /> */}
+                <TableCell align="left">Course</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Offered Next Term?</TableCell>
+                <TableCell align="left">Distribs</TableCell>
+                <TableCell align="left">Quality</TableCell>
+                <TableCell align="left">Difficulty</TableCell>
+                <TableCell align="left">Hrs/week</TableCell>
+                <TableCell align="left">NR Eligible</TableCell>
+              </TableRow>
+            </TableHead>
+          )}
         <TableBody>
           {courses.map((course) => (
             <Row

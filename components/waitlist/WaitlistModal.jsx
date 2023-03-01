@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import styles from '../../styles/WaitlistDetail.module.css';
 import styleswt from '../../styles/WaitlistTileCard.module.css';
 // reactstrap components
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   B1, H2, H3, H4, TextLabel,
 } from '../ui/typography';

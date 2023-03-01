@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
+import { HomeActionTypes } from './homeActions';
 
 export * from './searchActions';
+export * from './homeActions';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -41,6 +43,7 @@ export const ActionTypes = {
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
+  ...HomeActionTypes,
 };
 
 export const fetchUser = (id) => (dispatch) => {

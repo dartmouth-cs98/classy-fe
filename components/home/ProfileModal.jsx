@@ -1,13 +1,20 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  TextField, FormControl, InputLabel, MenuItem, Select, Chip,
+} from '@mui/material';
 import Modal from '../Modal';
-import { H3 } from '../ui/typography';
+import { H3, H4, A } from '../ui/typography';
 import styles from '../../styles/components/HomePage.module.css';
 import uploadImage from '../../services/s3';
 import { updateUser } from '../../actions';
+import modalStyles from '../../styles/components/Modal.module.css';
+import SaveButton from './SaveButton';
+import AddMajorMinor from './AddMajorMinor';
 
 function ProfileModal(props) {
   const {
@@ -18,6 +25,11 @@ function ProfileModal(props) {
   const [pic, setPic] = useState({ url: user?.profileImageUrl, img: null, file: null });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
+  const [year, setYear] = useState('');
+  const [addingMajor, setAddingMajor] = useState(false);
+  const [addingMinor, setAddingMinor] = useState(false);
+  const [majors, setMajors] = useState(['HI']);
+  const [minors, setMinors] = useState(['Computer Science', 'Economics']);
 
   const onImageUpload = (event) => {
     const file = event.target.files[0];
@@ -41,6 +53,9 @@ function ProfileModal(props) {
     }
   };
 
+  const handleDeleteMajor = () => null;
+  const handleDeleteMinor = () => null;
+
   return (
     <Modal
       isOpen={isOpen}
@@ -48,37 +63,85 @@ function ProfileModal(props) {
       onButtonClick={onImageSubmit}
       buttonText="Save"
       header="Edit Profile"
+      button={<SaveButton adding={addingMajor || addingMinor} />}
     >
-      <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Profile Image" />
+      <div className={modalStyles.horizontalContainer} style={{ gap: '40px' }}>
+        <div className={modalStyles.verticalContainer} style={{ width: '300px' }}>
+          <img className={styles.pic} src={pic.url ? pic.url : pic.img} alt="Profile Image" />
+          <Button component="label" variant="outlined" style={{ margin: '10px' }}>
+            Upload Image
+            <input hidden accept="image/*" multiple type="file" name="coverImage" onChange={onImageUpload} />
+          </Button>
+        </div>
 
-      <Button variant="contained" component="label">
-        Upload Image
-        <input hidden accept="image/*" multiple type="file" name="coverImage" onChange={onImageUpload} />
-      </Button>
-      <input
-        type="text"
-        placeholder="First Name"
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-      />
+        <div
+          className={modalStyles.verticalContainer}
+          style={{
+            height: '440px', width: '900px', overflowY: 'auto', paddingRight: '30px',
+          }}
+        >
+          <div className={modalStyles.header}>
+            <div className={modalStyles.field} style={{ width: 'auto' }}>
+              <H4>First Name</H4>
+              <TextField sx={{ width: 250 }} placeholder="First Name" />
+            </div>
 
-      <select defaultValue="">
-        <option selected value="">Year</option>
-        {
-          years.map((year, index) => <option key={year} value={year}>{year}</option>)
-        }
-      </select>
+            <div className={modalStyles.field} style={{ width: 'auto' }}>
+              <H4>Last Name</H4>
+              <TextField sx={{ width: 250 }} placeholder="Last Name" />
+            </div>
 
-      <input
-        type="text"
-        placeholder="Major"
-      />
-      <input
-        type="text"
-        placeholder="Minor"
-      />
+            <div className={modalStyles.field} style={{ width: 'auto' }}>
+              <H4>Year</H4>
+              <FormControl size="small">
+                {year ? null : <InputLabel>Year</InputLabel>}
+                <TextField
+                  select
+                  sx={{ width: 90 }}
+                  onChange={(e) => {
+                    setYear(e.target.value);
+                  }}
+                  value={year}
+                >
+                  {
+                years.map((classYear, index) => (
+                  <MenuItem
+                    key={classYear}
+                    value={classYear}
+                  >
+                    {classYear}
+                  </MenuItem>
+                ))
+              }
+                </TextField>
+              </FormControl>
+            </div>
+
+          </div>
+
+          <AddMajorMinor
+            setAdding={setAddingMajor}
+            adding={addingMajor}
+            handleDelete={handleDeleteMajor}
+            majorsMinors={majors}
+            addingMajor={addingMajor}
+            addingMinor={addingMinor}
+            title="Major"
+          />
+
+          <AddMajorMinor
+            setAdding={setAddingMinor}
+            adding={addingMinor}
+            handleDelete={handleDeleteMinor}
+            majorsMinors={minors}
+            addingMajor={addingMajor}
+            addingMinor={addingMinor}
+            title="Minor"
+          />
+
+        </div>
+
+      </div>
     </Modal>
   );
 }

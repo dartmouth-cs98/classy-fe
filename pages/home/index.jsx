@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -76,17 +77,13 @@ function HomePage() {
       <div className={styles.verticalContainer} style={{ gap: '50px' }}>
         <div
           style={{
-					  display: 'flex',
-					  flexDirection: 'row',
-					  alignItems: 'flex-end',
-					  gap: '35px',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: '35px',
           }}
         >
-          <img
-            className={styles.pic}
-            src={user?.profileImageUrl}
-            alt="profile Image"
-          />
+          <img className={styles.pic} src={user?.profileImageUrl} alt="Profile Image" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
@@ -105,8 +102,8 @@ function HomePage() {
             <div
               className={styles.box}
               style={{
-							  backgroundColor: 'var(--navy)',
-							  width: '100%',
+                backgroundColor: 'var(--navy)',
+                width: '100%',
               }}
             >
               <div className={styles.header}>
@@ -120,13 +117,13 @@ function HomePage() {
               </div>
               <div
                 style={{
-								  display: 'flex',
-								  width: '100%',
-								  flexDirection: 'row',
-								  justifyContent: 'flex-start',
-								  gap: '40px',
-								  overflow: 'scroll',
-								  padding: '0 30px',
+                  display: 'flex',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  gap: '40px',
+                  overflow: 'scroll',
+                  padding: '0 30px',
                 }}
               >
                 {user?.student?.currentCourses?.map((course, i) => (
@@ -146,9 +143,9 @@ function HomePage() {
               <div
                 className={styles.box}
                 style={{
-								  backgroundColor: 'var(--lightest-grey)',
-								  height: '320px',
-								  minWidth: '615px',
+                  backgroundColor: 'var(--lightest-grey)',
+                  height: '320px',
+                  minWidth: '615px',
                 }}
               >
                 <div className={styles.header}>
@@ -166,9 +163,9 @@ function HomePage() {
               <div
                 className={styles.box}
                 style={{
-								  backgroundColor: 'var(--lightest-grey)',
-								  height: '320px',
-								  minWidth: '615px',
+                  backgroundColor: 'var(--lightest-grey)',
+                  height: '320px',
+                  minWidth: '615px',
                 }}
               >
                 <div className={styles.header}>
@@ -188,8 +185,8 @@ function HomePage() {
               <div
                 className={styles.box}
                 style={{
-								  backgroundColor: 'var(--lightest-grey)',
-								  paddingBottom: '35px',
+                  backgroundColor: 'var(--lightest-grey)',
+                  paddingBottom: '35px',
                 }}
               >
                 <div className={styles.header}>
@@ -197,10 +194,10 @@ function HomePage() {
                 </div>
                 <div
                   style={{
-									  display: 'flex',
-									  flexDirection: 'column',
-									  alignItems: 'center',
-									  gap: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '10px',
                   }}
                 >
                   <div
@@ -209,11 +206,11 @@ function HomePage() {
                     <CircularProgressbarWithChildren
                       value={progress}
                       styles={buildStyles({
-											  // How long animation takes to go from one percentage to another, in seconds
-											  pathTransitionDuration: 0.5,
-											  // Colors
-											  pathColor: 'var(--dark-green)',
-											  trailColor: 'var(--light-grey)',
+                        // How long animation takes to go from one percentage to another, in seconds
+                        pathTransitionDuration: 0.5,
+                        // Colors
+                        pathColor: 'var(--dark-green)',
+                        trailColor: 'var(--light-grey)',
                       })}
                       strokeWidth="18"
                     >
@@ -226,10 +223,10 @@ function HomePage() {
 
                   <div
                     style={{
-										  display: 'flex',
-										  flexDirection: 'column',
-										  alignItems: 'center',
-										  gap: '2px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '2px',
                     }}
                   >
                     <H4>Degree</H4>

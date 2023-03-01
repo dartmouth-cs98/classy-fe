@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 // import SideNavbar from '../components/SideNavbar';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // import { configureStore } from '@reduxjs/toolkit';
 // import { Provider } from 'react-redux';
 // import thunk from 'redux-thunk';

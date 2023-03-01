@@ -4,7 +4,7 @@ import { Button, Modal } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import styles from '../../styles/WaitlistDetail.module.css';
 // reactstrap components
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { removeFromWaitlist, withdrawFromWaitlist } from '../../actions';
 import { B1, H3, H4 } from '../ui/typography';
 
