@@ -78,42 +78,12 @@ function ProfWaitlistTerm(props) {
         />
 
         <div>
-          {/* !!! 2 should be replaced with data */}
           <H5 className={styles.text}>
             {`${
               offering.waitlist.length + offering.priorityWaitlist.length
             } signups`}
 
           </H5>
-        </div>
-
-        {/* <Pagination /> */}
-        <div className={styles.pagination}>
-          {/* eslint-disable-next-line */}
-					<button type="button" className={styles.btn}>
-  <MdOutlineChevronLeft />
-					</button>
-          <ul className={styles.pagenum}>
-            <button type="button" className={styles.btn}>
-              <li>1</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>2</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>3</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>4</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>5</li>
-            </button>
-          </ul>
-          {/* eslint-disable-next-line */}
-					<button type="button" className={styles.btn}>
-  <MdOutlineChevronRight />
-					</button>
         </div>
       </div>
     </div>

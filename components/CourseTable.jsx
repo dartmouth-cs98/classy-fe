@@ -142,6 +142,7 @@ export default function CollapsibleTable(props) {
           </TableHead>
         )}
         <TableBody>
+          {console.log('courses', courses)}
           {courses.map((course) => (
             <Row
               key={`${course.courseDept} ${course.courseNum}`}

@@ -24,19 +24,15 @@ function ProfWaitlist() {
   const name = 'Lorie Loeb';
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCourse(dept, num));
-    dispatch(fetchProfessor('Lorie Loeb'));
-  }, []);
-
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
-  const currentProfessor = useSelector((reduxState) => reduxState.professors.current);
+  const currentProfessor = useSelector(
+    (reduxState) => reduxState.professors.current,
+  );
 
   if (
     !currentCourse
-    || !currentCourse.course
-    || currentCourse.course.courseDept !== dept
-    || currentCourse.course.courseNum !== num
+    || currentCourse?.course?.courseDept !== dept
+    || currentCourse?.course?.courseNum !== num
   ) {
     dispatch(fetchCourse(dept, num));
     return <B1 key="loading">Loading...</B1>;
@@ -46,6 +42,25 @@ function ProfWaitlist() {
     dispatch(fetchProfessor(name));
     return <B1 key="loading">Loading...</B1>;
   }
+
+  const loadProfOfferings = () => currentCourse?.course?.offerings?.map((offering, i) => {
+    if (offering.professors.includes(name)) {
+      if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
+        return (
+          <ProfWaitlistTerm
+            color={cardColors[i % cardColors.length]}
+            key={offering.professors}
+            i={i}
+            courseId={currentCourse?.course?._id}
+            dept={currentCourse.course.courseDept}
+            num={currentCourse.course.courseNum}
+            offering={offering}
+          />
+        );
+      }
+    }
+    return '';
+  });
 
   return (
     <div className={styles.all}>
@@ -57,24 +72,7 @@ function ProfWaitlist() {
       <br />
       <br />
       <div className={styles.body}>
-        {currentCourse?.course?.offerings?.map((offering, i) => {
-          if (offering.professors.includes(name)) {
-            if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
-              return (
-                <ProfWaitlistTerm
-                  color={cardColors[i % cardColors.length]}
-                  key={offering.professors}
-                  i={i}
-                  courseId={currentCourse?.course?._id}
-                  dept={currentCourse.course.courseDept}
-                  num={currentCourse.course.courseNum}
-                  offering={offering}
-                />
-              );
-            }
-          }
-          return '';
-        })}
+        {loadProfOfferings()}
       </div>
     </div>
   );
