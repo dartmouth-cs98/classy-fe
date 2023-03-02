@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -48,10 +49,17 @@ function HomePage() {
   const [shoppingModalIsOpen, setShoppingModalIsOpen] = useState(false);
   const [completedModalIsOpen, setCompletedModalIsOpen] = useState(false);
 
-  console.log('the user is', user);
   const progress = user?.student?.coursesTaken
     ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
+
+  const loadMajors = () => {
+    const majorNames = [];
+    for (const major of user.student.majors) {
+      majorNames.push(major.name);
+    }
+    return majorNames.join(',');
+  };
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -91,8 +99,7 @@ function HomePage() {
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {/* {console.log('user is', user)} */}
-              {`${user?.student?.majors?.join(', ')} Major(s)`}
+              {`${loadMajors()} Major(s)`}
             </B1>
           </div>
         </div>

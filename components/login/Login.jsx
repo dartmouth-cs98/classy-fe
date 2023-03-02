@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
+import { Alert } from '@mui/material';
 import { H1, H2 } from '../ui/typography';
 import styles from '../../styles/Login.module.css';
 import { login } from '../../actions/authActions';
@@ -9,7 +10,6 @@ import { login } from '../../actions/authActions';
 function Login() {
   // set focus on first input when Login loads or there is an error
   const userRef = useRef();
-  const errRef = useRef();
 
   // get user input and setup error/success
   const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ function Login() {
 
   // set the focus on the first input when Login loads
   useEffect(() => {
-    userRef.current.focus();
+    userRef?.current?.focus();
   }, []);
 
   // empty out any error message if the user changes any fields
@@ -34,75 +34,85 @@ function Login() {
     e.preventDefault();
     // debug
     console.log(username, password);
-    dispatch(login(username, password));
-    // clear username and password
-    setUsername('');
-    setPassword('');
+    dispatch(login({ username, password }));
     // for testing, set success to true
     // setSuccess(true);
   };
 
+  const loadErrorAlert = () => {
+    const list = [];
+    if (!username) list.push('Please enter your username');
+    if (!password) list.push('Please enter your password');
+
+    if (list.length) {
+      return (
+        <Alert severity="error" style={{ width: '100%' }}>
+          {list.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </Alert>
+      );
+    }
+    return '';
+  };
+
+  const loadInput = (type, id, onChange, value) => (
+    <div className={styles.formsection}>
+      <label htmlFor={id} className="labeltitle">
+        {id.charAt(0).toUpperCase() + id.slice(1)}
+      </label>
+      <input
+        type={type}
+        id={id}
+        autoComplete="on"
+        onChange={(e) => onChange(e.target.value)}
+        value={value}
+        required
+      />
+    </div>
+  );
+
+  if (success) {
+    return (
+      <div>
+        <h1>You are now logged in</h1>
+        <br />
+        <p>
+          <Link href="/">Go to Homepage</Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {success ? (
-        <div>
-          <h1>You are now logged in</h1>
-          <br />
-          <p>
-            {/* placeholder link, replace with nav to homepage */}
-            <Link href="/">Go to Homepage</Link>
-          </p>
+    <div className={styles.loginform}>
+      <div className={styles.headercontainer}>
+        <H2>Welcome back!</H2>
+        <H1>Sign In</H1>
+      </div>
+      {loadErrorAlert()}
+      <br />
+      <form onSubmit={handleSubmit}>
+        {loadInput('text', 'username', setUsername, username)}
+        {loadInput('password', 'password', setPassword, password)}
+        <div className={styles.formbuttons}>
+          <button
+            type="submit"
+            className={styles.btn}
+            disabled={!username || !password}
+          >
+            Sign In
+          </button>
         </div>
-      ) : (
-        <div className={styles.loginform}>
-          <p ref={errRef} className={errorMsg ? 'errormsg' : 'offscreen'}>{errorMsg}</p>
-          <div className={styles.headercontainer}>
-            <H2>Welcome back!</H2>
-            <H1>Sign In</H1>
-          </div>
-          <form onSubmit={handleSubmit}>
-            <div className={styles.formsection}>
-              <label htmlFor="username" className="labeltitle">ID </label>
-              <input
-                type="text"
-                id="username"
-                ref={userRef}
-                autoComplete="on"
-                onChange={(e) => setUsername(e.target.value)}
-                // allows for clearing inputs on form submission
-                value={username}
-                required
-              />
-            </div>
-            <div className={styles.formsection}>
-              <label htmlFor="password">Password </label>
-              <input
-                type="password"
-                id="password"
-                autoComplete="on"
-                onChange={(e) => setPassword(e.target.value)}
-                  // allows for clearing inputs on form submission
-                value={password}
-                required
-              />
-            </div>
-            <div className={styles.formbuttons}>
-              <button type="submit" className={styles.btn} disabled={!username || !password}>Sign In</button>
-            </div>
-          </form>
-          <p>
-            Need an account?
-            {' '}
-            <br />
-            <span className="line">
-              {/* put router link here, placeholder link below */}
-              <a href="/register">Sign up instead</a>
-            </span>
-          </p>
-        </div>
-      )}
-    </>
+      </form>
+      <p>
+        Need an account?
+        <br />
+        <span className="line">
+          <a href="/register">Sign up instead</a>
+        </span>
+      </p>
+    </div>
   );
 }
 

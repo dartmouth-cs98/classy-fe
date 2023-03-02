@@ -13,6 +13,7 @@ import HomeReducer from './homeReducer';
 import UserReducer from './userReducer';
 import StudentsReducer from './studentsReducer';
 import ProfHomeReducer from './profHomeReducer';
+import AuthReducer from './authReducer';
 
 const rootReducer = combineReducers({
   courses: CoursesReducer,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   user: UserReducer,
   student: StudentsReducer,
   profHome: ProfHomeReducer,
+  auth: AuthReducer,
 });
 
 export default rootReducer;
