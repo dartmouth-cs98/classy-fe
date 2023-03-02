@@ -22,28 +22,18 @@ function SearchBarPage(props) {
   // const [searchInput, setSearchInput] = useState('');
   const [searchModalIsOpen, setSearchModalIsOpen] = useState(false);
   const [tab, setTab] = useState('Courses');
-  // const inputRef = useRef(null);
+
   const { children } = props;
   const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
   const searchReducer = useSelector((reduxState) => reduxState.search);
   const dispatch = useDispatch();
 
-  const [filtersApplied, setFiltersApplied] = useState(false);
-  const [filterIconColor, setFilterIconColor] = useState('var(--navy)');
-  const [searchInput, setSearchInput] = useState('');
-
-  useEffect(() => {
-    setSearchInput(searchReducer.searchQuery);
-    setFiltersApplied(searchReducer.distribFilters.length !== 0
+  const filtersApplied = searchReducer.distribFilters.length !== 0
     || searchReducer.wcFilters.length !== 0
     || searchReducer.offeredNext
-    || searchReducer.nrEligible);
-    if (filtersApplied) {
-      setFilterIconColor('var(--navy)');
-    } else {
-      setFilterIconColor('var(--light-grey)');
-    }
-  }, [searchReducer]);
+    || searchReducer.nrEligible;
+
+  const filterIconColor = (filtersApplied) ? 'var(--navy)' : 'var(--light-grey)';
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -52,10 +42,10 @@ function SearchBarPage(props) {
         <TextField
           autoFocus
           placeholder="Search"
-          value={searchInput}
+          value={searchQuery}
           onChange={(e) => {
             dispatch(setSearchQuery(e.target.value));
-            setSearchInput(e.target.value);
+            // setSearchInput(e.target.value);
           }}
           InputProps={{
             startAdornment: (
@@ -71,6 +61,7 @@ function SearchBarPage(props) {
             ? (
               <FilterListIcon style={{ cursor: 'pointer', marginLeft: '5px', color: filterIconColor }} onClick={() => setSearchModalIsOpen(true)} />
             )
+
             : (
               null
             )
