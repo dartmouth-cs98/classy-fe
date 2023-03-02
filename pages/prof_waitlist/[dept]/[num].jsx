@@ -29,10 +29,15 @@ function ProfWaitlist() {
     (reduxState) => reduxState.professors.current,
   );
 
+  useEffect(() => {
+    dispatch(fetchCourse(dept, num));
+    dispatch(fetchProfessor('Lorie Loeb'));
+  }, []);
+
   if (
-    !currentCourse
-    || currentCourse?.course?.courseDept !== dept
-    || currentCourse?.course?.courseNum !== num
+    !currentCourse || !currentCourse.course
+    || currentCourse.course.courseDept !== dept
+    || currentCourse.course.courseNum !== num
   ) {
     dispatch(fetchCourse(dept, num));
     return <B1 key="loading">Loading...</B1>;
@@ -42,6 +47,7 @@ function ProfWaitlist() {
     dispatch(fetchProfessor(name));
     return <B1 key="loading">Loading...</B1>;
   }
+  console.log('the course is', currentCourse);
 
   const loadProfOfferings = () => currentCourse?.course?.offerings?.map((offering, i) => {
     if (offering.professors.includes(name)) {

@@ -99,7 +99,7 @@ function HomePage() {
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {`${loadMajors()} Major(s)`}
+              {`${user?.student?.majors ? loadMajors() : 'Undecided'} Major(s)`}
             </B1>
           </div>
         </div>
