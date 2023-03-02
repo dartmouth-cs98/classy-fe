@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { ROOT_URL } from './root_url';
 
@@ -45,12 +46,12 @@ export const fetchSearch = () => (dispatch, getState) => {
 };
 
 export const fetchProfSearch = () => (dispatch, getState) => {
-  const searchResultsTimestamp = Date.now();
+  const searchProfResultsTimestamp = Date.now();
   const {
     searchQuery,
   } = getState().search;
 
-  // console.log(distribFilters);
+  // console.log('here');
   axios.get(`${ROOT_URL}/searchProfs`, {
     params: {
       query: searchQuery,
@@ -60,7 +61,7 @@ export const fetchProfSearch = () => (dispatch, getState) => {
     console.log(response);
     dispatch({
       type: SearchActionTypes.FETCH_SEARCH_PROFS,
-      payload: { searchResultsTimestamp, searchResults: response },
+      payload: { searchProfResultsTimestamp, searchProfResults: response },
     });
   });
 };
@@ -83,7 +84,7 @@ export const fetchStudentSearch = () => (dispatch, getState) => {
   }).then((res) => {
     const response = res.data;
     dispatch({
-      type: SearchActionTypes.FETCH_SEARCH,
+      type: SearchActionTypes.FETCH_SEARCH_STUDENTS,
       payload: { searchResultsTimestamp, searchResults: response },
     });
   });
@@ -110,13 +111,13 @@ export const setSearchQuery = (searchQuery) => (dispatch, getState) => {
     type: SearchActionTypes.SET_SEARCH_QUERY,
     payload: { searchQuery },
   });
-  if (tab === 'Courses') {
-    dispatch(fetchSearch());
-  } else if (tab === 'Professors') {
-    dispatch(fetchProfSearch());
-  } else if (tab === 'Students') {
-    dispatch(fetchStudentSearch());
-  }
+  // if (tab === 'Courses') {
+  dispatch(fetchSearch());
+  // } else if (tab === 'Professors') {
+  dispatch(fetchProfSearch());
+  // } else if (tab === 'Students') {
+  dispatch(fetchStudentSearch());
+  // }
 };
 
 export const addDistribFilter = (distrib) => (dispatch) => {

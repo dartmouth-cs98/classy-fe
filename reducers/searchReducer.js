@@ -4,7 +4,9 @@ const initialState = {
   distribFilters: [],
   wcFilters: [],
   searchResults: [],
+  searchProfResults: [],
   searchResultsTimestamp: Date.now(),
+  searchProfResultsTimestamp: Date.now(),
   searchQuery: '',
   offeredNext: false,
   nrEligible: false,
@@ -22,7 +24,9 @@ const SearchReducer = (state = initialState, action = {}) => {
       }
       return state;
     case ActionTypes.FETCH_SEARCH_PROFS:
-      if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
+      console.log('here');
+      if (action.payload.searchProfResultsTimestamp >= state.searchProfResultsTimestamp) {
+        console.log('here');
         return { ...state, ...action.payload };
       }
       return state;
@@ -59,7 +63,7 @@ const SearchReducer = (state = initialState, action = {}) => {
     case ActionTypes.TOGGLE_OFFERED_NEXT:
       return { ...state, offeredNext: !state.offeredNext };
     case ActionTypes.SET_TAB:
-      return { ...state, searchResults: [], tab: action.payload };
+      return { ...state, tab: action.payload };
     default:
       return state;
   }
