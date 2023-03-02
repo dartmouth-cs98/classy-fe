@@ -30,14 +30,15 @@ function SearchBarPage(props) {
 
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [filterIconColor, setFilterIconColor] = useState('var(--navy)');
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
-    const filtered = (searchReducer.distribFilters.length !== 0
+    setSearchInput(searchReducer.searchQuery);
+    setFiltersApplied(searchReducer.distribFilters.length !== 0
     || searchReducer.wcFilters.length !== 0
     || searchReducer.offeredNext
     || searchReducer.nrEligible);
-    setFiltersApplied(filtered);
-    if (filtered) {
+    if (filtersApplied) {
       setFilterIconColor('var(--navy)');
     } else {
       setFilterIconColor('var(--light-grey)');
@@ -51,7 +52,11 @@ function SearchBarPage(props) {
         <TextField
           autoFocus
           placeholder="Search"
-          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+          value={searchInput}
+          onChange={(e) => {
+            dispatch(setSearchQuery(e.target.value));
+            setSearchInput(e.target.value);
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

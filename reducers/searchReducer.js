@@ -10,12 +10,18 @@ const initialState = {
   nrEligible: false,
   departments: [],
   currentDepartment: {},
+  tab: 'Courses',
 };
 
 const SearchReducer = (state = initialState, action = {}) => {
   // console.log(action.type);
   switch (action.type) {
     case ActionTypes.FETCH_SEARCH:
+      if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
+        return { ...state, ...action.payload };
+      }
+      return state;
+    case ActionTypes.FETCH_SEARCH_PROFS:
       if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
         return { ...state, ...action.payload };
       }
@@ -52,6 +58,8 @@ const SearchReducer = (state = initialState, action = {}) => {
       return { ...state, nrEligible: !state.nrEligible };
     case ActionTypes.TOGGLE_OFFERED_NEXT:
       return { ...state, offeredNext: !state.offeredNext };
+    case ActionTypes.SET_TAB:
+      return { ...state, searchResults: [], tab: action.payload };
     default:
       return state;
   }

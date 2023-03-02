@@ -42,7 +42,7 @@ function Department(props) {
     <SearchBarPage>
       <div>
         <div className={styles.container}>
-          <H2 style={{ marginTop: 60 }}>
+          <H2 style={{ marginTop: 10 }}>
             Computer Science
             {' ('}
             {department.name}

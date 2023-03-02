@@ -25,9 +25,11 @@ const ProfessorMockData = [
 ];
 
 function SearchResults(props) {
-  const { tab, results } = props;
+  // const { tab, results } = props;
   const searchResults = useSelector((reduxState) => reduxState.search.searchResults);
-  // console.log(searchResults);
+  const tab = useSelector((reduxState) => reduxState.search.tab);
+  console.log(searchResults);
+  console.log(tab);
 
   if (tab === 'Courses') {
     return (
@@ -40,14 +42,14 @@ function SearchResults(props) {
     return (
       <div className={styles.container}>
         <div className={styles.profs}>
-          {ProfessorMockData.map((professor) => (
+          {searchResults ? searchResults.map((professor) => (
             <Professor key={professor.name} professor={professor} />
-          ))}
+          )) : null}
         </div>
       </div>
     );
   }
-  if (tab === 'Users') {
+  if (tab === 'Students') {
     return null;
   }
 }
