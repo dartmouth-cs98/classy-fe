@@ -15,6 +15,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import {
   B1,
   TextLabel,
@@ -80,7 +81,7 @@ function Row(props) {
             <B1>
               {waitlist?.user?.email?.substring(
 							  0,
-							  waitlist.user?.email?.length - 14,
+							  waitlist.user.email.length - 14,
               )}
             </B1>
           </Link>

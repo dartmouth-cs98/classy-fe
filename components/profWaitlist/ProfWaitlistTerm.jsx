@@ -26,7 +26,6 @@ function ProfWaitlistTerm(props) {
     if (selected === i) {
       return setSelected(null);
     }
-
     setSelected(i);
   };
 
@@ -44,10 +43,6 @@ function ProfWaitlistTerm(props) {
           </div>
 
           <div className={styles.right}>
-            {/* eslint-disable-next-line */}
-						<button type="button" className={styles.btn}>
-  <MdOutlineModeEditOutline className={styles.inline} size={20} />
-						</button>
             {/* eslint-disable-next-line */}
 						<button type="button" className={styles.btn}>
   <MdOutlineMailOutline className={styles.inline} size={20} />

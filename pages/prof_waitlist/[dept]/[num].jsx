@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdAddCircle } from 'react-icons/md';
+import { Alert } from '@mui/material';
 import { fetchCourse, fetchProfessor } from '../../../actions';
 import { B1, H1 } from '../../../components/ui/typography';
 
@@ -22,22 +23,17 @@ function ProfWaitlist() {
   const router = useRouter();
   const { dept, num } = router.query;
   const name = 'Lorie Loeb';
+  const [hasOfferings, setHasOfferings] = useState(false);
 
   const dispatch = useDispatch();
-  const currentCourse = useSelector((reduxState) => reduxState.courses.current);
+  const course = useSelector((reduxState) => reduxState.courses.current.course);
   const currentProfessor = useSelector(
     (reduxState) => reduxState.professors.current,
   );
-
-  useEffect(() => {
-    dispatch(fetchCourse(dept, num));
-    dispatch(fetchProfessor('Lorie Loeb'));
-  }, []);
-
   if (
-    !currentCourse || !currentCourse.course
-    || currentCourse.course.courseDept !== dept
-    || currentCourse.course.courseNum !== num
+    !course
+		|| course.courseDept !== dept
+		|| course.courseNum !== num
   ) {
     dispatch(fetchCourse(dept, num));
     return <B1 key="loading">Loading...</B1>;
@@ -47,19 +43,20 @@ function ProfWaitlist() {
     dispatch(fetchProfessor(name));
     return <B1 key="loading">Loading...</B1>;
   }
-  console.log('the course is', currentCourse);
+  console.log('the course is', course);
 
-  const loadProfOfferings = () => currentCourse?.course?.offerings?.map((offering, i) => {
+  const loadProfOfferings = () => course?.offerings?.map((offering, i) => {
     if (offering.professors.includes(name)) {
       if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
+        setHasOfferings(true);
         return (
           <ProfWaitlistTerm
             color={cardColors[i % cardColors.length]}
             key={offering.professors}
             i={i}
-            courseId={currentCourse?.course?._id}
-            dept={currentCourse.course.courseDept}
-            num={currentCourse.course.courseNum}
+            courseId={course?._id}
+            dept={course.courseDept}
+            num={course.courseNum}
             offering={offering}
           />
         );
@@ -73,12 +70,23 @@ function ProfWaitlist() {
       <div className={styles.header}>
         <H1>{`${dept} ${num} Waitlists`}</H1>
       </div>
+      {loadProfOfferings().join(',') === '' ? (
+        <>
+          <Alert severity="info" style={{ width: '100%', marginBottom: '1em' }}>
+            Changes will be updated once you refresh the page
+          </Alert>
+          <br />
+        </>
+      ) : (
+			  ''
+      )}
 
-      <MdAddCircle className={styles.addbtn} size={25} />
-      <br />
-      <br />
       <div className={styles.body}>
-        {loadProfOfferings()}
+        {loadProfOfferings().join(',') === '' ? (
+				  loadProfOfferings()
+        ) : (
+          <B1>No students on any waitlists yet!</B1>
+        )}
       </div>
     </div>
   );
