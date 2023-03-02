@@ -8,6 +8,8 @@ const initialState = {
   searchQuery: '',
   offeredNext: false,
   nrEligible: false,
+  departments: [],
+  currentDepartment: {},
 };
 
 const SearchReducer = (state = initialState, action = {}) => {
@@ -18,6 +20,10 @@ const SearchReducer = (state = initialState, action = {}) => {
         return { ...state, ...action.payload };
       }
       return state;
+    case ActionTypes.FETCH_DEPARTMENT:
+      return { ...state, currentDepartment: action.payload };
+    case ActionTypes.FETCH_DEPARTMENTS:
+      return { ...state, departments: action.payload.departments };
     case ActionTypes.ADD_DISTRIB_FILTER:
       if (!state.distribFilters.includes(action.payload)) {
         return { ...state, distribFilters: [...state.distribFilters, action.payload] };

@@ -83,7 +83,7 @@ function FilterModal(props) {
         alignSelf: 'flex-start', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', height: '100%', marginTop: '35px', gap: '10px',
       }}
       >
-        <div style={{ height: '160px' }}>
+        <div style={{ height: '120px' }}>
           <H3>Distributive Requirements</H3>
           <FilterSelector
             handleChange={handleDistribChange}

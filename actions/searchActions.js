@@ -3,6 +3,8 @@ import { ROOT_URL } from './root_url';
 
 export const SearchActionTypes = {
   FETCH_SEARCH: 'FETCH_SEARCH',
+  FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
   ADD_DISTRIB_FILTER: 'ADD_DISTRIB_FILTER',
   ADD_WC_FILTER: 'ADD_WC_FILTER',
   REMOVE_DISTRIB_FILTER: 'REMOVE_DISTRIB_FILTER',
@@ -34,6 +36,26 @@ export const fetchSearch = () => (dispatch, getState) => {
     dispatch({
       type: SearchActionTypes.FETCH_SEARCH,
       payload: { searchResultsTimestamp, searchResults: response },
+    });
+  });
+};
+
+export const fetchDepartments = () => (dispatch) => {
+  axios.get(`${ROOT_URL}/departments`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: SearchActionTypes.FETCH_DEPARTMENTS,
+      payload: { departments: response },
+    });
+  });
+};
+
+export const fetchDepartment = (deptID) => (dispatch) => {
+  axios.get(`${ROOT_URL}/departments/${deptID}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: SearchActionTypes.FETCH_DEPARTMENT,
+      payload: response,
     });
   });
 };

@@ -107,7 +107,7 @@ function FiltersDisplay(props) {
 
 function Pill(props) {
   const {
-    handleClick, pastelColor, darkColor, name, wide,
+    handleClick, pastelColor, darkColor, name,
   } = props;
 
   return (

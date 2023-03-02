@@ -2,13 +2,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../../../styles/components/SearchPage.module.css';
-import { H2, H3, A } from '../../../components/ui/typography';
-import Professor from '../../../components/Professor';
-import SearchBar from '../../../components/search/SearchBar';
-import TabBar from '../../../components/search/TabBar';
-import SearchResults from '../../../components/search/SearchResults';
-import SearchBarPage from '../../../components/search/SearchBarPage';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from '../../styles/components/SearchPage.module.css';
+import { H2, H3, A } from '../../components/ui/typography';
+import Professor from '../../components/Professor';
+import SearchBarPage from '../../components/search/SearchBarPage';
+import { fetchDepartment } from '../../actions/searchActions';
 
 const ProfessorMockData = [
   {
@@ -30,21 +29,14 @@ const ProfessorMockData = [
 
 function Department(props) {
   const router = useRouter();
-  const { dept } = router.query;
+  const { deptID } = router.query;
 
-  const [searchInput, setSearchInput] = useState('');
-  const [tab, setTab] = useState('All');
-  const [searchResults, setSearchResults] = useState(null);
+  const dispatch = useDispatch();
+  const department = useSelector((reduxState) => reduxState.search.currentDepartment);
 
-  const input = useCallback((inputElement) => {
-    if (inputElement) {
-      inputElement.focus();
-    }
+  useEffect(() => {
+    dispatch(fetchDepartment(deptID));
   }, []);
-
-  const onBlur = (e) => {
-    window.setTimeout(() => e.target.focus(), 0);
-  };
 
   return (
     <SearchBarPage>
@@ -53,7 +45,7 @@ function Department(props) {
           <H2 style={{ marginTop: 60 }}>
             Computer Science
             {' ('}
-            {dept}
+            {department.name}
             )
           </H2>
           <div className={styles.header}>
