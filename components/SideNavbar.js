@@ -43,7 +43,7 @@ function SideNavbar() {
             {/* main tabs */}
             <div className="my-40 pb-10 w-full">
               <NavbarLink
-                link="/home"
+                link="home"
                 title="Home"
                 icon={<MdOutlineHome className={sidenavLinkStyles} />}
               />

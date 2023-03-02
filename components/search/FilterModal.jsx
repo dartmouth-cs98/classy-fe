@@ -5,7 +5,7 @@ import React, {
   useState, useCallback, useEffect, useRef,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, Checkbox } from '@mui/material';
+import { IconButton, Checkbox, Button } from '@mui/material';
 import Modal from '../Modal';
 import {
   H2, H3, H4, B1,
@@ -66,13 +66,24 @@ function FilterModal(props) {
       // onButtonClick={inputRef.current.focus}
       // buttonText="Apply"
       header="Course Search Filters"
-      hideButton
+      button={(
+        <Button
+          style={{
+            width: '100px',
+          }}
+          size="large"
+          variant="contained"
+          onClick={() => setIsOpen(false)}
+        >
+          Done
+        </Button>
+)}
     >
       <div style={{
         alignSelf: 'flex-start', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', height: '100%', marginTop: '35px', gap: '10px',
       }}
       >
-        <div style={{ height: '180px' }}>
+        <div style={{ height: '160px' }}>
           <H3>Distributive Requirements</H3>
           <FilterSelector
             handleChange={handleDistribChange}
@@ -82,7 +93,7 @@ function FilterModal(props) {
           />
         </div>
 
-        <div style={{ height: '130px' }}>
+        <div style={{ height: '120px' }}>
           <H3>World Culture Requirements</H3>
           <FilterSelector
             handleChange={handleWcChange}

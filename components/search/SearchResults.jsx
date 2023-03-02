@@ -27,7 +27,7 @@ const ProfessorMockData = [
 function SearchResults(props) {
   const { tab, results } = props;
   const searchResults = useSelector((reduxState) => reduxState.search.searchResults);
-  console.log(searchResults);
+  // console.log(searchResults);
 
   if (tab === 'Courses') {
     return (

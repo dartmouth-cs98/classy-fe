@@ -40,7 +40,7 @@ function TabBar(props) {
         onChange={(e, value) => setTab(value)}
         style={{ marginTop: '20px' }}
       >
-        <Tab label="Courses" value="Courses"> </Tab>
+        <Tab label="Courses" value="Courses" />
         <Tab label="Professors" value="Professors" />
         <Tab label="Students" value="Students" />
 

@@ -10,11 +10,13 @@ import {
   TextField, Select, MenuItem, FormControl, InputLabel, InputAdornment, Button,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import TabBar from './TabBar';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import FilterModal from './FilterModal';
 import FiltersDisplay from './FiltersDisplay';
+import { setSearchQuery } from '../../actions';
 
 function SearchBarPage(props) {
   // const [searchInput, setSearchInput] = useState('');
@@ -24,6 +26,7 @@ function SearchBarPage(props) {
   const { children } = props;
   const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
   const searchReducer = useSelector((reduxState) => reduxState.search);
+  const dispatch = useDispatch();
 
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [filterIconColor, setFilterIconColor] = useState('var(--navy)');
@@ -43,32 +46,36 @@ function SearchBarPage(props) {
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <FilterModal setIsOpen={setSearchModalIsOpen} isOpen={searchModalIsOpen} />
+        <TextField
+          autoFocus
+          placeholder="Search"
+          onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="primary" />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ width: '325px' }}
+        />
+        {
+          tab === 'Courses'
+            ? (
+              <FilterListIcon style={{ cursor: 'pointer', marginLeft: '5px', color: filterIconColor }} onClick={() => setSearchModalIsOpen(true)} />
+            )
+            : (
+              null
+            )
+        }
 
-      <TextField
-        // size="small"
-        placeholder="Search"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon color="primary" />
-            </InputAdornment>
-          ),
-        }}
-      />
+      </div>
 
-      <FilterModal setIsOpen={setSearchModalIsOpen} isOpen={searchModalIsOpen} />
       {/* <TabBar tab={tab} setTab={setTab} /> */}
-      <SearchBar />
+      {/* <SearchBar /> */}
 
-      {
-        tab === 'Courses'
-          ? (
-            <FilterAltOutlinedIcon style={{ cursor: 'pointer', marginLeft: '5px', color: filterIconColor }} onClick={() => setSearchModalIsOpen(true)} />
-          )
-          : (
-            null
-          )
-      }
       <div style={{
         display: 'flex', flexDirection: 'row', minHeight: '45px', justifyItems: 'flex-start',
       }}

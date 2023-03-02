@@ -20,11 +20,12 @@ export const fetchSearch = () => (dispatch, getState) => {
     searchQuery, distribFilters, wcFilters, offeredNext, nrEligible,
   } = getState().search;
 
+  // console.log(distribFilters);
   axios.get(`${ROOT_URL}/search`, {
     params: {
       query: searchQuery,
-      distribFilters,
-      wcFilters,
+      distribFilters: distribFilters.map((distrib) => distrib.name),
+      wcFilters: wcFilters.map((wc) => wc.name),
       offeredNext,
       nrEligible,
     },

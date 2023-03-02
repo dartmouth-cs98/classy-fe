@@ -67,3 +67,7 @@ select {
 textarea:focus, input:focus{
     outline: none;
 }
+
+button[class*='MuiButton-containedPrimary'] {
+ background-color: var(--navy)!important;
+ }
