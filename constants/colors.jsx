@@ -35,7 +35,7 @@ export const wcs = [
 export const friendButtonColors = {
   friends: '#75946A',
   request: '#AE5E99',
-  requested: '#BA7D37'
-}
+  requested: '#BA7D37',
+};
 
 // This file will contain arrays of all pastel and dark colors

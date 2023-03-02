@@ -12,7 +12,7 @@ import {
 } from '../ui/typography';
 // import { distribs, wcs } from '../../constants/colors';
 
-function FilterModal(props) {
+function FilterSelector(props) {
   const {
     handleChange, handleClick, allFilters, stateFilters,
   } = props;
@@ -103,4 +103,4 @@ function FilterModal(props) {
   );
 }
 
-export default FilterModal;
+export default FilterSelector;

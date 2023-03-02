@@ -16,6 +16,7 @@ function CourseSearchDropdown(props) {
 
   const dispatch = useDispatch();
   const searchResults = useSelector((reduxState) => reduxState.home.searchResults);
+  console.log(searchResults);
 
   return (
     <Autocomplete
@@ -29,7 +30,7 @@ function CourseSearchDropdown(props) {
       onChange={(e, newCourseValue) => setSelectedCourse(newCourseValue)}
       inputValue={inputValue}
       value={selectedCourse}
-      getOptionLabel={(option) => (`${option.courseDept + option.courseNum} - ${option.courseTitle}`) || ''}
+      getOptionLabel={(option) => inputValue}
       isOptionEqualToValue={(option, value) => option._id === value._id}
       style={{ width: 300 }}
       renderInput={(params) => (
@@ -37,7 +38,9 @@ function CourseSearchDropdown(props) {
       )}
       renderOption={(renderProps, option) => (
         <li {...renderProps} key={option._id}>
-          {option.courseDept + option.courseNum}
+          {option.courseDept}
+          {' '}
+          {option.courseNum}
           {' - '}
           {option.courseTitle}
         </li>
