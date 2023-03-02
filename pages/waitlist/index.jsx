@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/WaitlistHome.module.css';
-import SideNavbar from '../../components/SideNavbar';
+/* import SideNavbar from '../../components/SideNavbar'; */
 import { H2, B1 } from '../../components/ui/typography';
 import WaitlistModal from '../../components/waitlist/WaitlistModal';
 import { fetchWaitlists } from '../../actions';
