@@ -3,7 +3,9 @@ import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
 import { AuthActionTypes } from './authActions';
 
+
 export * from './searchActions';
+export * from './homeActions';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -43,6 +45,7 @@ export const ActionTypes = {
   PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
   ...AuthActionTypes,
+
 };
 
 export const fetchUser = (id) => (dispatch) => {

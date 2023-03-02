@@ -15,6 +15,7 @@ import StudentsReducer from './studentsReducer';
 import ProfHomeReducer from './profHomeReducer';
 import AuthReducer from './authReducer';
 
+
 const rootReducer = combineReducers({
   courses: CoursesReducer,
   professors: ProfessorsReducer,

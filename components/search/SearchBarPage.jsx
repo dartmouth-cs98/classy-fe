@@ -6,10 +6,15 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import {
+  TextField, Select, MenuItem, FormControl, InputLabel, InputAdornment, Button,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import TabBar from './TabBar';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import FilterModal from './FilterModal';
+import FiltersDisplay from './FiltersDisplay';
 
 function SearchBarPage(props) {
   // const [searchInput, setSearchInput] = useState('');
@@ -38,8 +43,23 @@ function SearchBarPage(props) {
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
+
+      <TextField
+        // size="small"
+        placeholder="Search"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon color="primary" />
+            </InputAdornment>
+          ),
+        }}
+      />
+
       <FilterModal setIsOpen={setSearchModalIsOpen} isOpen={searchModalIsOpen} />
+      {/* <TabBar tab={tab} setTab={setTab} /> */}
       <SearchBar />
+
       {
         tab === 'Courses'
           ? (
@@ -49,13 +69,26 @@ function SearchBarPage(props) {
             null
           )
       }
+      <div style={{
+        display: 'flex', flexDirection: 'row', minHeight: '45px', justifyItems: 'flex-start',
+      }}
+      >
+        <FiltersDisplay filtersApplied={filtersApplied} tab={tab} />
+
+      </div>
+      {/* {searchQuery || filtersApplied
+        ? <TabBar tab={tab} setTab={setTab} />
+        : null} */}
 
       {// if search input or any filters applied, show results page
         searchQuery || filtersApplied
           ? (
             <div>
-              <TabBar tab={tab} setTab={setTab} />
-              <SearchResults tab={tab} />
+              {/* <TabBar tab={tab} setTab={setTab} /> */}
+              <TabBar tab={tab} setTab={setTab} style={{ marginTop: '50px' }} />
+              <div>
+                <SearchResults tab={tab} />
+              </div>
             </div>
           )
           : ( // else show default body

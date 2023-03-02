@@ -2,13 +2,14 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button } from '@mui/material';
 import { H2, H3 } from './ui/typography';
 
 ReactModal.setAppElement('#__next');
 
 function Modal(props) {
   const {
-    isOpen, setIsOpen, header, children, onButtonClick, buttonText, hideButton,
+    isOpen, setIsOpen, header, children, onButtonClick, buttonText, hideButton, button,
   } = props;
 
   return (
@@ -38,8 +39,8 @@ function Modal(props) {
           width: '1000px',
           border: '1px solid #ccc',
           background: '#fff',
-          overflow: 'auto',
-          WebkitOverflowScrolling: 'touch',
+          // overflow: 'auto',
+          // WebkitOverflowScrolling: 'touch',
           borderRadius: '20px',
           outline: 'none',
           padding: '40px 40px 25px 40px',
@@ -60,26 +61,12 @@ function Modal(props) {
 
         {children}
 
-        { hideButton ? null : (
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              if (onButtonClick) {
-                onButtonClick();
-              }
-            }}
-            style={{
-              backgroundColor: 'var(--navy)',
-              borderRadius: '8px',
-              width: '130px',
-              height: '60px',
-              alignSelf: 'flex-end',
-            }}
-            type="submit"
-          >
-            <H3 color="var(--white)">{buttonText}</H3>
-          </button>
-        )}
+        <div style={{
+          display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'flex-end',
+        }}
+        >
+          {button}
+        </div>
 
       </div>
     </ReactModal>
