@@ -12,7 +12,7 @@ import {
 } from '../ui/typography';
 // import { distribs, wcs } from '../../constants/colors';
 
-function FilterSelector(props) {
+function FilterModal(props) {
   const {
     handleChange, handleClick, allFilters, stateFilters,
   } = props;
@@ -55,47 +55,24 @@ function FilterSelector(props) {
       }}
       >
         {stateFilters.map((distrib, i) => (
-          <div>
-            <Chip
-              key={distrib.name}
-              variant="outlined"
-              size="medium"
-              label={distrib.name}
-              onDelete={() => handleClick(distrib)}
-              onClick={() => handleClick(distrib)}
-              sx={{
-                backgroundColor: distrib.pastel,
-                borderColor: distrib.dark,
-                '&.MuiButtonBase-root:hover': {
-                  bgcolor: distrib.pastel,
-                },
-                '& .MuiChip-label': {
-                  color: distrib.dark,
-                },
-              }}
-            />
-            {/* <div
-              key={distrib.name}
-              onClick={() => handleClick(distrib)}
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: distrib.pastel,
-                border: `3px solid ${distrib.dark}`,
-                borderRadius: '35px',
-                width: '105px',
-                height: '35px',
-                margin: '5px',
-                cursor: 'pointer',
-              }}
-            >
-              <H4 color={distrib.dark}>
-                {distrib.name}
-              </H4>
-            </div> */}
-          </div>
+          <Chip
+            key={distrib.name}
+            variant="outlined"
+            size="medium"
+            label={distrib.name}
+            onDelete={() => handleClick(distrib)}
+            onClick={() => handleClick(distrib)}
+            sx={{
+              backgroundColor: distrib.pastel,
+              borderColor: distrib.dark,
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: distrib.pastel,
+              },
+              '& .MuiChip-label': {
+                color: distrib.dark,
+              },
+            }}
+          />
         ))}
       </div>
     </div>
@@ -103,4 +80,4 @@ function FilterSelector(props) {
   );
 }
 
-export default FilterSelector;
+export default FilterModal;

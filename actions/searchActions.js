@@ -58,7 +58,7 @@ export const fetchProfSearch = () => (dispatch, getState) => {
     },
   }).then((res) => {
     const response = res.data;
-    console.log(response);
+    // console.log(response);
     dispatch({
       type: SearchActionTypes.FETCH_SEARCH_PROFS,
       payload: { searchProfResultsTimestamp, searchProfResults: response },
