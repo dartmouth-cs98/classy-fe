@@ -23,7 +23,6 @@ function ProfWaitlist() {
   const router = useRouter();
   const { dept, num } = router.query;
   const name = 'Lorie Loeb';
-  const [hasOfferings, setHasOfferings] = useState(false);
 
   const dispatch = useDispatch();
   const course = useSelector((reduxState) => reduxState.courses.current.course);
@@ -48,7 +47,6 @@ function ProfWaitlist() {
   const loadProfOfferings = () => course?.offerings?.map((offering, i) => {
     if (offering.professors.includes(name)) {
       if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
-        setHasOfferings(true);
         return (
           <ProfWaitlistTerm
             color={cardColors[i % cardColors.length]}
@@ -70,7 +68,7 @@ function ProfWaitlist() {
       <div className={styles.header}>
         <H1>{`${dept} ${num} Waitlists`}</H1>
       </div>
-      {loadProfOfferings().join(',') === '' ? (
+      {loadProfOfferings().join(',') !== '' ? (
         <>
           <Alert severity="info" style={{ width: '100%', marginBottom: '1em' }}>
             Changes will be updated once you refresh the page
@@ -82,7 +80,7 @@ function ProfWaitlist() {
       )}
 
       <div className={styles.body}>
-        {loadProfOfferings().join(',') === '' ? (
+        {loadProfOfferings().join(',') !== '' ? (
 				  loadProfOfferings()
         ) : (
           <B1>No students on any waitlists yet!</B1>
