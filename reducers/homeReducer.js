@@ -1,14 +1,18 @@
 import { ActionTypes } from '../actions';
 
 const initialState = {
-  all: [],
-  current: {},
+  searchResults: [],
+  searchResultsTimestamp: Date.now(),
 };
 
 const HomeReducer = (state = initialState, action = {}) => {
+  // console.log(action.type);
   switch (action.type) {
-    case ActionTypes.FETCH_HOME:
-      return { current: action.payload };
+    case ActionTypes.SEARCH_COURSES:
+      if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
+        return { ...state, ...action.payload };
+      }
+      return state;
     default:
       return state;
   }
