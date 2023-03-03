@@ -19,8 +19,8 @@ const store = configureStore({
 
 function MyApp({ Component, pageProps }) {
   const componenttest = String(Component);
-  const containsPages = componenttest.includes('Ready to explore');
-  return (containsPages ? (
+  // const containsPages = componenttest.includes('Ready to explore');
+  return (componenttest.includes('Ready to explore') ? (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Component {...pageProps} />
