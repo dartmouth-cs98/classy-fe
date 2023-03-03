@@ -24,8 +24,8 @@ function ProfileModal(props) {
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [pic, setPic] = useState({
-    url: user.profileImageUrl.length > 0
-      ? user.profileImageUrl : defaultUserImageURL,
+    url: user?.profileImageUrl?.length > 0
+      ? user?.profileImageUrl : defaultUserImageURL,
     img: null,
     file: null,
   });

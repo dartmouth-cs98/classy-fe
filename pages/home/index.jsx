@@ -83,7 +83,7 @@ function HomePage() {
             gap: '35px',
           }}
         >
-          <img className={styles.pic} src={user?.profileImageUrl.length > 0 ? user.profileImageUrl : defaultUserImageURL} alt="Profile Image" />
+          <img className={styles.pic} src={user?.profileImageUrl?.length > 0 ? user?.profileImageUrl : defaultUserImageURL} alt="Profile Image" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
