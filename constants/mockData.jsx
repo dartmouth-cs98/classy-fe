@@ -92,3 +92,5 @@ export const userId2 = '63c4424be18e75a330906122';
 export const studentId = '63c4424ce18e75a330906125';
 export const studentId1 = '63c4424ce18e75a330906126';
 export const studentId2 = '63c4424ce18e75a330906127';
+
+export const defaultUserImageURL = 'https://classy-api-bucket.s3.amazonaws.com/default-user.png';

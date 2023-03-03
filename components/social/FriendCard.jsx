@@ -5,13 +5,13 @@ import {
   H3, B1, TextLabel,
 } from '../ui/typography';
 import styles from '../../styles/components/social/FriendCard.module.css';
+import { defaultUserImageURL } from '../../constants/mockData';
 
 function FriendCard(props) {
   const { student } = props;
   return (
     <div className={styles.container}>
-      {console.log('student:::', student)}
-      <img className={styles.pic} src={student.user.profileImageUrl} alt="friend pic" />
+      <img className={styles.pic} src={student.user.profileImageUrl.length > 0 ? student.user.profileImageUrl : defaultUserImageURL} alt="friend pic" />
       <div className={styles.description}>
         <H3 style={{ margin: '0px' }}>{`${student.user.firstName} ${student.user.lastName} '${student.classYear}`}</H3>
         <div className="majorMinorContainer">
