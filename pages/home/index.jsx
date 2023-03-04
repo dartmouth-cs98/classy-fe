@@ -56,8 +56,10 @@ function HomePage() {
 
   const loadMajors = () => {
     const majorNames = [];
-    for (const major of user.student.majors) {
-      majorNames.push(major.name);
+    if (!user?.student?.majors?.length > 0) {
+      // for (const major of user.student.majors) {
+      //   majorNames.push(major.name);
+      // }
     }
     return majorNames.join(',');
   };
