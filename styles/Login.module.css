@@ -67,6 +67,12 @@
   border-color: transparent;
 }
 
+.btn:disabled {
+    background-color: gray;
+    color: #FCF0E3;
+    border-color: transparent;
+}
+
 .instructions {
   font-size: 0.75rem;
   border-radius: 0.5rem;
