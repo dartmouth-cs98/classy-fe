@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  H2, H4, H5, B1, TextLabel,
+  H2, H4, H5, B1, TextLabel, H3,
 } from '../ui/typography';
 // eslint-disable-next-line import/no-unresolved
 import styles from '../../styles/components/CourseSimple.module.css';
@@ -35,7 +35,7 @@ function CourseSimple(props) {
 
           <div className={styles.topLeft}>
             {distribsWC ? distribsWC.map((distrib, i) => (
-              <H5 key={distrib} color={color.dark}>
+              <H5 key={distrib} color="var(--dark-grey)">
                 {i + 1 === course.distribs.length ? distrib : `${distrib} • `}
               </H5>
             )) : (
@@ -44,7 +44,7 @@ function CourseSimple(props) {
           </div>
 
           <div className={styles.qualityReview}>
-            <H2 color={color.dark}>
+            <H2 style={{ textAlign: 'right' }} color={color.dark}>
               {course.courseDept
                 ? `${course.courseDept} ${course.courseNum}`
                 : '—'}
