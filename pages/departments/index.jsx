@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/SearchPage.module.css';
 // eslint-disable-import/no-unresolved
-import stylesp from '../../styles/professorInfo.module.css';
 import DepartmentCard from '../../components/DepartmentCard';
 import { cardColors } from '../../data/colors';
 import { fetchDepartments } from '../../actions';
@@ -23,7 +22,7 @@ export default function Departments() {
   }
 
   return (
-    <div className={stylesp.container}>
+    <div>
       <H3>Browse Departments</H3>
       <div className={styles.depts}>
         {depts ? depts.map((dept, i) => (

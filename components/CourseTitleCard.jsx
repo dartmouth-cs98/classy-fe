@@ -26,19 +26,22 @@ function CourseTitleCard(props) {
             )}
           </div>
 
-          <div className={styles.qualityReview}>
-            <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
-            <H1 color={color.dark}>
-              {course.quality
-                ? course.quality
-                : '—'}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div className={styles.qualityReview}>
+              <TextLabel color="var(--darkest-grey)" style={{ margin: '-11px' }}>Quality</TextLabel>
+              <H1 color={color.dark}>
+                {course.quality
+                  ? course.quality
+                  : '—'}
 
-            </H1>
-            <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
-              {course.reviewCount ? course.reviewCount : 0}
-              {' '}
-              Reviews
-            </B3>
+              </H1>
+              <B3 style={{ margin: '-12px 0 -5px' }} color="var(--dark-grey)">
+                {course.reviewCount ? course.reviewCount : 0}
+                {' '}
+                Reviews
+              </B3>
+            </div>
+
           </div>
 
         </div>

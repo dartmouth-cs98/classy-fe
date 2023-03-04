@@ -5,7 +5,7 @@ import React, {
   useState, useCallback, useEffect, useRef,
 } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, Checkbox } from '@mui/material';
+import { IconButton, Checkbox, Chip } from '@mui/material';
 import Modal from '../Modal';
 import {
   H2, H3, H4, B1,
@@ -51,31 +51,28 @@ function FilterModal(props) {
       </select>
 
       <div style={{
-        display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: '10px 0px',
+        display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: '10px 0px', gap: '10px',
       }}
       >
         {stateFilters.map((distrib, i) => (
-          <div
+          <Chip
             key={distrib.name}
+            variant="outlined"
+            size="medium"
+            label={distrib.name}
+            onDelete={() => handleClick(distrib)}
             onClick={() => handleClick(distrib)}
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
+            sx={{
               backgroundColor: distrib.pastel,
-              border: `3px solid ${distrib.dark}`,
-              borderRadius: '35px',
-              width: '105px',
-              height: '35px',
-              margin: '5px',
-              cursor: 'pointer',
+              borderColor: distrib.dark,
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: distrib.pastel,
+              },
+              '& .MuiChip-label': {
+                color: distrib.dark,
+              },
             }}
-          >
-            <H4 color={distrib.dark}>
-              {distrib.name}
-            </H4>
-          </div>
+          />
         ))}
       </div>
     </div>
