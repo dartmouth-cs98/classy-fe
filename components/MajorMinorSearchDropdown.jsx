@@ -30,7 +30,7 @@ function MajorMinorSearchDropdown(props) {
       clearOnBlur={false}
       onInputChange={(event, NewInputValue) => {
         setInputValue(NewInputValue);
-        console.log(NewInputValue);
+        // console.log(NewInputValue);
         dispatch(fetchDropDownMajorMinor(NewInputValue));
       }}
       onChange={(e, newDeptValue) => {

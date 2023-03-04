@@ -49,7 +49,6 @@ function AddMajorMinor(props) {
       {adding
         ? (
           <div className={styles.horizontalContainer} style={{ gap: '5px' }}>
-            <TextField placeholder={title} fullWidth />
             <MajorMinorSearchDropdown
               inputValue={inputValueMajor}
               setInputValue={setInputValueMajor}
