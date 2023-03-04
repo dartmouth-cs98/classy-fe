@@ -70,7 +70,7 @@ function Register() {
     dispatch(loadRegister());
   }, []);
   const depts = useSelector(
-    (reduxState) => reduxState.auth.current.response.depts,
+    (reduxState) => reduxState.auth?.current?.response?.depts,
   );
   const errors = useSelector(
     (reduxState) => {
@@ -100,9 +100,9 @@ function Register() {
     }
     if (!validMatch) list.push('Please enter matching passwords');
 
-    if (errors) {
-      list.push(...errors);
-    }
+    // if (errors) {
+    //   list.push(...errors);
+    // }
 
     if (list.length) {
       return (
