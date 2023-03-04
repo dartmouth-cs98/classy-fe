@@ -35,3 +35,12 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.emptyStatePic {
+  height: 200px;
+  width: 200px;
+}
+
+.marginBottom {
+  margin-bottom: 10px;
+}

@@ -14,7 +14,7 @@ function loadUsers(users) {
   return users?.map((element) => (
     // eslint-disable-next-line no-underscore-dangle
     <option key={`${element._id}`} value={`${element._id}`}>
-      {`${element.user.firstName} ${element.user.lastName}`}
+      {`${element?.user?.firstName} ${element?.user?.lastName}`}
     </option>
   ));
 }

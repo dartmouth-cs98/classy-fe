@@ -94,3 +94,7 @@ export const studentId1 = '63c4424ce18e75a330906126';
 export const studentId2 = '63c4424ce18e75a330906127';
 
 export const defaultUserImageURL = 'https://classy-api-bucket.s3.amazonaws.com/default-user.png';
+export const defaultImageURLs = {
+  friends: 'https://classy-api-bucket.s3.amazonaws.com/undraw_friends_r511.png',
+  onlineLearning: 'https://classy-api-bucket.s3.amazonaws.com/undraw_Online_learning_re_qw08.png',
+};
