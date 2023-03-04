@@ -71,6 +71,14 @@ export default function CourseTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
+          {console.log('courses', courses)}
+          {courses.map((course) => (
+            <Row
+              key={`${course.courseDept} ${course.courseNum}`}
+              course={course}
+              tableType={tableType}
+              professorName={professorName}
+            />
           {rows?.map((row) => (
             <TableRow
               key={row._id}

@@ -70,7 +70,11 @@ function Register() {
     dispatch(loadRegister());
   }, []);
   const depts = useSelector(
+<<<<<<< HEAD
+    (reduxState) => reduxState?.auth?.current?.response?.depts,
+=======
     (reduxState) => reduxState.auth?.current?.response?.depts,
+>>>>>>> d48c2b2f354bbe60d9599e67eda6403f4b3df7d3
   );
   const errors = useSelector(
     (reduxState) => {
@@ -100,10 +104,13 @@ function Register() {
     }
     if (!validMatch) list.push('Please enter matching passwords');
 
+<<<<<<< HEAD
+=======
     // if (errors) {
     //   list.push(...errors);
     // }
 
+>>>>>>> d48c2b2f354bbe60d9599e67eda6403f4b3df7d3
     if (list.length) {
       return (
         <Alert severity="error" style={{ width: '100%' }}>
