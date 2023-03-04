@@ -11,7 +11,7 @@ const HomeReducer = (state = initialState, action = {}) => {
   // console.log(action.type);
   switch (action.type) {
     case ActionTypes.FETCH_DROPDOWN_COURSES:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
         return { ...state, ...action.payload };
       }
@@ -19,7 +19,7 @@ const HomeReducer = (state = initialState, action = {}) => {
     case ActionTypes.CLEAR_DROPDOWN:
       return { ...state, searchResults: [] };
     case ActionTypes.FETCH_DROPDOWN_MAJORMINOR:
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload.searchMajorMinorResultsTimestamp
         >= state.searchMajorMinorResultsTimestamp) {
         return { ...state, ...action.payload };

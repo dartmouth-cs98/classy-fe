@@ -12,6 +12,7 @@ function AddMajorMinor(props) {
 
   const [inputValueMajor, setInputValueMajor] = useState('');
   const [selectedMajor, setSelectedMajor] = useState('');
+  console.log(selectedMajor);
 
   const [inputValueMinor, setInputValueMinor] = useState('');
   const [selectedMinor, setSelectedMinor] = useState('');
