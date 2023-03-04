@@ -73,14 +73,17 @@ function HomePage() {
       <ShoppingModal
         isOpen={shoppingModalIsOpen}
         setIsOpen={setShoppingModalIsOpen}
+        user={user}
       />
       <CurrentModal
         isOpen={currentModalIsOpen}
         setIsOpen={setCurrentModalIsOpen}
+        user={user}
       />
       <CompletedModal
         isOpen={completedModalIsOpen}
         setIsOpen={setCompletedModalIsOpen}
+        user={user}
       />
       <div className={styles.verticalContainer} style={{ gap: '50px' }}>
         <div

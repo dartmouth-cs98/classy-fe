@@ -2,10 +2,11 @@ import axios from 'axios';
 import { ROOT_URL } from './root_url';
 
 export const HomeActionTypes = {
-  SEARCH_COURSES: 'SEARCH_COURSES',
+  FETCH_DROPDOWN_COURSES: 'FETCH_DROPDOWN_COURSES',
+  CLEAR_DROPDOWN: 'CLEAR_DROPDOWN',
 };
 
-export const searchCourses = (searchQuery) => (dispatch) => {
+export const fetchDropDownCourses = (searchQuery) => (dispatch) => {
   const searchResultsTimestamp = Date.now();
 
   axios.get(`${ROOT_URL}/search`, {
@@ -18,11 +19,16 @@ export const searchCourses = (searchQuery) => (dispatch) => {
     },
   }).then((res) => {
     const response = res.data;
-    console.log(HomeActionTypes.SEARCH_COURSES);
+    // console.log(response);
     dispatch({
-
-      type: HomeActionTypes.SEARCH_COURSES,
+      type: HomeActionTypes.FETCH_DROPDOWN_COURSES,
       payload: { searchResultsTimestamp, searchResults: response },
     });
+  });
+};
+
+export const clearDropdown = () => (dispatch) => {
+  dispatch({
+    type: HomeActionTypes.CLEAR_DROPDOWN,
   });
 };
