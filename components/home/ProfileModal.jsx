@@ -66,10 +66,16 @@ function ProfileModal(props) {
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onButtonClick={onImageSubmit}
-      buttonText="Save"
       header="Edit Profile"
-      button={<SaveButton adding={addingMajor || addingMinor} />}
+      button={(
+        <SaveButton
+          onClick={() => {
+            setIsOpen(false);
+            onImageSubmit();
+          }}
+          adding={addingMajor || addingMinor}
+        />
+      )}
     >
       <div className={modalStyles.horizontalContainer} style={{ gap: '40px' }}>
         <div className={modalStyles.verticalContainer} style={{ width: '300px' }}>

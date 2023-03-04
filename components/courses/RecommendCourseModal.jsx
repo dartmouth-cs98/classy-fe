@@ -11,8 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
 import FriendsCheckBoxes from './FriendsCheckBoxes';
-import { fetchUser, fetchFriends, updateStudent } from '../../actions';
-import { userId } from '../../constants/mockData';
+import { fetchFriends, updateStudent } from '../../actions';
 
 export default function FormDialog(props) {
   const { course } = props;
@@ -21,10 +20,7 @@ export default function FormDialog(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const friends = useSelector((state) => state.student.friends);
-  console.log('in component', user);
-  useEffect(() => {
-    dispatch(fetchUser(userId));
-  }, [user.user === {}]);
+
   useEffect(() => {
     dispatch(fetchFriends(user?.user?.student?._id));
   }, [friends === []]);
