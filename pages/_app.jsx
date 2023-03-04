@@ -18,13 +18,13 @@ const store = configureStore({
 });
 
 function MyApp({ Component, pageProps }) {
+  const componentString = String(Component);
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <SideNavbar />
+        {!componentString.includes('Login') ? <SideNavbar /> : ''}
         <Component {...pageProps} />
       </Provider>
-
     </ThemeProvider>
   );
 }
