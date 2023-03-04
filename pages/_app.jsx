@@ -18,13 +18,12 @@ const store = configureStore({
 });
 
 function MyApp({ Component, pageProps }) {
-  const componenttest = String(Component);
-  // const containsPages = componenttest.includes('Ready to explore');
+  const componentString = String(Component);
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
+        {!componentString.includes('Login') && !componentString.includes('Ready to explore') ? <SideNavbar /> : ''}
         <Component {...pageProps} />
-        {!componenttest.includes('Ready to explore') ? <SideNavbar /> : ''}
       </Provider>
     </ThemeProvider>
   );
