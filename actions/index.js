@@ -83,10 +83,8 @@ export const fetchStudent = (id) => (dispatch) => {
 };
 
 export const fetchFriend = (id) => (dispatch) => {
-  console.log('fetching friend::', id);
   axios.get(`${ROOT_URL}/students/${id}`).then((res) => {
     const response = res.data;
-    console.log('response::', response);
     dispatch({
       type: ActionTypes.FETCH_FRIEND,
       payload: response,

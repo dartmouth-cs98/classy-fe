@@ -23,7 +23,7 @@ import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
 
 import { fetchUser } from '../../actions';
-import { userId } from '../../constants/mockData';
+import { userId, defaultUserImageURL } from '../../constants/mockData';
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -53,6 +53,8 @@ function HomePage() {
   const progress = user?.student?.coursesTaken
     ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
+
+  console.log('user in home:::', user);
 
   // const loadMajors = () => {
   //   const majorNames = [];
@@ -94,7 +96,7 @@ function HomePage() {
             gap: '35px',
           }}
         >
-          <img className={styles.pic} src={user?.profileImageUrl} alt="Profile Image" />
+          <img className={styles.pic} src={user?.profileImageUrl?.length > 0 ? user.profileImageUrl : defaultUserImageURL} alt="Profile Image" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>

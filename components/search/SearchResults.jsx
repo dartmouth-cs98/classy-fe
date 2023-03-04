@@ -32,8 +32,6 @@ function SearchResults(props) {
   const {
     searchResults, searchProfResults, searchStudentResults, tab,
   } = searchReducer;
-  // console.log(searchResults);
-  // console.log(tab);
 
   if (tab === 'Courses') {
     return (
@@ -47,7 +45,10 @@ function SearchResults(props) {
       <div className={styles.container}>
         <div className={styles.profs}>
           {searchProfResults ? searchProfResults.map((professor) => (
-            <Professor key={professor._id} professor={professor} />
+            <div>
+              {console.log('prof:::', professor)}
+              <Professor key={professor._id} professor={professor} />
+            </div>
           )) : null}
         </div>
       </div>
@@ -57,7 +58,7 @@ function SearchResults(props) {
     return (
       <div>
         {searchStudentResults ? searchStudentResults.map((student) => (
-          <FriendCard key={student._id} student={student} />
+          <FriendCard key={student._id} student={student} forSearch />
         )) : null}
       </div>
 
