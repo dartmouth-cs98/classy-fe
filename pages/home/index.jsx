@@ -112,7 +112,8 @@ function HomePage() {
             <div
               className={styles.box}
               style={{
-                justifyContent: 'space-evenly',
+                // justifyContent: 'space-evenly',
+                gap: '25px',
                 backgroundColor: 'var(--navy)',
                 width: '1080px',
                 minWidth: '1080px',
@@ -257,7 +258,7 @@ function HomePage() {
                   height="180px"
                   width="135px"
                   text="Friends"
-                  data={user?.student?.friends?.length}
+                  data={user?.student?.friends?.length || 0}
                   pastelColor="var(--pastel-pink)"
                   darkColor="var(--dark-pink) "
                 />

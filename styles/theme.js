@@ -57,10 +57,17 @@ const theme = createTheme({
             backgroundColor: 'none!important',
           },
           textTransform: 'none',
+          // '&.MuiButton-contained': {
+          //   backgroundColor: '#14121D!important',
+          // },
+          // '&.MuiButton-disabled': {
+          //   backgroundColor: '#AFB1C1!important',
+          // },
         },
       },
       defaultProps: {
         disableElevation: true,
+        component: 'label',
       },
     },
     MuiTab: {
