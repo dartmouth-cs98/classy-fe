@@ -27,10 +27,9 @@ export default function WaitlistHome() {
       </H2>
 
       <main className={styles.main}>
-        <B1 className="description">
+        {/* <B1 className="description">
           Join new waitlists from the course info page.
-        </B1>
-
+        </B1> */}
         <div className={styles.grid}>
           {waitlistContent.courses ? waitlistContent.courses.map((course, index) => (
             <WaitlistModal
@@ -43,17 +42,6 @@ export default function WaitlistHome() {
           )) : ''}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="_blank"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Classy
-
-        </a>
-      </footer>
     </div>
   );
 }
