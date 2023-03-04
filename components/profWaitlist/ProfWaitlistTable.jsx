@@ -15,6 +15,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import {
   B1,
   TextLabel,
@@ -47,7 +48,7 @@ function Row(props) {
     dispatch(updatePriority(dept, num, i, studentId, priority));
   };
 
-  console.log(waitlist?.user?.firstName, priority);
+  console.log('row', waitlist);
 
   return (
     <>
@@ -78,7 +79,7 @@ function Row(props) {
             %0D%0A%0D%0AThank you for your interest in my course. About your waitlist inquiry on Classy...`}
           >
             <B1>
-              {waitlist?.user?.email.substring(
+              {waitlist?.user?.email?.substring(
 							  0,
 							  waitlist.user.email.length - 14,
               )}

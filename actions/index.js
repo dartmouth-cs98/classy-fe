@@ -3,7 +3,6 @@ import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
 import { AuthActionTypes } from './authActions';
 
-
 export * from './searchActions';
 export * from './homeActions';
 
@@ -29,8 +28,8 @@ export const ActionTypes = {
   FETCH_SEARCH: 'FETCH_SEARCH',
   FETCH_WAITLISTS: 'FETCH_WAITLISTS',
   FETCH_WAITLIST: 'FETCH_WAITLIST',
-  FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
-  FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
+  // FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  // FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
   FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
   FETCH_COURSE_REVIEWS: 'FETCH_COURSE_REVIEWS',
   CREATE_REVIEW: 'CREATE_REVIEW',
@@ -45,7 +44,6 @@ export const ActionTypes = {
   PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
   ...AuthActionTypes,
-
 };
 
 export const fetchUser = (id) => (dispatch) => {
@@ -297,25 +295,15 @@ export const withdrawFromWaitlist = (withdrawalRequest) => (dispatch) => {
   });
 };
 
-export const fetchDepartments = () => (dispatch) => {
-  axios.get(`${ROOT_URL}/departments`).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_DEPARTMENTS,
-      payload: response,
-    });
-  });
-};
-
-export const fetchDepartment = (code) => (dispatch) => {
-  axios.get(`${ROOT_URL}/departments/${code}`).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_DEPARTMENT,
-      payload: response,
-    });
-  });
-};
+// export const fetchDepartments = () => (dispatch) => {
+//   axios.get(`${ROOT_URL}/departments`).then((res) => {
+//     const response = res.data;
+//     dispatch({
+//       type: ActionTypes.FETCH_DEPARTMENTS,
+//       payload: response,
+//     });
+//   });
+// };
 
 export const fetchCourseReviews = (dept, num) => (dispatch) => {
   axios.get(`${ROOT_URL}/coursereviews/${dept}/${num}`).then((res) => {

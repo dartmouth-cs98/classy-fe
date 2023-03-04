@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  TextLabel, B1,
+  B1, H3,
 } from '../../components/ui/typography';
 import ProfessorCard from '../../components/professors/ProfessorCard';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
 // eslint-disable-import/no-unresolved
-import styles from '../../styles/professorInfo.module.css';
+import styles from '../../styles/ProfessorInfo.module.css';
 import { fetchProfessor } from '../../actions';
 
 const cardColors = [
@@ -43,7 +43,7 @@ function ProfessorInfo() {
         />
       </div>
       <div className={styles.featuredCoursesContainer}>
-        <TextLabel color="var(--darkest-grey)">Featured Courses</TextLabel>
+        <H3 color="var(--darkest-grey)">Featured Courses</H3>
         <div className={styles.featuredCardsContainer}>
           {currentProfessor.courses.map((course, i) => (
             <CourseTitleCard
@@ -54,7 +54,7 @@ function ProfessorInfo() {
         </div>
       </div>
       <div className={styles.courseTableContainer}>
-        <TextLabel color="var(--darkest-grey)">All Courses</TextLabel>
+        <H3 color="var(--darkest-grey)">All Courses</H3>
         <CourseTable
           courses={currentProfessor.courses}
           tableType="profInfo"
