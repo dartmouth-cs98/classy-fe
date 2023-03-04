@@ -5,8 +5,10 @@ const initialState = {
   wcFilters: [],
   searchResults: [],
   searchProfResults: [],
+  searchStudentResults: [],
   searchResultsTimestamp: Date.now(),
   searchProfResultsTimestamp: Date.now(),
+  searchStudentResultsTimestamp: Date.now(),
   searchQuery: '',
   offeredNext: false,
   nrEligible: false,
@@ -24,9 +26,12 @@ const SearchReducer = (state = initialState, action = {}) => {
       }
       return state;
     case ActionTypes.FETCH_SEARCH_PROFS:
-      console.log('here');
       if (action.payload.searchProfResultsTimestamp >= state.searchProfResultsTimestamp) {
-        console.log('here');
+        return { ...state, ...action.payload };
+      }
+      return state;
+    case ActionTypes.FETCH_SEARCH_STUDENTS:
+      if (action.payload.searchStudentResultsTimestamp >= state.searchStudentResultsTimestamp) {
         return { ...state, ...action.payload };
       }
       return state;

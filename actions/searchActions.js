@@ -68,25 +68,22 @@ export const fetchProfSearch = () => (dispatch, getState) => {
 };
 
 export const fetchStudentSearch = () => (dispatch, getState) => {
-  const searchResultsTimestamp = Date.now();
+  const searchStudentResultsTimestamp = Date.now();
   const {
-    searchQuery, distribFilters, wcFilters, offeredNext, nrEligible,
+    searchQuery,
   } = getState().search;
 
-  // console.log(distribFilters);
-  axios.get(`${ROOT_URL}/search`, {
+  // console.log('here');
+  axios.get(`${ROOT_URL}/searchStudents`, {
     params: {
       query: searchQuery,
-      distribFilters: distribFilters.map((distrib) => distrib.name),
-      wcFilters: wcFilters.map((wc) => wc.name),
-      offeredNext,
-      nrEligible,
     },
   }).then((res) => {
     const response = res.data;
+    // console.log(response);
     dispatch({
       type: SearchActionTypes.FETCH_SEARCH_STUDENTS,
-      payload: { searchResultsTimestamp, searchResults: response },
+      payload: { searchStudentResultsTimestamp, searchStudentResults: response },
     });
   });
 };
