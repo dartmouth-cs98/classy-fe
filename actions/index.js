@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
 import { AuthActionTypes } from './authActions';
+import { HomeActionTypes } from './homeActions';
 
 export * from './searchActions';
 export * from './homeActions';
@@ -44,6 +45,7 @@ export const ActionTypes = {
   PRIORITIZE: 'PRIORITZE',
   ...SearchActionTypes,
   ...AuthActionTypes,
+  ...HomeActionTypes,
 };
 
 export const fetchUser = (id) => (dispatch) => {

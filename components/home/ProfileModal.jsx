@@ -16,6 +16,7 @@ import modalStyles from '../../styles/components/Modal.module.css';
 import SaveButton from './SaveButton';
 import AddMajorMinor from './AddMajorMinor';
 import { defaultUserImageURL } from '../../constants/mockData';
+import MajorMinorSearchDropdown from '../MajorMinorSearchDropdown';
 
 function ProfileModal(props) {
   const {

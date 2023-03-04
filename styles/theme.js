@@ -137,6 +137,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent!important',
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
