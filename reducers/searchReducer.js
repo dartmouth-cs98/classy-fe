@@ -32,6 +32,8 @@ const SearchReducer = (state = initialState, action = {}) => {
       return state;
     case ActionTypes.FETCH_DEPARTMENT:
       return { ...state, currentDepartment: action.payload };
+    case ActionTypes.CLEAR_DEPARTMENT:
+      return { ...state, currentDepartment: {} };
     case ActionTypes.FETCH_DEPARTMENTS:
       return { ...state, departments: action.payload.departments };
     case ActionTypes.ADD_DISTRIB_FILTER:

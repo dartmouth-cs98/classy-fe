@@ -54,13 +54,13 @@ function HomePage() {
     ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
 
-  const loadMajors = () => {
-    const majorNames = [];
-    for (const major of user.student.majors) {
-      majorNames.push(major.name);
-    }
-    return majorNames.join(',');
-  };
+  // const loadMajors = () => {
+  //   const majorNames = [];
+  //   for (const major of user.student.majors) {
+  //     majorNames.push(major.name);
+  //   }
+  //   return majorNames.join(',');
+  // };
 
   return (
     <div style={{ padding: '20px 80px 50px 275px' }}>
@@ -96,7 +96,7 @@ function HomePage() {
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {`${loadMajors()} Major(s)`}
+              {/* {`${loadMajors()} Major(s)`} */}
             </B1>
           </div>
         </div>

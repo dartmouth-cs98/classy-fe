@@ -7,6 +7,7 @@ export const SearchActionTypes = {
   FETCH_SEARCH_PROFS: 'FETCH_SEARCH_PROFS',
   FETCH_SEARCH_STUDENTS: 'FETCH_SEARCH_STUDENTS',
   FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  CLEAR_DEPARTMENT: 'CLEAR_DEPARTMENT',
   FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
   ADD_DISTRIB_FILTER: 'ADD_DISTRIB_FILTER',
   ADD_WC_FILTER: 'ADD_WC_FILTER',
@@ -176,9 +177,18 @@ export const fetchDepartments = () => (dispatch) => {
   });
 };
 
+export const clearDepartment = () => (dispatch) => {
+  console.log('clearing');
+  dispatch({
+    type: SearchActionTypes.CLEAR_DEPARTMENT,
+  });
+};
+
 export const fetchDepartment = (deptID) => (dispatch) => {
+  // console.log(deptID);
   axios.get(`${ROOT_URL}/departments/${deptID}`).then((res) => {
     const response = res.data;
+    // console.log(response);
     dispatch({
       type: SearchActionTypes.FETCH_DEPARTMENT,
       payload: response,

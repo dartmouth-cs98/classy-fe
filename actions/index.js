@@ -3,7 +3,6 @@ import { ROOT_URL } from './root_url';
 import { SearchActionTypes } from './searchActions';
 import { AuthActionTypes } from './authActions';
 
-
 export * from './searchActions';
 export * from './homeActions';
 

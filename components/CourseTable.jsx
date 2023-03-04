@@ -50,7 +50,7 @@ function createRowData(course) {
 
 export default function CourseTable(props) {
   const { courses } = props;
-  const rows = courses.map((course) => createRowData(course));
+  const rows = courses?.map((course) => createRowData(course));
   // console.log(rows);
   const router = useRouter();
 
@@ -61,7 +61,7 @@ export default function CourseTable(props) {
           <TableRow>
             <TableCell width="120">Course</TableCell>
             <TableCell align="left">Name</TableCell>
-            <TableCell align="center" width="140">Distribs</TableCell>
+            <TableCell align="center" width="140">Distribs (WC)</TableCell>
             <TableCell align="center">Median</TableCell>
             <TableCell align="center">
               Offered&nbsp;
@@ -71,7 +71,7 @@ export default function CourseTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows?.map((row) => (
             <TableRow
               key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

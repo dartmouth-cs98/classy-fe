@@ -22,14 +22,16 @@
 
 .resultContainer {
     display: flex;
-    padding-top: 2%;
+    /* padding-top: 2%; */
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: left;
-    overflow-x: scroll;
+    overflow: hidden;
     white-space: nowrap;
     max-width: 100%;
     gap: 60px;
-    margin: 25px;
+    margin: 5px;
+    padding-bottom: 20px;
 }
 
 .depts {
