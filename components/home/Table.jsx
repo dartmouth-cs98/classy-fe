@@ -19,7 +19,7 @@ function Table(props) {
   if (courses?.length > 0) {
     return (
       <div className={styles.table}>
-        <table>
+        <table style={{ margin: '5px 0' }}>
           <tbody>
             {courses.map((course) => (
               <tr onClick={() => router.push(`/courses/${course.courseDept}/${course.courseNum}`)} style={{ cursor: 'pointer' }}>
@@ -34,8 +34,6 @@ function Table(props) {
                 >
                   <B1>
                     {course.courseTitle}
-                    {' '}
-                    sdfsdfsdfsdfsdf
                   </B1>
                 </td>
               </tr>

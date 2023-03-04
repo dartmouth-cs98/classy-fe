@@ -63,7 +63,7 @@ function HomePage() {
   // };
 
   return (
-    <div style={{ padding: '20px 80px 50px 275px' }}>
+    <div style={{ padding: '20px 40px 40px 275px' }}>
       <ProfileModal
         isOpen={profileModalIsOpen}
         setIsOpen={setProfileModalIsOpen}
@@ -109,8 +109,10 @@ function HomePage() {
             <div
               className={styles.box}
               style={{
+                justifyContent: 'space-evenly',
                 backgroundColor: 'var(--navy)',
-                width: '100%',
+                width: '1080px',
+                minWidth: '1080px',
               }}
             >
               <div className={styles.header}>
@@ -146,7 +148,7 @@ function HomePage() {
           </div>
 
           <div className={styles.horizontalContainer}>
-            <div className={styles.verticalContainer} style={{ width: '70%' }}>
+            <div className={styles.verticalContainer} style={{ minWidth: '715px' }}>
               <div
                 className={styles.box}
                 style={{
@@ -188,11 +190,13 @@ function HomePage() {
               </div>
             </div>
 
-            <div className={styles.verticalContainer} style={{ width: '30%' }}>
+            <div className={styles.verticalContainer}>
               <div
                 className={styles.box}
                 style={{
                   backgroundColor: 'var(--lightest-grey)',
+                  minWidth: '330px',
+                  width: '330px',
                   paddingBottom: '35px',
                 }}
               >
@@ -208,7 +212,7 @@ function HomePage() {
                   }}
                 >
                   <div
-                    style={{ width: '75%', height: '75%', marginTop: '20px' }}
+                    style={{ width: '200px', height: '200px', marginTop: '20px' }}
                   >
                     <CircularProgressbarWithChildren
                       value={progress}
@@ -244,17 +248,19 @@ function HomePage() {
 
               <div
                 className={styles.horizontalContainer}
-                style={{ width: '100%' }}
+                style={{ gap: '20px' }}
               >
                 <DataBox
-                  height="150px"
+                  height="180px"
+                  width="135px"
                   text="Friends"
                   data={user?.student?.friends?.length}
                   pastelColor="var(--pastel-pink)"
                   darkColor="var(--dark-pink) "
                 />
                 <DataBox
-                  height="150px"
+                  height="180px"
+                  width="175px"
                   text="Waitlists Joined"
                   data={user?.student?.waitlists?.length || 0}
                   pastelColor="var(--pastel-violet)"

@@ -63,6 +63,10 @@ const SearchReducer = (state = initialState, action = {}) => {
         wcFilters:
         state.wcFilters.filter((distrib) => distrib.name !== action.payload.name),
       };
+    case ActionTypes.CLEAR_FILTERS:
+      return {
+        ...state, offeredNext: false, nrEligible: false, wcFilters: [], distribFilters: [],
+      };
     case ActionTypes.SET_SEARCH_QUERY:
       return { ...state, searchQuery: action.payload.searchQuery };
     case ActionTypes.TOGGLE_NR_ELIGIBLE:

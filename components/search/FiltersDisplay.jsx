@@ -9,12 +9,12 @@ import { IconButton, Checkbox, Chip } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Modal from '../Modal';
 import {
-  H2, H3, H4, B1, TextLabel,
+  H2, H3, H4, B1, TextLabel, A,
 } from '../ui/typography';
 import { distribs as allDistribs, wcs as allWcs } from '../../constants/colors';
 import {
   addDistribFilter, removeDistribFilter, addWcFilter, removeWcFilter, toggleNrEligible,
-  toggleOfferedNext,
+  toggleOfferedNext, clearFilters,
 } from '../../actions';
 import { nextTerm } from '../../constants/nextTerm';
 
@@ -54,7 +54,7 @@ function FiltersDisplay(props) {
             display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: '10px 0px', gap: '8px', justifyItems: 'flex-start',
           }}
           >
-            <TextLabel style={{ marginRight: '10px' }} color="var(--mid-grey)">Filters</TextLabel>
+            <A style={{ marginRight: '10px' }} color="var(--mid-grey)" onClick={() => dispatch(clearFilters())}>Clear Filters</A>
 
             {stateDistribFilters.map((distrib, i) => (
               <Pill

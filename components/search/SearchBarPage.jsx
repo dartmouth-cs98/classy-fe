@@ -36,7 +36,7 @@ function SearchBarPage(props) {
   const filterIconColor = (filtersApplied) ? 'var(--navy)' : 'var(--light-grey)';
 
   return (
-    <div style={{ padding: '20px 80px 50px 275px' }}>
+    <div style={{ padding: '20px 40px 40px 275px' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <FilterModal setIsOpen={setSearchModalIsOpen} isOpen={searchModalIsOpen} />
         <TextField

@@ -18,6 +18,7 @@ export const SearchActionTypes = {
   TOGGLE_NR_ELIGIBLE: 'TOGGLE_NR_ELIGIBLE',
   // CLEAR_SEARCH_RESULTS: 'CLEAR_SEARCH_RESULTS',
   SET_TAB: 'SET_TAB',
+  CLEAR_FILTERS: 'CLEAR_FILTERS',
 };
 
 // never called directly, implicitly called by setSearchQuery, addDistribFilter,
@@ -153,6 +154,13 @@ export const removeWcFilter = (distrib) => (dispatch) => {
 export const toggleOfferedNext = () => (dispatch) => {
   dispatch({
     type: SearchActionTypes.TOGGLE_OFFERED_NEXT,
+  });
+  dispatch(fetchSearch());
+};
+
+export const clearFilters = () => (dispatch) => {
+  dispatch({
+    type: SearchActionTypes.CLEAR_FILTERS,
   });
   dispatch(fetchSearch());
 };

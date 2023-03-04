@@ -15,21 +15,21 @@ export const colors = [
 
 export const distribs = [
   { name: 'ART', pastel: 'var(--pastel-blue)', dark: 'var(--dark-blue)' },
-  { name: 'LIT', pastel: 'var(--pastel-green)', dark: 'var(--dark-green)' },
-  { name: 'TMV', pastel: 'var(--pastel-purple)', dark: 'var(--dark-purple)' },
   { name: 'INT', pastel: 'var(--pastel-orange)', dark: 'var(--dark-orange)' },
-  { name: 'SOC', pastel: 'var(--pastel-pink)', dark: 'var(--dark-pink)' },
+  { name: 'LIT', pastel: 'var(--pastel-green)', dark: 'var(--dark-green)' },
   { name: 'QDS', pastel: 'var(--pastel-violet)', dark: 'var(--dark-violet)' },
   { name: 'SCI', pastel: 'var(--pastel-blue)', dark: 'var(--dark-blue)' },
   { name: 'SLA', pastel: 'var(--pastel-green)', dark: 'var(--dark-green)' },
+  { name: 'SOC', pastel: 'var(--pastel-pink)', dark: 'var(--dark-pink)' },
   { name: 'TAS', pastel: 'var(--pastel-purple)', dark: 'var(--dark-purple)' },
   { name: 'TLA', pastel: 'var(--pastel-orange)', dark: 'var(--dark-orange)' },
+  { name: 'TMV', pastel: 'var(--pastel-purple)', dark: 'var(--dark-purple)' },
 ];
 
 export const wcs = [
-  { name: 'W', pastel: 'var(--pastel-blue)', dark: 'var(--dark-blue)' },
-  { name: 'NW', pastel: 'var(--pastel-green)', dark: 'var(--dark-green)' },
   { name: 'CI', pastel: 'var(--pastel-purple)', dark: 'var(--dark-purple)' },
+  { name: 'NW', pastel: 'var(--pastel-green)', dark: 'var(--dark-green)' },
+  { name: 'W', pastel: 'var(--pastel-blue)', dark: 'var(--dark-blue)' },
 ];
 
 export const friendButtonColors = {
