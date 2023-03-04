@@ -46,9 +46,9 @@ function SearchResults(props) {
     return (
       <div className={styles.container}>
         <div className={styles.profs}>
-          {searchProfResults?.map((professor) => (
+          {searchProfResults ? searchProfResults.map((professor) => (
             <Professor key={professor._id} professor={professor} />
-          ))}
+          )) : null}
         </div>
       </div>
     );
@@ -56,9 +56,9 @@ function SearchResults(props) {
   if (tab === 'Students') {
     return (
       <div>
-        {searchStudentResults?.map((student) => (
+        {searchStudentResults ? searchStudentResults.map((student) => (
           <FriendCard key={student._id} student={student} />
-        ))}
+        )) : null}
       </div>
 
     );

@@ -13,7 +13,7 @@ function ProfessorCard(props) {
       <div className={styles.wordSection}>
         <TextLabel color="var(--darkest-grey)">Professor</TextLabel>
         <H1 style={{ margin: '0px' }}>{name}</H1>
-        <B1>{departments ? `Departments: ${departments.join('/')}` : ''}</B1>
+        <B1>{departments ? `${departments.join(', ')}` : ''}</B1>
       </div>
     </div>
   );
