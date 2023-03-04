@@ -71,7 +71,6 @@ export default function CourseTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-<<<<<<< HEAD
           {console.log('courses', courses)}
           {courses.map((course) => (
             <Row
@@ -80,7 +79,6 @@ export default function CourseTable(props) {
               tableType={tableType}
               professorName={professorName}
             />
-=======
           {rows?.map((row) => (
             <TableRow
               key={row._id}
@@ -99,7 +97,6 @@ export default function CourseTable(props) {
               <TableCell align="center">{row.offeredNext ? <CheckIcon /> : null}</TableCell>
               <TableCell align="center">{row.nrEligible ? <CheckIcon /> : null}</TableCell>
             </TableRow>
->>>>>>> f15e1866c495025789260f28cfc984d390be2a48
           ))}
         </TableBody>
       </Table>
