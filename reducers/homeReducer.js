@@ -8,11 +8,14 @@ const initialState = {
 const HomeReducer = (state = initialState, action = {}) => {
   // console.log(action.type);
   switch (action.type) {
-    case ActionTypes.SEARCH_COURSES:
+    case ActionTypes.FETCH_DROPDOWN_COURSES:
+      console.log(action.payload);
       if (action.payload.searchResultsTimestamp >= state.searchResultsTimestamp) {
         return { ...state, ...action.payload };
       }
       return state;
+    case ActionTypes.CLEAR_DROPDOWN:
+      return { ...state, searchResults: [] };
     default:
       return state;
   }

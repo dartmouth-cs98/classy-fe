@@ -54,3 +54,9 @@
   background-color: #fafafa;
   border-color: transparent;
 }
+
+.btn:disabled {
+    background-color: gray;
+    color: #FCF0E3;
+    border-color: transparent;
+}

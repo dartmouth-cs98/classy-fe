@@ -24,7 +24,7 @@ function ProfileModal(props) {
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [pic, setPic] = useState({
-    url: user.profileImageUrl.length > 0
+    url: user?.profileImageUrl?.length > 0
       ? user.profileImageUrl : defaultUserImageURL,
     img: null,
     file: null,
@@ -66,10 +66,16 @@ function ProfileModal(props) {
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onButtonClick={onImageSubmit}
-      buttonText="Save"
       header="Edit Profile"
-      button={<SaveButton adding={addingMajor || addingMinor} />}
+      button={(
+        <SaveButton
+          onClick={() => {
+            setIsOpen(false);
+            onImageSubmit();
+          }}
+          adding={addingMajor || addingMinor}
+        />
+      )}
     >
       <div className={modalStyles.horizontalContainer} style={{ gap: '40px' }}>
         <div className={modalStyles.verticalContainer} style={{ width: '300px' }}>

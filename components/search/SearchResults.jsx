@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 import React from 'react';
@@ -5,6 +6,7 @@ import { useSelector } from 'react-redux';
 import CourseTable from '../CourseTable';
 import styles from '../../styles/components/SearchPage.module.css';
 import Professor from '../Professor';
+import FriendCard from '../social/FriendCard';
 
 const ProfessorMockData = [
   {
@@ -25,9 +27,11 @@ const ProfessorMockData = [
 ];
 
 function SearchResults(props) {
-  const { tab, results } = props;
-  const searchResults = useSelector((reduxState) => reduxState.search.searchResults);
-  console.log(searchResults);
+  // const { tab, results } = props;
+  const searchReducer = useSelector((reduxState) => reduxState.search);
+  const {
+    searchResults, searchProfResults, searchStudentResults, tab,
+  } = searchReducer;
 
   if (tab === 'Courses') {
     return (
@@ -40,15 +44,25 @@ function SearchResults(props) {
     return (
       <div className={styles.container}>
         <div className={styles.profs}>
-          {ProfessorMockData.map((professor) => (
-            <Professor key={professor.name} professor={professor} />
-          ))}
+          {searchProfResults ? searchProfResults.map((professor) => (
+            <div>
+              {console.log('prof:::', professor)}
+              <Professor key={professor._id} professor={professor} />
+            </div>
+          )) : null}
         </div>
       </div>
     );
   }
-  if (tab === 'Users') {
-    return null;
+  if (tab === 'Students') {
+    return (
+      <div>
+        {searchStudentResults ? searchStudentResults.map((student) => (
+          <FriendCard key={student._id} student={student} forSearch />
+        )) : null}
+      </div>
+
+    );
   }
 }
 

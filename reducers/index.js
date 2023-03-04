@@ -7,11 +7,13 @@ import ExploreReducer from './exploreReducer';
 import SearchReducer from './searchReducer';
 import ProfessorsReducer from './professorsReducer';
 import WaitlistReducer from './waitlistReducer';
-import DepartmentsReducer from './departmentsReducer';
+// import DepartmentsReducer from './departmentsReducer';
 import ReviewsReducer from './reviewsReducer';
 import HomeReducer from './homeReducer';
 import UserReducer from './userReducer';
 import StudentsReducer from './studentsReducer';
+import ProfHomeReducer from './profHomeReducer';
+import AuthReducer from './authReducer';
 
 const rootReducer = combineReducers({
   courses: CoursesReducer,
@@ -19,11 +21,13 @@ const rootReducer = combineReducers({
   explore: ExploreReducer,
   search: SearchReducer,
   waitlist: WaitlistReducer,
-  departments: DepartmentsReducer,
+  // departments: DepartmentsReducer,
   reviews: ReviewsReducer,
   home: HomeReducer,
   user: UserReducer,
   student: StudentsReducer,
+  profHome: ProfHomeReducer,
+  auth: AuthReducer,
 });
 
 export default rootReducer;

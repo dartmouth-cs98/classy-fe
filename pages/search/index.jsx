@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { A, H3 } from '../../components/ui/typography';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import Professor from '../../components/Professor';
@@ -8,6 +10,7 @@ import styles from '../../styles/components/SearchPage.module.css';
 import { departmentMockData } from '../../data/departments';
 import DepartmentCard from '../../components/DepartmentCard';
 import SearchBarPage from '../../components/search/SearchBarPage';
+import { fetchDepartments } from '../../actions/searchActions';
 
 const professorInfoMockData = {
   featuredCourses: [{
@@ -100,10 +103,16 @@ const ProfessorMockData = {
 };
 
 function SearchPage() {
+  const dispatch = useDispatch();
+  const departments = useSelector((reduxState) => reduxState.search.departments);
+  useEffect(() => {
+    dispatch(fetchDepartments());
+  }, []);
+
   return (
     <SearchBarPage>
       <div className={styles.container}>
-        <div className={styles.header}>
+        {/* <div className={styles.header}>
           <H3>Recent Searches</H3>
           <A>See All</A>
         </div>
@@ -116,15 +125,15 @@ function SearchPage() {
             />
           ))}
           <Professor professor={ProfessorMockData} />
-        </div>
+        </div> */}
 
         <div className={styles.header}>
           <H3>Browse Departments</H3>
         </div>
         <div className={styles.depts}>
-          {departmentMockData.map((dept, i) => (
+          {departments.map((dept, i) => (
             <DepartmentCard
-              key={dept.abbr}
+              key={dept._id}
               dept={dept}
               color={cardColors[i % cardColors.length]}
             />
