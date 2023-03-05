@@ -31,7 +31,7 @@ export const fetchDropDownCourses = (searchQuery) => (dispatch) => {
 
 export const clearMajorMinorDropdown = () => (dispatch) => {
   dispatch({
-    type: HomeActionTypes.CLEAR_DROPDOWN,
+    type: HomeActionTypes.CLEAR_MAJORMINOR_DROPDOWN,
   });
 };
 

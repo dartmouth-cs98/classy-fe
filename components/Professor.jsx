@@ -7,22 +7,41 @@ import { H4, B1 } from './ui/typography';
 import { defaultUserImageURL } from '../constants/mockData';
 
 function Professor(props) {
-  const { professor } = props;
+  const { professor, forDept } = props;
   const { pic, name, departments } = professor;
   return (
-    <Link href={`/professors/${name}`}>
-      <div className={styles.card}>
-        <img
-          className={styles.pic}
-          style={{ marginBottom: 5 }}
-          src={professor?.professorObj && professor?.professorObj[0].profileImageUrl?.length > 0
-            ? professor?.professorObj[0].profileImageUrl : defaultUserImageURL}
-          alt="friend pic"
-        />
-        <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
-        <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
-      </div>
-    </Link>
+    <div>
+      {forDept ? (
+        <Link href={`/professors/${name}`}>
+          <div className={styles.card}>
+            <img
+              className={styles.pic}
+              style={{ marginBottom: 5 }}
+              src={professor?.user.profileImageUrl?.length > 0
+                ? professor.user.profileImageUrl : defaultUserImageURL}
+              alt="friend pic"
+            />
+            <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
+            <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
+          </div>
+        </Link>
+      ) : (
+        <Link href={`/professors/${name}`}>
+          <div className={styles.card}>
+            <img
+              className={styles.pic}
+              style={{ marginBottom: 5 }}
+              src={professor?.professorObj && professor?.professorObj[0].profileImageUrl?.length > 0
+                ? professor?.professorObj[0].profileImageUrl : defaultUserImageURL}
+              alt="friend pic"
+            />
+            <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
+            <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
+          </div>
+        </Link>
+      )}
+
+    </div>
   );
 }
 

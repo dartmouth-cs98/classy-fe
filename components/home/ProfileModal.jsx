@@ -30,7 +30,7 @@ function ProfileModal(props) {
     img: null,
     file: null,
   });
-  const thisYear = (new Date()).getFullYear() - 2000;
+  const thisYear = (new Date()).getFullYear();
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
   const [year, setYear] = useState('');
   const [addingMajor, setAddingMajor] = useState(false);

@@ -21,6 +21,7 @@ function MajorMinorSearchDropdown(props) {
 
   useEffect(() => {
     dispatch(clearMajorMinorDropdown());
+    dispatch(fetchDropDownMajorMinor(''));
   }, []);
 
   return (
