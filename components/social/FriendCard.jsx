@@ -22,12 +22,12 @@ function FriendCard(props) {
               <H3 style={{ margin: '0px' }}>{`${student.firstName} ${student.lastName} '${student.studentObj[0].classYear}`}</H3>
               <div className="majorMinorContainer">
                 {student?.majors?.map((major, i) => (
-                  <B1>{i + 1 === student.studentObj[0].majors.length ? `${major.name} Major` : `${major.name} Major • `}</B1>
+                  <B1 key={major}>{i + 1 === student.studentObj[0].majors.length ? `${major.name} Major` : `${major.name} Major • `}</B1>
                 ))}
               </div>
               <div className="majorMinorContainer">
                 {student?.minors?.map((minor, i) => (
-                  <B1>{i + 1 === student.studentObj[0].minors.length ? `${minor.name} Minor` : `${minor.name} Minor • `}</B1>
+                  <B1 key={minor}>{i + 1 === student.studentObj[0].minors.length ? `${minor.name} Minor` : `${minor.name} Minor • `}</B1>
                 ))}
               </div>
             </div>
@@ -41,12 +41,12 @@ function FriendCard(props) {
               <H3 style={{ margin: '0px' }}>{`${student.user.firstName} ${student.user.lastName} '${student.classYear}`}</H3>
               <div className="majorMinorContainer">
                 {student.majors.map((major, i) => (
-                  <B1>{i + 1 === student.majors.length ? `${major} Major` : `${major} Major • `}</B1>
+                  <B1 key={major}>{i + 1 === student.majors.length ? `${major} Major` : `${major} Major • `}</B1>
                 ))}
               </div>
               <div className="majorMinorContainer">
                 {student.minors.map((minor, i) => (
-                  <B1>{i + 1 === student.minors.length ? `${minor} Minor` : `${minor} Minor • `}</B1>
+                  <B1 key={minor}>{i + 1 === student.minors.length ? `${minor} Minor` : `${minor} Minor • `}</B1>
                 ))}
               </div>
             </div>
