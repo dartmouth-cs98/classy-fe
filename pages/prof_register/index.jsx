@@ -3,7 +3,7 @@ import React from 'react';
 // import { AuthProvider } from './AuthProvider';
 import Register from '../../components/register/ProfRegister';
 // import { H2, B1 } from '../../components/ui/typography';
-import styles from '../../styles/Login.module.css';
+import styles from '../../styles/ProfRegister.module.css';
 
 export default function ProfRegister() {
   return (

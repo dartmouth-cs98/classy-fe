@@ -5,13 +5,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Alert } from '@mui/material';
 import { H2 } from '../ui/typography';
-import styles from '../../styles/Register.module.css';
+import styles from '../../styles/ProfRegister.module.css';
 import { loadRegister, register } from '../../actions/authActions';
 
 // validate user information
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/; // 9-25 character password
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ID_REGEX = /^[A-z][A-z0-9-_]{6}$/; // 7 digit student id
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -20,10 +19,6 @@ function Register() {
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
-
-  const [netID, setNetID] = useState('');
-  const [validNetID, setValidNetID] = useState(false);
-  const [netIDFocus, setNetIDFocus] = useState(false);
 
   const [firstName, setFirstName] = useState('');
   const [firstNameFocus, setFirstNameFocus] = useState(false);
@@ -39,18 +34,11 @@ function Register() {
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
-  const [classYear, setClassYear] = useState(2023);
   const [majors, setMajors] = useState([]);
-  const [minors, setMinors] = useState([]);
 
   const dispatch = useDispatch();
 
   // validate input
-  useEffect(() => {
-    const res = ID_REGEX.test(netID);
-    setValidNetID(res);
-  }, [netID]);
-
   useEffect(() => {
     setValidPass(PWD_REGEX.test(password));
     setValidMatch(password === matchPassword);
@@ -91,7 +79,6 @@ function Register() {
     const list = [];
     if (!username) list.push('Please enter a username');
     if (!validEmail || !email) list.push('Please enter a valid email');
-    if (!netID || !validNetID) list.push('Please enter a valid netID');
     if (!firstName || !lastName) list.push('Please enter your name');
     if (!validPass) {
       list.push(
@@ -133,7 +120,7 @@ function Register() {
 
   const loadDepts = (type, onChange) => (
     <div className={styles.formfield}>
-      <label key={`label-${type}`} htmlFor={type}>{`Primary ${type.charAt(0).toUpperCase()}${type.slice(1)}`}</label>
+      <label key={`label-${type}`} htmlFor={type}>Primary Department</label>
       <select key={type} id={type} name={type} onChange={(e) => { onChange([e.target.value]); }}>
         <option key={`${type}-empty`} value="">-</option>
         {depts?.map((dept) => <option key={`${type}-${dept.name}`} value={dept._id}>{dept.name}</option>)}
@@ -146,9 +133,9 @@ function Register() {
     const user = {
       username, email, netID, firstName, lastName, password,
     };
+    // TODO
     const student = { classYear, majors, minors };
     dispatch(register({ user, student }));
-    // reload to onboarding
   };
 
   return (
@@ -162,17 +149,17 @@ function Register() {
         <div className={styles.rowcontainer}>
           {loadInput('text', 'username', setUsername, setUserFocus, username)}
           {loadInput('text', 'email', setEmail, setEmailFocus, email)}
-          {loadInput('text', 'netID', setNetID, setNetIDFocus, netID)}
+          {/* {loadInput('text', 'netID', setNetID, setNetIDFocus, netID)} */}
         </div>
         <div className={styles.rowcontainer}>
           {loadInput('text', 'first name', setFirstName, setFirstNameFocus, firstName)}
           {loadInput('text', 'last name', setLastName, setLastNameFocus, lastName)}
-          <div className={styles.formfield}>
+          {/* <div className={styles.formfield}>
             <label htmlFor="classYear">Year</label>
             <select id="classYear" name="classYear">
               {loadYears(2023, 2026)}
             </select>
-          </div>
+          </div> */}
         </div>
         <div className={styles.rowcontainer}>
           {loadInput('password', 'password', setPass, setPassFocus, password)}
@@ -180,7 +167,7 @@ function Register() {
         </div>
         <div className={styles.rowcontainer}>
           {loadDepts('major', setMajors)}
-          {loadDepts('minor', setMinors)}
+          {/* {loadDepts('minor', setMinors)} */}
         </div>
         <div className={styles.formbuttons}>
           <button
