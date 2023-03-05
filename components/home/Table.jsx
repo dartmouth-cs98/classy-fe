@@ -55,7 +55,7 @@ function Table(props) {
   ));
 
   const mockRow = () => (
-    <tr style={{ cursor: 'pointer' }}>
+    <tr>
       <td align="left" style={{ minWidth: '130px', height: '40px' }}>
         <B1>
           COSC 10

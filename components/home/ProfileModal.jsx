@@ -16,6 +16,7 @@ import modalStyles from '../../styles/components/Modal.module.css';
 import SaveButton from './SaveButton';
 import AddMajorMinor from './AddMajorMinor';
 import { defaultUserImageURL } from '../../constants/mockData';
+import MajorMinorSearchDropdown from '../MajorMinorSearchDropdown';
 
 function ProfileModal(props) {
   const {
@@ -29,7 +30,7 @@ function ProfileModal(props) {
     img: null,
     file: null,
   });
-  const thisYear = (new Date()).getFullYear() - 2000;
+  const thisYear = (new Date()).getFullYear();
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
   const [year, setYear] = useState('');
   const [addingMajor, setAddingMajor] = useState(false);
@@ -135,7 +136,7 @@ function ProfileModal(props) {
             setAdding={setAddingMajor}
             adding={addingMajor}
             handleDelete={handleDeleteMajor}
-            majorsMinors={majors}
+            depts={majors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Major"
@@ -145,7 +146,7 @@ function ProfileModal(props) {
             setAdding={setAddingMinor}
             adding={addingMinor}
             handleDelete={handleDeleteMinor}
-            majorsMinors={minors}
+            depts={minors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Minor"
