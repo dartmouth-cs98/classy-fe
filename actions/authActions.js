@@ -12,8 +12,10 @@ export const login = (userObject) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: AuthActionTypes.LOGIN,
-      payload: { response },
+      payload: response,
     });
+  }).catch((error) => {
+    console.log(error);
   });
 };
 

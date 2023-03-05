@@ -26,6 +26,34 @@ function Table(props) {
     }
   };
 
+  const loadCourses = () => courses.map((course) => (
+    <tr>
+      <td>
+        <B1>
+          <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+            {`${course.courseDept} ${course.courseNum}`}
+          </Link>
+        </B1>
+      </td>
+      <td>
+        <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+          <B1>{course.courseTitle}</B1>
+        </Link>
+      </td>
+      <td>
+        <Link href="/home">
+          <button
+            type="button"
+            className={stylesw.button}
+            onClick={() => removeCourse(course._id)}
+          >
+            X
+          </button>
+        </Link>
+      </td>
+    </tr>
+  ));
+
   const mockRow = () => (
     <tr style={{ cursor: 'pointer' }}>
       <td align="left" style={{ minWidth: '130px', height: '40px' }}>
@@ -42,14 +70,14 @@ function Table(props) {
         </B1>
       </td>
       {removing ? (
-      // <IconButton>
+        // <IconButton>
         <td>
           {/* <IconButton> */}
           <CloseIcon style={{ cursor: 'pointer', width: '70px' }} />
           {/* </IconButton> */}
         </td>
 
-      // </IconButton>
+        // </IconButton>
       ) : null}
 
     </tr>
@@ -80,7 +108,7 @@ function Table(props) {
                   </B1>
                 </td>
                 {removing ? (
-                // <IconButton>
+                  // <IconButton>
                   <td style={{ height: '40px' }}>
                     {/* <IconButton> */}
                     <CloseIcon style={{ cursor: 'pointer', width: '70px' }} />
@@ -88,7 +116,7 @@ function Table(props) {
 
                   </td>
 
-                // </IconButton>
+                  // </IconButton>
                 ) : null}
               </tr>
             ))}
