@@ -136,7 +136,7 @@ function ProfileModal(props) {
             setAdding={setAddingMajor}
             adding={addingMajor}
             handleDelete={handleDeleteMajor}
-            majorsMinors={majors}
+            depts={majors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Major"
@@ -146,7 +146,7 @@ function ProfileModal(props) {
             setAdding={setAddingMinor}
             adding={addingMinor}
             handleDelete={handleDeleteMinor}
-            majorsMinors={minors}
+            depts={minors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Minor"

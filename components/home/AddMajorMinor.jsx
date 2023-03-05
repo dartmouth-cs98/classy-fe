@@ -7,15 +7,15 @@ import MajorMinorSearchDropdown from '../MajorMinorSearchDropdown';
 
 function AddMajorMinor(props) {
   const {
-    setAdding, adding, handleDelete, majorsMinors, addingMajor, addingMinor, title,
+    setAdding, adding, handleDelete, depts, addingMajor, addingMinor, title,
   } = props;
 
-  const [inputValueMajor, setInputValueMajor] = useState('');
-  const [selectedMajor, setSelectedMajor] = useState('');
-  console.log(selectedMajor);
+  const [inputValueDept, setInputValueDept] = useState('');
+  const [selectedDept, setSelectedDept] = useState('');
+  console.log(selectedDept);
 
-  const [inputValueMinor, setInputValueMinor] = useState('');
-  const [selectedMinor, setSelectedMinor] = useState('');
+  // const [inputValueMinor, setInputValueMinor] = useState('');
+  // const [selectedMinor, setSelectedMinor] = useState('');
 
   return (
     <div className={styles.field}>
@@ -36,7 +36,7 @@ function AddMajorMinor(props) {
       </div>
 
       <div className={styles.horizontalContainer} style={{ gap: '10px' }}>
-        {majorsMinors.map((majorMinor) => (
+        {depts.map((majorMinor) => (
           <Chip
             style={{ marginBottom: '10px' }}
             variant="outlined"
@@ -50,10 +50,10 @@ function AddMajorMinor(props) {
         ? (
           <div className={styles.horizontalContainer} style={{ gap: '5px' }}>
             <MajorMinorSearchDropdown
-              inputValue={inputValueMajor}
-              setInputValue={setInputValueMajor}
-              selectedDept={selectedMajor}
-              setSelectedDept={setSelectedMajor}
+              inputValue={inputValueDept}
+              setInputValue={setInputValueDept}
+              selectedDept={selectedDept}
+              setSelectedDept={setSelectedDept}
             />
             <Button style={{ width: '100px' }} variant="contained" onClick={() => setAdding(false)}>Add</Button>
             <Button style={{ width: '100px' }} variant="outlined" onClick={() => setAdding(false)}>Cancel</Button>
