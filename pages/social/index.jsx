@@ -21,7 +21,7 @@ function Social() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchStudent(user.user.student._id));
+    dispatch(fetchStudent(user?.user?.student?._id));
   }, []);
 
   const showAllFriends = () => {
