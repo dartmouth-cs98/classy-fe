@@ -1,7 +1,13 @@
-.container {
-  padding: 0 2rem;
-  margin-left: 200px;
-  height: 700px;
+.registerContainer {
+  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #14121D; */
+}
+
+.loginContainer {
+  padding-top: 8%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 10%;
+  padding: 8%;
   padding-left: 12%;
 }
 
