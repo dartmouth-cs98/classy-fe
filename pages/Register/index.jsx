@@ -7,7 +7,7 @@ import styles from '../../styles/Login.module.css';
 
 export default function RegisterHome() {
   return (
-    <div className={styles.container}>
+    <div className={styles.registerContainer}>
       <main className="RegisterHome">
         <Register />
       </main>

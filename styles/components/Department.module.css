@@ -1,6 +1,6 @@
 .card {
-    width: 252px;
-    max-width:252px;
+    width: 240px;
+    max-width:240px;
     height: 126px;
     max-height:126;
     margin: 0px;
@@ -29,4 +29,5 @@
     position: absolute;
     bottom: 3px;
     right: 10px;
+    text-align: right;
 }

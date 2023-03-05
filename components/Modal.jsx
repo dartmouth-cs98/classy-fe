@@ -15,7 +15,9 @@ function Modal(props) {
   return (
     <ReactModal
       isOpen={isOpen}
-      onRequestClose={() => setIsOpen(false)}
+      onRequestClose={() => {
+        setIsOpen(false);
+      }}
       style={{
         overlay: {
           position: 'fixed',

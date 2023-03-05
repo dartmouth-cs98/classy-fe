@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 
 function SaveButton(props) {
-  const { adding } = props;
+  const { adding, onClick } = props;
   if (!adding) {
     return (
       <Button
@@ -11,6 +11,7 @@ function SaveButton(props) {
         }}
         size="large"
         variant="contained"
+        onClick={onClick}
       >
         Save
       </Button>
