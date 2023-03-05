@@ -103,20 +103,20 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& label.Mui-focused': {
-            // border: '1px solid #AFB1C1',
+            border: '0px solid #AFB1C1',
           },
           '& .MuiInput-underline:after': {
-            // border: '1px solid #AFB1C1',
+            border: '0px solid #AFB1C1',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#AFB1C1',
+              border: '0px solid #AFB1C1',
             },
             '&:hover fieldset': {
-              border: '1px solid #848698',
+              border: '0px solid #848698',
             },
             '&.Mui-focused fieldset': {
-              border: '1px solid #848698',
+              border: '0px solid #848698',
             },
           },
           background: '#F4F5F9',
@@ -141,6 +141,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: 'transparent!important',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          borderRadius: '280px!important',
         },
       },
     },
