@@ -36,14 +36,15 @@ const cardColors = [
 
 function HomePage() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUser(userId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchUser(userId));
+  // }, []);
   const { user } = useSelector((state) => state.user);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
-    dispatch(fetchUser(userId));
+    dispatch(fetchUser(user._id));
   }, [updatedUser === true]);
+  console.log('user in home:::', user);
 
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
