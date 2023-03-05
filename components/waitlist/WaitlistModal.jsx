@@ -123,11 +123,10 @@ function WaitlistModal(props) {
   };
 
   const modalButton = (entryPoint) => {
-    /* Get terms for waitlist */
-    // store waitlist terms and student position in dictionary
     const studentWaitlists = {};
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
+      // look through each course offering and look for student on reg/priority waitlists
       if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
       } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
@@ -139,9 +138,8 @@ function WaitlistModal(props) {
         studentWaitlists[course.offerings[i].term] = position;
       }
     }
-    // get list of terms student is signed up for
+    // get list of terms student is signed up for and format
     const termArray = Object.keys(studentWaitlists);
-    // format waitlist list
     const waitlistTerms = termArray.join(', ');
     // Get next term and student's position
     const nextTerm = termArray[0];
@@ -152,15 +150,14 @@ function WaitlistModal(props) {
         <div
           className={styleswt.card}
           style={{ background: cardColor[index] }}
-          onClick={() => setModalNotificationOpen(true)}
         >
           <div className={styleswt.waitlistCardsContainer}>
+            <H3>
+              {` ${course.courseDept} ${course.courseNum}`}
+            </H3>
             <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-              <H3>
-                {` ${course.courseDept} ${course.courseNum}`}
-              </H3>
+              <H3 color={textColor[index]}>{course.courseTitle}</H3>
             </Link>
-            <H3 color={textColor[index]}>{course.courseTitle}</H3>
           </div>
           <div className={styleswt.waitlistCardsContainer}>
             <div>
@@ -175,25 +172,15 @@ function WaitlistModal(props) {
               </H3>
               {/* <H4>For additonal terms, select edit below</H4> */}
               <H3>{nextTermPos}</H3>
+              {/* <H3>{course.offerings[1].waitlist.length}</H3> */}
             </div>
           </div>
-          <div>
-            <div className={styleswt.bottomButtons}>
-              <div className={styleswt.buttonContainer}>
-                <a href={`/courses/${course.courseDept}/${course.courseNum}`}>
-                  <button className={styleswt.btn} type="button">
-                    Course Info Page
-                  </button>
-                </a>
-              </div>
-              <div className={styleswt.buttonContainer}>
-                <button className={styleswt.btn} type="button">
-                  {/* Could also say details, not sure what is clearer */}
-                  {/* Details */}
-                  Edit
-                </button>
-              </div>
-            </div>
+          <div className={styleswt.bottomButtons}>
+            <button className={styleswt.btn} type="button" onClick={() => setModalNotificationOpen(true)}>
+              {/* Could also say details, not sure what is clearer */}
+              {/* Details */}
+              Edit
+            </button>
           </div>
         </div>
       );
