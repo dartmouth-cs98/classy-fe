@@ -16,6 +16,7 @@ import {
   toggleOfferedNext,
 } from '../../actions';
 import FilterSelector from './FilterSelector';
+import { nextTerm } from '../../constants/nextTerm';
 
 function FilterModal(props) {
   const { setIsOpen, isOpen } = props;
@@ -106,7 +107,11 @@ function FilterModal(props) {
         <div>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Checkbox style={{ marginLeft: '-10px' }} checked={offeredNext} onChange={() => dispatch(toggleOfferedNext())} />
-            <H4 style={{ cursor: 'pointer' }} onClick={() => dispatch(toggleOfferedNext())}>Offered Next Term</H4>
+            <H4 style={{ cursor: 'pointer' }} onClick={() => dispatch(toggleOfferedNext())}>
+              Offered
+              {' '}
+              {nextTerm}
+            </H4>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>

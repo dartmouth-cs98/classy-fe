@@ -11,18 +11,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
 import FriendsCheckBoxes from './FriendsCheckBoxes';
-import { fetchFriends, updateStudent } from '../../actions';
+import { fetchStudent, updateStudent } from '../../actions';
 
-export default function FormDialog(props) {
+export default function RecommendCourseModal(props) {
   const { course } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedFriends, setSelectedFriends] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const friends = useSelector((state) => state.student.friends);
+  const friends = useSelector((state) => state.student.student.friends);
 
   useEffect(() => {
-    dispatch(fetchFriends(user?.user?.student?._id));
+    dispatch(fetchStudent(user?.user?.student?._id));
   }, [friends === []]);
 
   const handleClickOpen = () => {
@@ -48,6 +48,7 @@ export default function FormDialog(props) {
         }),
       );
     });
+    handleClose();
   };
 
   return (

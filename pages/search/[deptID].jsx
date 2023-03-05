@@ -68,7 +68,7 @@ function Department(props) {
               </div>
               <div className={styles.resultContainer} style={{ height: showAll ? 'auto' : '225px' }}>
                 {department?.professors?.map((professor, i) => (
-                  <Professor key={professor.name} professor={professor} />
+                  <Professor key={professor.name} professor={professor} forDept />
                 ))}
               </div>
             </div>

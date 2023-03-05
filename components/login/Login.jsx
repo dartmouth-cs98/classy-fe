@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from '@mui/material';
+import { useRouter } from 'next/router';
 import { H1, H2 } from '../ui/typography';
 import styles from '../../styles/Login.module.css';
 import { login } from '../../actions/authActions';
@@ -10,12 +11,14 @@ import { login } from '../../actions/authActions';
 function Login() {
   // set focus on first input when Login loads or there is an error
   const userRef = useRef();
+  const router = useRouter();
 
   // get user input and setup error/success
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false); // replace with a react router to home page
+  const { user } = useSelector((state) => state.user);
 
   // set the focus on the first input when Login loads
   useEffect(() => {
@@ -27,6 +30,19 @@ function Login() {
     setErrorMsg('');
   }, [username, password]);
 
+  const initialRender = useRef(true);
+  useEffect(() => {
+    if (!initialRender.current) {
+      if (user.status === 404 || Object.keys(user).length === 0) {
+        if (user.status === 404) { setErrorMsg('Invalid username or password'); }
+      } else {
+        router.push('/home');
+      }
+    } else {
+      initialRender.current = false;
+    }
+  }, [user]);
+
   const dispatch = useDispatch();
 
   // when submit button on the form has been pressed
@@ -34,15 +50,14 @@ function Login() {
     e.preventDefault();
     // debug
     console.log(username, password);
-    dispatch(login({ username, password }));
-    // for testing, set success to true
-    // setSuccess(true);
+    await dispatch(login({ username, password }));
   };
 
   const loadErrorAlert = () => {
     const list = [];
     if (!username) list.push('Please enter your username');
     if (!password) list.push('Please enter your password');
+    if (errorMsg) list.push(errorMsg);
 
     if (list.length) {
       return (
