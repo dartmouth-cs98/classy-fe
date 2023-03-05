@@ -18,6 +18,7 @@ const cardColors = [
 ];
 
 function ProfHome() {
+  // prof hide nav
   const name = 'Lorie Loeb';
   const dispatch = useDispatch();
   useEffect(() => {

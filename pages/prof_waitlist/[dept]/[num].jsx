@@ -20,6 +20,7 @@ const cardColors = [
 ];
 
 function ProfWaitlist() {
+  // prof hide nav
   const router = useRouter();
   const { dept, num } = router.query;
   const name = 'Lorie Loeb';
@@ -31,8 +32,8 @@ function ProfWaitlist() {
   );
   if (
     !course
-		|| course.courseDept !== dept
-		|| course.courseNum !== num
+    || course.courseDept !== dept
+    || course.courseNum !== num
   ) {
     dispatch(fetchCourse(dept, num));
     return <B1 key="loading">Loading...</B1>;
