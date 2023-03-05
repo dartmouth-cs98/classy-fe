@@ -51,8 +51,8 @@ function Register() {
   /// REDIRECT TO HOME PAGE AFTER SUCCESSFUL REGISTER
   const initialRender = useRef(true);
   useEffect(() => {
-    if (!initialRender.current && reduxUser !== {}) {
-      if (Object.keys(reduxUser).length > 3) {
+    if (!initialRender.current) {
+      if (Object.keys(reduxUser).length !== 0) {
         router.push('/home');
       }
     } else {
