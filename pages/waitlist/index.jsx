@@ -30,8 +30,10 @@ export default function WaitlistHome() {
           {waitlistContent.courses ? waitlistContent.courses.map((course, index) => (
             <WaitlistModal
               course={course}
-              studentId={`ObjectId('${waitlistContent.student._id}')`}
+              studentId={waitlistContent.student._id}
+              // ID={waitlistContent.student._id}
               onWaitlist
+              // offering={course.offering}
               index={index}
               entryPoint="waitlist"
             />

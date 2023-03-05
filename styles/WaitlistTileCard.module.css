@@ -20,12 +20,6 @@
   flex-direction: row;
 }
 
-.edit {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .btn {
   background-color: #14121D;
   border-color: transparent;

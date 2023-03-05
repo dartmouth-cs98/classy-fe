@@ -123,13 +123,13 @@ function WaitlistModal(props) {
   };
 
   const modalButton = (entryPoint) => {
-    /* Get terms for waitlist */
     const studentWaitlists = {};
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
-      if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
+      // look through each course offering and look for student on reg/priority waitlists
+      if (course.offerings[i].priorityWaitlist.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
-      } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
+      } else if (course.offerings[i].waitlist.includes(studentId)) {
         // eslint-disable-next-line max-len
         const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
         // eslint-disable-next-line max-len
@@ -172,6 +172,7 @@ function WaitlistModal(props) {
               </H3>
               {/* <H4>For additonal terms, select edit below</H4> */}
               <H3>{nextTermPos}</H3>
+              {/* <H3>{course.offerings[1].waitlist.length}</H3> */}
             </div>
           </div>
           <div className={styleswt.bottomButtons}>
