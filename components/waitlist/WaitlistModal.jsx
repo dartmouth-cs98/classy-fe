@@ -127,9 +127,9 @@ function WaitlistModal(props) {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
       // look through each course offering and look for student on reg/priority waitlists
-      if (course.offerings[i].priorityWaitlist.includes(studentId)) {
+      if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
-      } else if (course.offerings[i].waitlist.includes(studentId)) {
+      } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
         // eslint-disable-next-line max-len
         const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
         // eslint-disable-next-line max-len

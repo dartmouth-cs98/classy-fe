@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
-import SearchBar from '../../components/search/SearchBar';
 import styles from '../../styles/Social.module.css';
 import CourseTitleCard from '../../components/CourseTitleCard';
 import { cardColors } from '../../constants/colors';
@@ -50,7 +49,6 @@ function Social() {
   return (
     <div className={styles.container}>
       <div>
-        <SearchBar />
         <div style={{ marginTop: '15px' }}>
           <H3>Your Friends Recommend</H3>
         </div>
