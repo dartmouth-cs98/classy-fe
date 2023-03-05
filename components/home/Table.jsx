@@ -21,36 +21,33 @@ function Table(props) {
     }
   };
 
-  const loadCourses = () => courses.map((course) => {
-    console.log('course', course);
-    return (
-      <tr>
-        <td>
-          <B1>
-            <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-              {`${course.courseDept} ${course.courseNum}`}
-            </Link>
-          </B1>
-        </td>
-        <td>
+  const loadCourses = () => courses.map((course) => (
+    <tr>
+      <td>
+        <B1>
           <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-            <B1>{course.courseTitle}</B1>
+            {`${course.courseDept} ${course.courseNum}`}
           </Link>
-        </td>
-        <td>
-          <Link href="/home">
-            <button
-              type="button"
-              className={stylesw.button}
-              onClick={() => removeCourse(course._id)}
-            >
-              X
-            </button>
-          </Link>
-        </td>
-      </tr>
-    );
-  });
+        </B1>
+      </td>
+      <td>
+        <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
+          <B1>{course.courseTitle}</B1>
+        </Link>
+      </td>
+      <td>
+        <Link href="/home">
+          <button
+            type="button"
+            className={stylesw.button}
+            onClick={() => removeCourse(course._id)}
+          >
+            X
+          </button>
+        </Link>
+      </td>
+    </tr>
+  ));
 
   const tableOrEmpty = () => {
     if (courses?.length > 0) {

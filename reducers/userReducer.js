@@ -1,4 +1,5 @@
 import { ActionTypes } from '../actions';
+import { AuthActionTypes } from '../actions/authActions';
 
 const initialState = {
   user: {},
@@ -10,7 +11,9 @@ const UserReducer = (state = initialState, action = {}) => {
       return { ...state, user: action.payload };
     case ActionTypes.UPDATE_USER:
       return { ...state, user: action.payload };
-    case ActionTypes.UPDATE_USER:
+    case AuthActionTypes.LOGIN:
+      return { ...state, user: action.payload };
+    case ActionTypes.REGISTER:
       return { ...state, user: action.payload };
     default:
       return state;

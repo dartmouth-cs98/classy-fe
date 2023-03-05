@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Alert } from '@mui/material';
+import { useRouter } from 'next/router';
 import { H2 } from '../ui/typography';
 import styles from '../../styles/Register.module.css';
 import { loadRegister, register } from '../../actions/authActions';
@@ -44,6 +45,20 @@ function Register() {
   const [minors, setMinors] = useState([]);
 
   const dispatch = useDispatch();
+  const router = useRouter();
+  const reduxUser = useSelector((state) => state.user).user;
+
+  /// REDIRECT TO HOME PAGE AFTER SUCCESSFUL REGISTER
+  const initialRender = useRef(true);
+  useEffect(() => {
+    if (!initialRender.current && reduxUser !== {}) {
+      if (Object.keys(reduxUser).length > 3) {
+        router.push('/home');
+      }
+    } else {
+      initialRender.current = false;
+    }
+  }, [reduxUser]);
 
   // validate input
   useEffect(() => {
@@ -73,10 +88,7 @@ function Register() {
     (reduxState) => reduxState.auth?.current?.response?.depts,
   );
   const errors = useSelector(
-    (reduxState) => {
-      console.log(reduxState.auth.errors);
-      return reduxState.auth.errors;
-    },
+    (reduxState) => reduxState.auth.errors,
   );
 
   const loadYears = (start, end) => {
