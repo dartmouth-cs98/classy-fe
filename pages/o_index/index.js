@@ -15,7 +15,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-  // eslint-disable-next-line react/jsx-filename-extension
+    // eslint-disable-next-line react/jsx-filename-extension
     <div className="container">
       <Head>
         <title>Create Next App</title>
