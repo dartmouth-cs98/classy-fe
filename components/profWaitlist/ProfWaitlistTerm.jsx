@@ -26,7 +26,6 @@ function ProfWaitlistTerm(props) {
     if (selected === i) {
       return setSelected(null);
     }
-
     setSelected(i);
   };
 
@@ -44,10 +43,6 @@ function ProfWaitlistTerm(props) {
           </div>
 
           <div className={styles.right}>
-            {/* eslint-disable-next-line */}
-						<button type="button" className={styles.btn}>
-  <MdOutlineModeEditOutline className={styles.inline} size={20} />
-						</button>
             {/* eslint-disable-next-line */}
 						<button type="button" className={styles.btn}>
   <MdOutlineMailOutline className={styles.inline} size={20} />
@@ -78,42 +73,12 @@ function ProfWaitlistTerm(props) {
         />
 
         <div>
-          {/* !!! 2 should be replaced with data */}
           <H5 className={styles.text}>
             {`${
               offering.waitlist.length + offering.priorityWaitlist.length
             } signups`}
 
           </H5>
-        </div>
-
-        {/* <Pagination /> */}
-        <div className={styles.pagination}>
-          {/* eslint-disable-next-line */}
-					<button type="button" className={styles.btn}>
-  <MdOutlineChevronLeft />
-					</button>
-          <ul className={styles.pagenum}>
-            <button type="button" className={styles.btn}>
-              <li>1</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>2</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>3</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>4</li>
-            </button>
-            <button type="button" className={styles.btn}>
-              <li>5</li>
-            </button>
-          </ul>
-          {/* eslint-disable-next-line */}
-					<button type="button" className={styles.btn}>
-  <MdOutlineChevronRight />
-					</button>
         </div>
       </div>
     </div>

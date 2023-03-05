@@ -15,6 +15,7 @@ import { updateUser } from '../../actions';
 import modalStyles from '../../styles/components/Modal.module.css';
 import SaveButton from './SaveButton';
 import AddMajorMinor from './AddMajorMinor';
+import { defaultUserImageURL } from '../../constants/mockData';
 
 function ProfileModal(props) {
   const {
@@ -22,7 +23,12 @@ function ProfileModal(props) {
   } = props;
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [pic, setPic] = useState({ url: user?.profileImageUrl, img: null, file: null });
+  const [pic, setPic] = useState({
+    url: user?.profileImageUrl?.length > 0
+      ? user?.profileImageUrl : defaultUserImageURL,
+    img: null,
+    file: null,
+  });
   const thisYear = (new Date()).getFullYear() - 2000;
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
   const [year, setYear] = useState('');
@@ -60,10 +66,16 @@ function ProfileModal(props) {
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onButtonClick={onImageSubmit}
-      buttonText="Save"
       header="Edit Profile"
-      button={<SaveButton adding={addingMajor || addingMinor} />}
+      button={(
+        <SaveButton
+          onClick={() => {
+            setIsOpen(false);
+            onImageSubmit();
+          }}
+          adding={addingMajor || addingMinor}
+        />
+      )}
     >
       <div className={modalStyles.horizontalContainer} style={{ gap: '40px' }}>
         <div className={modalStyles.verticalContainer} style={{ width: '300px' }}>
@@ -104,15 +116,15 @@ function ProfileModal(props) {
                   value={year}
                 >
                   {
-                years.map((classYear, index) => (
-                  <MenuItem
-                    key={classYear}
-                    value={classYear}
-                  >
-                    {classYear}
-                  </MenuItem>
-                ))
-              }
+                    years.map((classYear, index) => (
+                      <MenuItem
+                        key={classYear}
+                        value={classYear}
+                      >
+                        {classYear}
+                      </MenuItem>
+                    ))
+                  }
                 </TextField>
               </FormControl>
             </div>
