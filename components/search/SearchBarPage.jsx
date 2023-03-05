@@ -21,11 +21,12 @@ import { setSearchQuery } from '../../actions';
 function SearchBarPage(props) {
   // const [searchInput, setSearchInput] = useState('');
   const [searchModalIsOpen, setSearchModalIsOpen] = useState(false);
-  const [tab, setTab] = useState('Courses');
+  // const [tab, setTab] = useState('Courses');
 
   const { children } = props;
-  const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
+  // const searchQuery = useSelector((reduxState) => reduxState.search.searchQuery);
   const searchReducer = useSelector((reduxState) => reduxState.search);
+  const { searchQuery, tab } = searchReducer;
   const dispatch = useDispatch();
 
   const filtersApplied = searchReducer.distribFilters.length !== 0
@@ -76,8 +77,7 @@ function SearchBarPage(props) {
         display: 'flex', flexDirection: 'row', minHeight: '45px', justifyItems: 'flex-start',
       }}
       >
-        <FiltersDisplay filtersApplied={filtersApplied} tab={tab} />
-
+        <FiltersDisplay filtersApplied={filtersApplied} />
       </div>
       {/* {searchQuery || filtersApplied
         ? <TabBar tab={tab} setTab={setTab} />
@@ -88,7 +88,7 @@ function SearchBarPage(props) {
           ? (
             <div>
               {/* <TabBar tab={tab} setTab={setTab} /> */}
-              <TabBar tab={tab} setTab={setTab} style={{ marginTop: '50px' }} />
+              <TabBar style={{ marginTop: '50px' }} />
               <div>
                 <SearchResults tab={tab} />
               </div>
