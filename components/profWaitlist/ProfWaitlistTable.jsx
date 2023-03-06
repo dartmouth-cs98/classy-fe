@@ -10,41 +10,45 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import {
-  B1,
+  B1, H5,
 } from '../ui/typography';
 import getColor from '../../data/colorscheme';
-import { updatePriority } from '../../actions';
+import { updatePriority, approve } from '../../actions';
 
 function Row(props) {
   const {
-    waitlist, courseId, spot, dept, num, i,
+    waitlist, courseId, spot, dept, num, i, type,
   } = props;
   const [priority, setPriority] = React.useState(spot === 'PRIORITY');
   const studentId = waitlist?._id;
   const dispatch = useDispatch();
-  //   const course = useSelector((reduxState) => reduxState.waitlist.current);
 
   const findReasoning = () => {
+    if (!waitlist.waitlistReasons) {
+      return '';
+    }
     for (const reason of waitlist.waitlistReasons) {
-      if (reason.course === courseId) {
-        return reason.reason;
+      if (reason?.course === courseId) {
+        return reason?.reason;
       }
     }
     return '';
   };
+
   const prioritize = (event) => {
     event.preventDefault();
     setPriority(!priority);
     dispatch(updatePriority(dept, num, i, studentId, priority));
   };
 
-  console.log('row', waitlist);
+  const approval = (event) => {
+    event.preventDefault();
+    dispatch(approve(dept, num, i, studentId));
+  };
 
   const loadEmailLink = () => {
     const mailto = `${waitlist?.user?.email}`;
@@ -72,7 +76,25 @@ function Row(props) {
       {priority ? 'Unprioritize' : 'Prioritize'}
     </Button>
   );
-  const cellVals = [studentName, loadEmailLink(), netID, findReasoning(), priorityBtn];
+
+  const approveBtn = (
+    <Button
+      type="button"
+      style={{ background: getColor('approved', true) }}
+      onClick={approval}
+    >
+      Approve
+    </Button>
+  );
+
+  const sideBtn = priority ? approveBtn : priorityBtn;
+  let cellVals;
+
+  if (type === 'approved') {
+    cellVals = [studentName, loadEmailLink(), netID];
+  } else {
+    cellVals = [studentName, loadEmailLink(), netID, findReasoning(), sideBtn];
+  }
 
   return (
     <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -91,7 +113,7 @@ function Row(props) {
 
 export default function CollapsibleTable(props) {
   const {
-    courseId, offering, dept, num, i,
+    courseId, offering, dept, num, i, type,
   } = props;
   if (!offering.waitlist && !offering.priorityWaitlist) {
     return <div />;
@@ -101,19 +123,37 @@ export default function CollapsibleTable(props) {
     ? offering.priorityWaitlist.length + index + 1
     : index + 1);
 
-  const loadHeaderRow = (strings) => (
-    <TableHead>
-      <TableRow>
-        {strings.map((string) => (
-          <TableCell align="left">
-            <strong>{string}</strong>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
+  const loadHeaderRow = (strings) => {
+    if (type === 'approved' && offering.approved.length === 0) {
+      return (
+        <TableRow>
+          <H5>You have not approved any students on your waitlists</H5>
+        </TableRow>
+      );
+    }
 
-  const loadRow = (student, spot) => (
+    if (type === 'approved' && offering.approved.length === 0) {
+      return (
+        <TableRow>
+          <H5>You have not approved any students on your waitlists</H5>
+        </TableRow>
+      );
+    }
+
+    return (
+      <TableHead>
+        <TableRow>
+          {strings.map((string) => (
+            <TableCell align="left">
+              <strong>{string}</strong>
+            </TableCell>
+          ))}
+        </TableRow>
+      </TableHead>
+    );
+  };
+
+  const loadRow = (student, spot, rowType) => (
     <Row
       key={student._id}
       waitlist={student}
@@ -122,18 +162,44 @@ export default function CollapsibleTable(props) {
       num={num}
       spot={spot}
       i={i}
+      type={rowType}
     />
   );
 
-  const headerValues = ['', 'Spot #', 'Student Name', 'Email (@dartmouth.edu)', 'Student ID', 'Reasoning', 'Prioritize'];
+  const headerValues = ['', 'Spot #', 'Student Name', 'Email (@dartmouth.edu)',
+    'Student ID'];
+
+  if (type !== 'approved') {
+    headerValues.push('Reasoning');
+    headerValues.push(type === 'approved' ? 'Approve' : 'Prioritize');
+  }
+
+  const loadBody = () => {
+    if (type === 'approved') {
+      if (offering?.approved.length === 0) {
+        <TableBody>
+          <B1>You have not approved any students from the waitlist.</B1>
+        </TableBody>;
+      }
+      return (
+        <TableBody>
+          {offering?.approved?.map((student, index) => loadRow(student, index + 1, 'approved'))}
+        </TableBody>
+      );
+    }
+    return (
+      <TableBody>
+        {offering?.priorityWaitlist?.map((student) => loadRow(student, 'PRIORITY', 'priority'))}
+        {offering?.waitlist?.map((student, index) => loadRow(student, calculateSpot(index), 'waitlist'))}
+      </TableBody>
+    );
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         {loadHeaderRow(headerValues)}
-        <TableBody>
-          {offering?.priorityWaitlist?.map((student) => loadRow(student, 'PRIORITY'))}
-          {offering?.waitlist?.map((student, index) => loadRow(student, calculateSpot(index)))}
-        </TableBody>
+        {loadBody()}
       </Table>
     </TableContainer>
   );

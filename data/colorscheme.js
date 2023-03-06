@@ -121,7 +121,11 @@ function generateDistribs(possibleDistribs) {
 }
 
 function getPrioritizeColor(value) {
-  return value ? pink : green;
+  return value ? pink : blue;
+}
+
+function getApprovedColor() {
+  return green;
 }
 
 // returns the color a term tile should be based on the season
@@ -152,6 +156,8 @@ export default function getColor(tile, val) {
     return getCITitleColor(val);
   } if (tile.toLowerCase() === 'prioritize') {
     return getPrioritizeColor(val);
+  } if (tile.toLowerCase() === 'approved') {
+    return getApprovedColor();
   }
   return null;
 }

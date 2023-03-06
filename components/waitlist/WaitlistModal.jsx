@@ -62,7 +62,9 @@ function WaitlistModal(props) {
       let position = -1;
       const totalLength = offering?.priorityWaitlist?.length + offering?.waitlist?.length;
       let onOfferingWaitlist = false;
-      if (offering?.priorityWaitlist?.includes(studentId)) {
+      if (offering?.approved?.includes(studentId)) {
+        position = 'Approved';
+      } else if (offering?.priorityWaitlist?.includes(studentId)) {
         position = 'Priority';
         onOfferingWaitlist = true;
       } else if (offering?.waitlist?.includes(studentId)) {
@@ -127,13 +129,18 @@ function WaitlistModal(props) {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
       // look through each course offering and look for student on reg/priority waitlists
-      if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
+      if (course?.offerings[i]?.approved?.includes(studentId)) {
+        studentWaitlists[course.offerings[i].term] = 'Approved';
+      } else if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
       } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
         // eslint-disable-next-line max-len
-        const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
+        const totalStudents = course.offerings[i].priorityWaitlist.length
+					+ course.offerings[i].waitlist.length;
         // eslint-disable-next-line max-len
-        const studentPos = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.indexOf(studentId) + 1;
+        const studentPos =					course.offerings[i].priorityWaitlist.length
+					+ course.offerings[i].waitlist.indexOf(studentId)
+					+ 1;
         const position = `${studentPos} / ${totalStudents}`;
         studentWaitlists[course.offerings[i].term] = position;
       }
