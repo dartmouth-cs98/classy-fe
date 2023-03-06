@@ -57,7 +57,7 @@ export default function FriendProfile() {
             display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '35px',
           }}
           >
-            <img className={styles.pic} src={friend.user.profileImageUrl} alt="profile Image" />
+            <img className={styles.pic} src={friend?.user?.profileImageUrl} alt="profile Image" />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <FriendRequestButton state={friendState} onClickFunction={requestFriend} />
               <H1>{`${friend.user.firstName} ${friend.user.lastName}`}</H1>

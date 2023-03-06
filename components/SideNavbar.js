@@ -16,26 +16,18 @@ import NavbarLink from './NavbarLink';
 // import icons from react-icon
 
 function SideNavbar() {
-  const sidenavLinkStyles = 'text-2xl text-white group-hover:text-black';
+  const sidenavIconStyles = 'text-2xl text-white group-hover:text-black ';
+  const sidenavAllStyles = 'text-red';
 
   return (
     <div>
       <Disclosure as="nav">
-        {/* <Disclosure.Button className="absolute top-4 right-4
-        inline-flex items-center peer justify-center rounded-md p-2 text-gray-900
-        hover:text-white focus:outline-none focus:ring-2 focus:ring-inset
-        focus:rind-white group hover:bg-gray-900">
-          <GiHamburgerMenu
-            className="block md:hidden h-6 w-6"
-            aria-hidden="true"
-          />
-        </Disclosure.Button> */}
         <div className="p-6 w-1/2 h-screen bg-black z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start items-center my-6">
             <Image src={logo} width={60} height={60} alt="classy logo" />
             <H4
               color="white"
-              className="text-base text-center cursor-pointer font-bold pb-4 w-full mt-3.5"
+              className="text-base text-center font-bold pb-4 w-full mt-3.5"
             >
               Classy
             </H4>
@@ -45,25 +37,26 @@ function SideNavbar() {
               <NavbarLink
                 link="home"
                 title="Home"
-                icon={<MdOutlineHome className={sidenavLinkStyles} />}
+                className={sidenavAllStyles}
+                icon={<MdOutlineHome className={sidenavIconStyles} />}
               />
 
               <NavbarLink
                 link="search"
                 title="Search"
-                icon={<MdOutlineSearch className={sidenavLinkStyles} />}
+                icon={<MdOutlineSearch className={sidenavIconStyles} />}
               />
 
               <NavbarLink
                 link="social"
                 title="Social"
-                icon={<MdPeopleOutline className={sidenavLinkStyles} />}
+                icon={<MdPeopleOutline className={sidenavIconStyles} />}
               />
 
               <NavbarLink
                 link="waitlist"
                 title="Waitlists"
-                icon={<MdOutlineFormatListBulleted className={sidenavLinkStyles} />}
+                icon={<MdOutlineFormatListBulleted className={sidenavIconStyles} />}
               />
 
             </div>
@@ -71,9 +64,9 @@ function SideNavbar() {
             {/* logout */}
             <div className="my-4 w-full">
               <NavbarLink
-                link="explore"
+                link="home"
                 title="Logout"
-                icon={<MdOutlineLogout className={sidenavLinkStyles} />}
+                icon={<MdOutlineLogout className={sidenavIconStyles} />}
               />
             </div>
           </div>
