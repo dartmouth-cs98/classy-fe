@@ -9,23 +9,26 @@ import { defaultUserImageURL } from '../constants/mockData';
 function Professor(props) {
   const { professor, forDept } = props;
   const { pic, name, departments } = professor;
+  if (forDept) {
+    return (
+      <Link href={`/professors/${name}`}>
+        <div className={styles.card}>
+          <img
+            className={styles.pic}
+            style={{ marginBottom: 5 }}
+            src={professor?.user.profileImageUrl?.length > 0
+              ? professor.user.profileImageUrl : defaultUserImageURL}
+            alt="friend pic"
+          />
+          <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
+          <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
+        </div>
+      </Link>
+    );
+  }
   return (
     <div>
-      {forDept ? (
-        <Link href={`/professors/${name}`}>
-          <div className={styles.card}>
-            <img
-              className={styles.pic}
-              style={{ marginBottom: 5 }}
-              src={professor?.user.profileImageUrl?.length > 0
-                ? professor.user.profileImageUrl : defaultUserImageURL}
-              alt="friend pic"
-            />
-            <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
-            <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
-          </div>
-        </Link>
-      ) : (
+      {professor.professorObj ? (
         <Link href={`/professors/${name}`}>
           <div className={styles.card}>
             <img
@@ -36,7 +39,21 @@ function Professor(props) {
               alt="friend pic"
             />
             <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
-            <B1 className={styles.description} color="var(--dark-grey)">{departments.join(', ')}</B1>
+            <B1 className={styles.description} color="var(--dark-grey)">{departments?.join(', ')}</B1>
+          </div>
+        </Link>
+      ) : (
+        <Link href={`/professors/${name}`}>
+          <div className={styles.card}>
+            <img
+              className={styles.pic}
+              style={{ marginBottom: 5 }}
+              src={professor?.user && professor?.user.profileImageUrl?.length > 0
+                ? professor?.user.profileImageUrl : defaultUserImageURL}
+              alt="friend pic"
+            />
+            <H4 style={{ margin: '0px' }} className={styles.name}>{name}</H4>
+            <B1 className={styles.description} color="var(--dark-grey)">{departments?.join(', ')}</B1>
           </div>
         </Link>
       )}
