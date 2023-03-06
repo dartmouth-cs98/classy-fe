@@ -1,6 +1,7 @@
 .container {
   padding: 0 2rem;
   /* margin-left: 200px; */
+  padding-bottom: 0%;
   height: 100%;
   /* width: 100%; */
   display: flex;
@@ -10,21 +11,27 @@
   background: #14121D;
 }
 
+.logo {
+  align-items: center;
+  margin-left: 45%;
+  padding-bottom: 3%;
+}
+
 .title {
-  padding-bottom: 5%;
-  padding-top: 10%;
+  padding-top: 6%;
+  padding-bottom: 2.6%;
 }
 
 .buttonContainer {
-  padding: 30px;
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;  
 }
 
 .onboardingSection {
-  padding-top: 10%;
-  padding-bottom: 10%;
+  padding-top: 3%;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;

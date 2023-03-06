@@ -124,7 +124,11 @@ function Login() {
         Need an account?
         <br />
         <span className="line">
-          <a href="/register">Sign up instead</a>
+          Sign up instead
+          {' '}
+          <a href="/register">Student</a>
+          {' '}
+          <a href="/prof_register">or Professor</a>
         </span>
       </p>
     </div>

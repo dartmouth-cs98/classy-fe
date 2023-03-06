@@ -44,6 +44,7 @@ export const ActionTypes = {
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   PRIORITIZE: 'PRIORITZE',
+  APPROVE: 'APPROVE',
   ...SearchActionTypes,
   ...AuthActionTypes,
 };
@@ -370,9 +371,18 @@ export const fetchProfessorHome = (name) => (dispatch) => {
 export const updatePriority = (dept, num, offeringIndex, studentId, priority) => (dispatch) => {
   axios.put(`${ROOT_URL}/prioritize/${dept}/${num}/${offeringIndex}/${studentId}/${priority}`).then((res) => {
     const response = res.data;
-    console.log('update priority action', res.data);
     dispatch({
       type: ActionTypes.PRIORITIZE,
+      payload: response,
+    });
+  });
+};
+
+export const approve = (dept, num, offeringIndex, studentId) => (dispatch) => {
+  axios.put(`${ROOT_URL}/approve/${dept}/${num}/${offeringIndex}/${studentId}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.APPROVE,
       payload: response,
     });
   });

@@ -1,17 +1,16 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import {
   MdOutlineMailOutline,
-  MdOutlineModeEditOutline,
   MdOutlineExpandLess,
   MdOutlineExpandMore,
-  MdOutlineChevronLeft,
-  MdOutlineChevronRight,
 } from 'react-icons/md';
+import Link from 'next/link';
 import {
   H3, H5,
 } from '../ui/typography';
-// eslint-disable-next-line import/no-unresolved
-// import Pagination from '../Pagination';
+
 import styles from '../../styles/components/ProfWaitlistTerm.module.css';
 import ProfWaitlistTable from './ProfWaitlistTable';
 
@@ -20,14 +19,46 @@ function ProfWaitlistTerm(props) {
     color, i, offering, courseId, dept, num,
   } = props;
 
-  const [selected, setSelected] = useState(null);
-  // eslint-disable-next-line consistent-return, no-shadow
-  const toggle = (i) => {
-    if (selected === i) {
-      return setSelected(null);
+  const [selected, setSelected] = useState(true);
+
+  const approvedEmails = () => {
+    if (!offering?.approved || offering.approved.length === 0) {
+      return '';
     }
-    setSelected(i);
+    const emails = [];
+    offering.approved.map((student) => emails.push(student?.user?.email));
+    return emails.join(',');
   };
+
+  const subject = `APPROVED FOR ${dept} ${num} ${offering?.term}`;
+  const body = `Hello,%0D%0A%0D%0A
+Thank you for your interest in my course. I am pleased to inform you that you have been 
+taken off of the waitlist ${dept} ${num} offered in ${offering?.term}. 
+Please accept your position as soon as possible and make sure to register for the course on DartHub.%0D%0A%0D%0A
+Email me if you have any further questions.%0D%0A%0D%0A
+${offering?.professors.join(', ')}`;
+
+  const mailBtn = (
+    <Link
+      href={`mailto:?bcc=${approvedEmails()}&subject=${subject}&body=${body}`}
+    >
+      <button type="button" className={styles.btn}>
+        <MdOutlineMailOutline className={styles.inline} size={20} />
+      </button>
+    </Link>
+  );
+
+  const collapseBtn = (
+    <button type="button" className={styles.btn} onClick={() => setSelected(!selected)}>
+      {selected ? (
+        <MdOutlineExpandLess className={styles.inline} size={20} />
+      ) : (
+        <MdOutlineExpandMore className={styles.inline} size={20} />
+      )}
+    </button>
+  );
+
+  const signups = offering.waitlist.length + offering.priorityWaitlist.length;
 
   return (
     <div>
@@ -35,50 +66,40 @@ function ProfWaitlistTerm(props) {
         <div className={styles.colorCard} style={{ background: color.pastel }}>
           <div className={styles.left}>
             <H3 color={color.dark}>
-              {`${offering.term} ${
-                offering.period ? offering.period : 'TBD'
-              }`}
-
+              {`${offering.term} ${offering.period ? offering.period : 'TBD'}`}
             </H3>
           </div>
 
           <div className={styles.right}>
-            {/* eslint-disable-next-line */}
-						<button type="button" className={styles.btn}>
-  <MdOutlineMailOutline className={styles.inline} size={20} />
-						</button>
-            {/* eslint-disable-next-line */}
-						<button
-  type="button"
-  className={styles.btn}
-  onClick={() => toggle(i)}
-						>
-  {selected === i ? (
-    <MdOutlineExpandLess className={styles.inline} size={20} />
-  ) : (
-    <MdOutlineExpandMore className={styles.inline} size={20} />
-  )}
-						</button>
+            {mailBtn}
+            {collapseBtn}
           </div>
         </div>
       </div>
 
-      <div className={selected === i ? 'content show' : 'content '}>
+      <div style={{ display: `${selected ? 'block' : 'none'}` }}>
+        {offering?.approved.length > 0 ? <H3>Approved</H3> : ''}
         <ProfWaitlistTable
           courseId={courseId}
           offering={offering}
           i={i}
           dept={dept}
           num={num}
+          type="approved"
+        />
+        <br />
+        <H3>Waitlist</H3>
+        <ProfWaitlistTable
+          courseId={courseId}
+          offering={offering}
+          i={i}
+          dept={dept}
+          num={num}
+          type="waitlist"
         />
 
         <div>
-          <H5 className={styles.text}>
-            {`${
-              offering.waitlist.length + offering.priorityWaitlist.length
-            } signups`}
-
-          </H5>
+          <H5 className={styles.text}>{`${signups} signups`}</H5>
         </div>
       </div>
     </div>
