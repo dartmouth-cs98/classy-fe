@@ -19,12 +19,17 @@ import {
 import { nextTerm } from '../../constants/nextTerm';
 
 function FiltersDisplay(props) {
+  // const searchReducer = useSelector((reduxState) => reduxState.search);
+  // const {
+  //   stateDistribFilters, stateWcFilters, nrEligible, offeredNext, tab,
+  // } = searchReducer;
   const stateDistribFilters = useSelector((reduxState) => reduxState.search.distribFilters);
   const stateWcFilters = useSelector((reduxState) => reduxState.search.wcFilters);
   const nrEligible = useSelector((reduxState) => reduxState.search.nrEligible);
   const offeredNext = useSelector((reduxState) => reduxState.search.offeredNext);
+  const tab = useSelector((reduxState) => reduxState.search.tab);
   const dispatch = useDispatch();
-  const { filtersApplied, tab } = props;
+  const { filtersApplied } = props;
 
   const handleDistribClick = (name) => {
     // console.log(distrib);
@@ -56,7 +61,7 @@ function FiltersDisplay(props) {
           >
             <A style={{ marginRight: '10px' }} color="var(--mid-grey)" onClick={() => dispatch(clearFilters())}>Clear Filters</A>
 
-            {stateDistribFilters.map((distrib, i) => (
+            {stateDistribFilters?.map((distrib, i) => (
               <Pill
                 key={distrib.name}
                 name={distrib.name}
@@ -66,7 +71,7 @@ function FiltersDisplay(props) {
               />
             ))}
 
-            {stateWcFilters.map((distrib, i) => (
+            {stateWcFilters?.map((distrib, i) => (
               <Pill
                 key={distrib.name}
                 name={distrib.name}
