@@ -40,7 +40,7 @@ function Modal(props) {
       }}
     >
       <div style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '100%',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', height: '100%',
       }}
       >
         {/* <div style={{

@@ -218,6 +218,9 @@ function WaitlistModal(props) {
               onChange={onInputChange}
             />
             {`${offering.term} ${offering.professors.join(', ')}`}
+            console.log(
+            {offering.term}
+            )
           </B1>
         </label>
       );
@@ -228,7 +231,7 @@ function WaitlistModal(props) {
   return (
     <>
       {modalButton(entryPoint)}
-      <Modal2 isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger">
+      <Modal2 isOpen={modalNotificationOpen}>
         {onWaitlist
           ? (
             <>
