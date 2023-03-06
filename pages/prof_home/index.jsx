@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProfessorHome } from '../../actions';
 import CourseSimple from '../../components/profWaitlist/CourseSimple';
 import {
-  A, H3, H1, B1,
+  A, H3, H1, B1, H4,
 } from '../../components/ui/typography';
 import styles from '../../styles/components/ProfHome.module.css';
 
@@ -33,34 +33,40 @@ function ProfHome() {
 
   const pic = 'https://web.cs.dartmouth.edu/sites/department_computer_science/files/styles/profile_portrait/public/LorieLoeb.png?itok=A6088OY8';
   return (
-    <div style={{ padding: '20px 80px 50px 275px' }}>
-      <div style={{
-        display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '20px',
-      }}
-      >
-        <img className={styles.pic} src={pic} alt="Lorie" />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-          <A>Edit Profile</A>
-          <H1>{currentProfHome?.professor?.name}</H1>
-          <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-            {`Professor of ${currentProfHome?.professor?.departments?.join(', ')}`}
-          </B1>
-        </div>
+    <div>
+      <div className={styles.nav}>
+        <H4 color="white" style={{ alignItems: 'center' }}> Classy </H4>
       </div>
 
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <H3>My Courses</H3>
+      <div style={{ padding: '20px 80px 50px 275px' }}>
+        <div style={{
+          display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '20px',
+        }}
+        >
+          <img className={styles.pic} src={pic} alt="Lorie" />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+            <A>Edit Profile</A>
+            <H1>{currentProfHome?.professor?.name}</H1>
+            <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
+              {`Professor of ${currentProfHome?.professor?.departments?.join(', ')}`}
+            </B1>
+          </div>
         </div>
 
-        <div className={styles.resultContainer}>
-          {currentProfHome?.courses?.map((course, i) => (
-            <CourseSimple
-              key={course?.courseName}
-              course={course}
-              color={cardColors[i % cardColors.length]}
-            />
-          ))}
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <H3>My Courses</H3>
+          </div>
+
+          <div className={styles.resultContainer}>
+            {currentProfHome?.courses?.map((course, i) => (
+              <CourseSimple
+                key={course?.courseName}
+                course={course}
+                color={cardColors[i % cardColors.length]}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
