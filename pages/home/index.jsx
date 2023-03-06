@@ -102,7 +102,6 @@ function HomePage() {
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
               {`${user?.student?.majors ? loadMajors() : 'Undecided'} Major(s)`}
-              {/* {`${loadMajors()} Major(s)`} */}
             </B1>
           </div>
         </div>

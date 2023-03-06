@@ -179,9 +179,6 @@ export default function CourseInfo() {
         <B1 key="no data">No Data</B1>
       )}
       <br />
-      <Link key={`${dept}-courses`} href={`/courses/${dept}`}>
-        <A>{`Find more ${dept} courses`}</A>
-      </Link>
 
       <CourseInfoSubtitle key="reviews" text="Reviews" />
       {loadReviews()}

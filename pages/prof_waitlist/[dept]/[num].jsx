@@ -1,8 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdAddCircle } from 'react-icons/md';
 import { Alert } from '@mui/material';
 import { fetchCourse, fetchProfessor } from '../../../actions';
 import { B1, H1 } from '../../../components/ui/typography';
