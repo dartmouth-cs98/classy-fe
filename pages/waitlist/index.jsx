@@ -6,11 +6,12 @@ import styles from '../../styles/WaitlistHome.module.css';
 /* import SideNavbar from '../../components/SideNavbar'; */
 import { H2, B1 } from '../../components/ui/typography';
 import WaitlistModal from '../../components/waitlist/WaitlistModal';
+import { defaultImageURLs } from '../../constants/mockData';
 import { fetchWaitlists } from '../../actions';
 
 const displayEmptyWaitlist = () => (
   <div className={styles.marginBottom}>
-    <img className={styles.emptyStatePic} src={defaultImageURLs.onlineLearning} alt="No waitlists image" />
+    <img className={styles.emptyStatePic} src={defaultImageURLs.onlineLearning} alt="No waitlists" />
     <B1 style={{ marginTop: '10px' }}>You do not have any waitlists</B1>
   </div>
 );
