@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Button, Modal } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useDispatch } from 'react-redux';
+import Modal from '../ModalWaitlist';
 import styles from '../../styles/WaitlistDetail.module.css';
 // reactstrap components
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,7 +38,7 @@ function RemoveWaitlist(props) {
           </H3>
         )}
 
-      <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger" onClick={() => setModalNotificationOpen(false)}>
+      <Modal isOpen={modalNotificationOpen} onClick={() => setModalNotificationOpen(false)}>
         <div className=" modal-body">
           <div className=" py-3 text-center">
             <i className=" ni ni-bell-55 ni-3x" />
