@@ -225,9 +225,6 @@ function WaitlistModal(props) {
               onChange={onInputChange}
             />
             {`${offering.term} ${offering.professors.join(', ')}`}
-            console.log(
-            {offering.term}
-            )
           </B1>
         </label>
       );
