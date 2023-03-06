@@ -123,7 +123,6 @@ function Register() {
       username, email, firstName, lastName, department, password,
     };
     // console.log('user: ', user);
-    // TODO
     // const professor = { department };
     // dispatch(register({ user, student }));
   };

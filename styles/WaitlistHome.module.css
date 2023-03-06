@@ -27,3 +27,19 @@
   justify-content: left;
   flex-wrap: wrap;
 }
+
+.pic {
+  height: 174px;
+  width: 174px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.emptyStatePic {
+  height: 200px;
+  width: 200px;
+}
+
+.marginBottom {
+  margin-bottom: 10px;
+}
