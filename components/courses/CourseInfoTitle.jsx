@@ -38,7 +38,6 @@ function CourseInfoTitle(props) {
 
   const onStatusClick = (event) => {
     event.preventDefault();
-    console.log('submitting', status);
     if (status === 'taken') {
       dispatch(markCourse(student._id, course._id, 'taken', true));
       dispatch(markCourse(student._id, course._id, 'current', false));
