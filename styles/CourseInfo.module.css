@@ -140,8 +140,7 @@
 .horizscroll a:hover,
 .horizscroll a:focus,
 .horizscroll a:active {
-    color: black;
-    background-color: #fafafa;
+    opacity: 50%;
 }
 
 .container {

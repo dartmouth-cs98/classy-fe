@@ -42,17 +42,6 @@ function ProfessorInfo() {
           departments={currentProfessor.professor.departments}
         />
       </div>
-      <div className={styles.featuredCoursesContainer}>
-        <H3 color="var(--darkest-grey)">Featured Courses</H3>
-        <div className={styles.featuredCardsContainer}>
-          {currentProfessor.courses.map((course, i) => (
-            <CourseTitleCard
-              course={course}
-              color={cardColors[i % cardColors.length]}
-            />
-          ))}
-        </div>
-      </div>
       <div className={styles.courseTableContainer}>
         <H3 color="var(--darkest-grey)">All Courses</H3>
         <CourseTable

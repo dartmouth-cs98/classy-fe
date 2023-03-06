@@ -53,7 +53,7 @@ function ProfHome() {
           <H3>My Courses</H3>
         </div>
 
-        <div className={styles.resultContainer}>
+        <div className={[styles.resultContainer]}>
           {currentProfHome?.courses?.map((course, i) => (
             <CourseSimple
               key={course?.courseName}
