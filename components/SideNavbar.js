@@ -64,7 +64,7 @@ function SideNavbar() {
             {/* logout */}
             <div className="my-4 w-full">
               <NavbarLink
-                link="home"
+                link=""
                 title="Logout"
                 icon={<MdOutlineLogout className={sidenavIconStyles} />}
               />
