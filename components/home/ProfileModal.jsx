@@ -35,7 +35,7 @@ function ProfileModal(props) {
   const [year, setYear] = useState('');
   const [addingMajor, setAddingMajor] = useState(false);
   const [addingMinor, setAddingMinor] = useState(false);
-  const [majors, setMajors] = useState(['HI']);
+  const [majors, setMajors] = useState(['Philosophy']);
   const [minors, setMinors] = useState(['Computer Science', 'Economics']);
 
   const onImageUpload = (event) => {

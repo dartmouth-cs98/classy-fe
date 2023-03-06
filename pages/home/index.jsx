@@ -56,13 +56,13 @@ function HomePage() {
 
   console.log('user in home:::', user);
 
-  // const loadMajors = () => {
-  //   const majorNames = [];
-  //   for (const major of user.student.majors) {
-  //     majorNames.push(major.name);
-  //   }
-  //   return majorNames.join(',');
-  // };
+  const loadMajors = () => {
+    const majorNames = [];
+    for (const major of user.student.majors) {
+      majorNames.push(major.name);
+    }
+    return majorNames.join(',');
+  };
 
   return (
     <div style={{ padding: '20px 40px 40px 275px' }}>
@@ -101,7 +101,7 @@ function HomePage() {
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {/* {`${user?.student?.majors ? loadMajors() : 'Undecided'} Major(s)`} */}
+              {`${user?.student?.majors ? loadMajors() : 'Undecided'} Major(s)`}
               {/* {`${loadMajors()} Major(s)`} */}
             </B1>
           </div>
