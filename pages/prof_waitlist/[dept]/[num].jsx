@@ -1,8 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdAddCircle } from 'react-icons/md';
 import { Alert } from '@mui/material';
 import { fetchCourse, fetchProfessor } from '../../../actions';
 import { B1, H1 } from '../../../components/ui/typography';
@@ -43,7 +42,6 @@ function ProfWaitlist() {
     dispatch(fetchProfessor(name));
     return <B1 key="loading">Loading...</B1>;
   }
-  console.log('the course is', course);
 
   const loadProfOfferings = () => course?.offerings?.map((offering, i) => {
     if (offering.professors.includes(name)) {
@@ -77,12 +75,12 @@ function ProfWaitlist() {
           <br />
         </>
       ) : (
-			  ''
+        ''
       )}
 
       <div className={styles.body}>
         {loadProfOfferings().join(',') !== '' ? (
-				  loadProfOfferings()
+          loadProfOfferings()
         ) : (
           <B1>No students on any waitlists yet!</B1>
         )}

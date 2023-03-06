@@ -54,8 +54,6 @@ function HomePage() {
     ? Math.round((100 * user.student.coursesTaken.length) / 35, 10)
     : 0;
 
-  console.log('user in home:::', user);
-
   const loadMajors = () => {
     const majorNames = [];
     for (const major of user.student.majors) {
