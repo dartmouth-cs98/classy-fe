@@ -44,7 +44,6 @@ function Table(props) {
         <Link href="/home">
           <button
             type="button"
-            className={stylesw.button}
             onClick={() => removeCourse(course._id)}
           >
             X
@@ -77,7 +76,7 @@ function Table(props) {
           {/* </IconButton> */}
         </td>
 
-        // </IconButton>
+      // </IconButton>
       ) : null}
 
     </tr>
@@ -111,12 +110,12 @@ function Table(props) {
                   // <IconButton>
                   <td style={{ height: '40px' }}>
                     {/* <IconButton> */}
-                    <CloseIcon style={{ cursor: 'pointer', width: '70px' }} />
+                    <CloseIcon style={{ cursor: 'pointer', width: '70px' }} onClick={() => removeCourse(course._id)} />
                     {/* </IconButton> */}
 
                   </td>
 
-                  // </IconButton>
+                // </IconButton>
                 ) : null}
               </tr>
             ))}
