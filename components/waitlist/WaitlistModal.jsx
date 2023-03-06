@@ -5,8 +5,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Link from 'next/link';
-import { Button, Modal } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useDispatch } from 'react-redux';
+import Modal2 from '../ModalWaitlist';
 import styles from '../../styles/WaitlistDetail.module.css';
 import styleswt from '../../styles/WaitlistTileCard.module.css';
 // reactstrap components
@@ -227,7 +228,7 @@ function WaitlistModal(props) {
   return (
     <>
       {modalButton(entryPoint)}
-      <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger">
+      <Modal2 isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger">
         {onWaitlist
           ? (
             <>
@@ -322,7 +323,7 @@ function WaitlistModal(props) {
             </Button>
           </B1>
         </div>
-      </Modal>
+      </Modal2>
     </>
   );
 }
