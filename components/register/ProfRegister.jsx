@@ -61,10 +61,7 @@ function Register() {
     (reduxState) => reduxState?.auth?.current?.response?.depts,
   );
   const errors = useSelector(
-    (reduxState) => {
-      console.log(reduxState.auth.errors);
-      return reduxState.auth.errors;
-    },
+    (reduxState) => reduxState.auth.errors,
   );
 
   const loadYears = (start, end) => {
@@ -134,7 +131,6 @@ function Register() {
       username, email, firstName, lastName, department, password,
     };
     // console.log('user: ', user);
-    // TODO
     // const professor = { department };
     // dispatch(register({ user, student }));
   };

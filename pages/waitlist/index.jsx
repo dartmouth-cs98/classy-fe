@@ -4,9 +4,16 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/WaitlistHome.module.css';
 /* import SideNavbar from '../../components/SideNavbar'; */
-import { H2 } from '../../components/ui/typography';
+import { H2, B1 } from '../../components/ui/typography';
 import WaitlistModal from '../../components/waitlist/WaitlistModal';
 import { fetchWaitlists } from '../../actions';
+
+const displayEmptyWaitlist = () => (
+  <div className={styles.marginBottom}>
+    <img className={styles.emptyStatePic} src={defaultImageURLs.onlineLearning} alt="No waitlists image" />
+    <B1 style={{ marginTop: '10px' }}>You do not have any waitlists</B1>
+  </div>
+);
 
 export default function WaitlistHome() {
   const dispatch = useDispatch();
@@ -38,7 +45,7 @@ export default function WaitlistHome() {
               index={index}
               entryPoint="waitlist"
             />
-          )) : ''}
+          )) : displayEmptyWaitlist()}
         </div>
       </main>
     </div>
