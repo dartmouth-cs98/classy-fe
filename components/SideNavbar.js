@@ -8,6 +8,7 @@ import {
   MdOutlineSearch,
   MdPeopleOutline,
   MdOutlineFormatListBulleted,
+  MdHelpOutline,
   MdOutlineLogout,
 } from 'react-icons/md';
 import { H4 } from './ui/typography';
@@ -59,6 +60,11 @@ function SideNavbar() {
                 icon={<MdOutlineFormatListBulleted className={sidenavIconStyles} />}
               />
 
+              <NavbarLink
+                link="help"
+                title="Help"
+                icon={<MdHelpOutline className={sidenavIconStyles} />}
+              />
             </div>
 
             {/* logout */}
