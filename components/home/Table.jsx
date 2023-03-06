@@ -92,24 +92,6 @@ function Table(props) {
                 ) : null}
               </tr>
             ))}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
-            {mockRow()}
           </tbody>
         </table>
       </div>
