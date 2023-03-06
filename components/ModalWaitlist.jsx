@@ -15,9 +15,6 @@ function Modal(props) {
   return (
     <ReactModal
       isOpen={isOpen}
-      onRequestClose={() => {
-        setIsOpen(false);
-      }}
       style={{
         overlay: {
           position: 'fixed',
@@ -46,19 +43,20 @@ function Modal(props) {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '100%',
       }}
       >
-        <div style={{
-          display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%',
+        {/* <div style={{
+          display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
+          alignItems: 'flex-start', width: '100%',
         }}
         >
           <H2>{header}</H2>
-        </div>
+        </div> */}
         {children}
-        <div style={{
+        {/* <div style={{
           display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'flex-end',
         }}
         >
           {button}
-        </div>
+        </div> */}
       </div>
     </ReactModal>
   );
