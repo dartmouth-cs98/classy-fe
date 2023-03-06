@@ -1,20 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  H2, H5, B1, TextLabel,
+  H2, H5, B1, B3, TextLabel,
 } from '../ui/typography';
 import styles from '../../styles/components/CourseSimple.module.css';
 
 function CourseSimple(props) {
   const {
-    course, color, type,
+    course, color, type, friend,
   } = props;
   const distribsWC = course.wc ? course.distribs.concat(course.wc) : course.distribs;
   const loadLink = () => {
-    if (type === 'home') {
-      return `/courses/${course.courseDept}/${course.courseNum}`;
+    if (type === 'prof') {
+      return `/prof_waitlist/${course.courseDept}/${course.courseNum}`;
     }
-    return `/prof_waitlist/${course.courseDept}/${course.courseNum}`;
+    return `/courses/${course.courseDept}/${course.courseNum}`;
   };
 
   const loadDistribs = () => {
@@ -32,9 +32,7 @@ function CourseSimple(props) {
     <Link href={loadLink()}>
       <div className={styles.card}>
         <div className={styles.colorCard} style={{ background: color.pastel }}>
-          <div className={styles.topLeft}>
-            {loadDistribs()}
-          </div>
+          <div className={styles.topLeft}>{loadDistribs()}</div>
 
           <div className={styles.qualityReview}>
             <H2 style={{ textAlign: 'right' }} color={color.dark}>
@@ -52,6 +50,17 @@ function CourseSimple(props) {
             className={styles.description}
           >
             {course.courseTitle}
+            {friend && friend.user ? (
+              <div style={{ marginTop: '5px' }}>
+                <B3
+                  color="var(--dark-grey)"
+                  className={styles.description}
+                >
+                  {`- ${friend.user.firstName} ${friend.user.lastName}`}
+
+                </B3>
+              </div>
+            ) : null}
           </B1>
         </div>
       </div>

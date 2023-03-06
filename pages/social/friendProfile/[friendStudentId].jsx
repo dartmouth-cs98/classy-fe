@@ -14,6 +14,7 @@ import {
 import { cardColors } from '../../../constants/colors';
 import CourseTitleCard from '../../../components/CourseTitleCard';
 import FriendRequestButton from '../../../components/social/friendRequestButton';
+import CourseSimple from '../../../components/profWaitlist/CourseSimple';
 
 export default function FriendProfile() {
   const router = useRouter();
@@ -34,6 +35,20 @@ export default function FriendProfile() {
     dispatch(fetchFriend(friendStudentId));
   }, []);
 
+  const loadMajors = () => user?.student?.majors?.map((major, i) => (
+    <B1>
+      {i + 1 === user?.student?.majors.length
+        ? `${major.name} Major` : `${major.name} Major • `}
+    </B1>
+  ));
+
+  const loadMinors = () => user?.student?.minors?.map((minor, i) => (
+    <B1>
+      {i + 1 === user?.student?.minors.length
+        ? `${minor.name} Major` : `${minor.name} Major • `}
+    </B1>
+  ));
+
   const requestFriend = () => {
     const outgoingFriendRequests = [...user?.student?.outgoingFriendRequests];
     const existingFriendRequest = user?.student?.outgoingFriendRequests.findIndex(
@@ -49,46 +64,56 @@ export default function FriendProfile() {
     }
   };
 
+  const loadShoppingCart = () => {
+    if (friend && friend.shoppingCart) {
+      return friend.shoppingCart.map((course, i) => (
+        <div style={{ margin: '10px' }}>
+          <CourseSimple
+            key={course?.courseTitle}
+            course={course}
+            color={cardColors[i % cardColors.length]}
+            type="friend"
+          />
+        </div>
+      ));
+    }
+    return null;
+  };
+
   return (
     <div className={styles.container}>
-      {friend && friend.user
-        ? (
-          <div style={{
-            display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '35px',
+      {friend && friend.user ? (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: '35px',
           }}
-          >
-            <img className={styles.pic} src={friend?.user?.profileImageUrl} alt="profile Image" />
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <FriendRequestButton state={friendState} onClickFunction={requestFriend} />
-              <H1>{`${friend.user.firstName} ${friend.user.lastName}`}</H1>
-              <div className="majorMinorContainer">
-                {friend.majors.map((major, i) => (
-                  <B1>{i + 1 === friend.majors.length ? `${major} Major` : `${major} Major • `}</B1>
-                ))}
-              </div>
-              <div className="majorMinorContainer">
-                {friend.minors.map((minor, i) => (
-                  <B1>{i + 1 === friend.minors.length ? `${minor} Minor` : `${minor} Minor • `}</B1>
-                ))}
-              </div>
+        >
+          <img
+            className={styles.pic}
+            src={friend?.user?.profileImageUrl}
+            alt="profile Image"
+          />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <FriendRequestButton
+              state={friendState}
+              onClickFunction={requestFriend}
+            />
+            <H1>{`${friend.user.firstName} ${friend.user.lastName}`}</H1>
+            <div className="majorMinorContainer">{loadMajors()}</div>
+            <div className="majorMinorContainer">
+              {loadMinors()}
             </div>
           </div>
-        )
-        : null}
+        </div>
+      ) : null}
       <div style={{ marginTop: '15px' }}>
         <H3>Shopping Cart For Next Term</H3>
       </div>
       <div className={styles.coursesContainer}>
-        {friend && friend.shoppingCart ? friend.shoppingCart.map((course, i) => (
-          <div style={{ margin: '10px' }}>
-            <CourseTitleCard
-              course={course}
-              color={cardColors[i % cardColors.length]}
-              key={course.courseName}
-              friend={course.friend}
-            />
-          </div>
-        )) : null}
+        {loadShoppingCart()}
       </div>
     </div>
   );

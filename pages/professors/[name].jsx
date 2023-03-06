@@ -5,17 +5,9 @@ import {
   B1, H3,
 } from '../../components/ui/typography';
 import ProfessorCard from '../../components/professors/ProfessorCard';
-import CourseTitleCard from '../../components/CourseTitleCard';
 import CourseTable from '../../components/CourseTable';
-// eslint-disable-import/no-unresolved
-import styles from '../../styles/ProfessorInfo.module.css';
+import styles from '../../styles/professorInfo.module.css';
 import { fetchProfessor } from '../../actions';
-
-const cardColors = [
-  { pastel: '#FCF0E3', dark: '#BA7D37' },
-  { pastel: '#EBF9FA', dark: '#5B8A8D' },
-  { pastel: '#EFFAEB', dark: '#75946A' },
-];
 
 function ProfessorInfo() {
   const router = useRouter();
@@ -34,12 +26,15 @@ function ProfessorInfo() {
       <B1>Loading...</B1>
     );
   }
+  const prof = currentProfessor.professor;
+
   return (
     <div className={styles.container}>
       <div className={styles.professorContainer}>
         <ProfessorCard
-          name={currentProfessor.professor.name}
-          departments={currentProfessor.professor.departments}
+          name={prof?.name}
+          departments={prof?.departments}
+          profileImageUrl={prof?.user?.profileImageUrl}
         />
       </div>
       <div className={styles.courseTableContainer}>
@@ -47,7 +42,7 @@ function ProfessorInfo() {
         <CourseTable
           courses={currentProfessor.courses}
           tableType="profInfo"
-          professorName={currentProfessor.professor.name}
+          professorName={prof?.name}
         />
       </div>
     </div>
