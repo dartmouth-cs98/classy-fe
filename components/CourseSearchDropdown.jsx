@@ -29,7 +29,6 @@ function CourseSearchDropdown(props) {
       clearOnBlur={false}
       onInputChange={(event, NewInputValue) => {
         setInputValue(NewInputValue);
-        console.log(NewInputValue);
         dispatch(fetchDropDownCourses(NewInputValue));
       }}
       onChange={(e, newCourseValue) => {

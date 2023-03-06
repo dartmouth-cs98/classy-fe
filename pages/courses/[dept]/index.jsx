@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 // eslint-disable-import/no-unresolved
-import stylesp from '../../../styles/professorInfo.module.css';
+import stylesp from '../../../styles/ProfessorInfo.module.css';
 import styles from '../../../styles/components/SearchPage.module.css';
 import {
   H2, H3, B1, A,

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
@@ -22,7 +23,7 @@ export default function FriendsCheckBoxes(props) {
       id="checkboxes-tags-demo"
       options={friends}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.user.firstName + " " + option.user.lastName}
+      getOptionLabel={(option) => `${option.user.firstName} ${option.user.lastName}`}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
           <Checkbox
@@ -31,7 +32,7 @@ export default function FriendsCheckBoxes(props) {
             style={{ marginRight: 8 }}
             checked={selected}
           />
-          {option.user.firstName + " " + option.user.lastName}
+          {`${option.user.firstName} ${option.user.lastName}`}
         </li>
       )}
       style={{ width: '100 %', marginTop: '10px', marginBottom: '10px' }}
@@ -41,4 +42,3 @@ export default function FriendsCheckBoxes(props) {
     />
   );
 }
-

@@ -2,14 +2,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import Modal from '../Modal';
 import SaveButton from './SaveButton';
-import Table from './Table';
-import { H3, H4, A } from '../ui/typography';
-import CourseSearchDropdown from '../CourseSearchDropdown';
-import { clearDropdown } from '../../actions';
-import styles from '../../styles/components/Modal.module.css';
+// import Table from './Table';
+// import { H3, H4, A } from '../ui/typography';
+// import CourseSearchDropdown from '../CourseSearchDropdown';
+// import { clearDropdown } from '../../actions';
+// import styles from '../../styles/components/Modal.module.css';
 import ModalContents from './ModalContents';
 
 function CurrentModal(props) {
@@ -21,8 +21,6 @@ function CurrentModal(props) {
 
   const [inputValue, setInputValue] = useState('');
   const [selectedCourse, setSelectedCourse] = useState(null);
-
-  console.log(selectedCourse);
 
   const [adding, setAdding] = useState(false);
 

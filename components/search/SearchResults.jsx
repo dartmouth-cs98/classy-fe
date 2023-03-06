@@ -46,7 +46,6 @@ function SearchResults(props) {
         <div className={styles.profs}>
           {searchProfResults ? searchProfResults.map((professor) => (
             <div>
-              {console.log('prof:::', professor)}
               <Professor key={professor._id} professor={professor} />
             </div>
           )) : null}

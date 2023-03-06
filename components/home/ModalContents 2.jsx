@@ -34,8 +34,6 @@ function ModalContents(props) {
   const [inputValue, setInputValue] = useState('');
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  console.log(selectedCourse);
-
   //   const [adding, setAdding] = useState(false);
 
   return (
