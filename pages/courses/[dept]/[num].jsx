@@ -89,6 +89,41 @@ export default function CourseInfo() {
     return <B1>Add a review after taking the course!</B1>;
   };
 
+  const loadPrereqs = () => {
+    if (currentCourse.course) {
+      return getPrereqs(currentCourse.course.required, currentCourse.course.counts);
+    }
+    return '';
+  };
+
+  const loadMedians = () => {
+    if (currentCourse.course) {
+      return convertMedian(currentCourse.course.avgMedian);
+    }
+    return '';
+  };
+
+  const loadWorkload = () => {
+    if (currentCourse.course && currentCourse.course.workload) {
+      return currentCourse.course.workload;
+    }
+    return 'Not Enough Data';
+  };
+
+  const loadDifficulty = () => {
+    if (currentCourse.course && currentCourse.course.difficulty) {
+      return currentCourse.course.difficulty;
+    }
+    return 'Not Enough Data';
+  };
+
+  const loadQuality = () => {
+    if (currentCourse.course && currentCourse.course.quality) {
+      return currentCourse.course.quality;
+    }
+    return 'Not Enough Data';
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.ciTitle}>
@@ -111,18 +146,12 @@ export default function CourseInfo() {
       </B1>
 
       <CourseInfoSubtitle key="prereqs" text="Prerequisites" />
-      {currentCourse.course
-			  ? getPrereqs(currentCourse.course.required, currentCourse.course.counts)
-			  : ''}
+      {loadPrereqs()}
       <CourseInfoSubtitle text="At a Glance" />
       <Glance
         distribs={currentCourse.course ? currentCourse.course.distribs : ''}
         wc={currentCourse.course ? currentCourse.course.wc : ''}
-        avgMedian={
-					currentCourse.course
-					  ? convertMedian(currentCourse.course.avgMedian)
-					  : ''
-				}
+        avgMedian={loadMedians()}
         dept={currentCourse.course ? currentCourse.course.courseDept : ''}
         num={currentCourse.course ? currentCourse.course.courseNum : ''}
         nr={currentCourse.course ? currentCourse.course.nrEligible : ''}
@@ -131,21 +160,9 @@ export default function CourseInfo() {
       <CourseInfoSubtitle key="students" text="What Students Say" />
       <StudentsSay
         key="studentssay"
-        workload={
-					currentCourse.course && currentCourse.course.workload
-					  ? currentCourse.course.workload
-					  : 'Not Enough Data'
-				}
-        difficulty={
-					currentCourse.course && currentCourse.course.difficulty
-					  ? currentCourse.course.difficulty
-					  : 'Not Enough Data'
-				}
-        quality={
-					currentCourse.course && currentCourse.course.quality
-					  ? currentCourse.course.quality
-					  : 'Not Enough Data'
-				}
+        workload={loadWorkload()}
+        difficulty={loadDifficulty()}
+        quality={loadQuality()}
       />
 
       <CourseInfoSubtitle key="offered" text="Offered" />
@@ -161,7 +178,7 @@ export default function CourseInfo() {
       ) : (
         <B1 key="no data">No Data</B1>
       )}
-
+      <br />
       <Link key={`${dept}-courses`} href={`/courses/${dept}`}>
         <A>{`Find more ${dept} courses`}</A>
       </Link>
