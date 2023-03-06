@@ -61,19 +61,8 @@ function Register() {
     (reduxState) => reduxState?.auth?.current?.response?.depts,
   );
   const errors = useSelector(
-    (reduxState) => {
-      console.log(reduxState.auth.errors);
-      return reduxState.auth.errors;
-    },
+    (reduxState) => reduxState.auth.errors,
   );
-
-  const loadYears = (start, end) => {
-    const list = [];
-    for (let i = start; i <= end; i += 1) {
-      list.push(i);
-    }
-    return list.map((year) => <option key={year} value={`${year}`}>{`${year}`}</option>);
-  };
 
   const loadErrorAlert = () => {
     const list = [];
