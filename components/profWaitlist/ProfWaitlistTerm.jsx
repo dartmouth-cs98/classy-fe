@@ -26,7 +26,7 @@ function ProfWaitlistTerm(props) {
       return '';
     }
     const emails = [];
-    offering.approved.map((student) => emails.push(student.user.email));
+    offering.approved.map((student) => emails.push(student?.user?.email));
     return emails.join(',');
   };
 
