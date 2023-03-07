@@ -18,8 +18,8 @@ export default function RecommendCourseModal(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedFriends, setSelectedFriends] = useState([]);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const friends = useSelector((state) => state.student.student.friends);
+  const user = useSelector((state) => state?.user);
+  const friends = useSelector((state) => state?.student?.friends);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,6 +47,7 @@ export default function RecommendCourseModal(props) {
     handleClose();
   };
 
+  console.log('friends', friends);
   return (
     <div>
       <button
