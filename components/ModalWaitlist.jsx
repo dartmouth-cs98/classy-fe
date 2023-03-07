@@ -29,6 +29,7 @@ function Modal(props) {
           left: '50%',
           top: '50%',
           transform: 'translate(-40%, -50%)',
+          height: '700px',
           width: '1000px',
           border: '1px solid #ccc',
           background: '#fff',
