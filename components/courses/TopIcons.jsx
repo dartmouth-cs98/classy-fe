@@ -23,7 +23,8 @@ function TopIcons(props) {
   };
 
   const loadCartButton = () => {
-    if (student.currentCourses.includes(course._id) || student.coursesTaken.includes(course._id)) {
+    if (student?.currentCourses?.includes(course._id)
+    || student?.coursesTaken?.includes(course._id)) {
       return '';
     }
     return (

@@ -13,7 +13,6 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function FriendsCheckBoxes(props) {
   const { friends, selectedFriends, setSelectedFriends } = props;
-  console.log('in checkboxes', friends);
   return (
     <Autocomplete
       input={selectedFriends}

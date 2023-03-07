@@ -8,7 +8,7 @@ import CourseInfoTitle from '../../../components/courses/CourseInfoTitle';
 import Offered from '../../../components/courses/Offered';
 import Medians, { convertMedian } from '../../../components/courses/Medians';
 import StudentsSay from '../../../components/courses/StudentsSay';
-import { fetchCourse } from '../../../actions';
+import { fetchCourse, fetchStudent } from '../../../actions';
 import getPrereqs from '../../../data/courseinfohelpers';
 import styles from '../../../styles/CourseInfo.module.css';
 import ReviewForm from '../../../components/courses/ReviewForm';
@@ -22,11 +22,18 @@ import ReviewComponent from '../../../components/courses/ReviewComponent';
 export default function CourseInfo() {
   const router = useRouter();
   const { dept, num } = router.query;
+  const { user } = useSelector((reduxState) => reduxState.user);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCourse(dept, num));
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchStudent(user.student._id));
+  }, []);
+
+  const { student } = useSelector((reduxState) => reduxState.student);
 
   const currentCourse = useSelector((reduxState) => reduxState.courses.current);
   if (!currentCourse || !currentCourse.course || (currentCourse.course.courseDept !== dept
@@ -127,7 +134,7 @@ export default function CourseInfo() {
         {currentCourse.course ? showCourseCodes(currentCourse.course) : <H2 />}
         <TopIcons
           course={currentCourse.course}
-          student={currentCourse.student}
+          student={student}
         />
       </div>
       <CourseInfoTitle
