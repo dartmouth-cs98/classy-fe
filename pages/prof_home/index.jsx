@@ -111,6 +111,7 @@ function ProfHome() {
                 key={course?.courseName}
                 course={course}
                 color={cardColors[i % cardColors.length]}
+                type="prof"
               />
             ))}
           </div>
