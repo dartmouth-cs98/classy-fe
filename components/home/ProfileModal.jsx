@@ -50,12 +50,12 @@ function ProfileModal(props) {
   const onImageSubmit = () => {
     if (pic.file) {
       uploadImage(pic.file).then((url) => {
-        setIsOpen(false);
-        dispatch(updateUser(user.user._id, { ...user.user, profileImageUrl: url }));
+        dispatch(updateUser(user?._id, { ...user.user, profileImageUrl: url }));
         setUpdatedUser(true);
+        setIsOpen(false);
       }).catch((error) => {
         // handle error
-        // console.log('error in submitting image', error);
+        console.log('error in submitting image', error);
       });
     }
   };
@@ -70,10 +70,9 @@ function ProfileModal(props) {
       header="Edit Profile"
       button={(
         <SaveButton
-          onClick={() => {
-            setIsOpen(false);
-            onImageSubmit();
-          }}
+          onClick={
+            onImageSubmit
+          }
           adding={addingMajor || addingMinor}
         />
       )}
