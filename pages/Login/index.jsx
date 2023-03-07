@@ -1,7 +1,7 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 // import { AuthProvider } from './AuthProvider';
-import Login from '../../components/login/Login';
+import Login from '../../components/login';
 // import { H2, B1 } from '../../components/ui/typography';
 import styles from '../../styles/Login.module.css';
 
