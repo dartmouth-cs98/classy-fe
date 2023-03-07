@@ -7,7 +7,7 @@ import styles from '../../styles/WaitlistHome.module.css';
 import { H2, B1 } from '../../components/ui/typography';
 import WaitlistModal from '../../components/waitlist/WaitlistModal';
 import { defaultImageURLs } from '../../constants/mockData';
-import { fetchWaitlists } from '../../actions';
+import { fetchStudent, fetchWaitlists } from '../../actions';
 
 const displayEmptyWaitlist = () => (
   <div className={styles.marginBottom}>
@@ -22,6 +22,14 @@ export default function WaitlistHome() {
     dispatch(fetchWaitlists());
   }, []);
   const waitlistContent = useSelector((reduxState) => reduxState.waitlist.current);
+  const { user } = useSelector((reduxState) => reduxState.user);
+
+  useEffect(() => {
+    dispatch(fetchStudent(user.student._id));
+  }, []);
+
+  const { student } = useSelector((reduxState) => reduxState.student);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -39,8 +47,7 @@ export default function WaitlistHome() {
           {waitlistContent.courses ? waitlistContent.courses.map((course, index) => (
             <WaitlistModal
               course={course}
-              studentId={waitlistContent.student._id}
-              // ID={waitlistContent.student._id}
+              studentId={student._id}
               onWaitlist
               // offering={course.offering}
               index={index}

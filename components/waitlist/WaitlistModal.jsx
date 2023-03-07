@@ -32,15 +32,25 @@ function WaitlistModal(props) {
     false,
   );
   const [reason, setReason] = React.useState('');
-  const offerings = [];
+  const [offerings, setOfferings] = React.useState([]);
 
   const onInputChange = (event) => {
+    console.log('changing', event.target.value);
+    console.log('target', event.target.id);
     if (event.target.id === 'reason') {
       setReason(event.target.value);
     } else if (offerings.includes(event.target.value)) {
-      offerings.splice(offerings.indexOf(event.target.value), 1);
+      console.log('splicing', event.target.value);
+      const tempOfferings = [...offerings];
+      tempOfferings.splice(offerings.indexOf(event.target.value), 1);
+      setOfferings(tempOfferings);
     } else {
-      offerings.push(event.target.value);
+      console.log('pushing', event.target.value);
+      const tempOfferings = [...offerings];
+      tempOfferings.push(event.target.value);
+      console.log('temp', tempOfferings);
+      setOfferings(tempOfferings);
+      console.log('offerings', offerings);
     }
   };
 
@@ -52,8 +62,9 @@ function WaitlistModal(props) {
       reason,
       offerings,
     };
-    setReason('');
+    console.log('offering indices are', offerings);
     dispatch(joinWaitlists(waitlistRequest));
+    setReason('');
   };
 
   const loadOfferings = () => {
@@ -310,15 +321,13 @@ function WaitlistModal(props) {
               <div className="modal-footer">
                 <div className={styles.buttonContainer}>
                   <B1>
-                    <Link href="/waitlist">
-                      <button
-                        className={styles.signupbtn}
-                        type="submit"
-                        onClick={onSubmit}
-                      >
-                        Sign Up
-                      </button>
-                    </Link>
+                    <button
+                      className={styles.signupbtn}
+                      type="submit"
+                      onClick={onSubmit}
+                    >
+                      Sign Up
+                    </button>
                   </B1>
                   <B1>
                     <Button

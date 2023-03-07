@@ -257,8 +257,9 @@ export const fetchWaitlist = (dept, num) => (dispatch) => {
 
 export const joinWaitlists = (joinRequest) => (dispatch) => {
   axios.post(`${ROOT_URL}/waitlist/join`, joinRequest).then((res) => {
+    console.log('join request', joinRequest);
     const response = res.data;
-    console.log('received request', res);
+    console.log('response', response);
     dispatch({
       type: ActionTypes.JOIN_WAITLISTS,
       payload: response,
