@@ -65,7 +65,6 @@ function Social() {
           <H3>Your Friends Recommend</H3>
         </div>
         <div className={styles.coursesContainer}>
-          {console.log('student in social:::', student)}
           {student?.coursesRecommended?.length > 0
             ? student.coursesRecommended.map((course, i) => (
               <div style={{ margin: '10px' }}>
