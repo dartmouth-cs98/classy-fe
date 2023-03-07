@@ -12,7 +12,6 @@ import {
 } from '../../../components/ui/typography';
 // import { studentId1 } from '../../../constants/mockData';
 import { cardColors } from '../../../constants/colors';
-import CourseTitleCard from '../../../components/CourseTitleCard';
 import FriendRequestButton from '../../../components/social/friendRequestButton';
 import CourseSimple from '../../../components/profWaitlist/CourseSimple';
 

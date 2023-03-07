@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 import CourseInfoSubtitle from '../../../components/courses/CourseInfoSubtitle';
 import Glance from '../../../components/courses/Glance';
 import CourseInfoTitle from '../../../components/courses/CourseInfoTitle';
@@ -16,7 +15,7 @@ import ReviewForm from '../../../components/courses/ReviewForm';
 import TopIcons from '../../../components/courses/TopIcons';
 
 import {
-  B1, A, H2,
+  B1, H2,
 } from '../../../components/ui/typography';
 import ReviewComponent from '../../../components/courses/ReviewComponent';
 
@@ -62,8 +61,7 @@ export default function CourseInfo() {
     const xlists = course.xlists && course.xlists.length > 0 ? `/${course.xlists.join('/')} ` : ' ';
     return (
       <H2>
-        {`${course.courseDept} ${course.courseNum} ${
-          course.xlists ? xlists : ' '
+        {`${course.courseDept} ${course.courseNum} ${course.xlists ? xlists : ' '
         } ${course.courseTitle}`}
       </H2>
     );

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
 import FriendsCheckBoxes from './FriendsCheckBoxes';
-import { fetchStudent, updateStudent } from '../../actions';
+import { updateStudent } from '../../actions';
 
 export default function RecommendCourseModal(props) {
   const { course } = props;
