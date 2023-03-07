@@ -7,7 +7,7 @@ import styles from '../../styles/Login.module.css';
 
 export default function LoginHome() {
   return (
-    <div className={styles.container}>
+    <div className={styles.loginContainer}>
       <main className="LoginHome">
         <Login />
       </main>

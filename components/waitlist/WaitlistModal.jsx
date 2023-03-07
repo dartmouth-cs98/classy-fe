@@ -5,8 +5,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Link from 'next/link';
-import { Button, Modal } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useDispatch } from 'react-redux';
+import Modal2 from '../ModalWaitlist';
 import styles from '../../styles/WaitlistDetail.module.css';
 import styleswt from '../../styles/WaitlistTileCard.module.css';
 // reactstrap components
@@ -62,7 +63,9 @@ function WaitlistModal(props) {
       let position = -1;
       const totalLength = offering?.priorityWaitlist?.length + offering?.waitlist?.length;
       let onOfferingWaitlist = false;
-      if (offering?.priorityWaitlist?.includes(studentId)) {
+      if (offering?.approved?.includes(studentId)) {
+        position = 'Approved';
+      } else if (offering?.priorityWaitlist?.includes(studentId)) {
         position = 'Priority';
         onOfferingWaitlist = true;
       } else if (offering?.waitlist?.includes(studentId)) {
@@ -123,25 +126,28 @@ function WaitlistModal(props) {
   };
 
   const modalButton = (entryPoint) => {
-    /* Get terms for waitlist */
-    // store waitlist terms and student position in dictionary
     const studentWaitlists = {};
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
-      if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
+      // look through each course offering and look for student on reg/priority waitlists
+      if (course?.offerings[i]?.approved?.includes(studentId)) {
+        studentWaitlists[course.offerings[i].term] = 'Approved';
+      } else if (course?.offerings[i]?.priorityWaitlist?.includes(studentId)) {
         studentWaitlists[course.offerings[i].term] = 'Priority';
       } else if (course?.offerings[i]?.waitlist?.includes(studentId)) {
         // eslint-disable-next-line max-len
-        const totalStudents = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.length;
+        const totalStudents = course.offerings[i].priorityWaitlist.length
+          + course.offerings[i].waitlist.length;
         // eslint-disable-next-line max-len
-        const studentPos = course.offerings[i].priorityWaitlist.length + course.offerings[i].waitlist.indexOf(studentId) + 1;
+        const studentPos = course.offerings[i].priorityWaitlist.length
+          + course.offerings[i].waitlist.indexOf(studentId)
+          + 1;
         const position = `${studentPos} / ${totalStudents}`;
         studentWaitlists[course.offerings[i].term] = position;
       }
     }
-    // get list of terms student is signed up for
+    // get list of terms student is signed up for and format
     const termArray = Object.keys(studentWaitlists);
-    // format waitlist list
     const waitlistTerms = termArray.join(', ');
     // Get next term and student's position
     const nextTerm = termArray[0];
@@ -152,15 +158,14 @@ function WaitlistModal(props) {
         <div
           className={styleswt.card}
           style={{ background: cardColor[index] }}
-          onClick={() => setModalNotificationOpen(true)}
         >
           <div className={styleswt.waitlistCardsContainer}>
+            <H3>
+              {` ${course.courseDept} ${course.courseNum}`}
+            </H3>
             <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-              <H3>
-                {` ${course.courseDept} ${course.courseNum}`}
-              </H3>
+              <H3 color={textColor[index]}>{course.courseTitle}</H3>
             </Link>
-            <H3 color={textColor[index]}>{course.courseTitle}</H3>
           </div>
           <div className={styleswt.waitlistCardsContainer}>
             <div>
@@ -175,25 +180,15 @@ function WaitlistModal(props) {
               </H3>
               {/* <H4>For additonal terms, select edit below</H4> */}
               <H3>{nextTermPos}</H3>
+              {/* <H3>{course.offerings[1].waitlist.length}</H3> */}
             </div>
           </div>
-          <div>
-            <div className={styleswt.bottomButtons}>
-              <div className={styleswt.buttonContainer}>
-                <a href={`/courses/${course.courseDept}/${course.courseNum}`}>
-                  <button className={styleswt.btn} type="button">
-                    Course Info Page
-                  </button>
-                </a>
-              </div>
-              <div className={styleswt.buttonContainer}>
-                <button className={styleswt.btn} type="button">
-                  {/* Could also say details, not sure what is clearer */}
-                  {/* Details */}
-                  Edit
-                </button>
-              </div>
-            </div>
+          <div className={styleswt.bottomButtons}>
+            <button className={styleswt.btn} type="button" onClick={() => setModalNotificationOpen(true)}>
+              {/* Could also say details, not sure what is clearer */}
+              {/* Details */}
+              Edit
+            </button>
           </div>
         </div>
       );
@@ -240,7 +235,7 @@ function WaitlistModal(props) {
   return (
     <>
       {modalButton(entryPoint)}
-      <Modal isOpen={modalNotificationOpen} className="modal-danger" contentClassName="bg-gradient-danger">
+      <Modal2 isOpen={modalNotificationOpen}>
         {onWaitlist
           ? (
             <>
@@ -335,7 +330,7 @@ function WaitlistModal(props) {
             </Button>
           </B1>
         </div>
-      </Modal>
+      </Modal2>
     </>
   );
 }

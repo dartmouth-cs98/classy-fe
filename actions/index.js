@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { ROOT_URL } from './root_url';
+import { HomeActionTypes } from './homeActions';
 import { SearchActionTypes } from './searchActions';
 import { AuthActionTypes } from './authActions';
-
 
 export * from './searchActions';
 export * from './homeActions';
 
 // keys for actiontypes
 export const ActionTypes = {
+  ...HomeActionTypes,
   FETCH_USER: 'FETCH_USER',
   UPDATE_USER: 'UPDATE_USER',
   FETCH_STUDENT: 'FETCH_STUDENT',
@@ -29,8 +30,8 @@ export const ActionTypes = {
   FETCH_SEARCH: 'FETCH_SEARCH',
   FETCH_WAITLISTS: 'FETCH_WAITLISTS',
   FETCH_WAITLIST: 'FETCH_WAITLIST',
-  FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
-  FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
+  // FETCH_DEPARTMENT: 'FETCH_DEPARTMENT',
+  // FETCH_DEPARTMENTS: 'FETCH_DEPARTMENTS',
   FETCH_DEPT_COURSES: 'FETCH_DEPT_COURSES',
   FETCH_COURSE_REVIEWS: 'FETCH_COURSE_REVIEWS',
   CREATE_REVIEW: 'CREATE_REVIEW',
@@ -43,9 +44,9 @@ export const ActionTypes = {
   MARK_AS_TAKEN: 'MARK_AS_TAKEN',
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   PRIORITIZE: 'PRIORITZE',
+  APPROVE: 'APPROVE',
   ...SearchActionTypes,
   ...AuthActionTypes,
-
 };
 
 export const fetchUser = (id) => (dispatch) => {
@@ -85,10 +86,8 @@ export const fetchStudent = (id) => (dispatch) => {
 };
 
 export const fetchFriend = (id) => (dispatch) => {
-  console.log('fetching friend::', id);
   axios.get(`${ROOT_URL}/students/${id}`).then((res) => {
     const response = res.data;
-    console.log('response::', response);
     dispatch({
       type: ActionTypes.FETCH_FRIEND,
       payload: response,
@@ -297,25 +296,15 @@ export const withdrawFromWaitlist = (withdrawalRequest) => (dispatch) => {
   });
 };
 
-export const fetchDepartments = () => (dispatch) => {
-  axios.get(`${ROOT_URL}/departments`).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_DEPARTMENTS,
-      payload: response,
-    });
-  });
-};
-
-export const fetchDepartment = (code) => (dispatch) => {
-  axios.get(`${ROOT_URL}/departments/${code}`).then((res) => {
-    const response = res.data;
-    dispatch({
-      type: ActionTypes.FETCH_DEPARTMENT,
-      payload: response,
-    });
-  });
-};
+// export const fetchDepartments = () => (dispatch) => {
+//   axios.get(`${ROOT_URL}/departments`).then((res) => {
+//     const response = res.data;
+//     dispatch({
+//       type: ActionTypes.FETCH_DEPARTMENTS,
+//       payload: response,
+//     });
+//   });
+// };
 
 export const fetchCourseReviews = (dept, num) => (dispatch) => {
   axios.get(`${ROOT_URL}/coursereviews/${dept}/${num}`).then((res) => {
@@ -382,9 +371,18 @@ export const fetchProfessorHome = (name) => (dispatch) => {
 export const updatePriority = (dept, num, offeringIndex, studentId, priority) => (dispatch) => {
   axios.put(`${ROOT_URL}/prioritize/${dept}/${num}/${offeringIndex}/${studentId}/${priority}`).then((res) => {
     const response = res.data;
-    console.log('update priority action', res.data);
     dispatch({
       type: ActionTypes.PRIORITIZE,
+      payload: response,
+    });
+  });
+};
+
+export const approve = (dept, num, offeringIndex, studentId) => (dispatch) => {
+  axios.put(`${ROOT_URL}/approve/${dept}/${num}/${offeringIndex}/${studentId}`).then((res) => {
+    const response = res.data;
+    dispatch({
+      type: ActionTypes.APPROVE,
       payload: response,
     });
   });

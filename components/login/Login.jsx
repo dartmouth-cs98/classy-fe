@@ -17,7 +17,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const [success, setSuccess] = useState(false); // replace with a react router to home page
+  const [success] = useState(false); // replace with a react router to home page
   const { user } = useSelector((state) => state.user);
 
   // set the focus on the first input when Login loads
@@ -48,8 +48,6 @@ function Login() {
   // when submit button on the form has been pressed
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // debug
-    console.log(username, password);
     await dispatch(login({ username, password }));
   };
 
@@ -124,7 +122,11 @@ function Login() {
         Need an account?
         <br />
         <span className="line">
-          <a href="/register">Sign up instead</a>
+          Sign up instead
+          {' '}
+          <a href="/register">Student</a>
+          {' '}
+          <a href="/prof_register">or Professor</a>
         </span>
       </p>
     </div>

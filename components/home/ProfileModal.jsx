@@ -15,6 +15,8 @@ import { updateUser } from '../../actions';
 import modalStyles from '../../styles/components/Modal.module.css';
 import SaveButton from './SaveButton';
 import AddMajorMinor from './AddMajorMinor';
+import { defaultUserImageURL } from '../../constants/mockData';
+import MajorMinorSearchDropdown from '../MajorMinorSearchDropdown';
 
 function ProfileModal(props) {
   const {
@@ -22,13 +24,18 @@ function ProfileModal(props) {
   } = props;
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [pic, setPic] = useState({ url: user?.profileImageUrl, img: null, file: null });
-  const thisYear = (new Date()).getFullYear() - 2000;
+  const [pic, setPic] = useState({
+    url: user?.profileImageUrl?.length > 0
+      ? user?.profileImageUrl : defaultUserImageURL,
+    img: null,
+    file: null,
+  });
+  const thisYear = (new Date()).getFullYear();
   const years = Array.from(new Array(6), (val, index) => `'${index + thisYear - 2}`);
   const [year, setYear] = useState('');
   const [addingMajor, setAddingMajor] = useState(false);
   const [addingMinor, setAddingMinor] = useState(false);
-  const [majors, setMajors] = useState(['HI']);
+  const [majors, setMajors] = useState(['Philosophy']);
   const [minors, setMinors] = useState(['Computer Science', 'Economics']);
 
   const onImageUpload = (event) => {
@@ -48,7 +55,7 @@ function ProfileModal(props) {
         setUpdatedUser(true);
       }).catch((error) => {
         // handle error
-        console.log('error in submitting image', error);
+        // console.log('error in submitting image', error);
       });
     }
   };
@@ -60,10 +67,16 @@ function ProfileModal(props) {
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      onButtonClick={onImageSubmit}
-      buttonText="Save"
       header="Edit Profile"
-      button={<SaveButton adding={addingMajor || addingMinor} />}
+      button={(
+        <SaveButton
+          onClick={() => {
+            setIsOpen(false);
+            onImageSubmit();
+          }}
+          adding={addingMajor || addingMinor}
+        />
+      )}
     >
       <div className={modalStyles.horizontalContainer} style={{ gap: '40px' }}>
         <div className={modalStyles.verticalContainer} style={{ width: '300px' }}>
@@ -104,15 +117,15 @@ function ProfileModal(props) {
                   value={year}
                 >
                   {
-                years.map((classYear, index) => (
-                  <MenuItem
-                    key={classYear}
-                    value={classYear}
-                  >
-                    {classYear}
-                  </MenuItem>
-                ))
-              }
+                    years.map((classYear, index) => (
+                      <MenuItem
+                        key={classYear}
+                        value={classYear}
+                      >
+                        {classYear}
+                      </MenuItem>
+                    ))
+                  }
                 </TextField>
               </FormControl>
             </div>
@@ -123,7 +136,7 @@ function ProfileModal(props) {
             setAdding={setAddingMajor}
             adding={addingMajor}
             handleDelete={handleDeleteMajor}
-            majorsMinors={majors}
+            depts={majors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Major"
@@ -133,7 +146,7 @@ function ProfileModal(props) {
             setAdding={setAddingMinor}
             adding={addingMinor}
             handleDelete={handleDeleteMinor}
-            majorsMinors={minors}
+            depts={minors}
             addingMajor={addingMajor}
             addingMinor={addingMinor}
             title="Minor"

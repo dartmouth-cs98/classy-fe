@@ -44,3 +44,10 @@
 .marginBottom {
   margin-bottom: 10px;
 }
+
+.header {
+    display: 'flex';
+    flex-direction: 'row';
+    align-items: 'flex-end';
+    gap: '35px',
+}

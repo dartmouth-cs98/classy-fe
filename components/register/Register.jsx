@@ -51,8 +51,8 @@ function Register() {
   /// REDIRECT TO HOME PAGE AFTER SUCCESSFUL REGISTER
   const initialRender = useRef(true);
   useEffect(() => {
-    if (!initialRender.current && reduxUser !== {}) {
-      if (Object.keys(reduxUser).length > 3) {
+    if (!initialRender.current) {
+      if (Object.keys(reduxUser).length !== 0) {
         router.push('/home');
       }
     } else {
@@ -85,7 +85,7 @@ function Register() {
     dispatch(loadRegister());
   }, []);
   const depts = useSelector(
-    (reduxState) => reduxState.auth?.current?.response?.depts,
+    (reduxState) => reduxState?.auth?.current?.response?.depts,
   );
   const errors = useSelector(
     (reduxState) => reduxState.auth.errors,
@@ -111,10 +111,6 @@ function Register() {
       );
     }
     if (!validMatch) list.push('Please enter matching passwords');
-
-    // if (errors) {
-    //   list.push(...errors);
-    // }
 
     if (list.length) {
       return (

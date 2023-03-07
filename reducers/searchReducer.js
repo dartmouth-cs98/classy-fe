@@ -4,10 +4,17 @@ const initialState = {
   distribFilters: [],
   wcFilters: [],
   searchResults: [],
+  searchProfResults: [],
+  searchStudentResults: [],
   searchResultsTimestamp: Date.now(),
+  searchProfResultsTimestamp: Date.now(),
+  searchStudentResultsTimestamp: Date.now(),
   searchQuery: '',
   offeredNext: false,
   nrEligible: false,
+  departments: [],
+  currentDepartment: {},
+  tab: 'Courses',
 };
 
 const SearchReducer = (state = initialState, action = {}) => {
@@ -18,6 +25,22 @@ const SearchReducer = (state = initialState, action = {}) => {
         return { ...state, ...action.payload };
       }
       return state;
+    case ActionTypes.FETCH_SEARCH_PROFS:
+      if (action.payload.searchProfResultsTimestamp >= state.searchProfResultsTimestamp) {
+        return { ...state, ...action.payload };
+      }
+      return state;
+    case ActionTypes.FETCH_SEARCH_STUDENTS:
+      if (action.payload.searchStudentResultsTimestamp >= state.searchStudentResultsTimestamp) {
+        return { ...state, ...action.payload };
+      }
+      return state;
+    case ActionTypes.FETCH_DEPARTMENT:
+      return { ...state, currentDepartment: action.payload };
+    case ActionTypes.CLEAR_DEPARTMENT:
+      return { ...state, currentDepartment: {} };
+    case ActionTypes.FETCH_DEPARTMENTS:
+      return { ...state, departments: action.payload.departments };
     case ActionTypes.ADD_DISTRIB_FILTER:
       if (!state.distribFilters.includes(action.payload)) {
         return { ...state, distribFilters: [...state.distribFilters, action.payload] };
@@ -40,12 +63,18 @@ const SearchReducer = (state = initialState, action = {}) => {
         wcFilters:
         state.wcFilters.filter((distrib) => distrib.name !== action.payload.name),
       };
+    case ActionTypes.CLEAR_FILTERS:
+      return {
+        ...state, offeredNext: false, nrEligible: false, wcFilters: [], distribFilters: [],
+      };
     case ActionTypes.SET_SEARCH_QUERY:
       return { ...state, searchQuery: action.payload.searchQuery };
     case ActionTypes.TOGGLE_NR_ELIGIBLE:
       return { ...state, nrEligible: !state.nrEligible };
     case ActionTypes.TOGGLE_OFFERED_NEXT:
       return { ...state, offeredNext: !state.offeredNext };
+    case ActionTypes.SET_TAB:
+      return { ...state, tab: action.payload };
     default:
       return state;
   }

@@ -5,32 +5,50 @@ import React, {
   useState, useCallback, useEffect, useRef,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, Checkbox } from '@mui/material';
+import { IconButton, Checkbox, Chip } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import Modal from '../Modal';
 import {
-  H2, H3, H4, B1, TextLabel,
+  H2, H3, H4, B1, TextLabel, A,
 } from '../ui/typography';
 import { distribs as allDistribs, wcs as allWcs } from '../../constants/colors';
 import {
   addDistribFilter, removeDistribFilter, addWcFilter, removeWcFilter, toggleNrEligible,
-  toggleOfferedNext,
+  toggleOfferedNext, clearFilters,
 } from '../../actions';
-import FilterSelector from './FilterSelector';
+import { nextTerm } from '../../constants/nextTerm';
 
 function FiltersDisplay(props) {
+  // const searchReducer = useSelector((reduxState) => reduxState.search);
+  // const {
+  //   stateDistribFilters, stateWcFilters, nrEligible, offeredNext, tab,
+  // } = searchReducer;
   const stateDistribFilters = useSelector((reduxState) => reduxState.search.distribFilters);
   const stateWcFilters = useSelector((reduxState) => reduxState.search.wcFilters);
+  const nrEligible = useSelector((reduxState) => reduxState.search.nrEligible);
+  const offeredNext = useSelector((reduxState) => reduxState.search.offeredNext);
+  const tab = useSelector((reduxState) => reduxState.search.tab);
   const dispatch = useDispatch();
-  const { filtersApplied, tab } = props;
+  const { filtersApplied } = props;
 
-  const handleDistribClick = (distrib) => {
+  const handleDistribClick = (name) => {
     // console.log(distrib);
-    dispatch(removeDistribFilter(distrib));
+    const distribObj = stateDistribFilters.find((distrib) => distrib.name === name);
+    dispatch(removeDistribFilter(distribObj));
   };
 
-  const handleWcClick = (distrib) => {
+  const handleWcClick = (name) => {
     // console.log(distrib);
-    dispatch(removeWcFilter(distrib));
+    const distribObj = stateWcFilters.find((wc) => wc.name === name);
+    dispatch(removeWcFilter(distribObj));
+  };
+
+  const handleOfferedClick = () => {
+    dispatch(toggleOfferedNext());
+  };
+
+  const handleNrClick = () => {
+    dispatch(toggleNrEligible());
   };
 
   return (
@@ -41,34 +59,48 @@ function FiltersDisplay(props) {
             display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: '10px 0px', gap: '8px', justifyItems: 'flex-start',
           }}
           >
-            <TextLabel style={{ marginRight: '10px' }} color="var(--mid-grey)">Filters</TextLabel>
+            <A style={{ marginRight: '10px' }} color="var(--mid-grey)" onClick={() => dispatch(clearFilters())}>Clear Filters</A>
 
-            {stateDistribFilters.map((distrib, i) => (
-              <div
+            {stateDistribFilters?.map((distrib, i) => (
+              <Pill
                 key={distrib.name}
-                onClick={() => handleDistribClick(distrib)}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: distrib.pastel,
-                  border: `2px solid ${distrib.dark}`,
-                  borderRadius: '35px',
-                  width: '65px',
-                  height: '25px',
-                  cursor: 'pointer',
-                }}
-              >
-                <B1 color={distrib.dark}>
-                  {distrib.name}
-                </B1>
-              </div>
+                name={distrib.name}
+                pastelColor={distrib.pastel}
+                darkColor={distrib.dark}
+                handleClick={handleDistribClick}
+              />
             ))}
 
-            {stateWcFilters.map((distrib, i) => (
-              <Pill distrib={distrib} handleClick={handleWcClick} />
+            {stateWcFilters?.map((distrib, i) => (
+              <Pill
+                key={distrib.name}
+                name={distrib.name}
+                pastelColor={distrib.pastel}
+                darkColor={distrib.dark}
+                handleClick={handleWcClick}
+              />
             ))}
+
+            {offeredNext ? (
+              <Pill
+                name={`Offered ${nextTerm}`}
+                pastelColor="var(--lightest-grey)"
+                darkColor="var(--darkest-grey)"
+                handleClick={handleOfferedClick}
+                wide
+              />
+            ) : null}
+
+            {nrEligible ? (
+              <Pill
+                name="NR Eligible"
+                pastelColor="var(--lightest-grey)"
+                darkColor="var(--darkest-grey)"
+                handleClick={handleNrClick}
+                wide
+              />
+            ) : null}
+
           </div>
         )
         : null}
@@ -79,29 +111,50 @@ function FiltersDisplay(props) {
 }
 
 function Pill(props) {
-  const { distrib, handleClick } = props;
+  const {
+    handleClick, pastelColor, darkColor, name,
+  } = props;
 
   return (
-    <div
-      key={distrib.name}
-      onClick={() => handleClick(distrib)}
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: distrib.pastel,
-        border: `2px solid ${distrib.dark}`,
-        borderRadius: '35px',
-        width: '65px',
-        height: '25px',
-        cursor: 'pointer',
+    <Chip
+      variant="outlined"
+      size="small"
+      label={name}
+      onDelete={() => handleClick(name)}
+      onClick={() => handleClick(name)}
+      sx={{
+        backgroundColor: pastelColor,
+        borderColor: darkColor,
+        '&.MuiButtonBase-root:hover': {
+          bgcolor: pastelColor,
+        },
+        '& .MuiChip-label': {
+          color: darkColor,
+        },
       }}
-    >
-      <B1 color={distrib.dark}>
-        {distrib.name}
-      </B1>
-    </div>
+    />
+
+  // <div
+  //   key={name}
+  //   onClick={() => handleClick(name)}
+  //   style={{
+  //     display: 'flex',
+  //     flexDirection: 'row',
+  //     alignItems: 'center',
+  //     justifyContent: 'center',
+  //     backgroundColor: pastelColor,
+  //     border: `2px solid ${darkColor}`,
+  //     borderRadius: '35px',
+  //     width: wide ? '135px' : '65px',
+  //     height: '25px',
+  //     cursor: 'pointer',
+  //   }}
+  // >
+  //   <B1 color={darkColor}>
+  //     {name}
+  //   </B1>
+  //   <CloseIcon fontSize="small" style={{ position: 'absolute', right: '20' }} />
+  // </div>
   );
 }
 
