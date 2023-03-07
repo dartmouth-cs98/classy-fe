@@ -168,8 +168,9 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const profileImageUrl = '';
     const user = {
-      username, email, netID, firstName, lastName, password,
+      username, email, netID, firstName, lastName, password, profileImageUrl,
     };
     const student = { classYear, majors, minors };
     dispatch(register({ user, student }));
