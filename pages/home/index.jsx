@@ -1,3 +1,5 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable no-underscore-dangle */
@@ -242,13 +244,13 @@ function HomePage() {
 											  // Colors
 											  pathColor: 'var(--dark-green)',
 											  trailColor: 'var(--light-grey)',
-                    })}
+                      })}
                       strokeWidth="18"
                     >
                       <H2>
-                      {progress}
-                      %
-</H2>
+                        {progress}
+                        %
+                      </H2>
                     </CircularProgressbarWithChildren>
                   </div>
 
