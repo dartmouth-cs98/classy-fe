@@ -1,15 +1,6 @@
-.nav {
-    position: absolute;
-    width: 200px;
-    height: 100vh;
-    background-color: black;
-    z-index: 1;
-}
-
 .main {
     position: absolute;
     padding: 20px 80px 50px 275px;
-    z-index: 2;
 }
 
 .pic {
