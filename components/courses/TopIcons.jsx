@@ -40,7 +40,7 @@ function TopIcons(props) {
   return (
     <div className={styles.topicons}>
       {loadCartButton()}
-      <RecommendCourseModal course={course} />
+      <RecommendCourseModal course={course} student={student} />
     </div>
   );
 }

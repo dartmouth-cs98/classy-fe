@@ -14,12 +14,11 @@ import FriendsCheckBoxes from './FriendsCheckBoxes';
 import { updateStudent } from '../../actions';
 
 export default function RecommendCourseModal(props) {
-  const { course } = props;
+  const { course, student } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedFriends, setSelectedFriends] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user);
-  const friends = useSelector((state) => state?.student?.friends);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,7 +46,6 @@ export default function RecommendCourseModal(props) {
     handleClose();
   };
 
-  console.log('friends', friends);
   return (
     <div>
       <button
@@ -59,8 +57,9 @@ export default function RecommendCourseModal(props) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Recommend This Course</DialogTitle>
         <DialogContent>
+
           <FriendsCheckBoxes
-            friends={friends}
+            friends={student?.friends}
             selectedFriends={selectedFriends}
             setSelectedFriends={setSelectedFriends}
           />
