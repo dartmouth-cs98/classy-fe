@@ -213,7 +213,7 @@ function WaitlistModal(props) {
     let index = -1;
     return course.offerings.map((offering) => {
       index += 1;
-      if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) return <label />;
+      if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) return '';
       return (
         <label className={styles.cblabel} htmlFor={`offering${index}`}>
           <B1>
@@ -266,9 +266,23 @@ function WaitlistModal(props) {
                     </tr>
                   </thead>
                   <tbody>
+                    {/* {onWaitlist
+                      ? 'Check Waitlist Status'
+                      : `Join ${course.courseDept} ${course.courseNum} Waitlists`} */}
                     {loadOfferings()}
                   </tbody>
                 </table>
+              </div>
+              <div className=" py-3 text-center">
+                <B1>
+                  <Button
+                    className={styles.signupbtn}
+                    type="button"
+                    onClick={() => { setModalNotificationOpen(false); }}
+                  >
+                    Close Modal
+                  </Button>
+                </B1>
               </div>
             </>
           )
@@ -294,42 +308,32 @@ function WaitlistModal(props) {
                 </div>
               </div>
               <div className="modal-footer">
-                <B1>
-                  <Link href="/waitlist">
-                    <button
-                      className={styles.button}
-                      type="submit"
-                      onClick={onSubmit}
+                <div className={styles.buttonContainer}>
+                  <B1>
+                    <Link href="/waitlist">
+                      <button
+                        className={styles.signupbtn}
+                        type="submit"
+                        onClick={onSubmit}
+                      >
+                        Sign Up
+                      </button>
+                    </Link>
+                  </B1>
+                  <B1>
+                    <Button
+                      className=" text-black ml-auto"
+                      color="default"
+                      onClick={() => setModalNotificationOpen(false)}
+                      type="button"
                     >
-                      Sign Up
-                    </button>
-                  </Link>
-                </B1>
-                <B1>
-                  <Button
-                    className=" text-black ml-auto"
-                    color="default"
-                    onClick={() => setModalNotificationOpen(false)}
-                    type="button"
-                  >
-                    Cancel
-                  </Button>
-                </B1>
+                      Cancel
+                    </Button>
+                  </B1>
+                </div>
               </div>
             </>
           )}
-
-        <div className=" py-3 text-center">
-          <B1>
-            <Button
-              className={styles.button}
-              type="button"
-              onClick={() => { setModalNotificationOpen(false); }}
-            >
-              Close Modal
-            </Button>
-          </B1>
-        </div>
       </Modal2>
     </>
   );

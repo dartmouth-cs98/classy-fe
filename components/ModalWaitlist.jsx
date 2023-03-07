@@ -9,7 +9,7 @@ ReactModal.setAppElement('#__next');
 
 function Modal(props) {
   const {
-    isOpen, setIsOpen, header, children, onButtonClick, buttonText, hideButton, button,
+    isOpen, setIsOpen, header, children, onButtonClick, buttonText, hideButton, buttons,
   } = props;
 
   return (
@@ -43,20 +43,13 @@ function Modal(props) {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', height: '100%',
       }}
       >
-        {/* <div style={{
-          display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
-          alignItems: 'flex-start', width: '100%',
-        }}
-        >
-          <H2>{header}</H2>
-        </div> */}
         {children}
-        {/* <div style={{
+        <div style={{
           display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'flex-end',
         }}
         >
-          {button}
-        </div> */}
+          {buttons}
+        </div>
       </div>
     </ReactModal>
   );
