@@ -213,7 +213,7 @@ function WaitlistModal(props) {
     let index = -1;
     return course.offerings.map((offering) => {
       index += 1;
-      // if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) return <label />;
+      if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) return '';
       return (
         <label className={styles.cblabel} htmlFor={`offering${index}`}>
           <B1>
@@ -266,6 +266,9 @@ function WaitlistModal(props) {
                     </tr>
                   </thead>
                   <tbody>
+                    {/* {onWaitlist
+                      ? 'Check Waitlist Status'
+                      : `Join ${course.courseDept} ${course.courseNum} Waitlists`} */}
                     {loadOfferings()}
                   </tbody>
                 </table>
