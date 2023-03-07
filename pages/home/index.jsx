@@ -22,7 +22,7 @@ import CurrentModal from '../../components/home/CurrentModal';
 import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
 
-import { fetchUser } from '../../actions';
+import { fetchUser, fetchWaitlists } from '../../actions';
 import { defaultUserImageURL } from '../../constants/mockData';
 
 const cardColors = [
@@ -37,10 +37,15 @@ const cardColors = [
 function HomePage() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const waitlists = useSelector((reduxState) => reduxState.waitlist.current);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
     dispatch(fetchUser(user._id));
   }, [updatedUser === true]);
+
+  useEffect(() => {
+    dispatch(fetchWaitlists());
+  }, []);
 
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
   const [currentModalIsOpen, setCurrentModalIsOpen] = useState(false);
@@ -85,13 +90,21 @@ function HomePage() {
       <div className={styles.verticalContainer} style={{ gap: '50px' }}>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            gap: '35px',
+					  display: 'flex',
+					  flexDirection: 'row',
+					  alignItems: 'flex-end',
+					  gap: '35px',
           }}
         >
-          <img className={styles.pic} src={user?.profileImageUrl?.length > 0 ? user?.profileImageUrl : defaultUserImageURL} alt="Profile Image" />
+          <img
+            className={styles.pic}
+            src={
+							user?.profileImageUrl?.length > 0
+							  ? user?.profileImageUrl
+							  : defaultUserImageURL
+						}
+            alt="Profile Image"
+          />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
@@ -109,11 +122,10 @@ function HomePage() {
             <div
               className={styles.box}
               style={{
-                // justifyContent: 'space-evenly',
-                gap: '25px',
-                backgroundColor: 'var(--navy)',
-                width: '1080px',
-                minWidth: '1080px',
+							  gap: '25px',
+							  backgroundColor: 'var(--navy)',
+							  width: '1080px',
+							  minWidth: '1080px',
               }}
             >
               <div className={styles.header}>
@@ -127,13 +139,13 @@ function HomePage() {
               </div>
               <div
                 style={{
-                  display: 'flex',
-                  width: '100%',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  gap: '40px',
-                  overflow: 'scroll',
-                  padding: '0 30px',
+								  display: 'flex',
+								  width: '100%',
+								  flexDirection: 'row',
+								  justifyContent: 'flex-start',
+								  gap: '40px',
+								  overflow: 'scroll',
+								  padding: '0 30px',
                 }}
               >
                 {user?.student?.currentCourses?.map((course, i) => (
@@ -149,13 +161,16 @@ function HomePage() {
           </div>
 
           <div className={styles.horizontalContainer}>
-            <div className={styles.verticalContainer} style={{ minWidth: '715px' }}>
+            <div
+              className={styles.verticalContainer}
+              style={{ minWidth: '715px' }}
+            >
               <div
                 className={styles.box}
                 style={{
-                  backgroundColor: 'var(--lightest-grey)',
-                  height: '320px',
-                  minWidth: '615px',
+								  backgroundColor: 'var(--lightest-grey)',
+								  height: '320px',
+								  minWidth: '615px',
                 }}
               >
                 <div className={styles.header}>
@@ -173,9 +188,9 @@ function HomePage() {
               <div
                 className={styles.box}
                 style={{
-                  backgroundColor: 'var(--lightest-grey)',
-                  height: '320px',
-                  minWidth: '615px',
+								  backgroundColor: 'var(--lightest-grey)',
+								  height: '320px',
+								  minWidth: '615px',
                 }}
               >
                 <div className={styles.header}>
@@ -195,10 +210,10 @@ function HomePage() {
               <div
                 className={styles.box}
                 style={{
-                  backgroundColor: 'var(--lightest-grey)',
-                  minWidth: '330px',
-                  width: '330px',
-                  paddingBottom: '35px',
+								  backgroundColor: 'var(--lightest-grey)',
+								  minWidth: '330px',
+								  width: '330px',
+								  paddingBottom: '35px',
                 }}
               >
                 <div className={styles.header}>
@@ -206,39 +221,43 @@ function HomePage() {
                 </div>
                 <div
                   style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '10px',
+									  display: 'flex',
+									  flexDirection: 'column',
+									  alignItems: 'center',
+									  gap: '10px',
                   }}
                 >
                   <div
-                    style={{ width: '200px', height: '200px', marginTop: '20px' }}
+                    style={{
+										  width: '200px',
+										  height: '200px',
+										  marginTop: '20px',
+                    }}
                   >
                     <CircularProgressbarWithChildren
                       value={progress}
                       styles={buildStyles({
-                        // How long animation takes to go from one percentage to another, in seconds
-                        pathTransitionDuration: 0.5,
-                        // Colors
-                        pathColor: 'var(--dark-green)',
-                        trailColor: 'var(--light-grey)',
-                      })}
+											  // How long animation takes to go from one percentage to another, in seconds
+											  pathTransitionDuration: 0.5,
+											  // Colors
+											  pathColor: 'var(--dark-green)',
+											  trailColor: 'var(--light-grey)',
+                    })}
                       strokeWidth="18"
                     >
                       <H2>
-                        {progress}
-                        %
-                      </H2>
+                      {progress}
+                      %
+</H2>
                     </CircularProgressbarWithChildren>
                   </div>
 
                   <div
                     style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '2px',
+										  display: 'flex',
+										  flexDirection: 'column',
+										  alignItems: 'center',
+										  gap: '2px',
                     }}
                   >
                     <H4>Degree</H4>
@@ -263,7 +282,7 @@ function HomePage() {
                   height="180px"
                   width="175px"
                   text="Waitlists Joined"
-                  data={user?.student?.waitlists?.length || 0}
+                  data={waitlists?.courses?.length || 0}
                   pastelColor="var(--pastel-violet)"
                   darkColor="var(--dark-violet) "
                 />
