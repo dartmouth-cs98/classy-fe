@@ -23,7 +23,7 @@ import ShoppingModal from '../../components/home/ShoppingModal';
 import CompletedModal from '../../components/home/CompletedModal';
 
 import { fetchUser } from '../../actions';
-import { userId, defaultUserImageURL } from '../../constants/mockData';
+import { defaultUserImageURL } from '../../constants/mockData';
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -36,13 +36,10 @@ const cardColors = [
 
 function HomePage() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUser(userId));
-  }, []);
   const { user } = useSelector((state) => state.user);
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
-    dispatch(fetchUser(userId));
+    dispatch(fetchUser(user._id));
   }, [updatedUser === true]);
 
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
