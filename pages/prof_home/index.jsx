@@ -14,6 +14,7 @@ import {
 import styles from '../../styles/components/ProfHome.module.css';
 import logo from '../../images/logo.png';
 import NavbarLink from '../../components/NavbarLink';
+import ProfProfileModal from '../../components/profWaitlist/ProfProfileModal';
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -31,8 +32,12 @@ function ProfHome() {
   useEffect(() => {
     dispatch(fetchProfessorHome(name));
   }, []);
+  const { user } = useSelector((state) => state.user);
 
   const sidenavIconStyles = 'text-2xl text-white group-hover:text-black ';
+
+  const [updatedUser, setUpdatedUser] = useState(false);
+  const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
 
   const currentProfHome = useSelector((reduxState) => reduxState.profHome.current);
   if (!currentProfHome) {
@@ -43,6 +48,13 @@ function ProfHome() {
   const pic = 'https://web.cs.dartmouth.edu/sites/department_computer_science/files/styles/profile_portrait/public/LorieLoeb.png?itok=A6088OY8';
   return (
     <div>
+      <ProfProfileModal
+        isOpen={profileModalIsOpen}
+        setIsOpen={setProfileModalIsOpen}
+        user={user}
+        setUpdatedUser={setUpdatedUser}
+      />
+
       <div className="p-6 w-1/2 h-screen bg-black z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
         <div className="flex flex-col justify-start items-center my-6">
           <Image src={logo} width={60} height={60} alt="classy logo" />
@@ -80,7 +92,7 @@ function ProfHome() {
         >
           <img className={styles.pic} src={pic} alt="Lorie" />
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-            <A>Edit Profile</A>
+            <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{currentProfHome?.professor?.name}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
               {`Professor of ${currentProfHome?.professor?.departments?.join(', ')}`}
