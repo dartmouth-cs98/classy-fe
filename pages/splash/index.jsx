@@ -17,7 +17,7 @@ export default function splash() {
       <div className={styles.onboardingSection}>
         <H2 color="white"> Sign up today</H2>
         <div className={styles.buttonContainer}>
-          <Link href="/register" className={styles.imgBtn}>
+          <Link href="/prof_register" className={styles.imgBtn}>
             <Image src={prof} width={300} height={300} alt="classy logo" />
           </Link>
           <Link href="/register" className={styles.imgBtn}>
