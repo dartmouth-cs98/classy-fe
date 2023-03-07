@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import styles from '../../styles/Social.module.css';
-import CourseTitleCard from '../../components/CourseTitleCard';
 import { cardColors } from '../../constants/colors';
 import {
   H3, B1,

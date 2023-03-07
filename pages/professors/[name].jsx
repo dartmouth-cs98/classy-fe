@@ -6,7 +6,7 @@ import {
 } from '../../components/ui/typography';
 import ProfessorCard from '../../components/professors/ProfessorCard';
 import CourseTable from '../../components/CourseTable';
-import styles from '../../styles/professorInfo.module.css';
+import styles from '../../styles/ProfessorInfo.module.css';
 import { fetchProfessor } from '../../actions';
 
 function ProfessorInfo() {
