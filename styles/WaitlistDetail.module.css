@@ -12,6 +12,7 @@
 }
 
 .page_header {
+  padding-bottom: 5%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -41,9 +42,7 @@
 }
 
 .title {
-  /* padding: 2%; */
   margin: 0;
-  /* line-height: 1.15; */
   font-size: 2.3rem;
 }
 
@@ -66,6 +65,28 @@
   border-color: transparent;
 }
 
+.signupbtn {
+  background-color: #14121D;
+  border-color: transparent;
+  border-radius: 10px;
+  width: 200px;
+  color: white;
+  padding: 1em;
+  margin: 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.signup:hover,
+.signup:visited,
+.signup:focus,
+.signup:active {
+  color: #14121D;
+  background-color: #fafafa;
+  border-color: transparent;
+}
+
 .info_graphic {
   background-color: #5B8A8D;
   border-radius: 10px;
@@ -82,19 +103,15 @@
 }
 
 .waitlist_btns {
-  /* padding-top: 1em; */
   flex: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* justify-content:space-around; */
 }
 
 .waitlist_details_container {
-  /* margin-top: 1em; */
   border-radius: 10px;
-  /* margin-left: 5%;
-  margin-right: 5%; */
+  padding-top: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -196,24 +213,5 @@
 }
 
 .cblabel {
-    width: 95%;
-}
-
-/* @media (max-width: 600px) {
-  .grid {
     width: 100%;
-    flex-direction: column;
-  }
 }
-
-@media (prefers-color-scheme: light) {
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
-} */
