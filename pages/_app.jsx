@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        {!componentString.includes('Login') && !componentString.includes('Ready to explore') && !componentString.includes('prof hide nav') ? <SideNavbar /> : ''}
+        {!componentString.includes('Login') && !componentString.includes('Ready to explore') && !componentString.includes('RegisterHome') ? <SideNavbar /> : ''}
         <Component {...pageProps} />
       </Provider>
     </ThemeProvider>
