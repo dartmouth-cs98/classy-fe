@@ -44,6 +44,8 @@ function Register() {
   const [majors, setMajors] = useState([]);
   const [minors, setMinors] = useState([]);
 
+  const [errorMessages, setErrorMessages] = useState([]);
+
   const dispatch = useDispatch();
   const router = useRouter();
   const reduxUser = useSelector((state) => state.user).user;
@@ -52,13 +54,19 @@ function Register() {
   const initialRender = useRef(true);
   useEffect(() => {
     if (!initialRender.current) {
-      if (Object.keys(reduxUser).length !== 0) {
+      if (Object.keys(reduxUser).length !== 0 && reduxUser.errors === undefined) {
         router.push('/home');
+      } else {
+        setErrorMessages(reduxUser.errors);
       }
     } else {
       initialRender.current = false;
     }
   }, [reduxUser]);
+
+  useEffect(() => {
+    setErrorMessages([]);
+  }, [username, password, matchPassword, netID, email, firstName, lastName]);
 
   // validate input
   useEffect(() => {
@@ -111,6 +119,11 @@ function Register() {
       );
     }
     if (!validMatch) list.push('Please enter matching passwords');
+    if (errorMessages.length > 0) {
+      errorMessages.forEach((error) => {
+        list.push(error);
+      });
+    }
 
     if (list.length) {
       return (

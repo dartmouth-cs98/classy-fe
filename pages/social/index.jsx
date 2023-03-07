@@ -47,6 +47,17 @@ function Social() {
     </div>
   );
 
+  const displayFriendsCards = () => (
+    student?.friends?.map((friend, i) => (i < 6 || seeAllFriends ? (
+      <Link href={`/social/friendProfile/${friend._id}`}>
+        <FriendCard student={friend} />
+      </Link>
+    ) : (
+      // displayEmptyFriends()
+      null
+    )))
+  );
+
   return (
     <div className={styles.container}>
       <div>
@@ -54,28 +65,22 @@ function Social() {
           <H3>Your Friends Recommend</H3>
         </div>
         <div className={styles.coursesContainer}>
-          {student && student.coursesRecommended
-					  ? student.coursesRecommended.map((course, i) => (
-  <div style={{ margin: '10px' }}>
-    <CourseSimple
-      key={course?.courseTitle}
-      course={course.course}
-      color={cardColors[i % cardColors.length]}
-      type="social"
-      friend={course.friend}
-    />
-  </div>
-						  ))
-					  : displayEmptyCourseRec()}
+          {student?.coursesRecommended?.length > 0
+            ? student.coursesRecommended.map((course, i) => (
+              <div style={{ margin: '10px' }}>
+                <CourseSimple
+                  key={course?.courseTitle}
+                  course={course.course}
+                  color={cardColors[i % cardColors.length]}
+                  type="social"
+                  friend={course.friend}
+                />
+              </div>
+            ))
+            : displayEmptyCourseRec()}
         </div>
         <H3>All Friends</H3>
-        {student?.friends?.map((friend, i) => (i < 6 || seeAllFriends ? (
-          <Link href={`/social/friendProfile/${friend._id}`}>
-            <FriendCard student={friend} />
-          </Link>
-        ) : (
-          displayEmptyFriends()
-        )))}
+        {student?.friends?.length > 0 ? displayFriendsCards() : displayEmptyFriends()}
         {student?.friends?.length > 0 ? (
           <BlackButton
             title={!seeAllFriends ? 'Show All Friends' : 'Hide Friends'}
