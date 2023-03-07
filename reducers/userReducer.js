@@ -13,7 +13,7 @@ const UserReducer = (state = initialState, action = {}) => {
       return { ...state, user: action.payload };
     case AuthActionTypes.LOGIN:
       return { ...state, user: action.payload };
-    case ActionTypes.REGISTER:
+    case AuthActionTypes.REGISTER:
       return { ...state, user: action.payload };
     default:
       return state;

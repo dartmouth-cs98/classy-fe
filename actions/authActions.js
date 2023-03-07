@@ -34,7 +34,7 @@ export const register = (userObject) => (dispatch) => {
     const response = res.data;
     dispatch({
       type: AuthActionTypes.REGISTER,
-      payload: { response },
+      payload: response,
     });
   });
 };
