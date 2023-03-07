@@ -21,10 +21,6 @@ export default function RecommendCourseModal(props) {
   const user = useSelector((state) => state.user);
   const friends = useSelector((state) => state.student.student.friends);
 
-  useEffect(() => {
-    dispatch(fetchStudent(user?.user?.student?._id));
-  }, [friends === []]);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
