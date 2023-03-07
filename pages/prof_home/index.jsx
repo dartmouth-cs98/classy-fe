@@ -43,7 +43,6 @@ function ProfHome() {
   const pic = 'https://web.cs.dartmouth.edu/sites/department_computer_science/files/styles/profile_portrait/public/LorieLoeb.png?itok=A6088OY8';
   return (
     <div>
-      <div className={styles.nav} />
       <div className="p-6 w-1/2 h-screen bg-black z-20 fixed top-0 -left-96 lg:w-60 lg:left-0 peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
         <div className="flex flex-col justify-start items-center my-6">
           <Image src={logo} width={60} height={60} alt="classy logo" />
@@ -57,7 +56,7 @@ function ProfHome() {
           {/* main tabs */}
           <div className="my-60 pb-10 w-full">
             <NavbarLink
-              link="home"
+              link="prof_home"
               title="Home"
               icon={<MdOutlineHome className={sidenavIconStyles} />}
             />
