@@ -3,6 +3,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Deployed Site
 [Link](https://main--prismatic-cranachan-beebdd.netlify.app/)
 
+## Mock User for Testing
+* Student User: 
+  * Username: classyVi
+  * Password: !Classy98
+* Professor User:
+  * Username: 
+  * Password: 
+
 ## Getting Started
 
 First, install the necesary dependencies by running the command:
