@@ -5,6 +5,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -280,14 +281,16 @@ function HomePage() {
                   pastelColor="var(--pastel-pink)"
                   darkColor="var(--dark-pink) "
                 />
-                <DataBox
-                  height="180px"
-                  width="175px"
-                  text="Waitlists Joined"
-                  data={waitlists?.courses?.length || 0}
-                  pastelColor="var(--pastel-violet)"
-                  darkColor="var(--dark-violet) "
-                />
+                <Link href="/waitlist">
+                  <DataBox
+                    height="180px"
+                    width="175px"
+                    text="Waitlists Joined"
+                    data={waitlists?.courses?.length || 0}
+                    pastelColor="var(--pastel-violet)"
+                    darkColor="var(--dark-violet) "
+                  />
+                </Link>
               </div>
             </div>
           </div>
