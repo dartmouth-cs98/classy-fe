@@ -9,7 +9,9 @@ import Image from 'next/image';
 // import { Provider } from 'react-redux';
 // import thunk from 'redux-thunk';
 // import rootReducer from '../reducers';
-import { H1, H2, B1 } from '../components/ui/typography';
+import {
+  H1, H2, H3,
+} from '../components/ui/typography';
 import styles from '../styles/Onboarding.module.css';
 import prof from '../images/professor_outlined.png';
 import student from '../images/student_outlined.png';
@@ -38,7 +40,7 @@ export default function Home() {
           </Link>
         </div>
         <Link href="/login">
-          <B1 color="white">Returning? Sign In</B1>
+          <H3 color="white">Returning? Login</H3>
         </Link>
       </div>
     </div>

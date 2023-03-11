@@ -101,7 +101,7 @@ function Login() {
     <div className={styles.loginform}>
       <div className={styles.headercontainer}>
         <H2>Welcome back!</H2>
-        <H1>Sign In</H1>
+        <H1>Login</H1>
       </div>
       {loadErrorAlert()}
       <br />
@@ -114,21 +114,24 @@ function Login() {
             className={styles.btn}
             disabled={!username || !password}
           >
-            Sign In
+            Login
           </button>
         </div>
       </form>
-      <p>
+      <div className={styles.centeredContainer}>
         Need an account?
+        {' '}
+        Sign Up Instead
         <br />
-        <span className="line">
-          Sign up instead
-          {' '}
-          <a href="/register">Student</a>
-          {' '}
-          <a href="/prof_register">or Professor</a>
-        </span>
-      </p>
+        <div className={styles.smallbtnContainer}>
+          <div className={styles.smallbtn}>
+            <a href="/register">Students</a>
+          </div>
+          <div className={styles.smallbtn}>
+            <a href="/prof_register">Professors</a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

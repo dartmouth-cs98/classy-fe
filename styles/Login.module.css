@@ -73,6 +73,44 @@
   border-color: transparent;
 }
 
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.smallbtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10%;
+}
+
+.smallbtn {
+  background-color: #FCF0E3;
+  color: #14121D;
+  border-color: transparent;
+  border-radius: 10px;
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 2%;
+}
+
+.smallbtn:hover,
+.smallbtn:visited,
+.smallbtn:focus,
+.smallbtn:active {
+  background-color: #14121D;
+  color: #FCF0E3;
+  border-color: transparent;
+}
+
 .btn:disabled {
     background-color: gray;
     color: #FCF0E3;
