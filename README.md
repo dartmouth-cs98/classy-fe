@@ -66,11 +66,14 @@ You may also find the following snippet helpful when changing routes:
 * Tailwind CSS
 
 ## Styling
-Currently, the project uses a mix of CSS modules, tailwind, and a typography library. By the end of next term, we hope to standardize styling for consistency.
+Currently, the project uses a mix of CSS modules, tailwind, and a typography library made using styled-components.
 
-## Author
+## Authors
 * Vi N Tran
 * Henry Kim
 * Alex Feng
 * Gyuri Hwang
 * Alyssa Anderson
+
+## Contributions
+Our current repo includes many generated files. These include node/yarn-generated files (node_modules, yarn.lock, package-lock.json) and scraper-generated files (tsv, csv, txt). For a more accurate representation of contributions, see our [filtered repo](https://github.com/alxfngg/filtered-classyfe/graphs/contributors?from=2022-10-16&to=2023-03-11&type=a) which is a duplicate of this repo, but generated files have been removed from the filtered repo's history.
