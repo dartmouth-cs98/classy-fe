@@ -22,6 +22,9 @@ import stylesCI from '../../styles/CourseInfo.module.css';
 const cardColor = ['#EBF9FA', '#EFFAEB', '#FCF0E3', '#EFE7FA', '#FAEBF6', '#F9F3FC'];
 const textColor = ['#5B8A8D', '#75946A', '#BA7D37', '#7E5DAC', '#AE5E99', '#8E5BA8'];
 
+const currTerm = '23S';
+const prevYear = 22;
+
 function WaitlistModal(props) {
   const dispatch = useDispatch();
   const {
@@ -86,7 +89,8 @@ function WaitlistModal(props) {
 
       const positionDisplay = () => {
         if (position === -1) {
-          if (!onOfferingWaitlist && !(parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) {
+          if (!onOfferingWaitlist && !(parseInt(offering.term.substring(0, 2), 10) <= prevYear
+            || offering.term === currTerm)) {
             return (
               <B1>
                 <Link href="/waitlist">
@@ -189,9 +193,7 @@ function WaitlistModal(props) {
                 {' '}
                 {nextTerm}
               </H3>
-              {/* <H4>For additonal terms, select edit below</H4> */}
               <H3>{nextTermPos}</H3>
-              {/* <H3>{course.offerings[1].waitlist.length}</H3> */}
             </div>
           </div>
           <div className={styleswt.bottomButtons}>
@@ -224,7 +226,7 @@ function WaitlistModal(props) {
     let index = -1;
     return course.offerings.map((offering) => {
       index += 1;
-      if ((parseInt(offering.term.substring(0, 2), 10) <= 22 || offering.term === '23w')) return '';
+      if ((parseInt(offering.term.substring(0, 2), 10) <= prevYear || offering.term === currTerm)) return '';
       return (
         <label className={styles.cblabel} htmlFor={`offering${index}`}>
           <B1>
@@ -291,7 +293,7 @@ function WaitlistModal(props) {
                     type="button"
                     onClick={() => { setModalNotificationOpen(false); }}
                   >
-                    Close Modal
+                    Close
                   </Button>
                 </B1>
               </div>

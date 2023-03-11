@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import stylesCI from '../../styles/CourseInfo.module.css';
 
-import Offered from './Offered';
+// import Offered from './Offered';
 import WaitlistModal from '../waitlist/WaitlistModal';
 import { markCourse } from '../../actions';
 
@@ -57,11 +57,12 @@ function CourseInfoTitle(props) {
   const containValidWaitlist = () => {
     const prevWaitlists = [];
     const futureWaitlists = [];
+
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < course.offerings.length; i++) {
       // track prior waitlist term offerings
-      if ((parseInt(course.offerings.term.substring(0, 2), 10) <= prevYear
-        || course.offerings.term === currTerm)) {
+      if ((parseInt(course.offerings[i].term.substring(0, 2), 10) <= prevYear
+        || course.offerings[i].term === currTerm)) {
         prevWaitlists.push(course.offerings);
       } else {
         futureWaitlists.push(course.offerings);
