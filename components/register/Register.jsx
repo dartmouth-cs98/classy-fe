@@ -223,7 +223,7 @@ function Register() {
           Already have an account?
           <br />
           <span className="line">
-            <a href="/login">Sign in instead</a>
+            <a href="/login">Login instead</a>
           </span>
         </p>
       </div>
