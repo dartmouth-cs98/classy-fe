@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import stylesCI from '../../styles/CourseInfo.module.css';
 
+import Offered from './Offered';
 import WaitlistModal from '../waitlist/WaitlistModal';
 import { markCourse } from '../../actions';
 
@@ -24,6 +25,9 @@ function CourseInfoTitle(props) {
 
   const [status, setStatus] = useState(determineStatus);
   const dispatch = useDispatch();
+
+  const currTerm = '23S';
+  const prevYear = 22;
 
   const changeStatus = (event) => {
     event.preventDefault();
@@ -50,8 +54,25 @@ function CourseInfoTitle(props) {
     }
   };
 
+  const containValidWaitlist = () => {
+    const prevWaitlists = [];
+    const futureWaitlists = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < course.offerings.length; i++) {
+      // track prior waitlist term offerings
+      if ((parseInt(course.offerings.term.substring(0, 2), 10) <= prevYear
+        || course.offerings.term === currTerm)) {
+        prevWaitlists.push(course.offerings);
+      } else {
+        futureWaitlists.push(course.offerings);
+      }
+    }
+    return (futureWaitlists.length === 0);
+  };
+
+  // waitlist button for course info page, don't display if taken or no offering
   const loadWaitlistButton = () => {
-    if (taken) {
+    if (taken || containValidWaitlist()) {
       return '';
     }
     return <WaitlistModal course={course} studentId={student._id} onWaitlist={onWaitlist} />;
