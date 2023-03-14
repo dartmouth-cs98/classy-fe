@@ -119,7 +119,7 @@ function Register() {
       );
     }
     if (!validMatch) list.push('Please enter matching passwords');
-    if (errorMessages.length > 0) {
+    if (errorMessages?.length > 0) {
       errorMessages.forEach((error) => {
         list.push(error);
       });
