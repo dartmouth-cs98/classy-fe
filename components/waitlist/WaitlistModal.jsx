@@ -65,6 +65,7 @@ function WaitlistModal(props) {
     console.log('offering indices are', offerings);
     dispatch(joinWaitlists(waitlistRequest));
     setReason('');
+    setModalNotificationOpen(false);
   };
 
   const loadOfferings = () => {
