@@ -18,6 +18,7 @@ function ProfWaitlistTerm(props) {
   const {
     color, i, offering, courseId, dept, num,
   } = props;
+  console.log('in prof waitlist term for', offering);
 
   const [selected, setSelected] = useState(true);
 

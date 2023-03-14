@@ -62,10 +62,9 @@ function ProfWaitlist() {
   }
 
   const loadProfOfferings = () => {
-    console.log('offerings are', course?.offerings);
     const results = course?.offerings?.map((offering, i) => {
       if (offering.professors.includes(name)) {
-        if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
+        if ((offering.waitlist.length + offering.priorityWaitlist.length) > 0) {
           return (
             <ProfWaitlistTerm
               color={cardColors[i % cardColors.length]}
@@ -122,18 +121,13 @@ function ProfWaitlist() {
       <div className={styles.header}>
         <H1>{`${dept} ${num} Waitlists`}</H1>
       </div>
-      {loadProfOfferings().join(',') !== '' ? (
-        <>
-          <Alert severity="info" style={{ width: '100%', marginBottom: '1em' }}>
-            Changes will be updated once you refresh the page
-          </Alert>
-          <br />
-        </>
-      ) : (
-        ''
-      )}
+      <Alert severity="info" style={{ width: '100%', marginBottom: '1em' }}>
+        Changes will be updated once you refresh the page
+      </Alert>
+      <br />
 
       <div className={styles.body}>
+        <br />
         {loadProfOfferings()}
       </div>
     </div>
