@@ -49,7 +49,6 @@ export default function WaitlistHome() {
               course={course}
               studentId={student._id}
               onWaitlist
-              // offering={course.offering}
               index={index}
               entryPoint="waitlist"
             />

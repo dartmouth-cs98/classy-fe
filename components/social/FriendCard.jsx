@@ -54,7 +54,8 @@ function FriendCard(props) {
           <div className={styles.container}>
             <img className={styles.pic} src={student?.user?.profileImageUrl?.length > 0 ? student?.user?.profileImageUrl : defaultUserImageURL} alt="friend pic" />
             <div className={styles.description}>
-              <H3 style={{ margin: '0px' }}>{`${student.user?.firstName} ${student?.user?.lastName} ${student?.classYear ? `'${student?.classYear}` : ''}`}</H3>
+
+              <H3 style={{ margin: '0px' }}>{`${student.user?.firstName} ${student.user?.lastName} ${student?.classYear ? `'${student?.classYear}` : ''}`}</H3>
               <div className="majorMinorContainer">
                 {loadMajors()}
               </div>
