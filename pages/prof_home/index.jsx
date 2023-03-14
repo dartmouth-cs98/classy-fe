@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,7 +7,7 @@ import {
   MdOutlineHome,
   MdOutlineLogout,
 } from 'react-icons/md';
-import { fetchProfessorHome } from '../../actions';
+import { fetchUser, fetchProfessorHome } from '../../actions';
 import CourseSimple from '../../components/profWaitlist/CourseSimple';
 import {
   A, H3, H1, B1, H4,
@@ -15,6 +16,7 @@ import styles from '../../styles/components/ProfHome.module.css';
 import logo from '../../images/logo.png';
 import NavbarLink from '../../components/NavbarLink';
 import ProfProfileModal from '../../components/profWaitlist/ProfProfileModal';
+import { defaultUserImageURL } from '../../constants/mockData';
 
 const cardColors = [
   { pastel: '#FCF0E3', dark: '#BA7D37' },
@@ -27,17 +29,24 @@ const cardColors = [
 
 function ProfHome() {
   // prof hide nav
-  const name = 'Lorie Loeb';
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProfessorHome(name));
-  }, []);
+
   const { user } = useSelector((state) => state.user);
 
   const sidenavIconStyles = 'text-2xl text-white group-hover:text-black ';
 
   const [updatedUser, setUpdatedUser] = useState(false);
   const [profileModalIsOpen, setProfileModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUser(user._id));
+  }, [updatedUser === true]);
+
+  const name = `${user.firstName} ${user.lastName}`;
+
+  useEffect(() => {
+    dispatch(fetchProfessorHome(name));
+  }, []);
 
   const currentProfHome = useSelector((reduxState) => reduxState.profHome.current);
   if (!currentProfHome) {
@@ -86,11 +95,23 @@ function ProfHome() {
       </div>
 
       <div className={styles.main}>
-        <div style={{
-          display: 'flex', flexDirection: 'row', alignItems: 'flex-end', gap: '20px',
-        }}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            gap: '20px',
+          }}
         >
-          <img className={styles.pic} src={pic} alt="Lorie" />
+          <img
+            className={styles.pic}
+            src={
+                user.profileImageUrl?.length > 0
+                  ? user.profileImageUrl
+                  : defaultUserImageURL
+            }
+            alt="Lorie"
+          />
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
             <H1>{currentProfHome?.professor?.name}</H1>

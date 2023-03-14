@@ -35,8 +35,10 @@ function Login() {
     if (!initialRender.current) {
       if (user.status === 404 || Object.keys(user).length === 0) {
         if (user.status === 404) { setErrorMsg('Invalid username or password'); }
-      } else {
+      } else if (user.student) {
         router.push('/home');
+      } else if (user.professor) {
+        router.push('/prof_home');
       }
     } else {
       initialRender.current = false;
