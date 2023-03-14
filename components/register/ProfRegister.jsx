@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { Alert } from '@mui/material';
 import { H2 } from '../ui/typography';
@@ -36,7 +37,30 @@ function Register() {
 
   const [department, setDepartment] = useState([]);
 
+  const [errorMessages, setErrorMessages] = useState([]);
+
   const dispatch = useDispatch();
+  const router = useRouter();
+  const reduxUser = useSelector((state) => state.user).user;
+
+  /// REDIRECT TO HOME PAGE AFTER SUCCESSFUL REGISTER
+  const initialRender = useRef(true);
+  useEffect(() => {
+    if (!initialRender.current) {
+      if (Object.keys(reduxUser).length !== 0 && reduxUser.errors === undefined) {
+        router.push('/prof_home');
+      } else {
+        setErrorMessages(reduxUser.errors);
+      }
+    } else {
+      initialRender.current = false;
+    }
+  }, [reduxUser]);
+
+  // reset error messages if user changes input
+  useEffect(() => {
+    setErrorMessages([]);
+  }, [username, password, matchPassword, email, firstName, lastName]);
 
   // validate input
   useEffect(() => {
@@ -75,6 +99,11 @@ function Register() {
       );
     }
     if (!validMatch) list.push('Please enter matching passwords');
+    if (errorMessages?.length > 0) {
+      errorMessages.forEach((error) => {
+        list.push(error);
+      });
+    }
 
     if (list.length) {
       return (
@@ -122,9 +151,8 @@ function Register() {
     const user = {
       username, email, firstName, lastName, department, password,
     };
-    // console.log('user: ', user);
-    // const professor = { department };
-    // dispatch(register({ user, student }));
+    const professor = { department };
+    dispatch(register({ user, professor }));
   };
 
   return (
