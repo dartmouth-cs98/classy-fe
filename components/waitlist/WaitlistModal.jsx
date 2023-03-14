@@ -173,23 +173,23 @@ function WaitlistModal(props) {
       return (
         <div
           className={styleswt.card}
-          style={{ background: cardColor[index] }}
+          style={{ background: cardColor[index % 6] }}
         >
           <div className={styleswt.waitlistCardsContainer}>
             <H3>
               {` ${course.courseDept} ${course.courseNum}`}
             </H3>
             <Link href={`/courses/${course.courseDept}/${course.courseNum}`}>
-              <H3 color={textColor[index]}>{course.courseTitle}</H3>
+              <H3 color={textColor[index % 6]}>{course.courseTitle}</H3>
             </Link>
           </div>
           <div className={styleswt.waitlistCardsContainer}>
             <div>
-              <H3 color={textColor[index]}>terms enrolled</H3>
+              <H3 color={textColor[index % 6]}>terms enrolled</H3>
               <H3>{waitlistTerms}</H3>
             </div>
             <div>
-              <H3 color={textColor[index]}>
+              <H3 color={textColor[index % 6]}>
                 status for
                 {' '}
                 {nextTerm}
