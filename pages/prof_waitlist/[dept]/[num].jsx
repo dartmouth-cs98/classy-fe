@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from '@mui/material';
@@ -8,7 +9,7 @@ import {
   MdOutlineLogout,
 } from 'react-icons/md';
 import Image from 'next/image';
-import { fetchCourse, fetchProfessor } from '../../../actions';
+import { fetchUser, fetchCourse, fetchProfessor } from '../../../actions';
 import { B1, H1, H4 } from '../../../components/ui/typography';
 
 import styles from '../../../styles/ProfWaitlist.module.css';
@@ -28,12 +29,20 @@ const cardColors = [
 function ProfWaitlist() {
   // prof hide nav
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const { dept, num } = router.query;
-  const name = 'Lorie Loeb';
+  const { user } = useSelector((state) => state.user);
+  const [updatedUser, setUpdatedUser] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchUser(user._id));
+  }, [updatedUser === true]);
+
+  const name = `${user.firstName} ${user.lastName}`;
 
   const sidenavIconStyles = 'text-2xl text-white group-hover:text-black ';
 
-  const dispatch = useDispatch();
   const course = useSelector((reduxState) => reduxState.courses.current.course);
   const currentProfessor = useSelector(
     (reduxState) => reduxState.professors.current,
@@ -52,24 +61,31 @@ function ProfWaitlist() {
     return <B1 key="loading">Loading...</B1>;
   }
 
-  const loadProfOfferings = () => course?.offerings?.map((offering, i) => {
-    if (offering.professors.includes(name)) {
-      if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
-        return (
-          <ProfWaitlistTerm
-            color={cardColors[i % cardColors.length]}
-            key={offering.professors}
-            i={i}
-            courseId={course?._id}
-            dept={course.courseDept}
-            num={course.courseNum}
-            offering={offering}
-          />
-        );
+  const loadProfOfferings = () => {
+    console.log('offerings are', course?.offerings);
+    const results = course?.offerings?.map((offering, i) => {
+      if (offering.professors.includes(name)) {
+        if (offering.waitlist.length + offering.priorityWaitlist.length > 0) {
+          return (
+            <ProfWaitlistTerm
+              color={cardColors[i % cardColors.length]}
+              key={offering.professors}
+              i={i}
+              courseId={course?._id}
+              dept={course.courseDept}
+              num={course.courseNum}
+              offering={offering}
+            />
+          );
+        }
       }
+      return '';
+    });
+    if (results.length === 0) {
+      return <B1>No students on any waitlists yet!</B1>;
     }
-    return '';
-  });
+    return results;
+  };
 
   return (
     <div className={styles.all}>
@@ -118,11 +134,7 @@ function ProfWaitlist() {
       )}
 
       <div className={styles.body}>
-        {loadProfOfferings().join(',') !== '' ? (
-          loadProfOfferings()
-        ) : (
-          <B1>No students on any waitlists yet!</B1>
-        )}
+        {loadProfOfferings()}
       </div>
     </div>
   );
