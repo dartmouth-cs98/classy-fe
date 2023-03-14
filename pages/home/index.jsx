@@ -273,14 +273,17 @@ function HomePage() {
                 className={styles.horizontalContainer}
                 style={{ gap: '20px' }}
               >
-                <DataBox
-                  height="180px"
-                  width="135px"
-                  text="Friends"
-                  data={user?.student?.friends?.length || 0}
-                  pastelColor="var(--pastel-pink)"
-                  darkColor="var(--dark-pink) "
-                />
+                <Link href="/social">
+                  <DataBox
+                    height="180px"
+                    width="135px"
+                    text="Friends"
+                    data={user?.student?.friends?.length || 0}
+                    pastelColor="var(--pastel-pink)"
+                    darkColor="var(--dark-pink
+                    ) "
+                  />
+                </Link>
                 <Link href="/waitlist">
                   <DataBox
                     height="180px"
