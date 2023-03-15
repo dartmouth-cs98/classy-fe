@@ -7,9 +7,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 * Student User: 
   * Username: classyVi
   * Password: !Classy98
-* Professor User:
-  * Username: 
-  * Password: 
+* Professor User 1:
+  * Username: classyTim
+  * Password: !Classy98
+* Professor User 2:
+  * Username: lorieloeb
+  * Password: !Classy98
 
 ## Getting Started
 
