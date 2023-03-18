@@ -45,7 +45,7 @@ function SearchResults(props) {
       <div className={styles.container}>
         <div className={styles.profs}>
           {searchProfResults ? searchProfResults.map((professor) => (
-            <div>
+            <div key={professor._id}>
               <Professor key={professor._id} professor={professor} />
             </div>
           )) : null}

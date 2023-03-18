@@ -9,6 +9,7 @@ import { defaultUserImageURL } from '../constants/mockData';
 function Professor(props) {
   const { professor, forDept } = props;
   const { pic, name, departments } = professor;
+
   if (forDept) {
     return (
       <Link href={`/professors/${name}`}>
@@ -34,7 +35,7 @@ function Professor(props) {
             <img
               className={styles.pic}
               style={{ marginBottom: 5 }}
-              src={professor?.professorObj && professor?.professorObj[0].profileImageUrl?.length > 0
+              src={professor?.professorObj[0]?.profileImageUrl?.length > 0
                 ? professor?.professorObj[0].profileImageUrl : defaultUserImageURL}
               alt="friend pic"
             />

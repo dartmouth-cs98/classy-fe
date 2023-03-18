@@ -44,8 +44,9 @@ function HomePage() {
   const [updatedUser, setUpdatedUser] = useState(false);
   useEffect(() => {
     dispatch(fetchUser(user._id));
-  }, [updatedUser === true]);
+  }, []);
 
+  // console.log(user);
   useEffect(() => {
     dispatch(fetchWaitlists());
   }, []);
@@ -64,7 +65,33 @@ function HomePage() {
     for (const major of user.student.majors) {
       majorNames.push(major.name);
     }
-    return majorNames.join(',');
+    const majorString = majorNames.join(', ');
+    if (majorString) {
+      return `${majorString} Major(s)`;
+    }
+    return '';
+  };
+
+  const loadMinors = () => {
+    const minorNames = [];
+    for (const minor of user.student.minors) {
+      minorNames.push(minor.name);
+    }
+    const minorString = minorNames.join(', ');
+    if (minorString) {
+      return `${minorString} Minor(s)`;
+    }
+    return '';
+  };
+
+  const loadMajorsMinors = () => {
+    const majorString = loadMajors();
+    const minorString = loadMinors();
+
+    if (majorString && minorString) {
+      return `${majorString} • ${minorString}`;
+    }
+    return majorString || minorString;
   };
 
   return (
@@ -73,7 +100,7 @@ function HomePage() {
         isOpen={profileModalIsOpen}
         setIsOpen={setProfileModalIsOpen}
         user={user}
-        setUpdatedUser={setUpdatedUser}
+        // setUpdatedUser={setUpdatedUser}
       />
       <ShoppingModal
         isOpen={shoppingModalIsOpen}
@@ -110,9 +137,9 @@ function HomePage() {
           />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <A onClick={() => setProfileModalIsOpen(true)}>Edit Profile</A>
-            <H1>{`${user?.firstName} ${user?.lastName}`}</H1>
+            <H1>{`${user?.firstName} ${user?.lastName} '${user?.student?.classYear}`}</H1>
             <B1 color="var(--darkest-grey)" style={{ marginTop: '5px' }}>
-              {`${user?.student?.majors ? loadMajors() : 'Undecided'} Major(s)`}
+              {user?.student?.majors && user?.student?.minors ? loadMajorsMinors() : ''}
             </B1>
           </div>
         </div>

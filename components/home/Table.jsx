@@ -9,20 +9,49 @@ import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { B1 } from '../ui/typography';
 import styles from '../../styles/Home.module.css';
-import { markCourse } from '../../actions';
+import { updateUser } from '../../actions';
 
 function Table(props) {
   const {
-    courses, mode, removing, studentId,
+    courses, mode, removing, studentId, user,
   } = props;
   const dispatch = useDispatch();
   const router = useRouter();
 
   const removeCourse = (courseId) => {
     if (mode === 'cart') {
-      dispatch(markCourse(studentId, courseId, 'cart', true));
+      dispatch(updateUser(
+        user?._id,
+        {
+          ...user,
+        },
+        {
+          ...user.student,
+          shoppingCart: user.student.shoppingCart.filter((course) => course._id !== courseId),
+        },
+      ));
     } else if (mode === 'completed') {
-      dispatch(markCourse(studentId, courseId, 'taken', true));
+      dispatch(updateUser(
+        user?._id,
+        {
+          ...user,
+        },
+        {
+          ...user.student,
+          coursesTaken: user.student.coursesTaken.filter((course) => course._id !== courseId),
+        },
+      ));
+    } else if (mode === 'current') {
+      dispatch(updateUser(
+        user?._id,
+        {
+          ...user,
+        },
+        {
+          ...user.student,
+          currentCourses: user.student.currentCourses.filter((course) => course._id !== courseId),
+        },
+      ));
     }
   };
 
@@ -92,7 +121,7 @@ function Table(props) {
         <table style={{ margin: '5px 0' }}>
           <tbody>
             {courses.map((course) => (
-              <tr>
+              <tr key={course._id}>
                 <td align="left" style={{ minWidth: '130px', height: '40px' }}>
                   <B1 style={{ cursor: 'pointer' }} onClick={() => router.push(`/courses/${course.courseDept}/${course.courseNum}`)}>
                     {`${course.courseDept} ${course.courseNum}`}

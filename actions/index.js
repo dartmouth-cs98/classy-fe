@@ -45,13 +45,16 @@ export const ActionTypes = {
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   PRIORITIZE: 'PRIORITZE',
   APPROVE: 'APPROVE',
+  UPDATE_USER_NOW: 'UPDATE_USER_NOW',
   ...SearchActionTypes,
   ...AuthActionTypes,
 };
 
 export const fetchUser = (id) => (dispatch) => {
+  console.log('hi');
   axios.get(`${ROOT_URL}/users/${id}`).then((res) => {
     const response = res.data;
+    console.log(`response${response}`);
     dispatch({
       type: ActionTypes.FETCH_USER,
       payload: response,
@@ -59,15 +62,21 @@ export const fetchUser = (id) => (dispatch) => {
   });
 };
 
-export function updateUser(id, user) {
+export function updateUser(id, user, student) {
   return (dispatch) => {
+    dispatch({
+      type: ActionTypes.UPDATE_USER_NOW,
+      payload: { user, student },
+    });
+    console.log(user);
     axios
-      .put(`${ROOT_URL}/users/${id}`, user)
+      .put(`${ROOT_URL}/users/${id}`, { user, student })
       .then((response) => {
         dispatch({
           type: ActionTypes.UPDATE_USER,
           payload: response.data,
         });
+        dispatch(fetchUser(id));
       })
       .catch((error) => {
         console.log(error);
