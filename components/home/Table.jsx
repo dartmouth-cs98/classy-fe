@@ -23,7 +23,7 @@ function Table(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,
@@ -34,7 +34,7 @@ function Table(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,
@@ -45,7 +45,7 @@ function Table(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,

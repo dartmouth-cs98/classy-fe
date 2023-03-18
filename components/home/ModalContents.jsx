@@ -27,7 +27,7 @@ function ModalContents(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,
@@ -39,7 +39,7 @@ function ModalContents(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,
@@ -51,7 +51,7 @@ function ModalContents(props) {
       dispatch(updateUser(
         user?._id,
         {
-          user,
+          ...user,
         },
         {
           ...user.student,
@@ -112,6 +112,7 @@ function ModalContents(props) {
               setSelectedCourse(null);
               setAdding(false);
             }}
+            disabled={!selectedCourse}
           >
             Add
           </Button>

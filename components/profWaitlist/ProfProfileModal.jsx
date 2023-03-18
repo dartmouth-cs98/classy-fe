@@ -51,7 +51,7 @@ function ProfileModal(props) {
     if (pic.file) {
       uploadImage(pic.file).then((url) => {
         setIsOpen(false);
-        dispatch(updateUser(user.user._id, { ...user.user, profileImageUrl: url }));
+        dispatch(updateUser(user._id, { ...user, profileImageUrl: url }));
         setUpdatedUser(true);
       }).catch((error) => {
         // handle error

@@ -45,6 +45,7 @@ export const ActionTypes = {
   FETCH_PROFESSOR_HOME: 'FETCH_PROFESSOR_HOME',
   PRIORITIZE: 'PRIORITZE',
   APPROVE: 'APPROVE',
+  UPDATE_USER_NOW: 'UPDATE_USER_NOW',
   ...SearchActionTypes,
   ...AuthActionTypes,
 };
@@ -63,6 +64,10 @@ export const fetchUser = (id) => (dispatch) => {
 
 export function updateUser(id, user, student) {
   return (dispatch) => {
+    dispatch({
+      type: ActionTypes.UPDATE_USER_NOW,
+      payload: { user, student },
+    });
     console.log(user);
     axios
       .put(`${ROOT_URL}/users/${id}`, { user, student })

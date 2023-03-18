@@ -91,7 +91,7 @@ function ProfileModal(props) {
     dispatch(updateUser(
       user?._id,
       {
-        user,
+        ...user,
       },
       {
         ...user.student,
@@ -114,7 +114,7 @@ function ProfileModal(props) {
     dispatch(updateUser(
       user?._id,
       {
-        user,
+        ...user,
       },
       {
         ...user.student,
@@ -176,12 +176,12 @@ function ProfileModal(props) {
           <div className={modalStyles.header}>
             <div className={modalStyles.field} style={{ width: 'auto' }}>
               <H4>First Name</H4>
-              <TextField sx={{ width: 250 }} placeholder="First Name" defaultValue={user.firstName} onChange={(e) => setFirstName(e.target.value)} />
+              <TextField sx={{ width: 250 }} placeholder="First Name" defaultValue={user?.firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
 
             <div className={modalStyles.field} style={{ width: 'auto' }}>
               <H4>Last Name</H4>
-              <TextField sx={{ width: 250 }} placeholder="Last Name" defaultValue={user.lastName} onChange={(e) => setLastName(e.target.value)} />
+              <TextField sx={{ width: 250 }} placeholder="Last Name" defaultValue={user?.lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
 
             <div className={modalStyles.field} style={{ width: 'auto' }}>

@@ -64,6 +64,7 @@ function AddMajorMinor(props) {
               depts={depts}
             />
             <Button
+              disabled={!selectedDept}
               style={{ width: '100px' }}
               variant="contained"
               onClick={() => {
