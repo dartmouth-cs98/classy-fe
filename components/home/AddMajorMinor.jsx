@@ -1,14 +1,19 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button, TextField, Chip } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
 import { H4, A } from '../ui/typography';
 import styles from '../../styles/components/Modal.module.css';
 import MajorMinorSearchDropdown from '../MajorMinorSearchDropdown';
+import { updateUser, fetchUser } from '../../actions';
 
 function AddMajorMinor(props) {
   const {
-    setAdding, adding, handleDelete, depts, addingMajor, addingMinor, title,
+    setAdding, adding, handleDelete, depts, addingMajor, addingMinor, title, user, addDept,
   } = props;
+
+  const dispatch = useDispatch();
 
   const [inputValueDept, setInputValueDept] = useState('');
   const [selectedDept, setSelectedDept] = useState('');
@@ -35,12 +40,15 @@ function AddMajorMinor(props) {
       </div>
 
       <div className={styles.horizontalContainer} style={{ gap: '10px' }}>
-        {depts.map((majorMinor) => (
+        {depts?.map((majorMinor) => (
           <Chip
+            key={majorMinor._id}
             style={{ marginBottom: '10px' }}
             variant="outlined"
-            onDelete={(e) => handleDelete(e)}
-            label={majorMinor}
+            onDelete={() => {
+              handleDelete(majorMinor.name);
+            }}
+            label={majorMinor.name}
           />
         ))}
       </div>
@@ -53,8 +61,20 @@ function AddMajorMinor(props) {
               setInputValue={setInputValueDept}
               selectedDept={selectedDept}
               setSelectedDept={setSelectedDept}
+              depts={depts}
             />
-            <Button style={{ width: '100px' }} variant="contained" onClick={() => setAdding(false)}>Add</Button>
+            <Button
+              style={{ width: '100px' }}
+              variant="contained"
+              onClick={() => {
+                addDept(selectedDept);
+                setInputValueDept('');
+                setSelectedDept(null);
+                setAdding(false);
+              }}
+            >
+              Add
+            </Button>
             <Button style={{ width: '100px' }} variant="outlined" onClick={() => setAdding(false)}>Cancel</Button>
           </div>
         )

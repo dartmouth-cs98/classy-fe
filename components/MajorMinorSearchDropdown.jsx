@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
@@ -12,6 +13,7 @@ function MajorMinorSearchDropdown(props) {
     setInputValue, // function to set text input value
     selectedDept, // selected course value (stored  as an object)
     setSelectedDept, // function to set selected course object
+    depts,
   } = props;
 
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ function MajorMinorSearchDropdown(props) {
     <Autocomplete
       freeSolo
       options={searchMajorMinorResults}
+      getOptionDisabled={(option) => depts.some((dept) => dept._id === option._id)}
       clearOnBlur={false}
       onInputChange={(event, NewInputValue) => {
         setInputValue(NewInputValue);

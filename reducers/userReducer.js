@@ -10,7 +10,7 @@ const UserReducer = (state = initialState, action = {}) => {
     case ActionTypes.FETCH_USER:
       return { ...state, user: action.payload };
     case ActionTypes.UPDATE_USER:
-      return { ...state, user: action.payload };
+      return { ...state };
     case AuthActionTypes.LOGIN:
       return { ...state, user: action.payload };
     case AuthActionTypes.REGISTER:

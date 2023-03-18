@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
@@ -12,6 +13,7 @@ function CourseSearchDropdown(props) {
     setInputValue, // function to set text input value
     selectedCourse, // selected course value (stored  as an object)
     setSelectedCourse, // function to set selected course object
+    courses,
   } = props;
 
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ function CourseSearchDropdown(props) {
   return (
     <Autocomplete
       freeSolo
+      getOptionDisabled={(option) => courses.some((course) => course._id === option._id)}
       options={searchResults}
       clearOnBlur={false}
       onInputChange={(event, NewInputValue) => {
@@ -41,7 +44,7 @@ function CourseSearchDropdown(props) {
       value={selectedCourse}
       getOptionLabel={() => inputValue}
       isOptionEqualToValue={(option, value) => option._id === value._id}
-      style={{ width: 500 }}
+      style={{ width: 500, overflow: 'none' }}
       renderInput={(params) => (
         <TextField {...params} placeholder="Search Course" variant="outlined" />
       )}
